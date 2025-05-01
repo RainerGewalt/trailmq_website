@@ -8,8 +8,7 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
   <section class="trailmq-landing">
     <!-- Hero Section -->
     <div class="hero">
-      <img src="{{ '/assets/images/logos/trailmq_logo_with_text.svg' | relative_url }}" alt="TrailMQ Logo" class="logo">
-      <h1>TrailMQ</h1>
+       <h1>TrailMQ</h1>
       <p><strong>Secure. Auditable. Open Source.</strong><br>
         A modern MQTT-based broker with audit trail, security, and plugin-based edge intelligence.</p>
     </div>
