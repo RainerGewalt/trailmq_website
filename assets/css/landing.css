@@ -1,165 +1,127 @@
 /* -------------------------------------------------
-   1.  shared palette (keep once in ANY global file)
+   0.  Farbpalette  (einmal global laden)
    -------------------------------------------------*/
 :root{
-    --primary:           #1B4D4F;
-    --primary-content:   #FFFFFF;
-
-    --secondary:         #F7681F;
-    --secondary-content: #FFFFFF;
-
-    --accent:            #2F736E;
-    --accent-content:    #FFFFFF;
-
-    --neutral:           #1F1F1F;
-    --neutral-content:   #ECEBE9;
-
-    --base-100:          #ECEBE9;
-    --base-200:          #DCDAD7;
-    --base-300:          #C8C7C4;
-    --base-content:      var(--primary);
-
-    --info:    #5DB2C7;
-    --success: #3CB371;
-    --warning: #FFA500;
-    --error:   #DC2626;
+    --primary:#1B4D4F; --primary-content:#fff;
+    --secondary:#F7681F; --secondary-content:#fff;
+    --accent:#2F736E; --accent-content:#fff;
+    --base-100:#ECEBE9; --base-200:#DCDAD7; --base-300:#C8C7C4;
+    --base-content:var(--primary);
 }
 
 /* -------------------------------------------------
-   2.  HERO tweaks (logo smaller & fluid)
+   1.  HERO
    -------------------------------------------------*/
-.hero-bar{
-    display:flex;flex-direction:column;align-items:center;
-    padding:1.8rem 1rem;
-    background:var(--base-100);
-}
-.hero-logo{ width:clamp(140px,22vw,260px); height:auto; }
+.hero-bar{display:flex;flex-direction:column;align-items:center;
+    padding:2rem 1rem;background:var(--base-100)}
+.hero-logo{width:clamp(120px,18vw,220px);height:auto}
 
 /* -------------------------------------------------
-   3.  SVG Rope Menu
+   2.  Rope-Menu
    -------------------------------------------------*/
-.rope-menu{
-    position:relative;
-    width:100%;
-    max-width:1200px;
-    margin:0 auto 3.5rem;
-}
-.rope-svg{ width:100%; min-height:260px; max-height:360px; color:var(--accent); }
-.rope-stroke{ color:var(--primary); }
-.rope-dot{   color:var(--secondary); }
+.rope-menu{position:relative;width:100%;max-width:1200px;margin:0 auto 3rem}
+.rope-svg{width:100%;height:auto;max-height:360px;color:var(--accent)}
+.rope-stroke{color:var(--primary)} .rope-dot{color:var(--secondary)}
 
-.rope-nodes{
-    list-style:none; padding:0; margin:0;
-    position:absolute; inset:0;
-}
+/* ----------  Knoten  ---------- */
+.rope-nodes{list-style:none;margin:0;padding:0;position:absolute;inset:0}
+
 .rope-nodes li{
     position:absolute;
     left:calc(var(--x)*1px); top:calc(var(--y)*1px);
-    transform:translate(-50%,-50%);
-    width:130px; text-align:center;
-}
-.rope-nodes a {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;   /* <--- NEU */
-    gap: 0.3rem;
-    font-weight: 600;
-    text-decoration: none;
-    color: var(--primary);
-    transition: transform 0.2s, color 0.2s;
-    height: 110px;             /* <--- damit es in den Kreis passt */
-}
-.rope-nodes a .icon {
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
+    transform:translate(-50%,-50%);   /* echtes Zentrieren */
 }
 
-.rope-nodes a::before{
-    content:"";
-    position:absolute; inset:auto;
-    top:28px; left:10px;
-    width:110px; height:110px;
-    border:2px solid var(--primary);
-    border-radius:50%;
-    background:var(--base-100);
-    z-index:-1;
-    transition:transform .2s,background .2s;
-}
-.rope-nodes a:hover,
-.rope-nodes a.active{ color:var(--primary-content); }
-.rope-nodes a:hover::before,
-.rope-nodes a.active::before{
-    background:var(--primary);
-    transform:scale(1.05);
+.rope-nodes a{
+    position:relative;display:flex;flex-direction:column;align-items:center;
+    width:120px;height:145px;gap:.5rem;text-decoration:none;font-weight:600;
+    color:var(--primary);transition:color .25s,transform .25s;
 }
 
-/* smaller icons on narrow phones */
-@media(max-width:640px){
-    .rope-nodes li{ width:90px; }
-    .rope-nodes a .icon{ width:48px;height:48px; }
+
+/* Label unterhalb des Kreises */
+.rope-nodes a span{
+    margin-top:100px;font-size:.9rem;line-height:1.15;z-index:1;
+    transition:color .25s;
 }
 
-/* -------------------------------------------------
-   4.  Circular Feature Wheel
-   -------------------------------------------------*/
-.pipeline-widget{
-    display:flex;flex-wrap:wrap;gap:3rem;
-    justify-content:center;align-items:center;
-    margin:3.5rem 0;
+/* Kreis */
+.rope-nodes a::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 120px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: var(--base-100);
+    border: 2px solid var(--primary);
+    z-index: 0;
+    transition: background .25s;
 }
 
-/* rotating disc */
-.circle{
-    position:relative;
-    width:320px;height:320px;
-    animation:spin 40s linear infinite;
-}
-@keyframes spin{to{transform:rotate(360deg);}}
 
-/* eight stations placed with transform magic */
-.station{
+/* Icon – exakt mittig im Kreis */
+.rope-nodes a .icon{
     position:absolute;top:50%;left:50%;
-    width:76px;height:76px;padding:10px;
-    border-radius:50%;background:var(--base-100);
-    border:2px solid var(--base-300);
-    transform:
-            rotate(calc(var(--i)*45deg))
-            translate(140px)
-            rotate(calc(var(--i)*-45deg));
-    transition:border-color .3s,transform .3s;
-}
-.station img{ width:100%;height:100%;object-fit:contain; }
-.station:hover{
-    transform:scale(1.1) translateZ(0);
-    border-color:var(--accent);
-    cursor:pointer;
-}
-.station.active{
-    border-color:var(--accent);
-    box-shadow:0 0 0 4px rgba(47,115,110,.25);
+    width:66px;height:66px;object-fit:contain;
+    transform:translate(-50%,-50%);
+    z-index:1;                                   /*  ➜  immer über Kreis */
 }
 
-/* info panel */
-.pipeline-info{
-    max-width:320px;text-align:center;
-    padding:1.5rem;
-    background:var(--base-200);
-    border-left:4px solid var(--secondary);
-    border-radius:1rem;
-    box-shadow:0 4px 8px rgba(0,0,0,.05);
+/* Hover / Active  – NICHTS wird verschoben  ------------------------------ */
+.rope-nodes a:hover::before,
+.rope-nodes a.active::before{background:var(--primary)}
+
+.rope-nodes a:hover span,
+.rope-nodes a.active span{color:var(--primary-content)}  /* nur Text weiß */
+
+.rope-nodes a:hover,            /* kein scale mehr → kein Ruckeln   */
+.rope-nodes a.active{transform:none}
+
+
+/* ----------  RESPONSIVE  ---------- */
+/*   SVG schrumpft, Knoten skalieren weich   */
+@media(max-width:850px){
+    .rope-svg{max-height:320px}
+    .rope-nodes li{transform:translate(-50%,-50%) scale(.9)}
 }
-.pipeline-info .info-icon{ width:64px;height:64px;margin-bottom:1rem; }
-.pipeline-info h3{ margin:.4rem 0 .6rem; color:var(--primary); }
+@media(max-width:640px){
+    .rope-svg{max-height:300px}
+    .rope-nodes li{transform:translate(-50%,-50%) scale(.75)}
+    .rope-nodes a{width:100px;height:125px;font-size:.85rem}
+    .rope-nodes a .icon{width:52px;height:52px;margin-top:22px}
+}
 
 /* -------------------------------------------------
-   5.  Footer quick shades (optional)
+   3.  Circular Feature-Wheel  (unverändert außer minimaler Skalierung)
    -------------------------------------------------*/
-.site-footer{
-    background:var(--base-200);
-    color:var(--primary);
-}
-.site-footer .footer-links a{ color:var(--primary); }
-.site-footer .footer-links a:hover{ color:var(--secondary); }
+.pipeline-widget{display:flex;flex-wrap:wrap;gap:2.6rem;
+    justify-content:center;align-items:center;margin:3.2rem 0}
+
+.circle{position:relative;width:320px;height:320px;animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.station{position:absolute;top:50%;left:50%;
+    width:86px;height:86px;padding:10px;border-radius:50%;
+    background:var(--base-100);border:2px solid var(--base-300);
+    transform:rotate(calc(var(--i)*45deg)) translate(148px) rotate(calc(var(--i)*-45deg));
+    display:flex;align-items:center;justify-content:center;
+    transition:transform .3s,border-color .3s;cursor:pointer}
+.station img{width:66%;height:66%;object-fit:contain}
+.station:hover{transform:scale(1.12) translateZ(0);border-color:var(--accent)}
+.station.active{border-color:var(--accent);box-shadow:0 0 0 4px rgba(47,115,110,.25)}
+
+.pipeline-info{max-width:320px;text-align:center;padding:1.5rem;
+    background:var(--base-200);border-left:4px solid var(--secondary);
+    border-radius:1rem;box-shadow:0 4px 8px rgba(0,0,0,.05)}
+.pipeline-info .info-icon{width:64px;height:64px;margin-bottom:1rem}
+.pipeline-info h3{margin:.4rem 0 .6rem;color:var(--primary)}
+
+/* -------------------------------------------------
+   4.  Footer
+   -------------------------------------------------*/
+.site-footer{background:var(--base-200);color:var(--primary)}
+.site-footer .footer-links a{color:var(--primary)}
+.site-footer .footer-links a:hover{color:var(--secondary)}
