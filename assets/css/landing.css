@@ -352,3 +352,31 @@ main {
     line-height: 1.5;
     color: var(--base-content);
 }
+
+
+/* === Re-usable Section Styling =================================== */
+.content-section{padding:3.5rem 1.5rem;max-width:1100px;margin:0 auto}
+.alt-bg{background:var(--base-100)}
+.section-title{font-size:clamp(1.6rem,3vw,2rem);margin:0 0 1.25rem;text-align:center;color:var(--primary)}
+.section-lead{text-align:center;max-width:800px;margin:0 auto 2rem;font-size:1.05rem}
+.subtitle{margin:.75rem 0 .35rem;font-weight:600;color:var(--primary)}
+.two-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;align-items:start}
+.bullet-list{max-width:850px;margin:0 auto;padding-left:1.4rem;line-height:1.55}
+.check-list li::before{content:\"✔︎\";margin-right:.5rem;color:var(--secondary);font-weight:700}
+.centered-link{text-align:center;margin-top:1.5rem}
+.callout{margin:1rem auto 0;max-width:700px;padding:1rem 1.2rem;background:var(--base-200);border-left:4px solid var(--secondary);border-radius:.5rem}
+.arch-img{display:block;margin:1.5rem auto;width:100%;max-width:600px;height:auto}
+pre{background:var(--neutral-content);color:#222;padding:1rem;border-radius:.75rem;overflow:auto;font-size:.9rem}
+code{font-family:Menlo,Consolas,monospace}
+.icon-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-top:1.5rem}
+.icon-list div{background:var(--base-200);padding:1rem;border-radius:.75rem;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.04)}
+.icon-list span{display:block;margin-top:.35rem;font-size:.87rem;color:var(--base-content)}
+/* === Comparison Table =========================================== */
+.comparison-table{width:100%;max-width:800px;margin:0 auto;border-collapse:collapse;font-size:.95rem}
+.comparison-table th,.comparison-table td{border:1px solid var(--base-300);padding:.65rem;text-align:center}
+.comparison-table thead{background:var(--base-200)}
+.comparison-table tbody tr:nth-child(odd){background:var(--base-100)}
+/* === Contact List =============================================== */
+.contact-list{list-style:none;padding:0;margin:0 auto;max-width:500px;text-align:center}
+.contact-list li{margin:.4rem 0}
+
