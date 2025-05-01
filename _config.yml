@@ -8,7 +8,7 @@ collections:
     output: true
   stories:
     output: true
-    permalink: /maerchen/:title/
+    permalink: /maerchen/itle/
   books:
     output: true
     permalink: /buecher/:name/
