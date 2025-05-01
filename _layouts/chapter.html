@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="de">
+
+{% include head.html %}
+<head></head>
+<body>
+<!-- Seitenleiste mit Icon -->
+<div class="sidebar">
+    <div class="sidebar-toggle">☰</div>
+    <div class="sidebar-content">
+        <button id="nightModeToggle">🌙 Nachtmodus</button>
+        <button id="bookmarkBtn">📑 Lesezeichen</button>
+    </div>
+</div>
+
+<!-- Vertikaler Fortschrittsbalken -->
+<div class="progress-bar-vertical">
+    <div class="progress"></div>
+</div>
+
+{% include header.html %}
+
+<main>
+    <article>
+        <h1>{{ page.title }}</h1>
+        <div class="chapter-content section-transition">
+            {{ content }}
+        </div>
+    </article>
+</main>
+
+{% include footer.html %}
+
+<!-- CSS für Sidebar, Nachtmodus und Fortschrittsbalken -->
+<style>
+    /* Seitenleiste */
+    .sidebar {
+        position: fixed;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 0 8px 8px 0;
+        padding: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, width 0.3s, left 0.3s;
+        overflow: hidden;
+        z-index: 10;
+        width: 40px;
+        text-align: center;
+    }
+
+    .sidebar:hover {
+        width: 140px;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .sidebar-toggle {
+        color: #ffffff;
+        font-size: 1.2em;
+        transition: font-size 0.3s;
+    }
+
+    .sidebar-content {
+        display: none;
+        margin-top: 10px;
+    }
+
+    .sidebar:hover .sidebar-content {
+        display: block;
+    }
+
+    .sidebar-content button {
+        display: block;
+        width: 100%;
+        padding: 8px;
+        background: none;
+        border: none;
+        color: #ffffff;
+        font-size: 0.9em;
+        text-align: left;
+        cursor: pointer;
+        transition: background-color 0.3s, font-size 0.3s;
+    }
+
+    .sidebar-content button:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Dark Mode */
+    body.dark-mode {
+        background-color: #2b2b2b;
+        color: #dcdcdc;
+    }
+
+    /* Dark Mode - Titel */
+    body.dark-mode h1 {
+        color: #e0e0e0;
+    }
+
+    /* Vertikaler Fortschrittsbalken */
+    .progress-bar-vertical {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 6px;
+        height: 100%;
+        background-color: #f0f0f0;
+        z-index: 10;
+    }
+
+    .progress-bar-vertical .progress {
+        width: 100%;
+        height: 0;
+        background-color: #333;
+        transition: height 0.1s ease;
+    }
+
+    /* Fortschrittsbalken Farbe im Dark Mode */
+    body.dark-mode .progress-bar-vertical {
+        background-color: #2b2b2b;
+    }
+
+    body.dark-mode .progress-bar-vertical .progress {
+        background-color: #e0e0e0;
+    }
+
+    /* Smooth Scrolling */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Standard: Breite 140px, padding-left 130px (kleinerer Abstand) */
+    main {
+        padding-left: 130px;
+        transition: padding-left 0.3s;
+    }
+
+    @media (max-width: 900px) {
+        .sidebar {
+            width: 35px;
+            left: 8px;
+        }
+
+        .sidebar:hover {
+            width: 140px; /* Beibehaltung der Hover-Breite */
+        }
+
+        main {
+            padding-left: 130px; /* Bleibt gleich, da Hover-Breite unverändert bleibt */
+        }
+    }
+
+    @media (max-width: 600px) {
+        .sidebar {
+            width: 30px;
+            left: 5px; /* Leichter reduziert für kleineren Abstand */
+        }
+
+        .sidebar:hover {
+            width: 100px; /* Reduzierte Hover-Breite */
+        }
+
+        .sidebar-toggle {
+            font-size: 1em; /* Kleinere Fontgröße */
+        }
+
+        .sidebar-content button {
+            font-size: 0.8em; /* Kleinere Button-Schriftgröße */
+        }
+
+        main {
+            padding-left: 90px; /* Reduzierter Abstand zur Sidebar */
+        }
+    }
+
+    @media (max-width: 400px) {
+        .sidebar {
+            width: 25px;
+            left: 3px; /* Weiter reduziert */
+        }
+
+        .sidebar:hover {
+            width: 80px; /* Weiter reduzierte Hover-Breite */
+        }
+
+        .sidebar-toggle {
+            font-size: 0.9em; /* Weiter kleinere Fontgröße */
+        }
+
+        .sidebar-content button {
+            font-size: 0.7em; /* Weiter kleinere Button-Schriftgröße */
+        }
+
+        main {
+            padding-left: 70px; /* Noch schmalerer Abstand */
+        }
+    }
+</style>
+
+<!-- JavaScript für Nachtmodus, Fortschrittsbalken und Lesezeichen -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Nachtmodus-Umschalter
+        const nightModeToggle = document.getElementById("nightModeToggle");
+        nightModeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+            nightModeToggle.textContent = document.body.classList.contains("dark-mode") ? "☀️ Tagmodus" : "🌙 Nachtmodus";
+        });
+
+        // Fortschrittsbalken
+        window.addEventListener("scroll", () => {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progressHeight = (scrollTop / scrollHeight) * 100;
+            document.querySelector(".progress").style.height = progressHeight + "%";
+        });
+
+        // Lesezeichen
+        const bookmarkBtn = document.getElementById("bookmarkBtn");
+        bookmarkBtn.addEventListener("click", () => {
+            const scrollPosition = window.scrollY;
+            localStorage.setItem("bookmark", scrollPosition);
+            alert("Lesezeichen gesetzt!");
+        });
+
+        // Lesezeichen wiederherstellen
+        const savedPosition = localStorage.getItem("bookmark");
+        if (savedPosition) {
+            window.scrollTo(0, savedPosition);
+        }
+    });
+</script>
+</body>
+</html>
