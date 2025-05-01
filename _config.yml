@@ -1,27 +1,18 @@
-title: "Die Ewigen Chroniken"
-description: "Entdecke die magische Welt von Elandor durch Märchen und Geschichten."
-url: "https://ewigenchroniken.de"
-baseurl: ""
+title: "TrailMQ"
+description: "Open Source Messaging for Regulated Industries"
+url: "https://trailmq.com"
+baseurl: ""                 # leer lassen, wenn Website direkt unter der Root-Domain läuft
 
 collections:
   pages:
     output: true
-  stories:
-    output: true
-    permalink: /maerchen/itle/
-  books:
-    output: true
-    permalink: /buecher/:name/
-  chapters:
-    output: true
-    permalink: /buecher/:book_slug/:title/
 
 defaults:
   - scope:
       path: ""
-      type: "stories"
+      type: "pages"
     values:
-      layout: story
+      layout: default
 
 plugins:
   - jekyll-sitemap
