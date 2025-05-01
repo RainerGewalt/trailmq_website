@@ -1,8 +1,10 @@
+/* pipeline.js  (v3) – ein einziger Dreh-Mechanismus, aufrechte Icons */
 document.addEventListener("DOMContentLoaded", () => {
-    /* metadata for the 8 stations in the same order as HTML buttons */
+
+    /* --- Daten --- */
     const data = [
         ["MQTT Source",      "Ultra-fast MQTT from edge to core. Minimal overhead."],
-        ["Secure Gateway",   "TLS/mTLS, JWT and RBAC for robust security."],
+        ["Secure Gateway",   "TLS/mTLS, JWT, and RBAC for robust security."],
         ["Message Queue",    "Persistent queue with TTL, priority and DLQs."],
         ["Audit Trail",      "All actions logged, tamper-proof. PDF/CSV export."],
         ["Rule Engine",      "AI-based routing & filtering. Real-time semantics."],
@@ -11,32 +13,76 @@ document.addEventListener("DOMContentLoaded", () => {
         ["Receiver",         "Reliable end-delivery, fully confirmed & traceable."]
     ];
 
-    const circle   = document.getElementById("pipeline-circle");
-    const btns     = circle.querySelectorAll(".station");
-    const icon     = document.getElementById("pipeline-icon");
-    const titleEl  = document.getElementById("pipeline-title");
-    const descEl   = document.getElementById("pipeline-desc");
+    /* --- DOM --- */
+    const circle  = document.getElementById("pipeline-circle");   // nur Hülle
+    const nodes   = [...circle.querySelectorAll(".station")];
+    const icon    = document.getElementById("pipeline-icon");
+    const title   = document.getElementById("pipeline-title");
+    const desc    = document.getElementById("pipeline-desc");
 
-    let auto = true, timer;
+    /* --- Konstanten & State --- */
+    let RADIUS, STEP, rotation = 0, active = 0;
+    const SPEED = 0.15;                    // ° pro Frame  →  1 U ~ 40 s
+    let auto   = true;
 
-    function setActive(idx){
-        btns.forEach(b => b.classList.remove("active"));
-        btns[idx].classList.add("active");
-        /* update info panel */
-        icon.src   = btns[idx].querySelector("img").src;
-        titleEl.textContent = data[idx][0];
-        descEl.textContent  = data[idx][1];
+    /* --- Hilfsfunktionen --- */
+    const mod  = a => ((a % 360) + 360) % 360;
+
+    function layout(){
+        const w = circle.offsetWidth;
+        RADIUS  = w/2 - 46;                // 46 px ≈ halbe Station
+        STEP    = 360 / nodes.length;
     }
-    /* initial */
-    setActive(0);
 
-    /* pause auto-rotation 3 s when user clicks */
-    btns.forEach((btn,i)=>{
+    function setActive(i){
+        if (i === active) return;
+        nodes[active].classList.remove("active");
+        nodes[i].classList.add("active");
+        icon.src = nodes[i].querySelector("img").src;
+        title.textContent = data[i][0];
+        desc.textContent  = data[i][1];
+        active = i;
+    }
+
+    function render(){
+        nodes.forEach((btn,i)=>{
+            const angle = i*STEP + rotation;
+            /* 1. um die Mitte »aufspeichen«, 2. Gegenrotation für aufrechte Icons */
+            btn.style.transform =
+                `rotate(${angle}deg) translate(${RADIUS}px) rotate(${-angle}deg)`;
+        });
+
+        /* Index bestimmen: wessen Winkel liegt am nächsten bei 0 °? */
+        const idx = mod(Math.round(-rotation / STEP)) % nodes.length;
+        setActive(idx);
+    }
+
+    /* Klick   ---------------------------------------------------- */
+    nodes.forEach((btn,i)=>{
         btn.addEventListener("click", ()=>{
-            circle.style.animationPlayState="paused";
-            clearTimeout(timer);
-            setActive(i);
-            timer=setTimeout(()=>circle.style.animationPlayState="running",3000);
+            const target = -i*STEP;          // dieser Winkel soll 0 ° werden
+            /* kürzesten Weg im Uhrzeigersinn wählen */
+            let delta = mod(target - rotation);
+            rotation = mod(rotation + delta);
+            render();
+
+            auto = false;
+            setTimeout(()=>auto = true, 1200);
         });
     });
+
+    /* Loop  ------------------------------------------------------ */
+    function loop(){
+        if (auto){
+            rotation = mod(rotation + SPEED);
+            render();
+        }
+        requestAnimationFrame(loop);
+    }
+
+    /* Init ------------------------------------------------------- */
+    layout();
+    render();
+    loop();
+    window.addEventListener("resize", ()=>{ layout(); render(); });
 });

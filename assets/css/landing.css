@@ -193,6 +193,52 @@
 
 
 }
+/* ---------- Feature-Wheel ---------- */
+
+/* 0. Keyframe-Animation entfernen (wir rotieren via JS) */
+.circle { animation: none; }
+
+/* 1. Hintergrund an Palette anpassen */
+.station,
+.pipeline-info,
+.circle { background: var(--surface); }  /* vorher #fff/#ECEBE9 */
+
+/* 2. Hover-Scale raus, Farbakzent beibehalten */
+.station:hover { transform: none; border-color: var(--accent); }
+
+/* 3. Pipeline-Layout – Rad & Info-Card trennen                       */
+.pipeline-widget{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;               /* mehr Luft */
+    flex-wrap: nowrap;       /* nie umbrechen */
+}
+
+/* 4. Breakpoint: unter 720 px untereinander – aber zentriert         */
+@media (max-width: 720px){
+    .pipeline-widget{flex-direction: column; gap: 2rem;}
+    .pipeline-info { order: 2; }     /* Info-Card unter dem Rad */
+}
+
+/* 5. Kreis responsiv skalieren                                       */
+.circle{
+    width: clamp(240px, 50vw, 380px);
+    height: clamp(240px, 50vw, 380px);
+}
+
+/* 6. Station-Knopf proportional                                      */
+.station{
+    width: clamp(68px, 18%, 90px);
+    height: clamp(68px, 18%, 90px);
+    padding: clamp(6px, 2rem - 100%, 12px);
+}
+
+/* 7. Dark-Mode: Station-BG nicht weiß                                */
+@media (prefers-color-scheme: dark){
+    .station, .circle, .pipeline-info{ background: var(--surface-alt); }
+}
 
 
 /* ----------  RESPONSIVE  ---------- */
@@ -502,4 +548,30 @@ a:hover{text-decoration:underline}
     margin-inline: auto;
     max-width: 640px;
 }
+
+
+/*   OVERRIDES  -------------------------------------------------- */
+
+/* A. Keyframe-Animation 100 % abschalten  */
+.circle        { animation: none !important; }
+
+/* B. Station-Farben & Highlight (Sekundärfarbe) */
+.station{
+    background: var(--base-100);
+    border: 2px solid var(--base-300);
+    transition: border-color .25s, box-shadow .25s;
+}
+.station:hover,
+.station.active{
+    border-color: var(--secondary);
+}
+.station.active{
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--secondary) 40%, transparent);
+}
+
+/* C. Hover-Scale endgültig raus  */
+.station:hover{ transform: none !important; }
+
+/* D. Info-Panel bleibt hell, nur Streifen in Sekundärfarbe */
+.pipeline-info{ background: var(--base-100); }
 
