@@ -7,11 +7,19 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
 <main id="top">
   <section class="trailmq-landing">
     <!-- Hero Section -->
-    <div class="hero">
-       <h1>TrailMQ</h1>
-      <p><strong>Secure. Auditable. Open Source.</strong><br>
-        A modern MQTT-based broker with audit trail, security, and plugin-based edge intelligence.</p>
-    </div>
+        <div class="hero container">
+          <a href="{{ '/' | relative_url }}">
+            <img src="{{ '/assets/images/logos/trailmq_logo_with_text.svg' | relative_url }}"
+                 alt="TrailMQ Logo" class="hero-logo" style="margin-inline: auto; max-width: 240px;" />
+          </a>
+          <p class="hero-tagline lead">
+            Secure&nbsp;&middot;&nbsp;Auditable&nbsp;&middot;&nbsp;Open&nbsp;Source
+          </p>
+          <p class="lead">
+            A modern MQTT‑based broker with audit trail, security &amp; plugin‑based edge intelligence.
+          </p>
+        </div>
+
 
     <!-- Feature Wheel -->
     <section class="wheel-section">
@@ -58,106 +66,106 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
         </div>
       </div>
     </section>
-<!-- Section 1: Getting Started -->
-<section id="getting-started">
-  <h2>📘 Getting Started</h2>
-  <p>TrailMQ is easy to get up and running in your environment. Start testing in minutes.</p>
-  <pre><code>git clone https://github.com/trailforge/trailmq.git
+
+    <!-- Getting Started -->
+    <section id="getting-started" class="content-section container">
+      <h2 class="section-title">📘 Getting Started</h2>
+      <p class="section-lead">TrailMQ is easy to get up and running in your environment. Start testing in minutes.</p>
+      <pre><code>git clone https://github.com/trailforge/trailmq.git
 cd trailmq
 go run main.go</code></pre>
-  <p>Or run it via Docker:</p>
-  <pre><code>docker run -p 1883:1883 -v $(pwd)/config.yml:/app/config.yml trailforge/trailmq</code></pre>
-  <h3>Example Configuration</h3>
-  <pre><code>mqtt:
-  port: 1883
-  tls: true
-  cert_file: "/certs/server.crt"
-  key_file: "/certs/server.key"
+<p>Or run it via Docker:</p>
+<pre><code>docker run -p 1883:1883 -v $(pwd)/config.yml:/app/config.yml trailforge/trailmq</code></pre>
+<h3 class="subtitle">Example Configuration</h3>
+<pre><code>mqtt:
+port: 1883
+tls: true
+cert_file: "/certs/server.crt"
+key_file: "/certs/server.key"
 rest:
-  enabled: true
-  port: 8080
+enabled: true
+port: 8080
 queue:
-  persist: true
-  max_messages: 1000</code></pre>
-  <p>Send a test MQTT message:</p>
-  <pre><code>mosquitto_pub -h localhost -t "lab/temperature" -m "22.5"</code></pre>
-  <p>Visit our <a href="https://github.com/trailforge/trailmq">GitHub Repo</a> for full documentation.</p>
+persist: true
+max_messages: 1000</code></pre>
+<p>Send a test MQTT message:</p>
+<pre><code>mosquitto_pub -h localhost -t "lab/temperature" -m "22.5"</code></pre>
+<p class="centered-link">Visit our <a href="https://github.com/trailforge/trailmq">GitHub Repo</a> for full documentation.</p>
 </section>
 
-<!-- Section 2: Architecture Overview -->
-<section id="architecture">
-  <h2>🧱 Architecture Overview</h2>
-  <p>TrailMQ is composed of modular components designed for performance, reliability and compliance.</p>
-  <img src="/assets/images/architecture-diagram.svg" alt="TrailMQ Architecture Diagram" />
-  <ul>
-    <li><strong>MQTT Core:</strong> Handles subscriptions, connections and message delivery.</li>
-    <li><strong>Queue Manager:</strong> Stores messages persistently for regulated access.</li>
-    <li><strong>Audit Trail:</strong> Logs all activity for traceability and compliance.</li>
-    <li><strong>REST API:</strong> Allows query access and export of data.</li>
-    <li><strong>Plugins:</strong> Extend functionality for AI, security and routing.</li>
-  </ul>
-</section>
+    <!-- Architecture Overview -->
+    <section id="architecture" class="content-section alt-bg container">
+      <h2 class="section-title">🧱 Architecture Overview</h2>
+      <p class="section-lead">TrailMQ is composed of modular components designed for performance, reliability &amp; compliance.</p>
+      <img src="/assets/images/architecture-diagram.svg" alt="TrailMQ Architecture Diagram" class="arch-img" />
+      <ul class="bullet-list check-list">
+        <li><strong>MQTT Core:</strong> Handles subscriptions, connections &amp; message delivery.</li>
+        <li><strong>Queue Manager:</strong> Stores messages persistently for regulated access.</li>
+        <li><strong>Audit Trail:</strong> Logs all activity for traceability &amp; compliance.</li>
+        <li><strong>REST API:</strong> Allows query access &amp; export of data.</li>
+        <li><strong>Plugins:</strong> Extend functionality for AI, security &amp; routing.</li>
+      </ul>
+    </section>
 
-<!-- Section 3: Comparison -->
-<section id="comparison">
-  <h2>📊 Why TrailMQ?</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Feature</th><th>TrailMQ ✅</th><th>Mosquitto</th><th>HiveMQ</th><th>EMQX</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Audit Trail for Compliance</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
-      <tr><td>Plugin-Based Filtering</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
-      <tr><td>PDF/CSV Export</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
-      <tr><td>GMP/GxP Support</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
-    </tbody>
-  </table>
-</section>
+    <!-- Comparison -->
+    <section id="comparison" class="content-section container">
+      <h2 class="section-title">📊 Why TrailMQ?</h2>
+      <div class="table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th><th>TrailMQ ✅</th><th>Mosquitto</th><th>HiveMQ</th><th>EMQX</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Audit Trail for Compliance</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+            <tr><td>Plugin‑Based Filtering</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+            <tr><td>PDF/CSV Export</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+            <tr><td>GMP/GxP Support</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-<!-- Section 4: Use Cases -->
-<section id="use-cases">
-  <h2>🧠 Use Cases</h2>
-  <ul>
-    <li>A laboratory sends test results → TrailMQ filters & audits → Routes to Quality Management System</li>
-    <li>An IIoT sensor network emits alarms → TrailRouteMind prioritizes → Only critical data sent to the cloud</li>
-  </ul>
-</section>
+    <!-- Use Cases -->
+    <section id="use-cases" class="content-section alt-bg container">
+      <h2 class="section-title">🧠 Use Cases</h2>
+      <ul class="bullet-list icon-list">
+        <li>🧪 A laboratory sends test results → TrailMQ filters &amp; audits → Routes to Quality Management System</li>
+        <li>🌐 An IIoT sensor network emits alarms → TrailRouteMind prioritises → Only critical data sent to the cloud</li>
+      </ul>
+    </section>
 
-<!-- Section 5: Security Model -->
-<section id="security">
-  <h2>🔐 Security</h2>
-  <p>TrailMQ is built with strong security foundations suitable for regulated industries.</p>
-  <ul>
-    <li>TLS/mTLS with certificate rotation</li>
-    <li>JWT Authentication for REST APIs</li>
-    <li>Role-Based Access Control (RBAC)</li>
-    <li>Dynamic Access Control Lists (ACLs)</li>
-    <li>IP Whitelisting & OCSP certificate status checks</li>
-  </ul>
-</section>
+    <!-- Security -->
+    <section id="security" class="content-section container">
+      <h2 class="section-title">🔐 Security</h2>
+      <p class="section-lead">TrailMQ is built with strong security foundations suitable for regulated industries.</p>
+      <ul class="bullet-list check-list two-col">
+        <li>TLS/mTLS with certificate rotation</li>
+        <li>JWT Authentication for REST APIs</li>
+        <li>Role‑Based Access Control (RBAC)</li>
+        <li>Dynamic Access Control Lists (ACLs)</li>
+        <li>IP Whitelisting &amp; OCSP certificate status checks</li>
+      </ul>
+    </section>
 
-<!-- Section 6: About Us -->
-<section id="about">
-  <h2>👥 About TrailForge</h2>
-  <p>We are engineers and open-source enthusiasts passionate about building smart and secure edge solutions for critical industries like pharma and IIoT.</p>
-  <p>Connect with us on <a href="https://github.com/trailforge">GitHub</a> or <a href="https://linkedin.com/company/trailforge">LinkedIn</a>.</p>
-  <p>🚀 <strong>We're looking for contributors!</strong> Join us in making industrial messaging safe and powerful.</p>
-</section>
+    <!-- About Us -->
+    <section id="about" class="content-section alt-bg container">
+      <h2 class="section-title">👥 About TrailForge</h2>
+      <p>We are engineers &amp; open‑source enthusiasts passionate about building smart &amp; secure edge solutions for critical industries like pharma &amp; IIoT.</p>
+      <p class="centered-link">Connect with us on <a href="https://github.com/trailforge">GitHub</a> or <a href="https://linkedin.com/company/trailforge">LinkedIn</a>.</p>
+      <p class="callout">🚀 <strong>We're looking for contributors!</strong> Join us in making industrial messaging safe &amp; powerful.</p>
+    </section>
 
-<!-- Section 7: Contact -->
-<section id="contact">
-  <h2>📬 Contact & Support</h2>
-  <p>Questions or feedback? Reach out via:</p>
-  <ul>
-    <li>Email: <a href="mailto:support@trailforge.io">support@trailforge.io</a></li>
-    <li>GitHub: <a href="https://github.com/trailforge/trailmq/issues">Issue Tracker</a></li>
-    <li>Community (coming soon): Slack or Discord</li>
-  </ul>
-</section>
-
-  </section>
+    <!-- Contact -->
+    <section id="contact" class="content-section container">
+      <h2 class="section-title">📬 Contact &amp; Support</h2>
+      <p>Questions or feedback? Reach out via:</p>
+      <ul class="contact-list">
+        <li>Email: <a href="mailto:support@trailforge.io">support@trailforge.io</a></li>
+        <li>GitHub: <a href="https://github.com/trailforge/trailmq/issues">Issue Tracker</a></li>
+        <li>Community (coming soon): Slack or Discord</li>
+      </ul>
+    </section> 
 </main>
-
 
