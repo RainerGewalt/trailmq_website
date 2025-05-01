@@ -1,0 +1,27 @@
+title: "Die Ewigen Chroniken"
+description: "Entdecke die magische Welt von Elandor durch Märchen und Geschichten."
+url: "https://ewigenchroniken.de"
+baseurl: ""
+
+collections:
+  pages:
+    output: true
+  stories:
+    output: true
+    permalink: /maerchen/:title/
+  books:
+    output: true
+    permalink: /buecher/:name/
+  chapters:
+    output: true
+    permalink: /buecher/:book_slug/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: "stories"
+    values:
+      layout: story
+
+plugins:
+  - jekyll-sitemap
