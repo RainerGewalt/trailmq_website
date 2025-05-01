@@ -1,85 +1,61 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const links = document.querySelectorAll("#trailmq-menu a");
+    const headerOffset = 100;                                // Puffer
+    const links   = document.querySelectorAll("#trailmq-menu a");
 
-    links.forEach((link) => {
-        const targetId = link.getAttribute("href").slice(1);
-        const targetElement = document.getElementById(targetId);
+    links.forEach(link => {
+        const id          = link.getAttribute("href").slice(1);
+        const section     = document.getElementById(id);
+        const icon        = link.querySelector("img.icon");
+        const brightSrc   = link.dataset.hover;                // helles Icon
+        const darkSrc     = icon?.src;
 
-        const icon = link.querySelector("img.icon");
-        const hoverSrc = link.getAttribute("data-hover");
-        const defaultSrc = icon?.getAttribute("src");
-
-        // Hover-Effekt für Icons
-        if (icon && hoverSrc) {
-            link.addEventListener("mouseenter", () => {
-                if (!link.classList.contains("active")) {
-                    icon.setAttribute("src", hoverSrc);
-                }
-            });
-            link.addEventListener("mouseleave", () => {
-                if (!link.classList.contains("active")) {
-                    icon.setAttribute("src", defaultSrc);
-                }
-            });
-        }
-
-        link.addEventListener("click", (e) => {
-            e.preventDefault();
-
-            if (targetElement) {
-                targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
-
-                links.forEach((l) => {
-                    l.classList.remove("active");
-                    const i = l.querySelector("img.icon");
-                    const d = i?.getAttribute("data-default");
-                    if (i && d) i.setAttribute("src", d);
-                });
-
-                link.classList.add("active");
-                if (icon && hoverSrc) {
-                    icon.setAttribute("src", hoverSrc);
-                }
-            }
+        /* ----- Hover: nur Icon tauschen ------------------------------------ */
+        link.addEventListener("mouseenter", () => {
+            if (!link.classList.contains("active") && brightSrc) icon.src = brightSrc;
+        });
+        link.addEventListener("mouseleave", () => {
+            if (!link.classList.contains("active") && darkSrc)   icon.src = darkSrc;
         });
 
-        // Optional: Speichere das Originalicon als Attribut für späteren Rückwechsel
-        if (icon && defaultSrc) {
-            icon.setAttribute("data-default", defaultSrc);
-        }
+        /* ----- Klick: smooth scroll + Active-Status ------------------------ */
+        link.addEventListener("click", e => {
+            e.preventDefault();
+            if (!section) return;
+
+            /* eigenes smooth-Scroll mit Offset */
+            const targetTop = section.getBoundingClientRect().top + window.scrollY - headerOffset;
+            window.scrollTo({ top: targetTop, behavior: "smooth" });
+
+            activate(link);                                      // Status umschalten
+        });
     });
 
-    const sections = Array.from(links).map((l) => {
-        const id = l.getAttribute("href").slice(1);
-        return document.getElementById(id);
-    });
+    /* -------- Scroll-Spy (Highlight beim Scrollen) ----------------------- */
+    const sections = Array.from(links).map(l => document.getElementById(l.hash.slice(1)));
 
-    function onScroll() {
-        const scrollPos = window.scrollY + 120;
+    window.addEventListener("scroll", () => {
+        const pos = window.scrollY + headerOffset + 1;         // +1 ⇒ Border-case
 
         sections.forEach((sec, i) => {
             if (!sec) return;
-            const link = links[i];
-            const icon = link.querySelector("img.icon");
-            const hoverSrc = link.getAttribute("data-hover");
-            const defaultSrc = icon?.getAttribute("data-default");
-
-            const top = sec.offsetTop;
-            const bottom = top + sec.offsetHeight;
-
-            if (scrollPos >= top && scrollPos < bottom) {
-                links.forEach((l) => {
-                    l.classList.remove("active");
-                    const img = l.querySelector("img.icon");
-                    const def = img?.getAttribute("data-default");
-                    if (img && def) img.setAttribute("src", def);
-                });
-                link.classList.add("active");
-                if (icon && hoverSrc) icon.setAttribute("src", hoverSrc);
+            if (pos >= sec.offsetTop && pos < sec.offsetTop + sec.offsetHeight) {
+                activate(links[i]);
             }
+        });
+    }, { passive:true });
+
+    /* -------- Helper: Active-Klasse + Icon wechseln ---------------------- */
+    function activate(activeLink){
+        links.forEach(l => {
+            const img = l.querySelector("img.icon");
+            img.src = l.dataset.hover && l === activeLink ? l.dataset.hover : img.dataset.original || img.src;
+            l.classList.toggle("active", l === activeLink);
         });
     }
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+    /* sichere Original-Src ab, falls noch nicht gesetzt */
+    links.forEach(l => {
+        const img = l.querySelector("img.icon");
+        if (img && !img.dataset.original) img.dataset.original = img.src;
+    });
 });
