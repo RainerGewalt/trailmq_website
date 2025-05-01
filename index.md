@@ -69,11 +69,4 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
   </section>
 </main>
 
-<footer class="site-footer">
-  <p>&copy; {{ site.time | date: "%Y" }} TrailMQ. MIT-licensed, built with ❤️.</p>
-  <div class="footer-links">
-    <a href="https://github.com/trailforge/trailmq" target="_blank" rel="noopener">GitHub</a>
-    <a href="mailto:trailmq@yourdomain.com">Contact</a>
-    <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back&nbsp;to&nbsp;top</a>
-  </div>
-</footer>
+
