@@ -1,31 +1,46 @@
 document.addEventListener("DOMContentLoaded", () => {
     const links = document.querySelectorAll("#trailmq-menu a");
 
-    // highlight on click
-    links.forEach(l =>
-        l.addEventListener("click", () => {
-            links.forEach(x => x.classList.remove("active"));
-            l.classList.add("active");
-        })
-    );
+    // Scroll smooth + activate link manually
+    links.forEach((link) => {
+        const targetId = link.getAttribute("href").slice(1);
+        const targetElement = document.getElementById(targetId);
 
-    // optional: highlight while scrolling
-    const sections = Array.from(links).map(l => {
+        link.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+
+                // Entferne vorherige aktive Links
+                links.forEach((l) => l.classList.remove("active"));
+                link.classList.add("active");
+            }
+        });
+    });
+
+    // Abschnittspositionen zum Scroll-Highlighten
+    const sections = Array.from(links).map((l) => {
         const id = l.getAttribute("href").slice(1);
         return document.getElementById(id);
     });
 
     function onScroll() {
-        const scrollPos = window.scrollY + 100; // offset
+        const scrollPos = window.scrollY + 120; // offset to compensate for header
+
         sections.forEach((sec, i) => {
             if (!sec) return;
             const link = links[i];
-            if (scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight) {
+            const top = sec.offsetTop;
+            const bottom = top + sec.offsetHeight;
+
+            if (scrollPos >= top && scrollPos < bottom) {
+                links.forEach((l) => l.classList.remove("active"));
                 link.classList.add("active");
-            } else {
-                link.classList.remove("active");
             }
         });
     }
-    window.addEventListener("scroll", onScroll, { passive:true });
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll(); // initial check
 });

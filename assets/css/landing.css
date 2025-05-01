@@ -1,69 +1,163 @@
 /* ===== Rope Menu Base ===== */
-.rope-menu { position: relative; width:100%; max-width:1200px; margin:0 auto 4rem; }
-.rope-svg  { width:100%; max-height:360px; min-height:260px; color:#0050c8; }
+.rope-menu {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 4rem;
+}
+.rope-svg {
+    width: 100%;
+    max-height: 360px;
+    min-height: 260px;
+    color: #7aa3ff; /* etwas heller als vorher (#0050c8) */
+}
 
-.rope-stroke { color:#1d4ed8; }      /* rope colour */
-.rope-dot    { color:#f97316; }      /* orange travelling dot */
+.rope-stroke {
+    color: #1d4ed8;
+}
+.rope-dot {
+    color: #f97316;
+}
 
-/* ===== Buttons anchored with absolute offsets ===== */
-.rope-nodes { list-style:none; margin:0; padding:0; position:absolute; inset:0; }
+/* ===== Rope Menu Nodes (angepasst) ===== */
+.rope-nodes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    inset: 0;
+}
 .rope-nodes li {
-    position:absolute;
-    left: calc(var(--x) * 1px - 65px);   /* 130px wide buttons */
-    top:  calc(var(--y) * 1px - 90px);   /* 180px tall bbox */
-    width:130px; text-align:center;
+    position: absolute;
+    left: calc(var(--x) * 1px);
+    top: calc(var(--y) * 1px);
+    transform: translate(-50%, -50%);
+    width: 130px;
+    text-align: center;
 }
 .rope-nodes a {
-    display:flex; flex-direction:column; align-items:center; gap:0.25rem;
-    font-weight:600; text-decoration:none; color:#334155;
-    transition:transform .2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #334155;
+    transition: transform 0.2s;
+    position: relative;
 }
-.rope-nodes a .icon { width:64px; height:64px; }
-.rope-nodes a::before {                       /* circular outline */
-    content:""; border:2px solid #1d4ed8; border-radius:50%;
-    width:110px; height:110px; position:absolute; top:28px; left:10px;
-    background:#f8fafc; z-index:-1; transition:transform .2s, background .2s;
+.rope-nodes a .icon {
+    width: 64px;
+    height: 64px;
+}
+.rope-nodes a::before {
+    content: "";
+    border: 2px solid #1d4ed8;
+    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+    position: absolute;
+    top: 28px;
+    left: 10px;
+    background: #f8fafc;
+    z-index: -1;
+    transition: transform 0.2s, background 0.2s;
 }
 .rope-nodes a:hover,
 .rope-nodes a.active {
-    color:#fff;
+    color: #fff;
 }
 .rope-nodes a:hover::before,
 .rope-nodes a.active::before {
-    background:#1d4ed8; transform:scale(1.05);
+    background: #1d4ed8;
+    transform: scale(1.05);
 }
+/* make the SVG rope itself a bit lighter: */
+.rope-svg{ color:#7aa3ff; }        /* was #0050c8 */
+
+/* ensure icons fit small screens */
+@media(max-width:640px){
+    .rope-nodes li{ width:90px; }
+    .rope-nodes a .icon{ width:48px; height:48px; }
+}
+
+/* Mobile Anpassung */
+@media (max-width: 640px) {
+    .rope-nodes li {
+        width: 90px;
+    }
+    .rope-nodes a .icon {
+        width: 48px;
+        height: 48px;
+    }
+}
+
 /* =========== Feature Wheel =========== */
-.pipeline-widget{
-    display:flex; flex-wrap:wrap; gap:3rem; justify-content:center; align-items:center;
-    margin:4rem 0;
+.pipeline-widget {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+    margin: 4rem 0;
 }
 
-/* rotating disc */
-.circle{
-    position:relative; width:320px; height:320px;
-    animation:spin 40s linear infinite;
+.circle {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    animation: spin 40s linear infinite;
 }
-@keyframes spin{ to{ transform:rotate(360deg);} }
-
-.station{
-    position:absolute; top:50%; left:50%;
-    width:76px; height:76px; padding:10px;
-    border-radius:50%; background:#fff; border:2px solid #ddd;
-    transform:
-            rotate(calc(var(--i)*45deg))          /* 0-7 = 45° steps */
-            translate(140px)
-            rotate(calc(var(--i)*-45deg));        /* keep upright   */
-    transition:transform .3s, border-color .3s;
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
-.station img{ width:100%; height:100%; object-fit:contain; }
 
-.station:hover{ transform:scale(1.1) translateZ(0); border-color:#3182ce; cursor:pointer; }
-
-/* highlight */
-.station.active{ border-color:#3182ce; box-shadow:0 0 0 4px rgba(49,130,206,.2); }
-
-.pipeline-info{
-    max-width:320px; text-align:center; padding:1.5rem;
-    background:#f8fafc; border-radius:1rem; box-shadow:0 4px 8px rgba(0,0,0,.05);
+.station {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 76px;
+    height: 76px;
+    padding: 10px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #ddd;
+    transform: rotate(calc(var(--i) * 45deg)) translate(140px) rotate(calc(var(--i) * -45deg));
+    transition: transform 0.3s, border-color 0.3s;
 }
-.pipeline-info .info-icon{ width:64px; height:64px; margin-bottom:1rem; }
+.station img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.station:hover {
+    transform: scale(1.1) translateZ(0);
+    border-color: #3182ce;
+    cursor: pointer;
+}
+.station.active {
+    border-color: #3182ce;
+    box-shadow: 0 0 0 4px rgba(49, 130, 206, 0.2);
+}
+
+.pipeline-info {
+    max-width: 320px;
+    text-align: center;
+    padding: 1.5rem;
+    background: #f8fafc;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+.pipeline-info .info-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+}
+
+.site-footer{
+    text-align:center; padding:2rem 1rem; background:#f9fafb; font-size:.9rem;
+}
+.site-footer .footer-links a{ margin:0 .5rem; color:#555; text-decoration:none; }
+.site-footer .footer-links a:hover{ text-decoration:underline; }

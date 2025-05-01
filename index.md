@@ -14,41 +14,6 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
   </div>
 
   <!-- =========================================
-       TrailMQ Rope Menu
-       ========================================= -->
-  <section class="menu-section">
-    <nav id="trailmq-menu" class="rope-menu">
-      <svg viewBox="0 -40 1200 380" preserveAspectRatio="xMidYMid meet" class="rope-svg" aria-hidden="true">
-        <defs>
-          <filter id="ropeShadow" x="-50%" y="-50%" width="200%" height="200%">
-            <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.15"/>
-          </filter>
-          <path id="trailmq-rope" d="M 0,120 C 75,280 225,-60 300,80 C 375,240 525,-20 600,230 C 675,360 825,0 900,160 C 975,300 1125,20 1200,100" fill="none" />
-        </defs>
-
-        <path d="M 0,120 C 75,280 225,-60 300,80 C 375,240 525,-20 600,230 C 675,360 825,0 900,160 C 975,300 1125,20 1200,100"
-              fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"
-              stroke-dasharray="10 8" class="rope-stroke" filter="url(#ropeShadow)" />
-
-        <circle r="7" fill="currentColor" class="rope-dot">
-          <animateMotion repeatCount="indefinite" dur="7s">
-            <mpath href="#trailmq-rope" />
-          </animateMotion>
-        </circle>
-      </svg>
-
-      <ul class="rope-nodes">
-        <li style="--x:0;   --y:120;"><a href="#topics"><img src="/assets/images/menu/topics_icon.svg" alt="" class="icon"><span>Topics</span></a></li>
-        <li style="--x:300; --y:80;"><a href="#audit"><img src="/assets/images/menu/audit_trail_icon.svg" alt="" class="icon"><span>Audit Logs</span></a></li>
-        <li style="--x:600; --y:230;"><a href="#security"><img src="/assets/images/menu/security_icon.svg" alt="" class="icon"><span>Security</span></a></li>
-        <li style="--x:900; --y:160;"><a href="#builder"><img src="/assets/images/menu/trail_builder_logo.svg" alt="" class="icon"><span>TrailBuilder</span></a></li>
-        <li style="--x:1200; --y:100;"><a href="#link"><img src="/assets/images/menu/logo_trail_link.svg" alt="" class="icon"><span>TrailLink</span></a></li>
-      </ul>
-    </nav>
-    <script src="/assets/js/menu.js"></script>
-  </section>
-
-  <!-- =========================================
        TrailMQ Feature Wheel
        ========================================= -->
   <section class="wheel-section">
