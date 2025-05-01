@@ -19,6 +19,79 @@
 /* -------------------------------------------------
    2.  Rope-Menu
    -------------------------------------------------*/
+
+/* -------------------------------------------------
+   2a.  Skalierbarer Wrapper für Rope-Menü
+   -------------------------------------------------*/
+.rope-wrapper {
+    width: 1200px;
+    height: 360px;
+    position: relative;
+    margin: 0 auto;
+    transition: transform 0.2s ease-out;
+    transform-origin: top center;
+}
+
+/* Responsive Skalierung ab 1200px ↓ */
+@media (max-width: 1200px) {
+    .rope-wrapper {
+        --scale: calc(100vw / 1200);
+        transform: scale(var(--scale));
+    }
+}
+
+/* -------------------------------------------------
+   2b. Fallback-Menü für kleine Screens (unter 640px)
+   -------------------------------------------------*/
+.simple-menu {
+    display: none;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+    font-weight: 600;
+    list-style: none;
+    margin: 0;
+    padding: 1rem 0;
+}
+
+.simple-menu a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.simple-menu a:hover {
+    color: var(--secondary);
+}
+
+/* Unter 640px: Rope ausblenden, Fallback zeigen */
+@media (max-width: 640px) {
+    .rope-wrapper {
+        display: none;
+    }
+
+    .simple-menu {
+        display: flex;
+    }
+}
+
+/* -------------------------------------------------
+   2c. Dynamische Größen für Touchfläche, Text, Icon
+   -------------------------------------------------*/
+.rope-nodes a {
+    width: clamp(80px, 10vw, 120px);
+    height: clamp(105px, 12.5vw, 145px);
+}
+
+.rope-nodes a span {
+    margin-top: clamp(70px, 8vw, 100px);
+    font-size: clamp(0.75rem, 1.1vw, 0.9rem);
+}
+
+.rope-nodes a .icon {
+    width: clamp(40px, 5.5vw, 66px);
+    height: clamp(40px, 5.5vw, 66px);
+}
+
 .rope-menu{position:relative;width:100%;max-width:1200px;margin:0 auto 3rem}
 .rope-svg{width:100%;height:auto;max-height:360px;color:var(--accent)}
 .rope-stroke{color:var(--primary)} .rope-dot{color:var(--secondary)}
