@@ -70,3 +70,4 @@ bundle install
 # Starte den Jekyll-Server
 echo "Starting Jekyll server..."
 bundle exec jekyll serve
+
