@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* --- Konstanten & State --- */
     let RADIUS, STEP, rotation = 0, active = 0;
-    const SPEED = 0.15;                    // ° pro Frame  →  1 U ~ 40 s
+    const SPEED = 0.1;                    // ° pro Frame  →  1 U ~ 40 s
     let auto   = true;
 
     /* --- Hilfsfunktionen --- */
