@@ -552,26 +552,50 @@ a:hover{text-decoration:underline}
 
 /*   OVERRIDES  -------------------------------------------------- */
 
-/* A. Keyframe-Animation 100 % abschalten  */
-.circle        { animation: none !important; }
+/* ===== PIPELINE WHEEL FINAL PATCH ============================ */
 
-/* B. Station-Farben & Highlight (Sekundärfarbe) */
+/* 1. Rad-Hülle transparent: */
+.circle{ background: transparent !important; }
+
+/* 2. Stations-Kreise dunkel: */
 .station{
-    background: var(--base-100);
+    background: var(--base-200);
     border: 2px solid var(--base-300);
     transition: border-color .25s, box-shadow .25s;
 }
-.station:hover,
+/* 2a. Hover zeigt gar nichts mehr: */
+.station:hover{ border-color: var(--base-300); box-shadow: none; }
+
+/* 2b. Klick (=active) in Sekundärfarbe: */
 .station.active{
     border-color: var(--secondary);
-}
-.station.active{
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--secondary) 40%, transparent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--secondary) 35%, transparent);
 }
 
-/* C. Hover-Scale endgültig raus  */
-.station:hover{ transform: none !important; }
+/* 3. Info-Card dunkel, kein Hover: */
+.pipeline-info{
+    background: var(--base-200) !important;
+    border-left: 4px solid var(--secondary);
+    box-shadow: none;
+}
 
-/* D. Info-Panel bleibt hell, nur Streifen in Sekundärfarbe */
-.pipeline-info{ background: var(--base-100); }
+/* 4. Abstand Rad/Card responsiv mit clamp: */
+.pipeline-widget{
+    gap: clamp(2rem, 6vw, 4rem);  /* 2‒4 rem dynamisch */
+}
+
+/* 5. Unter 700 px untereinander – Abstand ebenfalls clamp: */
+@media (max-width: 700px){
+    .pipeline-widget{
+        flex-direction: column;
+        gap: clamp(1.5rem, 5vw, 3rem);
+    }
+}
+
+/* 6. Dark-Mode – gleiche Farben, nur kleine Aufhellung für Card-Text: */
+@media (prefers-color-scheme: dark){
+    .station{ background: var(--surface-alt); }
+    .pipeline-info{ background: var(--surface-alt); }
+}
+
 
