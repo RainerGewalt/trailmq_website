@@ -95,7 +95,9 @@
 .step-dot.builder  { background:#a55eea }
 .step-dot.link     { background:#6c5ce7 }
 
-
+/* ---------- Rope-Card Tab‑Verhalten ----------------- */
+.rope-card            { display: none; }   /* Standard: alle ausblenden */
+.rope-card.active     { display: block; }  /* Nur die aktive zeigen   */
 /* ===== DARK MODE =============================================== */
 /*@media (prefers-color-scheme: dark) {*/
 /*    .feature-card:hover {*/
