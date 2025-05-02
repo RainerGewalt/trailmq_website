@@ -172,7 +172,9 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
   <div class="rope-steps">
 
     <!-- 🟠 Topics -->
-    <article id="step-topics" class="rope-card">
+<article id="step-topics"
+         class="rope-card"
+         data-step="topics"> 
       <h3><span class="step-dot topics"></span>Topics &amp; Wildcards</h3>
       <p>TrailMQ auto‑discovers topics, applies wildcard rules and shows live status.</p>
       <ul>
@@ -182,8 +184,11 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
       </ul>
     </article>
 
-    <!-- 🔵 Audit Logs -->
-    <article id="step-audit" class="rope-card">
+    <!-- 🔵 Audit Logs --> 
+
+<article id="step-audit"
+         class="rope-card"
+         data-step="audit">
       <h3><span class="step-dot audit"></span>Full Audit Trails</h3>
       <p>Every packet is hash‑chained &amp; exportable – ready for GMP/GxP review.</p>
       <ul>
@@ -194,7 +199,9 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
     </article>
 
     <!-- 🛡️ Security -->
-    <article id="step-security" class="rope-card">
+<article id="step-security"
+         class="rope-card"
+         data-step="security"> 
       <h3><span class="step-dot security"></span>Regulation‑Grade Security</h3>
       <p>TLS/mTLS transport, granular RBAC and live manipulation checks.</p>
       <ul>
@@ -205,7 +212,9 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
     </article>
 
     <!-- 🧱 TrailBuilder -->
-    <article id="step-builder" class="rope-card">
+<article id="step-builder"
+         class="rope-card"
+         data-step="builder">
       <h3><span class="step-dot builder"></span>Visual Builder</h3>
       <p>Low‑code UI to design routes, filters and plugin flows.</p>
       <ul>
@@ -216,7 +225,9 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
     </article>
 
     <!-- 🔗 TrailLink -->
-    <article id="step-link" class="rope-card">
+<article id="step-link"
+         class="rope-card"
+         data-step="link">
       <h3><span class="step-dot link"></span>Distributed Messaging</h3>
       <p>TrailLink bridges two validated zones with loss‑free replication.</p>
       <ul>
