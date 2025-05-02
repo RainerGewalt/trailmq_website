@@ -48,6 +48,53 @@
     line-height: 1.5;
     color: var(--text);
 }
+/* container */
+.rope-tour {margin:4rem auto; text-align:center}
+
+/* nodes inherit your previous absolute layout */
+.rope-nodes li a {display:flex;flex-direction:column;align-items:center;font-size:.9rem;font-weight:600}
+
+/* cards */
+.rope-steps {display:grid;gap:2rem;margin-top:3.5rem;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+
+.rope-card {background:var(--base-200);border-radius:1rem;padding:1.6rem;
+    box-shadow:0 4px 8px rgb(0 0 0 / .06);text-align:left}
+
+.rope-card h3 {display:flex;align-items:center;font-size:1.1rem;margin-bottom:.6rem}
+.step-dot {display:inline-block;width:.9rem;height:.9rem;
+    border-radius:50%;margin-right:.5rem}
+.topics  {background:#ff9500}
+.audit   {background:#3a8dff}
+.security{background:#00b894}
+.builder {background:#a55eea}
+.link    {background:#6c5ce7}
+
+.rope-card ul {margin:.6rem 0 0 1.2rem;list-style:square;font-size:.9rem}
+/* rope‑tour layout  –  pack in app.scss oder zusätzliche CSS‑Datei */
+.rope-tour       { margin:4rem auto; text-align:center; }
+.rope-wrapper    { position:relative; overflow:visible; }
+.rope-nodes      { list-style:none; padding:0; margin:0; }
+.rope-nodes li   { position:absolute; translate:var(--x,0) var(--y,0); }
+.rope-nodes a    { display:flex; flex-direction:column; align-items:center;
+    font-size:.85rem; font-weight:600; gap:.25rem; }
+.rope-nodes img  { width:36px; height:36px; }
+
+.rope-steps      { display:grid; gap:2rem; margin-top:3.5rem;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); }
+
+.rope-card       { background:var(--base-200,#fff); border-radius:1rem;
+    padding:1.6rem; box-shadow:0 4px 10px rgb(0 0 0 / .07);
+    text-align:left; }
+.rope-card h3    { display:flex; align-items:center; font-size:1.1rem; margin-bottom:.5rem;}
+.step-dot        { width:.9rem;height:.9rem;border-radius:50%;margin-right:.5rem; }
+
+.step-dot.topics   { background:#ff9500 }
+.step-dot.audit    { background:#3a86ff }
+.step-dot.security { background:#00b894 }
+.step-dot.builder  { background:#a55eea }
+.step-dot.link     { background:#6c5ce7 }
+
 
 /* ===== DARK MODE =============================================== */
 /*@media (prefers-color-scheme: dark) {*/

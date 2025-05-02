@@ -95,6 +95,140 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
     </ul>
   </section>
 
+<!-- ──────────── TRAILMQ QUICK TOUR ──────────── -->
+<section id="quick-tour" class="rope-tour container">
+
+  <!-- Rope SVG + clickable nodes -->
+
+        <!-- Skalierbarer Wrapper -->
+        <div class="rope-wrapper">
+            <svg viewBox="0 -40 1200 380" preserveAspectRatio="xMidYMid meet"
+                 class="rope-svg" aria-hidden="true">
+                <defs>
+                    <filter id="ropeShadow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feDropShadow dx="0" dy="2" stdDeviation="2"
+                                      flood-color="#000" flood-opacity="0.15"/>
+                    </filter>
+                    <path id="trailmq-rope"
+                          d="M 0,120 C 75,280 225,-60 300,80 C 375,240 525,-20 600,230 C 675,360 825,0 900,160 C 975,300 1125,20 1200,100"
+                          fill="none"/>
+                </defs>
+                <path d="M 0,120 C 75,280 225,-60 300,80 C 375,240 525,-20 600,230 C 675,360 825,0 900,160 C 975,300 1125,20 1200,100"
+                      fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"
+                      stroke-dasharray="10 8" class="rope-stroke" filter="url(#ropeShadow)" />
+                <circle r="7" fill="currentColor" class="rope-dot">
+                    <animateMotion repeatCount="indefinite" dur="7s">
+                        <mpath href="#trailmq-rope"/>
+                    </animateMotion>
+                </circle>
+            </svg>
+
+            <ul class="rope-nodes">
+                <li style="--x:0; --y:120;">
+                    <a href="#topics" data-hover="{{ '/assets/images/menu/logo_topics_bright.svg' | relative_url }}">
+                        <img src="{{ '/assets/images/menu/topics_icon.svg' | relative_url }}" alt="" class="icon">
+                        <span>Topics</span>
+                    </a>
+                </li>
+                <li style="--x:300; --y:80;">
+                    <a href="#audit" data-hover="{{ '/assets/images/menu/audit_trail_logo_bright.svg' | relative_url }}">
+                        <img src="{{ '/assets/images/menu/audit_trail_icon.svg' | relative_url }}" alt="" class="icon">
+                        <span>Audit Logs</span>
+                    </a>
+                </li>
+                <li style="--x:600; --y:230;">
+                    <a href="#security" data-hover="{{ '/assets/images/menu/security_logo_bright.svg' | relative_url }}">
+                        <img src="{{ '/assets/images/menu/security_icon.svg' | relative_url }}" alt="" class="icon">
+                        <span>Security</span>
+                    </a>
+                </li>
+                <li style="--x:900; --y:160;">
+                    <a href="#builder" data-hover="{{ '/assets/images/menu/trail_builder_logo_bright.svg' | relative_url }}">
+                        <img src="{{ '/assets/images/menu/trail_builder_logo.svg' | relative_url }}" alt="" class="icon">
+                        <span>TrailBuilder</span>
+                    </a>
+                </li>
+                <li style="--x:1200; --y:100;">
+                    <a href="#link" data-hover="{{ '/assets/images/menu/logo_trail_link_bright.svg' | relative_url }}">
+                        <img src="{{ '/assets/images/menu/logo_trail_link.svg' | relative_url }}" alt="" class="icon">
+                        <span>TrailLink</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Fallback-Menü für kleine Screens -->
+        <ul class="simple-menu">
+            <li><a href="#topics">Topics</a></li>
+            <li><a href="#audit">Audit Logs</a></li>
+            <li><a href="#security">Security</a></li>
+            <li><a href="#builder">TrailBuilder</a></li>
+            <li><a href="#link">TrailLink</a></li>
+        </ul>
+
+    <script defer src="{{ '/assets/js/menu.js' | relative_url }}"></script>
+
+  <!-- ───────── DETAIL CARDS (one per step) ───────── -->
+  <div class="rope-steps">
+
+    <!-- 🟠 Topics -->
+    <article id="step-topics" class="rope-card">
+      <h3><span class="step-dot topics"></span>Topics &amp; Wildcards</h3>
+      <p>TrailMQ auto‑discovers topics, applies wildcard rules and shows live status.</p>
+      <ul>
+        <li>Auto‑tagging (<code>unassigned</code>, <code>critical</code>)</li>
+        <li>Colour badges &amp; inactivity markers</li>
+        <li>Bulk cleanup &amp; wildcard inheritance</li>
+      </ul>
+    </article>
+
+    <!-- 🔵 Audit Logs -->
+    <article id="step-audit" class="rope-card">
+      <h3><span class="step-dot audit"></span>Full Audit Trails</h3>
+      <p>Every packet is hash‑chained &amp; exportable – ready for GMP/GxP review.</p>
+      <ul>
+        <li>JSON / CSV / PDF export</li>
+        <li>REST access to events &amp; failures</li>
+        <li>Validatable for regulators</li>
+      </ul>
+    </article>
+
+    <!-- 🛡️ Security -->
+    <article id="step-security" class="rope-card">
+      <h3><span class="step-dot security"></span>Regulation‑Grade Security</h3>
+      <p>TLS/mTLS transport, granular RBAC and live manipulation checks.</p>
+      <ul>
+        <li>Cert rotation &amp; OCSP</li>
+        <li>JWT‑auth + dynamic ACLs</li>
+        <li>Heartbeats &amp; hash validation</li>
+      </ul>
+    </article>
+
+    <!-- 🧱 TrailBuilder -->
+    <article id="step-builder" class="rope-card">
+      <h3><span class="step-dot builder"></span>Visual Builder</h3>
+      <p>Low‑code UI to design routes, filters and plugin flows.</p>
+      <ul>
+        <li>Drag‑and‑drop topic matrix</li>
+        <li>Zone‑based configs for GMP</li>
+        <li>Exportable, versioned JSON</li>
+      </ul>
+    </article>
+
+    <!-- 🔗 TrailLink -->
+    <article id="step-link" class="rope-card">
+      <h3><span class="step-dot link"></span>Distributed Messaging</h3>
+      <p>TrailLink bridges two validated zones with loss‑free replication.</p>
+      <ul>
+        <li>Heartbeat &amp; alarm topics</li>
+        <li>Auto‑refeed on failure</li>
+        <li>Hash‑verified packets</li>
+      </ul>
+    </article>
+
+  </div>
+</section>
+
   <!-- ──────────── TRAILLINK ──────────── -->
   <section id="traillink" class="content-section container">
     <h2 class="section-title">🔗 TrailLink – Secure Node‑to‑Node Bridge</h2>
