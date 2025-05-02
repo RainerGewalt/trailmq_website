@@ -1,0 +1,17 @@
+/* ===== Global Reset & Basics ===== */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+    font-family:"Roboto",system-ui,Helvetica,Arial,sans-serif;
+    font-size:var(--fs-400);line-height:1.6;
+    color:var(--base-content);background:var(--base-100);
+}
+img,svg{max-width:100%;display:block}
+
+a{color:var(--secondary);text-decoration:none;transition:color .2s}
+a:hover{text-decoration:underline,color:var(--secondary-content)}
+
+.container{width:min(100% - 2rem,var(--max-w));margin-inline:auto}
+
+/* Utility – zwei‑spaltige Auflistungen */
+.two-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1.5rem}

@@ -12,9 +12,6 @@
 /* -------------------------------------------------
    1.  HERO
    -------------------------------------------------*/
-.hero-bar{display:flex;flex-direction:column;align-items:center;
-    padding:2rem 1rem;background:var(--base-100)}
-.hero-logo{width:clamp(120px,18vw,220px);height:auto}
 
 /* -------------------------------------------------
    2.  Rope-Menu
@@ -152,450 +149,107 @@
 
 .rope-nodes a:hover,            /* kein scale mehr → kein Ruckeln   */
 .rope-nodes a.active{transform:none}
-@media (prefers-color-scheme: dark) {
-    .rope-nodes a::before {
-        background: var(--surface-alt);
-        border-color: var(--surface-hover);
-    }
+/*@media (prefers-color-scheme: dark) {*/
+/*    .rope-nodes a::before {*/
+/*        background: var(--surface-alt);*/
+/*        border-color: var(--surface-hover);*/
+/*    }*/
 
-    .rope-nodes a,
-    .rope-nodes a span {
-        color: var(--secondary) /* nicht weiß, sondern wie alle anderen Texte */
-    }
+/*    .rope-nodes a,*/
+/*    .rope-nodes a span {*/
+/*        color: var(--secondary) !* nicht weiß, sondern wie alle anderen Texte *!*/
+/*    }*/
 
-    .rope-nodes a:hover span,
-    .rope-nodes a.active span {
-        color:var(--secondary) /* bewusst *nicht* var(--primary-content), damit es nicht weiß ist */
-    }
-    .station {
-        background: var(--surface-alt);
-        border-color: var(--surface-hover);
-    }
-    /* ---------- Station (radiales Menü) ---------- */
+/*    .rope-nodes a:hover span,*/
+/*    .rope-nodes a.active span {*/
+/*        color:var(--secondary) !* bewusst *nicht* var(--primary-content), damit es nicht weiß ist *!*/
+/*    }*/
+/*    .station {*/
+/*        background: var(--surface-alt);*/
+/*        border-color: var(--surface-hover);*/
+/*    }*/
+/*    !* ---------- Station (radiales Menü) ---------- *!*/
 
-    /* 1. Hover-Scale löschen  */
-    .station:hover{
-        /* transform: scale(1.12) translateZ(0);  <-- RAUS  */
-        border-color: var(--accent);          /* Farbe darf gern bleiben */
-    }
+/*    !* 1. Hover-Scale löschen  *!*/
+/*    .station:hover{*/
+/*        !* transform: scale(1.12) translateZ(0);  <-- RAUS  *!*/
+/*        border-color: var(--accent);          !* Farbe darf gern bleiben *!*/
+/*    }*/
 
-    /* 2. Gleiche Regel für Rope-Nodes (falls noch nicht geschehen) */
-    .rope-nodes a:hover,
-    .rope-nodes a.active{
-        transform: none;                      /* keinerlei Verschiebung */
-    }
+/*    !* 2. Gleiche Regel für Rope-Nodes (falls noch nicht geschehen) *!*/
+/*    .rope-nodes a:hover,*/
+/*    .rope-nodes a.active{*/
+/*        transform: none;                      !* keinerlei Verschiebung *!*/
+/*    }*/
 
-    /* 3. Deutlicher aktiv-Style ohne Positionsänderung */
-    .station.active{
-        border-color: var(--accent);
-        box-shadow:0 0 0 4px rgba(47,115,110,.25);
-    }
-
-
-}
-/* ---------- Feature-Wheel ---------- */
-
-/* 0. Keyframe-Animation entfernen (wir rotieren via JS) */
-.circle { animation: none; }
-
-/* 1. Hintergrund an Palette anpassen */
-.station,
-.pipeline-info,
-.circle { background: var(--surface); }  /* vorher #fff/#ECEBE9 */
-
-/* 2. Hover-Scale raus, Farbakzent beibehalten */
-.station:hover { transform: none; border-color: var(--accent); }
-
-/* 3. Pipeline-Layout – Rad & Info-Card trennen                       */
-.pipeline-widget{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 3rem;               /* mehr Luft */
-    flex-wrap: nowrap;       /* nie umbrechen */
-}
-
-/* 4. Breakpoint: unter 720 px untereinander – aber zentriert         */
-@media (max-width: 720px){
-    .pipeline-widget{flex-direction: column; gap: 2rem;}
-    .pipeline-info { order: 2; }     /* Info-Card unter dem Rad */
-}
-
-/* 5. Kreis responsiv skalieren                                       */
-.circle{
-    width: clamp(240px, 50vw, 380px);
-    height: clamp(240px, 50vw, 380px);
-}
-
-/* 6. Station-Knopf proportional                                      */
-.station{
-    width: clamp(68px, 18%, 90px);
-    height: clamp(68px, 18%, 90px);
-    padding: clamp(6px, 2rem - 100%, 12px);
-}
-
-/* 7. Dark-Mode: Station-BG nicht weiß                                */
-@media (prefers-color-scheme: dark){
-    .station, .circle, .pipeline-info{ background: var(--surface-alt); }
-}
+/*    !* 3. Deutlicher aktiv-Style ohne Positionsänderung *!*/
+/*    .station.active{*/
+/*        border-color: var(--accent);*/
+/*        box-shadow:0 0 0 4px rgba(47,115,110,.25);*/
+/*    }*/
 
 
-/* ----------  RESPONSIVE  ---------- */
-/*   SVG schrumpft, Knoten skalieren weich   */
-@media(max-width:850px){
-    .rope-svg{max-height:320px}
-    .rope-nodes li{transform:translate(-50%,-50%) scale(.9)}
-}
-@media(max-width:640px){
-    .rope-svg{max-height:300px}
-    .rope-nodes li{transform:translate(-50%,-50%) scale(.75)}
-    .rope-nodes a{width:100px;height:125px;font-size:.85rem}
-    .rope-nodes a .icon{width:52px;height:52px;margin-top:22px}
-}
-
-/* -------------------------------------------------
-   3.  Circular Feature-Wheel  (unverändert außer minimaler Skalierung)
-   -------------------------------------------------*/
-.pipeline-widget{display:flex;flex-wrap:wrap;gap:2.6rem;
-    justify-content:center;align-items:center;margin:3.2rem 0}
-
-.circle{position:relative;width:320px;height:320px;animation:spin 40s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-.station{position:absolute;top:50%;left:50%;
-    width:86px;height:86px;padding:10px;border-radius:50%;
-    background:var(--base-100);border:2px solid var(--base-300);
-    transform:rotate(calc(var(--i)*45deg)) translate(148px) rotate(calc(var(--i)*-45deg));
-    display:flex;align-items:center;justify-content:center;
-    transition:transform .3s,border-color .3s;cursor:pointer}
-.station img{width:66%;height:66%;object-fit:contain}
-.station:hover{transform:scale(1.12) translateZ(0);border-color:var(--accent)}
-.station.active{border-color:var(--accent);box-shadow:0 0 0 4px rgba(47,115,110,.25)}
-
-.pipeline-info{max-width:320px;text-align:center;padding:1.5rem;
-    background:var(--base-200);border-left:4px solid var(--secondary);
-    border-radius:1rem;box-shadow:0 4px 8px rgba(0,0,0,.05)}
-.pipeline-info .info-icon{width:64px;height:64px;margin-bottom:1rem}
-.pipeline-info h3{margin:.4rem 0 .6rem;color:var(--primary)}
-
-/* -------------------------------------------------
-   4.  Footer
-   -------------------------------------------------*/
-.site-footer {
-    background: var(--base-200);
-    color: var(--primary);
-    text-align: center;
-    padding: 2rem 1rem;
-    font-size: 0.95rem;
-    border-top: 1px solid var(--base-300);
-    box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.04);
-}
-
-.site-footer p {
-    margin: 0 0 1rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    color: var(--base-content);
-}
-
-.footer-links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-}
-
-.footer-links a {
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.footer-links a:hover {
-    color: var(--secondary);
-    transform: translateY(-1px);
-}
-@media (prefers-color-scheme: dark) {
-    .site-footer {
-        background: #222;
-        color: #eee;
-        border-top-color: #444;
-    }
-
-    .footer-links a {
-        color: #ccc;
-    }
-
-    .footer-links a:hover {
-        color: var(--secondary);
-    }
-}
-.footer-meta {
-    margin-top: 1.2rem;
-    font-size: 0.8rem;
-    color: var(--base-content);
-}
-
-.footer-meta a {
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s ease;
-}
-
-.footer-meta a:hover {
-    color: var(--secondary);
-}
+/*}*/
 
 
 
-main {
-    font-family: "Roboto", sans-serif;
-    line-height: 1.6;
-    font-size: 1rem;
-    color: var(--base-content);
-}
-
-.hero h1 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    margin-bottom: 0.5rem;
-    color: var(--primary);
-    text-align: center;
-}
-
-.hero p {
-    max-width: 700px;
-    margin: 0 auto;
-    font-size: 1.05rem;
-    text-align: center;
-    color: var(--primary);
-}
-
-.cta {
-    background: var(--accent);
-    color: var(--accent-content);
-    text-align: center;
-    padding: 3rem 1.5rem;
-    margin-top: 4rem;
-    border-radius: 0.75rem;
-}
-
-.cta h2 {
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-}
-
-.cta a {
-    color: var(--secondary-content);
-    text-decoration: underline;
-}
-
-
-
-.features-section {
-    padding: 3rem 1.5rem;
-    background: var(--base-100);
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.feature-card {
-    background: var(--base-200);
-    padding: 2rem 1.5rem;
-    border-radius: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-    text-align: center;
-    transition: box-shadow 0.3s ease;
-}
-
-.feature-card:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-}
-
-.feature-card .icon {
-    width: 52px;
-    height: 52px;
-    margin-bottom: 1rem;
-    object-fit: contain;
-    filter: var(--primary-content);
-}
-
-.feature-card h2 {
-    font-size: 1.2rem;
-    margin: 0.5rem 0;
-    color: var(--primary);
-}
-
-.feature-card p {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: var(--base-content);
-}
-
-
-/***** 1. CSS Custom Properties & Tokens ******/
-:root {
-    /* brand */
-    --primary:       #1B4D4F;
-    --on-primary:    #ffffff;
-    --secondary:     #F7681F;
-    --on-secondary:  #ffffff;
-    --surface:       #ECEBE9;
-    --surface-alt:   #DCDAD7;
-    --surface-hover: #C8C7C4;
-    --text:          var(--primary);
-    --radius-s:      .5rem;
-    --radius-m:      1rem;
-    --radius-l:      2rem;
-    --shadow-s:      0 1px 3px rgba(0, 0, 0, .05);
-    --shadow-m:      0 4px 12px rgba(0, 0, 0, .08);
-    --max-w:         68rem; /* 1088px */
-    /* typography scale */
-    --fs-900: clamp(2.5rem, 4vw + 1rem, 3.5rem);
-    --fs-700: 2rem;
-    --fs-600: 1.5rem;
-    --fs-500: 1.125rem;
-    --fs-400: 1rem;
-    --fs-300: .875rem;
-}
-
-/* dark mode */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --surface:       #1e1e1e;
-        --surface-alt:   #2a2a2a;
-        --surface-hover: #333;
-        --text:          #f0f0f0;
-        --shadow-m:      0 4px 12px rgba(0, 0, 0, .5);
-    }
-}
+/*!* dark mode *!*/
+/*@media (prefers-color-scheme: dark) {*/
+/*    :root {*/
+/*        --surface:       #1e1e1e;*/
+/*        --surface-alt:   #2a2a2a;*/
+/*        --surface-hover: #333;*/
+/*        --text:          #f0f0f0;*/
+/*        --shadow-m:      0 4px 12px rgba(0, 0, 0, .5);*/
+/*    }*/
+/*}*/
 
 /* ==== 2. Global Reset ==== */
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:"Roboto",system-ui,Helvetica,Arial,sans-serif;font-size:var(--fs-400);line-height:1.6;color:var(--text);background:var(--surface)}
-img,svg{max-width:100%;display:block}
-a{color:var(--secondary);text-decoration:none}
-a:hover{text-decoration:underline}
 
-/* ==== 3. Utility Classes ==== */
-.container{width:min(100% - 2rem,var(--max-w));margin-inline:auto}
-.lead{font-size:var(--fs-500);max-width:40rem;margin-inline:auto}
-.section-title{font-size:var(--fs-700);text-align:center;margin-bottom:1rem;color:var(--primary)}
-.section-lead{font-size:var(--fs-500);text-align:center;max-width:42rem;margin-inline:auto 2rem}
-.subtitle{font-size:var(--fs-500);margin:.75rem 0 .35rem;color:var(--primary)}
-.centered-link{text-align:center;margin-top:1.5rem}
-.callout{background:var(--surface);border-left:.4rem solid var(--secondary);padding:1rem 1.2rem;border-radius:var(--radius-s);box-shadow:var(--shadow-s)}
+/*!* ==== 5. Feature Grid ==== *!*/
+/*.features-section{padding:3rem 0;background:var(--surface-alt)}*/
+/*.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:2rem}*/
+/*.feature-card{background:var(--surface);padding:2rem 1.5rem;border-radius:var(--radius-m);box-shadow:var(--shadow-s);text-align:center;transition:box-shadow .25s ease, transform .25s ease}*/
+/*.feature-card:hover{box-shadow:var(--shadow-m);transform:translateY(-2px)}*/
+/*.feature-card .icon{width:3rem;height:3rem;margin-bottom:1rem;filter:grayscale(.2) brightness(1.2)}*/
+/*.feature-card h2{font-size:var(--fs-500);margin:.5rem 0;color:var(--primary)}*/
+/*.feature-card p{font-size:var(--fs-300);line-height:1.5}*/
 
-/* flexible two‑column lists */
-.two-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1.5rem}
+/*!* ==== 6. Comparison Table ==== *!*/
+/*.table-wrapper{overflow-x:auto}*/
+/*.comparison-table{width:100%;border-collapse:collapse;font-size:var(--fs-300)}*/
+/*.comparison-table th,.comparison-table td{padding:.65rem;border:1px solid var(--surface-hover);text-align:center}*/
+/*.comparison-table thead{background:var(--surface-alt)}*/
+/*.comparison-table tbody tr:nth-child(odd){background:var(--surface)}*/
 
-/* ==== 4. Hero ==== */
-.hero{padding:4.5rem 1rem;text-align:center}
-.hero h1{font-size:var(--fs-900);margin-bottom:.5rem;color:var(--primary)}
+/*!* ==== 7. Bullet Lists & Icons ==== *!*/
+/*.bullet-list{padding-left:1.25rem;line-height:1.55;margin-block:1rem}*/
+/*.bullet-list li{margin:.4rem 0}*/
+/*.bullet-list.check-list li::before{content:"✔︎ ";color:var(--secondary);font-weight:700}*/
+/*.icon-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1.25rem;margin-top:1.25rem}*/
+/*.icon-list li{background:var(--surface);padding:1rem;border-radius:var(--radius-s);box-shadow:var(--shadow-s)}*/
 
-/* ==== 5. Feature Grid ==== */
-.features-section{padding:3rem 0;background:var(--surface-alt)}
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:2rem}
-.feature-card{background:var(--surface);padding:2rem 1.5rem;border-radius:var(--radius-m);box-shadow:var(--shadow-s);text-align:center;transition:box-shadow .25s ease, transform .25s ease}
-.feature-card:hover{box-shadow:var(--shadow-m);transform:translateY(-2px)}
-.feature-card .icon{width:3rem;height:3rem;margin-bottom:1rem;filter:grayscale(.2) brightness(1.2)}
-.feature-card h2{font-size:var(--fs-500);margin:.5rem 0;color:var(--primary)}
-.feature-card p{font-size:var(--fs-300);line-height:1.5}
+/*!* ==== 8. Spinner for CSV/loading components ==== *!*/
+/*.csv-spinner{width:2rem;height:2rem;border:.25rem solid var(--surface-hover);border-top-color:var(--secondary);border-radius:50%;animation:spin 1s linear infinite;margin:1rem auto}*/
+/*@keyframes spin{to{transform:rotate(360deg)}}*/
 
-/* ==== 6. Comparison Table ==== */
-.table-wrapper{overflow-x:auto}
-.comparison-table{width:100%;border-collapse:collapse;font-size:var(--fs-300)}
-.comparison-table th,.comparison-table td{padding:.65rem;border:1px solid var(--surface-hover);text-align:center}
-.comparison-table thead{background:var(--surface-alt)}
-.comparison-table tbody tr:nth-child(odd){background:var(--surface)}
+/*!* ==== 9. Footer (matching new palette) ==== *!*/
+/*.site-footer{background:var(--surface-alt);color:var(--primary);text-align:center;padding:2rem 1rem;font-size:var(--fs-300);border-top:1px solid var(--surface-hover)}*/
+/*.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin-block:1rem}*/
+/*.footer-links a{font-weight:600;color:var(--primary);transition:color .2s ease,transform .2s ease}*/
+/*.footer-links a:hover{color:var(--secondary);transform:translateY(-1px)}*/
+/*.footer-meta{font-size:var(--fs-300)}*/
 
-/* ==== 7. Bullet Lists & Icons ==== */
-.bullet-list{padding-left:1.25rem;line-height:1.55;margin-block:1rem}
-.bullet-list li{margin:.4rem 0}
-.bullet-list.check-list li::before{content:"✔︎ ";color:var(--secondary);font-weight:700}
-.icon-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1.25rem;margin-top:1.25rem}
-.icon-list li{background:var(--surface);padding:1rem;border-radius:var(--radius-s);box-shadow:var(--shadow-s)}
+/*!* dark mode overrides *!*/
+/*@media (prefers-color-scheme: dark){*/
+/*    .feature-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.6)}*/
+/*    .comparison-table thead{background:var(--surface-hover)}*/
+/*    .footer-links a{color:#ccc}*/
+/*}*/
 
-/* ==== 8. Spinner for CSV/loading components ==== */
-.csv-spinner{width:2rem;height:2rem;border:.25rem solid var(--surface-hover);border-top-color:var(--secondary);border-radius:50%;animation:spin 1s linear infinite;margin:1rem auto}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* ==== 9. Footer (matching new palette) ==== */
-.site-footer{background:var(--surface-alt);color:var(--primary);text-align:center;padding:2rem 1rem;font-size:var(--fs-300);border-top:1px solid var(--surface-hover)}
-.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin-block:1rem}
-.footer-links a{font-weight:600;color:var(--primary);transition:color .2s ease,transform .2s ease}
-.footer-links a:hover{color:var(--secondary);transform:translateY(-1px)}
-.footer-meta{font-size:var(--fs-300)}
-
-/* dark mode overrides */
-@media (prefers-color-scheme: dark){
-    .feature-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.6)}
-    .comparison-table thead{background:var(--surface-hover)}
-    .footer-links a{color:#ccc}
-}
-
-.hero-logo {
-    display: block;
-    margin-inline: auto;
-    max-width: 640px;
-}
-
-
-/*   OVERRIDES  -------------------------------------------------- */
-
-/* ===== PIPELINE WHEEL FINAL PATCH ============================ */
-
-/* 1. Rad-Hülle transparent: */
-.circle{ background: transparent !important; }
-
-/* 2. Stations-Kreise dunkel: */
-.station{
-    background: var(--base-200);
-    border: 2px solid var(--base-300);
-    transition: border-color .25s, box-shadow .25s;
-}
-/* 2a. Hover zeigt gar nichts mehr: */
-.station:hover{ border-color: var(--base-300); box-shadow: none; }
-
-/* 2b. Klick (=active) in Sekundärfarbe: */
-.station.active{
-    border-color: var(--secondary);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--secondary) 35%, transparent);
-}
-
-/* 3. Info-Card dunkel, kein Hover: */
-.pipeline-info{
-    background: var(--base-200) !important;
-    border-left: 4px solid var(--secondary);
-    box-shadow: none;
-}
-
-/* 4. Abstand Rad/Card responsiv mit clamp: */
-.pipeline-widget{
-    gap: clamp(2rem, 6vw, 4rem);  /* 2‒4 rem dynamisch */
-}
-
-/* 5. Unter 700 px untereinander – Abstand ebenfalls clamp: */
-@media (max-width: 700px){
-    .pipeline-widget{
-        flex-direction: column;
-        gap: clamp(1.5rem, 5vw, 3rem);
-    }
-}
-
-/* 6. Dark-Mode – gleiche Farben, nur kleine Aufhellung für Card-Text: */
-@media (prefers-color-scheme: dark){
-    .station{ background: var(--surface-alt); }
-    .pipeline-info{ background: var(--surface-alt); }
-}
-
+/*.hero-logo {*/
+/*    display: block;*/
+/*    margin-inline: auto;*/
+/*    max-width: 640px;*/
+/*}*/
 

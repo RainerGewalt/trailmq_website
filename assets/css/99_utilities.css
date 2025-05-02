@@ -1,0 +1,74 @@
+/* ===== GLOBAL RESET & UTILITIES ================================ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+    font-family:"Roboto",system-ui,Helvetica,Arial,sans-serif;
+    font-size:var(--fs-400);line-height:1.6;
+    color:var(--base-content);background:var(--base-100)
+}
+
+img,svg{max-width:100%;display:block}
+
+/* Links */
+a{color:var(--secondary);text-decoration:none;transition:color .2s}
+a:hover{text-decoration:underline}
+
+/* Layout helper */
+.container{width:min(100% - 2rem,var(--max-w));margin-inline:auto}
+
+/* Typo‑Utilities */
+.lead{font-size:var(--fs-500);max-width:40rem;margin-inline:auto}
+.section-title{font-size:var(--fs-700);text-align:center;margin-bottom:1rem;color:var(--primary)}
+.subtitle{font-size:var(--fs-500);margin:.75rem 0 .35rem;color:var(--primary)}
+.centered-link{text-align:center;margin-top:1.5rem}
+
+/* Callout‑Box */
+.callout{
+    background:var(--base-100);
+    border-left:.4rem solid var(--secondary);
+    padding:1rem 1.2rem;border-radius:var(--radius-s);
+    box-shadow:var(--shadow-s)
+}
+
+/* Zwei‑Spalten‑Listen */
+.two-col{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));
+    gap:1.5rem
+}
+
+/* Bullet‑Listen */
+.bullet-list{padding-left:1.25rem;line-height:1.55;margin-block:1rem}
+.bullet-list li{margin:.4rem 0}
+.bullet-list.check-list li::before{content:"✔︎ ";color:var(--secondary);font-weight:700}
+
+/* Icon‑Listen */
+.icon-list{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));
+    gap:1.25rem;margin-top:1.25rem
+}
+.icon-list li{
+    background:var(--base-100);padding:1rem;border-radius:var(--radius-s);
+    box-shadow:var(--shadow-s)
+}
+
+/* Vergleichs‑Tabelle */
+.table-wrapper{overflow-x:auto}
+.comparison-table{
+    width:100%;border-collapse:collapse;font-size:var(--fs-300)
+}
+.comparison-table th,
+.comparison-table td{
+    padding:.65rem;border:1px solid var(--surface-hover);text-align:center
+}
+.comparison-table thead{background:var(--base-200)}
+.comparison-table tbody tr:nth-child(odd){background:var(--base-100)}
+
+/* Spinner (z. B. beim CSV‑Laden) */
+.csv-spinner{
+    width:2rem;height:2rem;margin:1rem auto;
+    border:.25rem solid var(--surface-hover);
+    border-top-color:var(--secondary);border-radius:50%;
+    animation:spin 1s linear infinite
+}
+@keyframes spin{to{transform:rotate(360deg)}}

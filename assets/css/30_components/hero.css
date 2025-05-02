@@ -1,0 +1,38 @@
+/* ===== HERO ==================================================== */
+.hero-bar{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:2rem 1rem;
+    background:var(--base-100);
+    box-shadow:0 2px 6px rgba(0,0,0,.08);
+}
+.hero-logo{
+    width:clamp(140px,20vw,280px);      /* << smaller & fluid */
+    height:auto;
+}
+.hero-tagline{
+    margin:.5rem 0 0;
+    font-size:clamp(.9rem,2vw,1.05rem);
+    color:var(--primary);
+    letter-spacing:.02em;
+}
+
+
+/* klassischer “Hero”‑Bereich unterhalb der Bar */
+.hero{padding:4.5rem 1rem;text-align:center}
+.hero h1{
+    font-size:var(--fs-900);margin-bottom:.5rem;color:var(--primary)
+}
+.hero p{
+    max-width:700px;margin:0 auto;
+    font-size:1.05rem;color:var(--primary)
+}
+
+/* Call‑to‑Action‑Banner (optional) */
+.cta{
+    background:var(--accent);color:var(--accent-content);
+    text-align:center;padding:3rem 1.5rem;margin-top:4rem;border-radius:.75rem;
+}
+.cta h2{font-size:1.75rem;margin-bottom:1rem}
+.cta a{color:var(--secondary-content);text-decoration:underline}
