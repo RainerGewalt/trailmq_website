@@ -1,71 +1,72 @@
 /* ===== CIRCULAR FEATURE‑WHEEL ================================== */
-@keyframes spin{to{transform:rotate(360deg)}}
 
-.pipeline-widget{
-    display:flex;justify-content:center;align-items:center;flex-wrap:wrap;
-    gap:clamp(2rem,6vw,4rem);margin:3.2rem 0;
+.pipeline-widget {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: clamp(2rem, 6vw, 4rem);
+    margin: 3.2rem 0;
 }
-@media(max-width:700px){
-    .pipeline-widget{flex-direction:column;gap:clamp(1.5rem,5vw,3rem)}
-}
-
-.circle{
-    position:relative;width:320px;height:320px;
-    animation:spin 40s linear infinite;background:transparent!important
-}
-/* dynamische Größen */
-.circle{width:clamp(240px,50vw,380px);height:clamp(240px,50vw,380px)}
-
-.station{
-    position:absolute;top:50%;left:50%;
-    width:clamp(68px,18%,90px);height:clamp(68px,18%,90px);
-    padding:clamp(6px,2rem - 100%,12px);
-    border-radius:50%;cursor:pointer;
-    background:var(--base-200);border:2px solid var(--base-300);
-    transform:rotate(calc(var(--i)*45deg)) translate(148px) rotate(calc(var(--i)*-45deg));
-    display:flex;align-items:center;justify-content:center;
-    transition:border-color .3s,box-shadow .3s;
-}
-.station img{width:66%;height:66%;object-fit:contain}
-.station:hover{border-color:var(--accent)}
-.station.active{
-    border-color:var(--secondary);
-    box-shadow:0 0 0 4px color-mix(in srgb,var(--secondary) 35%,transparent)
-}
-
-/* Info‑Card */
-.pipeline-info{
-    max-width:320px;text-align:center;padding:1.5rem;
-    background:var(--base-200);border-left:4px solid var(--secondary);
-    border-radius:1rem;box-shadow:0 4px 8px rgba(0,0,0,.05)
-}
-.pipeline-info .info-icon{width:64px;height:64px;margin-bottom:1rem}
-.pipeline-info h3{margin:.4rem 0 .6rem;color:var(--primary)}
-
-/* Dark‑Mode */
-/*@media(prefers-color-scheme:dark){*/
-/*    .station,*/
-/*    .circle,*/
-/*    .pipeline-info{background:var(--surface-alt)}*/
-/*    .station:hover{border-color:var(--accent)}*/
-/*}*/
-/* 4. Abstand Rad/Card responsiv mit clamp: */
-.pipeline-widget{
-    gap: clamp(2rem, 6vw, 4rem);  /* 2‒4 rem dynamisch */
-}
-
-/* 5. Unter 700 px untereinander – Abstand ebenfalls clamp: */
-@media (max-width: 700px){
-    .pipeline-widget{
+@media (max-width: 700px) {
+    .pipeline-widget {
         flex-direction: column;
         gap: clamp(1.5rem, 5vw, 3rem);
     }
 }
 
-/*!* 6. Dark-Mode – gleiche Farben, nur kleine Aufhellung für Card-Text: *!*/
-/*@media (prefers-color-scheme: dark){*/
-/*    .station{ background: var(--surface-alt); }*/
-/*    .pipeline-info{ background: var(--surface-alt); }*/
-/*}*/
+.circle {
+    position: relative;
+    width: clamp(240px, 50vw, 380px);
+    height: clamp(240px, 50vw, 380px);
+    background: transparent !important;
+    /* JS übernimmt die Rotation */
+}
 
+.station {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: clamp(68px, 18%, 90px);
+    height: clamp(68px, 18%, 90px);
+    padding: clamp(6px, 2rem - 100%, 12px);
+    border-radius: 50%;
+    cursor: pointer;
+    background: var(--base-200);
+    border: 2px solid var(--base-300);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.station img {
+    width: 66%;
+    height: 66%;
+    object-fit: contain;
+}
+.station:hover {
+    border-color: var(--accent);
+}
+.station.active {
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--secondary) 35%, transparent);
+}
 
+.pipeline-info {
+    max-width: 320px;
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--base-200);
+    border-left: 4px solid var(--secondary);
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+.pipeline-info .info-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+}
+.pipeline-info h3 {
+    margin: 0.4rem 0 0.6rem;
+    color: var(--primary);
+}
