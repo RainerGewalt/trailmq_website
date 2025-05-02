@@ -1,0 +1,40 @@
+/* =========================================
+   Global Design Tokens – TrailForge Palette
+   ========================================= */
+:root {
+    /* brand */
+    --primary:#1B4D4F;       --primary-content:#fff;
+    --secondary:#F7681F;     --secondary-content:#fff;
+    --accent:#2F736E;        --accent-content:#fff;
+
+    /* greys / surfaces */
+    --base-100:#ECEBE9;
+    --base-200:#DCDAD7;
+    --base-300:#C8C7C4;
+    --base-content:var(--primary);
+
+    /* semantic */
+    --info:#5DB2C7;  --success:#3CB371;
+    --warning:#FFA500;  --error:#DC2626;
+
+    /* radius + shadow */
+    --radius-s:.5rem;  --radius-m:1rem;  --radius-l:2rem;
+    --shadow-s:0 1px 3px rgba(0,0,0,.05);
+    --shadow-m:0 4px 12px rgba(0,0,0,.08);
+
+    /* type‑scale */
+    --fs-900:clamp(2.5rem,4vw+1rem,3.5rem);
+    --fs-700:2rem; --fs-600:1.5rem;
+    --fs-500:1.125rem; --fs-400:1rem; --fs-300:.875rem;
+
+    --max-w:68rem; /* 1088 px */
+}
+
+/* Dark‑Mode */
+@media (prefers-color-scheme: dark){
+    :root{
+        --base-100:#1e1e1e; --base-200:#2a2a2a; --base-300:#333;
+        --base-content:#f0f0f0;
+        --shadow-m:0 4px 12px rgba(0,0,0,.5);
+    }
+}
