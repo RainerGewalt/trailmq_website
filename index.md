@@ -268,7 +268,7 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
 <!-- ──────────── AI PLUGINS ──────────── -->
 <section id="ai" class="content-section alt-bg container">
   <h2 class="section-title">
-    <img src="{{ '/assets/images/webp/webp/ai_plugins.webp' | relative_url }}" alt="AI Plugin Icon" class="inline-icon" />
+    <img src="{{ '/assets/images/webp/ai_plugins.webp' | relative_url }}" alt="AI Plugin Icon" class="inline-icon" />
     TrailAI Plugins
   </h2>
   <table class="comparison-table skinny">
