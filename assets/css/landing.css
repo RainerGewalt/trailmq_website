@@ -699,30 +699,76 @@ body { background: var(--clr-background); }
         color: #F1F1F1;
     }
 }
+/* ============================
+   FEATURE‑CARDS  (Look = Rope‑Card)
+   ============================ */
 .feature-card {
-    background: var(--clr-surface);
-    color: var(--clr-base-content);  /* dunkles Blaugrün */
-    padding: 2rem 1.5rem;
+    background: var(--clr-surface-alt);      /* Beige‑Fläche wie Rope‑Card */
+    color: var(--clr-text);                  /* primärer Text */
+    padding: 2rem 1.75rem;
     border-radius: var(--radius-m);
-    box-shadow: 0 4px 10px rgb(0 0 0 / 0.07);
+    box-shadow: 0 4px 10px rgb(0 0 0 / .07);
     text-align: center;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
 }
 
 .feature-card:hover {
-    box-shadow: 0 6px 20px rgb(0 0 0 / 0.10);
     transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgb(0 0 0 / .10);
+    background: var(--clr-surface);          /* etwas heller beim Hover */
+}
+
+.feature-card .icon {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1.1rem;
+    object-fit: contain;
+    filter: grayscale(.15) brightness(1.15);
 }
 
 .feature-card h2 {
     font-size: var(--fs-500);
-    margin: .75rem 0;
-    color: var(--clr-base-content);
+    margin: .65rem 0 .4rem;
+    color: var(--clr-text);
 }
 
 .feature-card p {
     font-size: var(--fs-300);
-    line-height: 1.5;
-    color: var(--clr-base-content);
-    opacity: 0.95;
+    line-height: 1.55;
+    opacity: .95;
+}
+
+/* Dark‑Mode‑Tweaks für Cards */
+@media (prefers-color-scheme: dark) {
+    .feature-card {
+        background: var(--clr-surface);
+        box-shadow: 0 4px 12px rgb(0 0 0 / .4);
+    }
+}
+
+/* ============================
+   PIPELINE‑WHEEL  (Station‑Kreise)
+   ============================ */
+.station {
+    background: var(--clr-surface-alt);      /* Beige statt Weiß */
+    border: 2px solid var(--clr-outline);
+}
+
+.station:hover {
+    border-color: var(--clr-accent);
+    background: var(--clr-surface);          /* leicht heller */
+}
+
+.station.active {
+    border-color: var(--clr-secondary);
+    background: var(--clr-surface);          /* gleicht Hover‑Look an */
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--clr-secondary) 35%, transparent);
+}
+
+/* Dark‑Mode für Stations */
+@media (prefers-color-scheme: dark) {
+    .station {
+        background: var(--clr-surface);        /* dunkle Surface */
+        border-color: var(--clr-outline);
+    }
 }
