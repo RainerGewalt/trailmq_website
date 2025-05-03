@@ -3,10 +3,7 @@ layout: default
 title: TrailMQ – Open‑Source Messaging for Regulated Industries
 description: Lightweight, secure, and auditable MQTT platform for Pharma and IIoT.
 ---
-
-<main id="top">
  
-
 
 <main id="top">
   <!-- ──────────── HERO ──────────── -->
@@ -88,7 +85,7 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
     </section>
 
   <!-- ──────────── WHY GMP / REGULATED ──────────── -->
-  <section id="gmp" class="content-section alt-bg container">
+  <section id="gmp" class="content-section container">
 <h2 class="section-title">
   <img src="{{ '/assets/images/webp/security_icon.webp' | relative_url }}" alt="Security Icon" class="inline-icon" />
   Built for GMP &amp; Regulated Workflows
@@ -266,7 +263,7 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
  
 
 <!-- ──────────── AI PLUGINS ──────────── -->
-<section id="ai" class="content-section alt-bg container">
+<section id="ai" class="content-section container">
   <h2 class="section-title">
     <img src="{{ '/assets/images/webp/ai_plugins.webp' | relative_url }}" alt="AI Plugin Icon" class="inline-icon" />
     TrailAI Plugins
@@ -325,7 +322,7 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
   </section>
 
   <!-- ──────────── WHY UNIQUE ──────────── -->
-  <section id="unique" class="content-section alt-bg container">
+  <section id="unique" class="content-section container">
 <h2 class="section-title">
   <img src="{{ '/assets/images/webp/why_unique.webp' | relative_url }}" alt="Global Icon" class="inline-icon" />
   Why TrailMQ Stands Out

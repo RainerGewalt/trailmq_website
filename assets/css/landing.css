@@ -3,20 +3,33 @@
    ============================================================= */
 
 /* ----------------------------------------------------------------
-   0.  DESIGN TOKENS
+   0.  DESIGN TOKENS  –  TrailForge Palette
    ---------------------------------------------------------------- */
 :root {
-    /* Palette */
-    --clr-primary: #0d3c40;
-    --clr-primary-contrast: #ffffff;
-    --clr-secondary: #f7681f;
-    --clr-secondary-contrast: #ffffff;
-    --clr-accent: #2f736e;
+    /* Brand */
+    --clr-primary:            #1B4D4F;
+    --clr-primary-contrast:   #FFFFFF;
 
-    --clr-surface: #ffffff;
-    --clr-surface-alt: #f4f4f2;
-    --clr-outline: #e0dfdc;
-    --clr-text: var(--clr-primary);      /* Standard‑Textfarbe */
+    --clr-secondary:          #F7681F;
+    --clr-secondary-contrast: #FFFFFF;
+
+    --clr-accent:             #2F736E;
+    --clr-accent-contrast:    #FFFFFF;
+
+    /* Neutrals / Surfaces */
+    --clr-background:         #ECEBE9; /* base‑100 */
+    --clr-surface:            #ECEBE9; /* gleiche hellste Base‑Stufe */
+    --clr-surface-alt:        #DCDAD7; /* base‑200 */
+    --clr-outline:            #C8C7C4; /* base‑300 */
+
+    /* Text */
+    --clr-text:               #1B4D4F; /* base‑content = primary‑dark */
+
+    /* Feedback */
+    --clr-info:    #5DB2C7;
+    --clr-success: #3CB371;
+    --clr-warning: #FFA500;
+    --clr-error:   #DC2626;
 
     /* Elevation & radius */
     --radius-s: .5rem;
@@ -34,7 +47,6 @@
     /* Layout */
     --max-w: 72rem; /* 1152px */
 }
-
 /* ----------------------------------------------------------------
    1.  GLOBAL RESET & BASICS
    ---------------------------------------------------------------- */
@@ -75,7 +87,7 @@ h1, h2, h3 { line-height: 1.25; font-weight: 600; }
     max-width: var(--max-w);
     margin-inline: auto;
 }
-.alt-bg       { background: var(--clr-surface-alt); }
+/*.alt-bg       { background: var(--clr-surface-alt); }*/
 
 .section-title {
     font-size: var(--fs-600);
@@ -91,7 +103,7 @@ h1, h2, h3 { line-height: 1.25; font-weight: 600; }
 /* ----------------------------------------------------------------
    4.  FEATURE GRID
    ---------------------------------------------------------------- */
-.features-section { background: var(--clr-surface-alt); padding: 3rem 0; }
+/*.features-section { background: var(--clr-surface-alt); padding: 3rem 0; }*/
 
 .features-grid {
     display: grid;
@@ -139,7 +151,7 @@ h1, h2, h3 { line-height: 1.25; font-weight: 600; }
     width: var(--station-size); height: var(--station-size);
     padding: clamp(6px, 2rem - 100%, 12px);
     border-radius: 50%; cursor: pointer;
-    background: var(--clr-surface-alt); border: 2px solid var(--clr-outline);
+    /*background: var(--clr-surface-alt); border: 2px solid var(--clr-outline);*/
     display: flex; align-items: center; justify-content: center;
     transition: border-color .3s, box-shadow .3s;
 }
@@ -366,7 +378,7 @@ h1, h2, h3 { line-height: 1.25; font-weight: 600; }
 }
 
 .comparison-table.skinny thead {
-    background: var(--clr-surface-alt);
+    /*background: var(--clr-surface-alt);*/
     font-weight: 600;
 }
 
@@ -419,7 +431,7 @@ h1, h2, h3 { line-height: 1.25; font-weight: 600; }
     text-align: center;
     padding-top: 4rem;
     padding-bottom: 4rem;
-    background: var(--clr-surface-alt);
+    /*background: var(--clr-surface-alt);*/
 }
 
 #unique .section-title {
@@ -532,7 +544,7 @@ h1, h2, h3 { line-height: 1.25; font-weight: 600; }
 }
 
 #licensing pre {
-    background: var(--clr-surface-alt);
+    /*background: var(--clr-surface-alt);*/
     padding: 1rem 1.25rem;
     margin-top: 2rem;
     border-radius: var(--radius-m);
@@ -656,5 +668,34 @@ h1, h2, h3 { line-height: 1.25; font-weight: 600; }
 
     a:hover {
         color: var(--clr-secondary-contrast);
+    }
+}
+
+/* ===== GLOBAL BACKGROUND ===== */
+body { background: var(--clr-background); }
+
+/* ----------------------------------------------------------------
+   DARK MODE  (prefers‑color‑scheme)
+   ---------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Swap neutrals */
+        --clr-background: #1F1F1F;      /* neutral (base) */
+        --clr-surface:    #1F1F1F;
+        --clr-surface-alt:#2A2A28;      /* etwas heller als neutral */
+        --clr-outline:    #3B3B39;
+
+        /* Text + contrasts bleiben hell */
+        --clr-text: #ECEBE9;
+    }
+
+    /* Link‑Farbe & Icon‑Helligkeit */
+    a { color: var(--clr-secondary); }
+    .inline-icon, .icon { filter: brightness(1.2) contrast(1.2); }
+
+    /* Code‑Blöcke leicht abdunkeln */
+    pre, code {
+        background: #2D2D2B;
+        color: #F1F1F1;
     }
 }
