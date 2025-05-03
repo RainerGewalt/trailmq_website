@@ -243,10 +243,10 @@ h1, h2, h3 { line-height: 1.25; font-weight: 600; }
 }
 
 .rope-card h3 img.inline-icon {
-    width: 1.5em;
-    height: 1.5em;
-    object-fit: contain;
+    width: 2em;
+    height: 2em;
 }
+
 
 .rope-card p {
     font-size: var(--fs-400);
