@@ -699,3 +699,30 @@ body { background: var(--clr-background); }
         color: #F1F1F1;
     }
 }
+.feature-card {
+    background: var(--clr-surface);
+    color: var(--clr-base-content);  /* dunkles Blaugrün */
+    padding: 2rem 1.5rem;
+    border-radius: var(--radius-m);
+    box-shadow: 0 4px 10px rgb(0 0 0 / 0.07);
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-card:hover {
+    box-shadow: 0 6px 20px rgb(0 0 0 / 0.10);
+    transform: translateY(-4px);
+}
+
+.feature-card h2 {
+    font-size: var(--fs-500);
+    margin: .75rem 0;
+    color: var(--clr-base-content);
+}
+
+.feature-card p {
+    font-size: var(--fs-300);
+    line-height: 1.5;
+    color: var(--clr-base-content);
+    opacity: 0.95;
+}
