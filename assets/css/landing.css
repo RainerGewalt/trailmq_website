@@ -1,130 +1,200 @@
-/* -------------------------------------------------
-   0.  Farbpalette  (einmal global laden)
-   -------------------------------------------------*/
-:root{
-    --primary:#1B4D4F; --primary-content:#fff;
-    --secondary:#F7681F; --secondary-content:#fff;
-    --accent:#2F736E; --accent-content:#fff;
-    --base-100:#ECEBE9; --base-200:#DCDAD7; --base-300:#C8C7C4;
-    --base-content:var(--primary);
+/* =============================================================
+   TrailMQ Landing Styles – v2 (modernised &amp; consolidated)
+   Author: ChatGPT (refactor for consistency &amp; logo sizing)
+   ============================================================= */
+
+/* ----------------------------------------------------------------
+   0.  DESIGN TOKENS (single source of truth)
+   ---------------------------------------------------------------- */
+:root {
+    /* Colour palette */
+    --clr-primary: #0d3c40;
+    --clr-primary-contrast: #ffffff;
+    --clr-secondary: #f7681f;
+    --clr-secondary-contrast: #ffffff;
+    --clr-accent: #2f736e;
+
+    --clr-surface: #ffffff;
+    --clr-surface-alt: #f4f4f2;
+    --clr-outline: #e0dfdc;
+
+    /* Elevation & radius */
+    --radius-s: .5rem;
+    --radius-m: 1rem;
+    --shadow-s: 0 2px 6px rgb(0 0 0 / .04);
+    --shadow-m: 0 4px 12px rgb(0 0 0 / .08);
+
+    /* Typography */
+    --font-base: "Inter", "Segoe UI", system-ui, sans-serif;
+    --fs-300: .925rem;
+    --fs-400: 1rem;
+    --fs-500: 1.25rem;
+    --fs-600: 1.45rem;
+
+    /* Layout */
+    --max-w: 72rem; /* 1152px */
 }
 
-/* -------------------------------------------------
-   1.  HERO
-   -------------------------------------------------*/
+/* ----------------------------------------------------------------
+   1.  GLOBAL RESET & BASICS
+   ---------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font: 400 100%/1.55 var(--font-base); scroll-behavior: smooth; color: var(--clr-primary); }
+img { max-width: 100%; display: block; height: auto; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3 { line-height: 1.25; font-weight: 600; }
 
-/* -------------------------------------------------
-   2.  Rope-Menu
-   -------------------------------------------------*/
-
-/* -------------------------------------------------
-   2a.  Skalierbarer Wrapper für Rope-Menü
-   -------------------------------------------------*/
-.rope-wrapper {
-    width: 1200px;
-    height: 360px;
-    position: relative;
-    margin: 0 auto;
-    transition: transform 0.2s ease-out;
-    transform-origin: top center;
+/* ----------------------------------------------------------------
+   2.  HERO SECTION
+   ---------------------------------------------------------------- */
+.trailmq-landing {
+    padding: clamp(3rem, 8vw, 5.5rem) 1rem 3.5rem;
+    background: linear-gradient(140deg, var(--clr-primary) 0%, var(--clr-accent) 100%);
+    color: var(--clr-primary-contrast);
+    text-align: center;
 }
 
-/* Responsive Skalierung ab 1200px ↓ */
-@media (max-width: 1200px) {
-    .rope-wrapper {
-        --scale: calc(100vw / 1200);
-        transform: scale(var(--scale));
-    }
+.hero-logo {
+    width: clamp(14rem, 28vw, 30rem); /* bigger, scales nicely */
+    margin-inline: auto;
 }
+.hero-tagline { margin-top: 1.15rem; font-size: var(--fs-500); font-weight: 500; }
+.lead        { margin-top: .9rem; font-size: var(--fs-400); opacity: .92; }
 
-/* -------------------------------------------------
-   2b. Fallback-Menü für kleine Screens (unter 640px)
-   -------------------------------------------------*/
-.simple-menu {
-    display: none;
-    flex-direction: column;
-    gap: 0.75rem;
+/* ----------------------------------------------------------------
+   3.  SECTION BASICS & TYPOGRAPHY
+   ---------------------------------------------------------------- */
+.content-section {
+    padding: 4rem 1rem;
+    max-width: var(--max-w);
+    margin-inline: auto;
+}
+.alt-bg { background: var(--clr-surface-alt); }
+.section-title {
+    font-size: var(--fs-600);
+    margin-bottom: 1.65rem;
+    display: flex;
     align-items: center;
-    font-weight: 600;
-    list-style: none;
-    margin: 0;
-    padding: 1rem 0;
-}
-
-.simple-menu a {
-    color: var(--primary);
-    text-decoration: none;
-}
-
-.simple-menu a:hover {
-    color: var(--secondary);
-}
-
-/* Unter 640px: Rope ausblenden, Fallback zeigen */
-@media (max-width: 640px) {
-    .rope-wrapper {
-        display: none;
-    }
-
-    .simple-menu {
-        display: flex;
-    }
-}
-
-/* -------------------------------------------------
-   2c. Dynamische Größen für Touchfläche, Text, Icon
-   -------------------------------------------------*/
-.rope-nodes a {
-    width: clamp(80px, 10vw, 120px);
-    height: clamp(105px, 12.5vw, 145px);
-}
-
-.rope-nodes a span {
-    margin-top: clamp(70px, 8vw, 100px);
-    font-size: clamp(0.75rem, 1.1vw, 0.9rem);
-}
-
-.rope-nodes a .icon {
-    width: clamp(40px, 5.5vw, 66px);
-    height: clamp(40px, 5.5vw, 66px);
-}
-
-.rope-menu{position:relative;width:100%;max-width:1200px;margin:0 auto 3rem}
-.rope-svg{width:100%;height:auto;max-height:360px;color:var(--accent)}
-.rope-stroke{color:var(--primary)} .rope-dot{color:var(--secondary)}
-
-/* ----------  Knoten  ---------- */
-.rope-nodes{list-style:none;margin:0;padding:0;position:absolute;inset:0}
-
-.rope-nodes li{
-    position:absolute;
-    left:calc(var(--x)*1px); top:calc(var(--y)*1px);
-    transform:translate(-50%,-50%);   /* echtes Zentrieren */
-}
-
-.rope-nodes a{
-    position:relative;display:flex;flex-direction:column;align-items:center;
-    width:120px;height:145px;gap:.5rem;text-decoration:none;font-weight:600;
-    color:var(--primary);transition:color .25s,transform .25s;
-}
-
-
-/* Label unterhalb des Kreises */
-.rope-nodes a span{
-    margin-top:100px;font-size:.9rem;line-height:1.15;z-index:1;
-    transition:color .25s;
+    gap: .55rem;
 }
 .inline-icon {
-    width: 1.2em;
-    height: 1.2em;
-    vertical-align: -0.15em;
-    margin-right: 0.4em;
-    display: inline-block;
-    image-rendering: auto;
+    width: 1.35em;
+    height: 1.35em;
+    flex: 0 0 auto;
+    object-fit: contain;
+}
+.icon {
+    width: clamp(2.75rem, 4vw, 3.5rem);
+    height: clamp(2.75rem, 4vw, 3.5rem);
+    object-fit: contain;
 }
 
+/* ----------------------------------------------------------------
+   4.  FEATURE GRID
+   ---------------------------------------------------------------- */
+.features-section { background: var(--clr-surface-alt); }
+.features-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    max-width: var(--max-w);
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+}
+.feature-card {
+    background: var(--clr-surface);
+    padding: 2.15rem 1.75rem;
+    border-radius: var(--radius-m);
+    box-shadow: var(--shadow-s);
+    text-align: center;
+    transition: box-shadow .25s ease, transform .25s ease;
+}
+.feature-card:hover {
+    box-shadow: var(--shadow-m);
+    transform: translateY(-3px);
+}
+.feature-card h2 { font-size: var(--fs-500); margin: .75rem 0; color: var(--clr-primary); }
+.feature-card p  { font-size: var(--fs-300); opacity: .95; }
 
-/* Kreis */
+/* ----------------------------------------------------------------
+   5.  PIPELINE WHEEL (circular feature widget)
+   ---------------------------------------------------------------- */
+.pipeline-widget {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(2rem, 6vw, 4rem);
+    margin: 3.2rem 0;
+}
+@media (max-width: 700px) {
+    .pipeline-widget { flex-direction: column; gap: clamp(1.5rem, 5vw, 3rem); }
+}
+.circle {
+    position: relative;
+    width: clamp(240px, 50vw, 380px);
+    aspect-ratio: 1 / 1; /* modern replacement for height */
+}
+.station {
+    --station-size: clamp(68px, 18%, 94px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--station-size);
+    height: var(--station-size);
+    padding: clamp(6px, 2rem - 100%, 12px);
+    border-radius: 50%;
+    cursor: pointer;
+    background: var(--clr-surface-alt);
+    border: 2px solid var(--clr-outline);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color .3s, box-shadow .3s;
+}
+.station img { width: 66%; height: 66%; object-fit: contain; }
+.station:hover { border-color: var(--clr-accent); }
+.station.active {
+    border-color: var(--clr-secondary);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--clr-secondary) 35%, transparent);
+}
+.pipeline-info {
+    max-width: 340px;
+    text-align: center;
+    padding: 1.65rem 1.25rem;
+    background: var(--clr-surface);
+    border-left: 4px solid var(--clr-secondary);
+    border-radius: var(--radius-m);
+    box-shadow: var(--shadow-s);
+}
+.pipeline-info .info-icon { width: 72px; height: 72px; margin-bottom: 1rem; }
+.pipeline-info h3 { margin: .45rem 0 .65rem; color: var(--clr-primary); font-size: var(--fs-500); }
+
+/* ----------------------------------------------------------------
+   6.  ROPE TOUR
+   ---------------------------------------------------------------- */
+.rope-wrapper { max-width: 1200px; height: 360px; position: relative; margin: 0 auto; }
+@media (max-width: 1200px) {
+    .rope-wrapper { --scale: calc(100vw / 1200); transform-origin: top center; transform: scale(var(--scale)); }
+}
+.rope-svg { width: 100%; height: auto; max-height: 360px; color: var(--clr-accent); }
+.rope-stroke { color: var(--clr-primary); }
+.rope-dot { color: var(--clr-secondary); }
+
+.rope-nodes { list-style: none; margin: 0; padding: 0; position: absolute; inset: 0; }
+.rope-nodes li { position: absolute; left: calc(var(--x) * 1px); top: calc(var(--y) * 1px); transform: translate(-50%, -50%); }
+.rope-nodes a {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: clamp(90px, 10vw, 130px);
+    height: clamp(110px, 12vw, 160px);
+    gap: .6rem;
+    font-weight: 600;
+    color: var(--clr-primary);
+    transition: color .25s;
+}
 .rope-nodes a::before {
     content: "";
     position: absolute;
@@ -134,131 +204,59 @@
     height: 120px;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    background: var(--base-100);
-    border: 2px solid var(--primary);
-    z-index: 0;
+    background: var(--clr-surface);
+    border: 2px solid var(--clr-primary);
     transition: background .25s;
+    z-index: 0;
 }
-
-
-/* Icon – exakt mittig im Kreis */
-.rope-nodes a .icon{
-    position:absolute;top:50%;left:50%;
-    width:66px;height:66px;object-fit:contain;
-    transform:translate(-50%,-50%);
-    z-index:1;                                   /*  ➜  immer über Kreis */
+.rope-nodes a .icon {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: clamp(45px, 5vw, 70px); height: clamp(45px, 5vw, 70px);
+    object-fit: contain; z-index: 1;
 }
+.rope-nodes a span { margin-top: 100px; font-size: clamp(.8rem, 1.05vw, .95rem); z-index: 1; }
+.rope-nodes a:hover::before, .rope-nodes a.active::before { background: var(--clr-primary); }
+.rope-nodes a:hover span, .rope-nodes a.active span { color: var(--clr-primary-contrast); }
 
-/* Hover / Active  – NICHTS wird verschoben  ------------------------------ */
-.rope-nodes a:hover::before,
-.rope-nodes a.active::before{background:var(--primary)}
+/* Fallback menu (≤640px) */
+.simple-menu { display: none; flex-direction: column; gap: .8rem; align-items: center; font-weight: 600; list-style: none; padding: 1rem 0; }
+.simple-menu a:hover { color: var(--clr-secondary); }
+@media (max-width: 640px) { .rope-wrapper { display: none; } .simple-menu { display: flex; } }
 
-.rope-nodes a:hover span,
-.rope-nodes a.active span{color:var(--primary-content)}  /* nur Text weiß */
+/* ----------------------------------------------------------------
+   7.  COMPARISON TABLE
+   ---------------------------------------------------------------- */
+.comparison-table { width: 100%; border-collapse: collapse; font-size: var(--fs-300); }
+.comparison-table th, .comparison-table td { padding: .7rem 1.1rem; border: 1px solid var(--clr-outline); text-align: center; }
+.comparison-table thead { background: var(--clr-surface-alt); font-weight: 600; }
 
-.rope-nodes a:hover,            /* kein scale mehr → kein Ruckeln   */
-.rope-nodes a.active{transform:none}
-/*@media (prefers-color-scheme: dark) {*/
-/*    .rope-nodes a::before {*/
-/*        background: var(--surface-alt);*/
-/*        border-color: var(--surface-hover);*/
-/*    }*/
+/* ----------------------------------------------------------------
+   8.  FOOTER
+   ---------------------------------------------------------------- */
+.site-footer {
+    background: var(--clr-surface-alt);
+    border-top: 1px solid var(--clr-outline);
+    text-align: center;
+    padding: 2.25rem 1rem;
+    font-size: var(--fs-300);
+    box-shadow: inset 0 1px 0 rgb(0 0 0 / .04);
+}
+.footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.25rem; margin: .75rem 0 1rem; }
+.footer-links a { font-weight: 600; transition: color .2s, transform .2s; }
+.footer-links a:hover { color: var(--clr-secondary); transform: translateY(-1px); }
 
-/*    .rope-nodes a,*/
-/*    .rope-nodes a span {*/
-/*        color: var(--secondary) !* nicht weiß, sondern wie alle anderen Texte *!*/
-/*    }*/
-
-/*    .rope-nodes a:hover span,*/
-/*    .rope-nodes a.active span {*/
-/*        color:var(--secondary) !* bewusst *nicht* var(--primary-content), damit es nicht weiß ist *!*/
-/*    }*/
-/*    .station {*/
-/*        background: var(--surface-alt);*/
-/*        border-color: var(--surface-hover);*/
-/*    }*/
-/*    !* ---------- Station (radiales Menü) ---------- *!*/
-
-/*    !* 1. Hover-Scale löschen  *!*/
-/*    .station:hover{*/
-/*        !* transform: scale(1.12) translateZ(0);  <-- RAUS  *!*/
-/*        border-color: var(--accent);          !* Farbe darf gern bleiben *!*/
-/*    }*/
-
-/*    !* 2. Gleiche Regel für Rope-Nodes (falls noch nicht geschehen) *!*/
-/*    .rope-nodes a:hover,*/
-/*    .rope-nodes a.active{*/
-/*        transform: none;                      !* keinerlei Verschiebung *!*/
-/*    }*/
-
-/*    !* 3. Deutlicher aktiv-Style ohne Positionsänderung *!*/
-/*    .station.active{*/
-/*        border-color: var(--accent);*/
-/*        box-shadow:0 0 0 4px rgba(47,115,110,.25);*/
-/*    }*/
-
-
-/*}*/
-
-
-
-/*!* dark mode *!*/
-/*@media (prefers-color-scheme: dark) {*/
-/*    :root {*/
-/*        --surface:       #1e1e1e;*/
-/*        --surface-alt:   #2a2a2a;*/
-/*        --surface-hover: #333;*/
-/*        --text:          #f0f0f0;*/
-/*        --shadow-m:      0 4px 12px rgba(0, 0, 0, .5);*/
-/*    }*/
-/*}*/
-
-/* ==== 2. Global Reset ==== */
-
-/*!* ==== 5. Feature Grid ==== *!*/
-/*.features-section{padding:3rem 0;background:var(--surface-alt)}*/
-/*.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:2rem}*/
-/*.feature-card{background:var(--surface);padding:2rem 1.5rem;border-radius:var(--radius-m);box-shadow:var(--shadow-s);text-align:center;transition:box-shadow .25s ease, transform .25s ease}*/
-/*.feature-card:hover{box-shadow:var(--shadow-m);transform:translateY(-2px)}*/
-/*.feature-card .icon{width:3rem;height:3rem;margin-bottom:1rem;filter:grayscale(.2) brightness(1.2)}*/
-/*.feature-card h2{font-size:var(--fs-500);margin:.5rem 0;color:var(--primary)}*/
-/*.feature-card p{font-size:var(--fs-300);line-height:1.5}*/
-
-/*!* ==== 6. Comparison Table ==== *!*/
-/*.table-wrapper{overflow-x:auto}*/
-/*.comparison-table{width:100%;border-collapse:collapse;font-size:var(--fs-300)}*/
-/*.comparison-table th,.comparison-table td{padding:.65rem;border:1px solid var(--surface-hover);text-align:center}*/
-/*.comparison-table thead{background:var(--surface-alt)}*/
-/*.comparison-table tbody tr:nth-child(odd){background:var(--surface)}*/
-
-/*!* ==== 7. Bullet Lists & Icons ==== *!*/
-/*.bullet-list{padding-left:1.25rem;line-height:1.55;margin-block:1rem}*/
-/*.bullet-list li{margin:.4rem 0}*/
-/*.bullet-list.check-list li::before{content:"✔︎ ";color:var(--secondary);font-weight:700}*/
-/*.icon-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1.25rem;margin-top:1.25rem}*/
-/*.icon-list li{background:var(--surface);padding:1rem;border-radius:var(--radius-s);box-shadow:var(--shadow-s)}*/
-
-/*!* ==== 8. Spinner for CSV/loading components ==== *!*/
-/*.csv-spinner{width:2rem;height:2rem;border:.25rem solid var(--surface-hover);border-top-color:var(--secondary);border-radius:50%;animation:spin 1s linear infinite;margin:1rem auto}*/
-/*@keyframes spin{to{transform:rotate(360deg)}}*/
-
-/*!* ==== 9. Footer (matching new palette) ==== *!*/
-/*.site-footer{background:var(--surface-alt);color:var(--primary);text-align:center;padding:2rem 1rem;font-size:var(--fs-300);border-top:1px solid var(--surface-hover)}*/
-/*.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin-block:1rem}*/
-/*.footer-links a{font-weight:600;color:var(--primary);transition:color .2s ease,transform .2s ease}*/
-/*.footer-links a:hover{color:var(--secondary);transform:translateY(-1px)}*/
-/*.footer-meta{font-size:var(--fs-300)}*/
-
-/*!* dark mode overrides *!*/
-/*@media (prefers-color-scheme: dark){*/
-/*    .feature-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.6)}*/
-/*    .comparison-table thead{background:var(--surface-hover)}*/
-/*    .footer-links a{color:#ccc}*/
-/*}*/
-
-/*.hero-logo {*/
-/*    display: block;*/
-/*    margin-inline: auto;*/
-/*    max-width: 640px;*/
-/*}*/
-
+/* ----------------------------------------------------------------
+   9.  DARK MODE (system-pref)
+   ---------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --clr-surface: #1e1e1e;
+        --clr-surface-alt: #2a2a2a;
+        --clr-outline: #3a3a3a;
+        --clr-primary-contrast: #ffffff;
+    }
+    html { color: #f2f2f2; }
+    .trailmq-landing { color: var(--clr-primary-contrast); }
+    .feature-card:hover { box-shadow: 0 4px 12px rgb(0 0 0 / .5); }
+    .rope-stroke { color: var(--clr-accent); }
+}
