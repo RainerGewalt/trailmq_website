@@ -324,14 +324,284 @@ h1, h2, h3 { line-height: 1.25; font-weight: 600; }
     }
 }
 
+/* ============================
+   TrailAI Plugin Section
+   ============================ */
+#ai {
+    text-align: center;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
 
-/* ----------------------------------------------------------------
-   7.  COMPARISON TABLE
-   ---------------------------------------------------------------- */
-.comparison-table { width: 100%; border-collapse: collapse; font-size: var(--fs-300); }
-.comparison-table th,
-.comparison-table td { padding: .7rem 1.1rem; border: 1px solid var(--clr-outline); text-align: center; }
-.comparison-table thead { background: var(--clr-surface-alt); font-weight: 600; }
+#ai .section-title {
+    justify-content: center;
+    font-size: var(--fs-600);
+    gap: 0.75rem;
+}
+
+#ai .section-title .inline-icon {
+    width: 2.25em;
+    height: 2.25em;
+}
+
+.comparison-table.skinny {
+    margin-top: 2rem;
+    margin-inline: auto;
+    width: 100%;
+    max-width: 52rem;
+    border-collapse: collapse;
+    border-radius: var(--radius-m);
+    overflow: hidden;
+    box-shadow: var(--shadow-s);
+    background: var(--clr-surface);
+}
+
+.comparison-table.skinny th,
+.comparison-table.skinny td {
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--clr-outline);
+    font-size: var(--fs-400);
+    text-align: left;
+    vertical-align: middle;
+}
+
+.comparison-table.skinny thead {
+    background: var(--clr-surface-alt);
+    font-weight: 600;
+}
+
+.comparison-table.skinny td img.inline-icon {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 0.6rem;
+    vertical-align: middle;
+    object-fit: contain;
+}
+
+.comparison-table.skinny td:first-child {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.section-lead {
+    font-size: var(--fs-400);
+    margin-top: 2rem;
+    opacity: 0.95;
+    max-width: 42rem;
+    margin-inline: auto;
+}
+
+/* ========== DARK MODE ========== */
+@media (prefers-color-scheme: dark) {
+    .comparison-table.skinny {
+        background: #2a2a2a;
+        color: #f0f0f0;
+    }
+
+    .comparison-table.skinny thead {
+        background: #1e1e1e;
+    }
+
+    .comparison-table.skinny td,
+    .comparison-table.skinny th {
+        border-color: #3a3a3a;
+    }
+
+    .section-lead {
+        color: #dddddd;
+    }
+}
+/* ============================
+   WHY UNIQUE Section
+   ============================ */
+#unique {
+    text-align: center;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    background: var(--clr-surface-alt);
+}
+
+#unique .section-title {
+    justify-content: center;
+    font-size: var(--fs-600);
+    gap: 0.75rem;
+}
+
+#unique .section-title .inline-icon {
+    width: 2.25em;
+    height: 2.25em;
+}
+
+#unique p {
+    font-size: var(--fs-400);
+    max-width: 42rem;
+    margin-inline: auto;
+    margin-top: 1.25rem;
+    line-height: 1.65;
+    opacity: 0.95;
+}
+
+/* Optional: Text-Highlight in dunkler Version */
+@media (prefers-color-scheme: dark) {
+    #unique p {
+        color: #e0e0e0;
+    }
+}
+/* ============================
+   COMMUNITY Section
+   ============================ */
+#community {
+    text-align: center;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+#community .section-title {
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: var(--fs-600);
+}
+
+#community .section-title .inline-icon {
+    width: 2.25em;
+    height: 2.25em;
+}
+
+#community p {
+    font-size: var(--fs-400);
+    max-width: 38rem;
+    margin-inline: auto;
+    line-height: 1.65;
+    opacity: 0.95;
+    margin-top: 1.25rem;
+}
+
+.centered-link {
+    font-weight: 600;
+    margin-top: 2rem;
+    display: inline-block;
+    font-size: var(--fs-400);
+    color: var(--clr-secondary);
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.centered-link a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.centered-link:hover {
+    transform: translateY(-2px);
+    color: var(--clr-accent);
+}
+
+/* ========== DARK MODE ========== */
+@media (prefers-color-scheme: dark) {
+    #community p {
+        color: #dddddd;
+    }
+}
+/* ============================
+   LICENSING & DEPLOYMENT
+   ============================ */
+#licensing {
+    text-align: center;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+#licensing .section-title {
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: var(--fs-600);
+}
+
+#licensing .section-title .inline-icon {
+    width: 2.25em;
+    height: 2.25em;
+}
+
+#licensing p {
+    font-size: var(--fs-400);
+    max-width: 42rem;
+    margin-inline: auto;
+    line-height: 1.65;
+    opacity: 0.95;
+    margin-top: 1.25rem;
+}
+
+#licensing pre {
+    background: var(--clr-surface-alt);
+    padding: 1rem 1.25rem;
+    margin-top: 2rem;
+    border-radius: var(--radius-m);
+    max-width: 42rem;
+    margin-inline: auto;
+    overflow-x: auto;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    box-shadow: var(--shadow-s);
+    text-align: left;
+}
+
+#licensing code {
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    color: var(--clr-primary);
+}
+
+/* ========== DARK MODE ========== */
+@media (prefers-color-scheme: dark) {
+    #licensing p {
+        color: #dddddd;
+    }
+
+    #licensing pre {
+        background: #2a2a2a;
+        color: #eaeaea;
+    }
+
+    #licensing code {
+        color: #e8e8e8;
+    }
+}
+/* ============================
+   WHAT IS TRAILMQ
+   ============================ */
+#overview {
+    text-align: center;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+#overview .section-title {
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: var(--fs-600);
+}
+
+#overview .section-title .inline-icon {
+    width: 2.25em;
+    height: 2.25em;
+}
+
+#overview p {
+    font-size: var(--fs-400);
+    max-width: 46rem;
+    margin-inline: auto;
+    margin-top: 1.5rem;
+    line-height: 1.65;
+    opacity: 0.96;
+    color: var(--clr-primary);
+}
+
+/* ========== DARK MODE ========== */
+@media (prefers-color-scheme: dark) {
+    #overview p {
+        color: #e0e0e0;
+    }
+}
+
 
 /* ----------------------------------------------------------------
    8.  FOOTER
