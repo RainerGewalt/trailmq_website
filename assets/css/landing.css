@@ -772,3 +772,25 @@ body { background: var(--clr-background); }
         border-color: var(--clr-outline);
     }
 }
+/* Mobile Menü */
+.simple-menu {
+    background: var(--clr-surface-alt);
+    border-radius: var(--radius-m);
+    padding: 1rem 1.25rem;
+    margin: 1rem auto;
+    width: fit-content;
+    box-shadow: var(--shadow-s);
+    gap: 0.7rem;
+}
+
+.simple-menu a {
+    padding: 0.45rem 0.9rem;
+    border-radius: 0.55rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.simple-menu a.active,
+.simple-menu a:hover {
+    background: var(--clr-primary);
+    color: var(--clr-primary-contrast);
+}
