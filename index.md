@@ -48,7 +48,7 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
           {% assign icons = "mqtt,secure_gateway,message_queue,audit_trail,rule_engine,plugin_slot,semantic_router,receiver" | split: "," %}
           {% for icon in icons %}
           <button class="station{% if forloop.first %} active{% endif %}" style="--i:{{ forloop.index0 }}">
-            <img src="{{ '/assets/images/webp/features/feature_icon_' | append: icon | append: '.svg' | relative_url }}" alt="">
+            <img src="{{ '/assets/images/webp/feature_icon_' | append: icon | append: '.webp' | relative_url }}" alt="">
           </button>
           {% endfor %}
         </div>
@@ -268,7 +268,7 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
 <!-- ──────────── AI PLUGINS ──────────── -->
 <section id="ai" class="content-section alt-bg container">
   <h2 class="section-title">
-    <img src="{{ '/assets/images/webp/features/ai_plugins.webp' | relative_url }}" alt="AI Plugin Icon" class="inline-icon" />
+    <img src="{{ '/assets/images/webp/webp/ai_plugins.webp' | relative_url }}" alt="AI Plugin Icon" class="inline-icon" />
     TrailAI Plugins
   </h2>
   <table class="comparison-table skinny">
