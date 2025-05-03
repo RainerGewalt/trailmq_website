@@ -53,7 +53,7 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
           {% endfor %}
         </div>
         <div id="pipeline-info" class="pipeline-info">
-          <img id="pipeline-icon" src="{{ '/assets/images/webp/features/feature_icon_mqtt.webp' | relative_url }}" alt="" class="info-icon">
+          <img id="pipeline-icon" src="{{ '/assets/images/webp/feature_icon_mqtt.webp' | relative_url }}" alt="" class="info-icon">
           <h3 id="pipeline-title">MQTT Source</h3>
           <p id="pipeline-desc">Ultra-fast MQTT from edge to core. Minimal overhead.</p>
         </div>
@@ -65,22 +65,22 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
     <section class="features-section">
       <div class="features-grid">
         <div class="feature-card">
-          <img src="{{ '/assets/images/webp/features/feature_icon_secure_gateway.webp' | relative_url }}" alt="Security" class="icon">
+          <img src="{{ '/assets/images/webp/feature_icon_secure_gateway.webp' | relative_url }}" alt="Security" class="icon">
           <h2>Secure Communication</h2>
           <p>TLS/mTLS, IP whitelisting, RBAC & JWT for regulated environments.</p>
         </div>
         <div class="feature-card">
-          <img src="{{ '/assets/images/webp/features/feature_icon_message_queue.webp' | relative_url }}" alt="Queue" class="icon">
+          <img src="{{ '/assets/images/webp/feature_icon_message_queue.webp' | relative_url }}" alt="Queue" class="icon">
           <h2>Persistent Queues</h2>
           <p>Stored messages with TTL and audit-ready retention policies.</p>
         </div>
         <div class="feature-card">
-          <img src="{{ '/assets/images/webp/features/feature_icon_audit_trail.webp' | relative_url }}" alt="Audit Trail" class="icon">
+          <img src="{{ '/assets/images/webp/feature_icon_audit_trail.webp' | relative_url }}" alt="Audit Trail" class="icon">
           <h2>Audit Trail</h2>
           <p>Full traceability with export to JSON, CSV, or PDF for compliance.</p>
         </div>
         <div class="feature-card">
-          <img src="{{ '/assets/images/webp/features/feature_icon_plugin_slot.webp' | relative_url }}" alt="Plugins" class="icon">
+          <img src="{{ '/assets/images/webp/feature_icon_plugin_slot.webp' | relative_url }}" alt="Plugins" class="icon">
           <h2>Plugin-Ready</h2>
           <p>Modular AI plugins for filtering, routing, and automatic responses.</p>
         </div>
