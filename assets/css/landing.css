@@ -1,13 +1,12 @@
 /* =============================================================
-   TrailMQ Landing Styles – v2 (modernised &amp; consolidated)
-   Author: ChatGPT (refactor for consistency &amp; logo sizing)
+   TrailMQ Landing Styles – v2.1 (clean & dark‑mode‑safe)
    ============================================================= */
 
 /* ----------------------------------------------------------------
-   0.  DESIGN TOKENS (single source of truth)
+   0.  DESIGN TOKENS
    ---------------------------------------------------------------- */
 :root {
-    /* Colour palette */
+    /* Palette */
     --clr-primary: #0d3c40;
     --clr-primary-contrast: #ffffff;
     --clr-secondary: #f7681f;
@@ -17,6 +16,7 @@
     --clr-surface: #ffffff;
     --clr-surface-alt: #f4f4f2;
     --clr-outline: #e0dfdc;
+    --clr-text: var(--clr-primary);      /* Standard‑Textfarbe */
 
     /* Elevation & radius */
     --radius-s: .5rem;
@@ -38,10 +38,19 @@
 /* ----------------------------------------------------------------
    1.  GLOBAL RESET & BASICS
    ---------------------------------------------------------------- */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font: 400 100%/1.55 var(--font-base); scroll-behavior: smooth; color: var(--clr-primary); }
+*,
+*::before,
+*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+    font: 400 100%/1.55 var(--font-base);
+    scroll-behavior: smooth;
+    color: var(--clr-text);
+}
+
 img { max-width: 100%; display: block; height: auto; }
-a { color: inherit; text-decoration: none; }
+a   { color: inherit; text-decoration: none; }
+
 h1, h2, h3 { line-height: 1.25; font-weight: 600; }
 
 /* ----------------------------------------------------------------
@@ -54,22 +63,20 @@ h1, h2, h3 { line-height: 1.25; font-weight: 600; }
     text-align: center;
 }
 
-.hero-logo {
-    width: clamp(14rem, 28vw, 30rem); /* bigger, scales nicely */
-    margin-inline: auto;
-}
-.hero-tagline { margin-top: 1.15rem; font-size: var(--fs-500); font-weight: 500; }
-.lead        { margin-top: .9rem; font-size: var(--fs-400); opacity: .92; }
+.hero-logo   { width: clamp(14rem, 28vw, 30rem); margin-inline: auto; }
+.hero-tagline{ margin-top: 1.15rem; font-size: var(--fs-500); font-weight: 500; }
+.lead        { margin-top: .9rem;  font-size: var(--fs-400); opacity: .92; }
 
 /* ----------------------------------------------------------------
-   3.  SECTION BASICS & TYPOGRAPHY
+   3.  SECTION BASICS
    ---------------------------------------------------------------- */
 .content-section {
     padding: 4rem 1rem;
     max-width: var(--max-w);
     margin-inline: auto;
 }
-.alt-bg { background: var(--clr-surface-alt); }
+.alt-bg       { background: var(--clr-surface-alt); }
+
 .section-title {
     font-size: var(--fs-600);
     margin-bottom: 1.65rem;
@@ -77,168 +84,261 @@ h1, h2, h3 { line-height: 1.25; font-weight: 600; }
     align-items: center;
     gap: .55rem;
 }
-.inline-icon {
-    width: 1.35em;
-    height: 1.35em;
-    flex: 0 0 auto;
-    object-fit: contain;
-}
-.icon {
-    width: clamp(2.75rem, 4vw, 3.5rem);
-    height: clamp(2.75rem, 4vw, 3.5rem);
-    object-fit: contain;
-}
+
+.inline-icon { width: 1.35em; height: 1.35em; flex: 0 0 auto; object-fit: contain; }
+.icon        { width: clamp(2.75rem, 4vw, 3.5rem); height: clamp(2.75rem, 4vw, 3.5rem); object-fit: contain; }
 
 /* ----------------------------------------------------------------
    4.  FEATURE GRID
    ---------------------------------------------------------------- */
-.features-section { background: var(--clr-surface-alt); }
+.features-section { background: var(--clr-surface-alt); padding: 3rem 0; }
+
 .features-grid {
     display: grid;
-    gap: 2rem;
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 2rem;
     max-width: var(--max-w);
     margin-inline: auto;
     padding-inline: 1.5rem;
 }
+
 .feature-card {
     background: var(--clr-surface);
-    padding: 2.15rem 1.75rem;
+    padding: 2rem 1.5rem;
     border-radius: var(--radius-m);
     box-shadow: var(--shadow-s);
     text-align: center;
     transition: box-shadow .25s ease, transform .25s ease;
 }
-.feature-card:hover {
-    box-shadow: var(--shadow-m);
-    transform: translateY(-3px);
+.feature-card:hover { box-shadow: var(--shadow-m); transform: translateY(-3px); }
+
+.feature-card .icon {
+    width: 3rem; height: 3rem; margin-bottom: 1rem; object-fit: contain;
+    filter: grayscale(.2) brightness(1.2);
 }
+
 .feature-card h2 { font-size: var(--fs-500); margin: .75rem 0; color: var(--clr-primary); }
-.feature-card p  { font-size: var(--fs-300); opacity: .95; }
+.feature-card p  { font-size: var(--fs-300); line-height: 1.5; color: var(--clr-text); opacity: .95; }
 
 /* ----------------------------------------------------------------
-   5.  PIPELINE WHEEL (circular feature widget)
+   5.  PIPELINE WHEEL
    ---------------------------------------------------------------- */
 .pipeline-widget {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: clamp(2rem, 6vw, 4rem);
-    margin: 3.2rem 0;
+    display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+    gap: clamp(2rem, 6vw, 4rem); margin: 3.2rem 0;
 }
 @media (max-width: 700px) {
     .pipeline-widget { flex-direction: column; gap: clamp(1.5rem, 5vw, 3rem); }
 }
-.circle {
-    position: relative;
-    width: clamp(240px, 50vw, 380px);
-    aspect-ratio: 1 / 1; /* modern replacement for height */
-}
+
+.circle { position: relative; width: clamp(240px, 50vw, 380px); aspect-ratio: 1/1; }
+
 .station {
     --station-size: clamp(68px, 18%, 94px);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: var(--station-size);
-    height: var(--station-size);
+    position: absolute; top: 50%; left: 50%;
+    width: var(--station-size); height: var(--station-size);
     padding: clamp(6px, 2rem - 100%, 12px);
-    border-radius: 50%;
-    cursor: pointer;
-    background: var(--clr-surface-alt);
-    border: 2px solid var(--clr-outline);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-radius: 50%; cursor: pointer;
+    background: var(--clr-surface-alt); border: 2px solid var(--clr-outline);
+    display: flex; align-items: center; justify-content: center;
     transition: border-color .3s, box-shadow .3s;
 }
-.station img { width: 66%; height: 66%; object-fit: contain; }
-.station:hover { border-color: var(--clr-accent); }
-.station.active {
+.station img     { width: 66%; height: 66%; object-fit: contain; }
+.station:hover   { border-color: var(--clr-accent); }
+.station.active  {
     border-color: var(--clr-secondary);
     box-shadow: 0 0 0 4px color-mix(in srgb, var(--clr-secondary) 35%, transparent);
 }
+
 .pipeline-info {
-    max-width: 340px;
-    text-align: center;
-    padding: 1.65rem 1.25rem;
-    background: var(--clr-surface);
-    border-left: 4px solid var(--clr-secondary);
-    border-radius: var(--radius-m);
-    box-shadow: var(--shadow-s);
+    max-width: 340px; text-align: center; padding: 1.65rem 1.25rem;
+    background: var(--clr-surface); border-left: 4px solid var(--clr-secondary);
+    border-radius: var(--radius-m); box-shadow: var(--shadow-s);
 }
 .pipeline-info .info-icon { width: 72px; height: 72px; margin-bottom: 1rem; }
-.pipeline-info h3 { margin: .45rem 0 .65rem; color: var(--clr-primary); font-size: var(--fs-500); }
+.pipeline-info h3         { margin: .45rem 0 .65rem; font-size: var(--fs-500); color: var(--clr-primary); }
 
 /* ----------------------------------------------------------------
    6.  ROPE TOUR
    ---------------------------------------------------------------- */
+.rope-tour    { margin: 4rem auto; text-align: center; }
 .rope-wrapper { max-width: 1200px; height: 360px; position: relative; margin: 0 auto; }
 @media (max-width: 1200px) {
     .rope-wrapper { --scale: calc(100vw / 1200); transform-origin: top center; transform: scale(var(--scale)); }
 }
-.rope-svg { width: 100%; height: auto; max-height: 360px; color: var(--clr-accent); }
-.rope-stroke { color: var(--clr-primary); }
-.rope-dot { color: var(--clr-secondary); }
 
-.rope-nodes { list-style: none; margin: 0; padding: 0; position: absolute; inset: 0; }
-.rope-nodes li { position: absolute; left: calc(var(--x) * 1px); top: calc(var(--y) * 1px); transform: translate(-50%, -50%); }
+.rope-svg    { width: 100%; max-height: 360px; color: var(--clr-accent); }
+.rope-stroke { color: var(--clr-primary); }
+.rope-dot    { color: var(--clr-secondary); }
+
+.rope-nodes  { list-style: none; padding: 0; margin: 0; position: absolute; inset: 0; }
+.rope-nodes li { position: absolute; left: calc(var(--x)*1px); top: calc(var(--y)*1px); transform: translate(-50%, -50%); }
+
 .rope-nodes a {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: clamp(90px, 10vw, 130px);
-    height: clamp(110px, 12vw, 160px);
-    gap: .6rem;
-    font-weight: 600;
-    color: var(--clr-primary);
-    transition: color .25s;
+    position: relative; display: flex; flex-direction: column; align-items: center;
+    width: clamp(90px, 10vw, 130px); height: clamp(110px, 12vw, 160px);
+    gap: .6rem; font-weight: 600; color: var(--clr-primary); transition: color .25s;
 }
 .rope-nodes a::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 120px;
-    height: 120px;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    background: var(--clr-surface);
-    border: 2px solid var(--clr-primary);
-    transition: background .25s;
-    z-index: 0;
+    content: ""; position: absolute; inset: 0;
+    width: 120px; height: 120px; margin: auto;
+    border-radius: 50%; background: var(--clr-surface); border: 2px solid var(--clr-primary);
+    transition: background .25s; z-index: 0;
 }
-.rope-nodes a .icon {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: clamp(45px, 5vw, 70px); height: clamp(45px, 5vw, 70px);
-    object-fit: contain; z-index: 1;
-}
+.rope-nodes a .icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: clamp(45px, 5vw, 70px); height: clamp(45px, 5vw, 70px); object-fit: contain; z-index: 1; }
 .rope-nodes a span { margin-top: 100px; font-size: clamp(.8rem, 1.05vw, .95rem); z-index: 1; }
-.rope-nodes a:hover::before, .rope-nodes a.active::before { background: var(--clr-primary); }
-.rope-nodes a:hover span, .rope-nodes a.active span { color: var(--clr-primary-contrast); }
+.rope-nodes a:hover::before,
+.rope-nodes a.active::before { background: var(--clr-primary); }
+.rope-nodes a:hover span,
+.rope-nodes a.active span   { color: var(--clr-primary-contrast); }
 
 /* Fallback menu (≤640px) */
-.simple-menu { display: none; flex-direction: column; gap: .8rem; align-items: center; font-weight: 600; list-style: none; padding: 1rem 0; }
+.simple-menu      { display: none; flex-direction: column; gap: .8rem; align-items: center; font-weight: 600; list-style: none; padding: 1rem 0; }
 .simple-menu a:hover { color: var(--clr-secondary); }
 @media (max-width: 640px) { .rope-wrapper { display: none; } .simple-menu { display: flex; } }
+
+/* Cards */
+.rope-steps {
+    display: grid; gap: 2rem; margin-top: 3.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.rope-card {
+    background: var(--clr-surface); border-radius: 1rem; padding: 1.6rem;
+    box-shadow: 0 4px 10px rgb(0 0 0 / .07); text-align: left;
+}
+.rope-card h3 { display: flex; align-items: center; font-size: 1.1rem; margin-bottom: .5rem; }
+
+.step-dot { width: .9rem; height: .9rem; border-radius: 50%; margin-right: .5rem; }
+.step-dot.topics   { background: #ff9500; }
+.step-dot.audit    { background: #3a86ff; }
+.step-dot.security { background: #00b894; }
+.step-dot.builder  { background: #a55eea; }
+.step-dot.link     { background: #6c5ce7; }
+.rope-card {
+    background: var(--clr-surface);
+    border-radius: var(--radius-m);
+    padding: 2rem 1.5rem;
+    box-shadow: var(--shadow-s);
+    text-align: center;
+    max-width: 48rem;
+    margin-inline: auto;
+    display: none; /* nur aktive wird gezeigt */
+}
+
+.rope-card.active {
+    display: block;
+}
+
+.rope-card h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: var(--fs-500);
+    font-weight: 600;
+    color: var(--clr-primary);
+    margin-bottom: 0.5rem;
+}
+
+.rope-card h3 img.inline-icon {
+    width: 1.5em;
+    height: 1.5em;
+    object-fit: contain;
+}
+
+.rope-card p {
+    font-size: var(--fs-400);
+    opacity: .9;
+    margin-bottom: 1rem;
+}
+
+.rope-card ul {
+    list-style: disc inside;
+    margin: 0 auto;
+    padding-left: 0;
+    text-align: left;
+    max-width: 40ch;
+    font-size: var(--fs-300);
+    line-height: 1.45;
+}
+
+.rope-card li {
+    margin-bottom: 0.4rem;
+}
+
+.rope-card code {
+    background: #f0f0f0;
+    padding: 0.15em 0.4em;
+    border-radius: 0.3em;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+
+.rope-card pre {
+    background: #f5f5f5;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-align: left;
+    color: #333;
+    max-width: 100%;
+}
+
+.rope-card pre code {
+    background: transparent;
+    padding: 0;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    .rope-card {
+        background: #2a2a2a;
+        color: #f0f0f0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .rope-card h3 {
+        color: #ffffff;
+    }
+
+    .rope-card ul {
+        color: #dddddd;
+    }
+
+    .rope-card pre {
+        background: #1e1e1e;
+        color: #eaeaea;
+    }
+
+    .rope-card code {
+        background: #333;
+        color: #fff;
+    }
+
+    .rope-card pre code {
+        color: #fff;
+    }
+}
+
 
 /* ----------------------------------------------------------------
    7.  COMPARISON TABLE
    ---------------------------------------------------------------- */
 .comparison-table { width: 100%; border-collapse: collapse; font-size: var(--fs-300); }
-.comparison-table th, .comparison-table td { padding: .7rem 1.1rem; border: 1px solid var(--clr-outline); text-align: center; }
+.comparison-table th,
+.comparison-table td { padding: .7rem 1.1rem; border: 1px solid var(--clr-outline); text-align: center; }
 .comparison-table thead { background: var(--clr-surface-alt); font-weight: 600; }
 
 /* ----------------------------------------------------------------
    8.  FOOTER
    ---------------------------------------------------------------- */
 .site-footer {
-    background: var(--clr-surface-alt);
-    border-top: 1px solid var(--clr-outline);
-    text-align: center;
-    padding: 2.25rem 1rem;
-    font-size: var(--fs-300);
+    background: var(--clr-surface-alt); border-top: 1px solid var(--clr-outline);
+    text-align: center; padding: 2.25rem 1rem; font-size: var(--fs-300);
     box-shadow: inset 0 1px 0 rgb(0 0 0 / .04);
 }
 .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.25rem; margin: .75rem 0 1rem; }
@@ -246,125 +346,45 @@ h1, h2, h3 { line-height: 1.25; font-weight: 600; }
 .footer-links a:hover { color: var(--clr-secondary); transform: translateY(-1px); }
 
 /* ----------------------------------------------------------------
-   9.  DARK MODE (system-pref)
+   9.  DARK MODE
    ---------------------------------------------------------------- */
 @media (prefers-color-scheme: dark) {
-    :root {
-        --clr-surface: #1e1e1e;
-        --clr-surface-alt: #2a2a2a;
-        --clr-outline: #3a3a3a;
-        --clr-primary-contrast: #ffffff;
+    /* Textfarben in Sektionen */
+    .content-section p,
+    .content-section li,
+    .content-section strong,
+    .content-section em {
+        color: var(--clr-text);
     }
-    html { color: #f2f2f2; }
-    .trailmq-landing { color: var(--clr-primary-contrast); }
-    .feature-card:hover { box-shadow: 0 4px 12px rgb(0 0 0 / .5); }
-    .rope-stroke { color: var(--clr-accent); }
+
+    /* Section Headings & Icons */
+    .section-title {
+        color: var(--clr-text);
+    }
+
+    .inline-icon,
+    .icon {
+        filter: brightness(1.2) contrast(1.2);
+    }
+
+    /* Code / Pre */
+    pre,
+    code {
+        background: #2d2d2d;
+        color: #eee;
+        border-radius: .5rem;
+        padding: .5rem .75rem;
+        display: inline-block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    /* Links */
+    a {
+        color: var(--clr-secondary);
+    }
+
+    a:hover {
+        color: var(--clr-secondary-contrast);
+    }
 }
-
-/* ===== FEATURE GRID SECTION ==================================== */
-.features-section {
-    padding: 3rem 0;
-    background: var(--surface-alt);
-}
-
-/* ===== FEATURE GRID LAYOUT ===================================== */
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-    gap: 2rem;
-    max-width: var(--max-w);
-    margin-inline: auto;
-    padding-inline: 1.5rem;
-}
-
-/* ===== FEATURE CARD ============================================ */
-.feature-card {
-    background: var(--surface);
-    padding: 2rem 1.5rem;
-    border-radius: var(--radius-m);
-    box-shadow: var(--shadow-s);
-    text-align: center;
-    transition: box-shadow 0.25s ease, transform 0.25s ease;
-}
-
-.feature-card:hover {
-    box-shadow: var(--shadow-m);
-    transform: translateY(-2px);
-}
-
-.feature-card .icon {
-    width: 3rem;
-    height: 3rem;
-    margin-bottom: 1rem;
-    object-fit: contain;
-    filter: grayscale(0.2) brightness(1.2);
-}
-
-.feature-card h2 {
-    font-size: var(--fs-500);
-    margin: 0.5rem 0;
-    color: var(--primary);
-}
-
-.feature-card p {
-    font-size: var(--fs-300);
-    line-height: 1.5;
-    color: var(--text);
-}
-/* container */
-.rope-tour {margin:4rem auto; text-align:center}
-
-/* nodes inherit your previous absolute layout */
-.rope-nodes li a {display:flex;flex-direction:column;align-items:center;font-size:.9rem;font-weight:600}
-
-/* cards */
-.rope-steps {display:grid;gap:2rem;margin-top:3.5rem;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
-
-.rope-card {background:var(--base-200);border-radius:1rem;padding:1.6rem;
-    box-shadow:0 4px 8px rgb(0 0 0 / .06);text-align:left}
-
-.rope-card h3 {display:flex;align-items:center;font-size:1.1rem;margin-bottom:.6rem}
-.step-dot {display:inline-block;width:.9rem;height:.9rem;
-    border-radius:50%;margin-right:.5rem}
-.topics  {background:#ff9500}
-.audit   {background:#3a8dff}
-.security{background:#00b894}
-.builder {background:#a55eea}
-.link    {background:#6c5ce7}
-
-.rope-card ul {margin:.6rem 0 0 1.2rem;list-style:square;font-size:.9rem}
-/* rope‑tour layout  –  pack in app.scss oder zusätzliche CSS‑Datei */
-.rope-tour       { margin:4rem auto; text-align:center; }
-.rope-wrapper    { position:relative; overflow:visible; }
-.rope-nodes      { list-style:none; padding:0; margin:0; }
-.rope-nodes li   { position:absolute; translate:var(--x,0) var(--y,0); }
-.rope-nodes a    { display:flex; flex-direction:column; align-items:center;
-    font-size:.85rem; font-weight:600; gap:.25rem; }
-.rope-nodes img  { width:36px; height:36px; }
-
-.rope-steps      { display:grid; gap:2rem; margin-top:3.5rem;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); }
-
-.rope-card       { background:var(--base-200,#fff); border-radius:1rem;
-    padding:1.6rem; box-shadow:0 4px 10px rgb(0 0 0 / .07);
-    text-align:left; }
-.rope-card h3    { display:flex; align-items:center; font-size:1.1rem; margin-bottom:.5rem;}
-.step-dot        { width:.9rem;height:.9rem;border-radius:50%;margin-right:.5rem; }
-
-.step-dot.topics   { background:#ff9500 }
-.step-dot.audit    { background:#3a86ff }
-.step-dot.security { background:#00b894 }
-.step-dot.builder  { background:#a55eea }
-.step-dot.link     { background:#6c5ce7 }
-
-/* ---------- Rope-Card Tab‑Verhalten ----------------- */
-.rope-card            { display: none; }   /* Standard: alle ausblenden */
-.rope-card.active     { display: block; }  /* Nur die aktive zeigen   */
-/* ===== DARK MODE =============================================== */
-/*@media (prefers-color-scheme: dark) {*/
-/*    .feature-card:hover {*/
-/*        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);*/
-/*    }*/
-/*}*/
-
