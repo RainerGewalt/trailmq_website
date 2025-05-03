@@ -260,3 +260,111 @@ h1, h2, h3 { line-height: 1.25; font-weight: 600; }
     .feature-card:hover { box-shadow: 0 4px 12px rgb(0 0 0 / .5); }
     .rope-stroke { color: var(--clr-accent); }
 }
+
+/* ===== FEATURE GRID SECTION ==================================== */
+.features-section {
+    padding: 3rem 0;
+    background: var(--surface-alt);
+}
+
+/* ===== FEATURE GRID LAYOUT ===================================== */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 2rem;
+    max-width: var(--max-w);
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+}
+
+/* ===== FEATURE CARD ============================================ */
+.feature-card {
+    background: var(--surface);
+    padding: 2rem 1.5rem;
+    border-radius: var(--radius-m);
+    box-shadow: var(--shadow-s);
+    text-align: center;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.feature-card:hover {
+    box-shadow: var(--shadow-m);
+    transform: translateY(-2px);
+}
+
+.feature-card .icon {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+    object-fit: contain;
+    filter: grayscale(0.2) brightness(1.2);
+}
+
+.feature-card h2 {
+    font-size: var(--fs-500);
+    margin: 0.5rem 0;
+    color: var(--primary);
+}
+
+.feature-card p {
+    font-size: var(--fs-300);
+    line-height: 1.5;
+    color: var(--text);
+}
+/* container */
+.rope-tour {margin:4rem auto; text-align:center}
+
+/* nodes inherit your previous absolute layout */
+.rope-nodes li a {display:flex;flex-direction:column;align-items:center;font-size:.9rem;font-weight:600}
+
+/* cards */
+.rope-steps {display:grid;gap:2rem;margin-top:3.5rem;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+
+.rope-card {background:var(--base-200);border-radius:1rem;padding:1.6rem;
+    box-shadow:0 4px 8px rgb(0 0 0 / .06);text-align:left}
+
+.rope-card h3 {display:flex;align-items:center;font-size:1.1rem;margin-bottom:.6rem}
+.step-dot {display:inline-block;width:.9rem;height:.9rem;
+    border-radius:50%;margin-right:.5rem}
+.topics  {background:#ff9500}
+.audit   {background:#3a8dff}
+.security{background:#00b894}
+.builder {background:#a55eea}
+.link    {background:#6c5ce7}
+
+.rope-card ul {margin:.6rem 0 0 1.2rem;list-style:square;font-size:.9rem}
+/* rope‑tour layout  –  pack in app.scss oder zusätzliche CSS‑Datei */
+.rope-tour       { margin:4rem auto; text-align:center; }
+.rope-wrapper    { position:relative; overflow:visible; }
+.rope-nodes      { list-style:none; padding:0; margin:0; }
+.rope-nodes li   { position:absolute; translate:var(--x,0) var(--y,0); }
+.rope-nodes a    { display:flex; flex-direction:column; align-items:center;
+    font-size:.85rem; font-weight:600; gap:.25rem; }
+.rope-nodes img  { width:36px; height:36px; }
+
+.rope-steps      { display:grid; gap:2rem; margin-top:3.5rem;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); }
+
+.rope-card       { background:var(--base-200,#fff); border-radius:1rem;
+    padding:1.6rem; box-shadow:0 4px 10px rgb(0 0 0 / .07);
+    text-align:left; }
+.rope-card h3    { display:flex; align-items:center; font-size:1.1rem; margin-bottom:.5rem;}
+.step-dot        { width:.9rem;height:.9rem;border-radius:50%;margin-right:.5rem; }
+
+.step-dot.topics   { background:#ff9500 }
+.step-dot.audit    { background:#3a86ff }
+.step-dot.security { background:#00b894 }
+.step-dot.builder  { background:#a55eea }
+.step-dot.link     { background:#6c5ce7 }
+
+/* ---------- Rope-Card Tab‑Verhalten ----------------- */
+.rope-card            { display: none; }   /* Standard: alle ausblenden */
+.rope-card.active     { display: block; }  /* Nur die aktive zeigen   */
+/* ===== DARK MODE =============================================== */
+/*@media (prefers-color-scheme: dark) {*/
+/*    .feature-card:hover {*/
+/*        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);*/
+/*    }*/
+/*}*/
+
