@@ -215,7 +215,7 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
          class="rope-card"
          data-step="security"> 
       <h3>
-                        <img src="{{ '/assets/images/webp/security_icon.webp' | relative_url }}" alt="" class="icon">Regulation‑Grade Security</h3>
+                        <img src="{{ '/assets/images/webp/security_icon.webp' | relative_url }}" alt="" class="inline-icon">Regulation‑Grade Security</h3>
       <p>TLS/mTLS transport, granular RBAC and live manipulation checks.</p>
       <ul>
         <li>Cert rotation &amp; OCSP</li>
@@ -229,7 +229,7 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
          class="rope-card"
          data-step="builder">
       <h3>
-                        <img src="{{ '/assets/images/webp/logo_trail_builder.webp' | relative_url }}" alt="" class="icon">Visual Builder</h3>
+                        <img src="{{ '/assets/images/webp/logo_trail_builder.webp' | relative_url }}" alt="" class="inline-icon">Visual Builder</h3>
       <p>Low‑code UI to design routes, filters and plugin flows.</p>
       <ul>
         <li>Drag‑and‑drop topic matrix</li>
@@ -243,7 +243,7 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
          class="rope-card"
          data-step="link">
       <h3>
-                        <img src="{{ '/assets/images/webp/logo_trail_link.webp' | relative_url }}" alt="" class="icon">Distributed Messaging</h3>
+                        <img src="{{ '/assets/images/webp/logo_trail_link.webp' | relative_url }}" alt="" class="inline-icon">Distributed Messaging</h3>
       <p>TrailLink bridges two validated zones with loss‑free replication.</p>
       <ul>
         <li>Heartbeat &amp; alarm topics</li>
