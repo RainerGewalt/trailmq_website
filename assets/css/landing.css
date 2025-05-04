@@ -962,3 +962,30 @@ body { background: var(--clr-background); }
 @media (min-width: 761px){
     .rope-wrapper{ display: block; opacity: 1; pointer-events: auto; }
 }
+
+
+@media (max-width: 520px) {
+    .circle {
+        transform: scale(0.8);
+        transform-origin: center;
+    }
+
+    .station {
+        --station-size: 60px;
+    }
+
+    .station img {
+        width: 60%;
+        height: 60%;
+    }
+}
+
+@media (max-width: 400px) {
+    .circle {
+        transform: scale(0.7);
+    }
+
+    .station {
+        --station-size: 52px;
+    }
+}
