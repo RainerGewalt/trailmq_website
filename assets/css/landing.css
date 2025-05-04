@@ -794,3 +794,171 @@ body { background: var(--clr-background); }
     background: var(--clr-primary);
     color: var(--clr-primary-contrast);
 }
+
+
+
+/* ============================================================
+   Smooth Switch: Rope‑Menu  ➜  Simple‑Menu
+   ============================================================ */
+
+/* 1) Startzustände – beide Menüs gleichzeitig vorbereiten */
+.rope-wrapper,
+.simple-menu {
+    transition: opacity .35s ease;   /* weiches Aus‑/Einblenden */
+}
+
+/* Default (≥ 761 px): Rope sichtbar, Simple ausgeblendet */
+.rope-wrapper { opacity: 1; }
+.simple-menu  { opacity: 0; pointer-events: none; }
+
+/* 2) Breakpoint etwas früher und mit Fade:
+      Sobald Viewport schmaler als 761 px ist …            */
+@media (max-width: 760px) {
+    .rope-wrapper { opacity: 0; pointer-events: none; }
+    .simple-menu  { opacity: 1; pointer-events: auto; }
+}
+
+/* 3) Optional – Rope nicht mehr skalieren, sondern gleich verstecken
+      (reduziert das Hin‑ und Herspringen ganz)             */
+@media (max-width: 900px) {
+    .rope-wrapper { display: none; }   /* statt transform:scale */
+}
+
+
+/* Entferne die Skalierung – Rope bleibt in Position */
+@media (max-width: 1200px) {
+    .rope-wrapper {
+        transform: none;
+        --scale: 1; /* sicherheitshalber */
+    }
+}
+.rope-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Optional, damit der SVG nicht overflowt */
+.rope-svg {
+    width: 100%;
+    height: auto;
+}
+
+.rope-nodes a::before {
+    background: var(--clr-surface-alt);
+    border: 2px solid var(--clr-outline);
+    transition: background .25s, border-color .25s, box-shadow .25s;
+}
+
+.rope-nodes a:hover::before,
+.rope-nodes a.active::before {
+    background: var(--clr-surface); /* wie bei Station Hover */
+    border-color: var(--clr-secondary);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--clr-secondary) 35%, transparent);
+}
+
+.rope-nodes a span {
+    color: var(--clr-primary); /* Standardfarbe */
+}
+
+.rope-nodes a:hover span,
+.rope-nodes a.active span {
+    color: var(--clr-primary-contrast); /* Weiß bei Aktivität */
+}
+/* =========================================================
+   Rope‑Fix v3  ·  TrailMQ Landing
+   ========================================================= */
+
+/* ---------- 1. Kreise im Wheel‑Look ---------------------- */
+.rope-nodes a::before{
+    /* Grundfarbe wie Wheel–Stationen */
+    background: var(--clr-surface-alt);      /* dezent beige   */
+    border: 2px solid var(--clr-outline);    /* grauer Rand    */
+    transition: background .25s, border-color .25s, box-shadow .25s;
+}
+.rope-nodes a:hover::before,
+.rope-nodes a.active::before{
+    background: var(--clr-surface);          /* leicht heller  */
+    border-color: var(--clr-secondary);      /* orange Ring    */
+    box-shadow: 0 0 0 4px color-mix(in srgb,
+    var(--clr-secondary) 35%, transparent);
+}
+.rope-nodes a span{
+    color: var(--clr-primary);
+}
+.rope-nodes a:hover span,
+.rope-nodes a.active span{
+    color: var(--clr-primary-contrast);
+}
+
+/* ---------- 2. Rope & Kreise bleiben zentriert ----------- */
+/* Feste Basis­breite / ‑höhe und Skalierung auf Viewport   */
+.rope-wrapper{
+    width: 1200px;               /* Referenz­breite   */
+    height: 360px;               /* Referenz­höhe     */
+    margin: 0 auto;
+    position: relative;
+}
+@media (max-width: 1200px){
+    .rope-wrapper{
+        /* Alles (SVG + Nodes) wird gemeinsam skaliert,
+           daher kein Auseinander­laufen mehr                */
+        --ropeScale: calc(100vw / 1200);
+        transform: scale(var(--ropeScale));
+        transform-origin: top center;
+    }
+}
+
+/* ---------- 3. Sauberer Menü‑Wechsel --------------------- */
+/* 0 – 760 px  →  Simple‑Menü  |  ab 761 px  →  Rope‑Menü    */
+.rope-wrapper,
+.simple-menu{
+    transition: opacity .35s ease;
+}
+.rope-wrapper{ opacity: 1; }
+.simple-menu { opacity: 0; pointer-events: none; }
+
+@media (max-width: 760px){
+    .rope-wrapper{ opacity: 0; pointer-events: none; }
+    .simple-menu { opacity: 1; pointer-events: auto; }
+}
+/* ======================================================
+   Rope‑Final‑Fix  ·  zentrierte Icons & sauberer Switch
+   ====================================================== */
+
+/* 1. Feste Node‑Größen  →  nur noch der Wrapper skaliert  */
+.rope-nodes a{
+    width: 110px;          /* px statt clamp/vw   */
+    height: 136px;         /* 110 + Labelhöhe     */
+}
+
+/* Kreis passt sich automatisch an   */
+.rope-nodes a::before{
+    width: 110px;
+    height: 110px;
+}
+
+/* Icon immer exakt in der Mitte     */
+.rope-nodes a .icon{
+    width: 54px;           /* 49 % vom Kreis      */
+    height: 54px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+/* 2. Weg mit dem „Blind‑Spot“ –
+      Rope nur bei 0‑760 px ausblenden, sonst immer da     */
+@media (max-width: 760px){
+    .rope-wrapper{ opacity: 0; pointer-events: none; display: block; }
+    .simple-menu { opacity: 1; pointer-events: auto;  display: flex;  }
+}
+
+/* >760 px –  sicherstellen, dass Rope nicht versehentlich
+   durch ältere display:none‑Regel (900 px Breakpoint) verschwindet */
+@media (min-width: 761px){
+    .rope-wrapper{ display: block; opacity: 1; pointer-events: auto; }
+}
