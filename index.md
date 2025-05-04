@@ -83,21 +83,35 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
         </div>
       </div>
     </section>
+ 
+<!-- ──────────── GMP / REGULATED ──────────── -->
+<section id="gmp" class="content-section container">
+  <!-- zentriertes Heading + größeres Icon -->
+  <h2 class="section-title" style="justify-content:center;">
+    <img src="{{ '/assets/images/webp/security_icon.webp' | relative_url }}"
+         alt="Security Icon"
+         class="inline-icon"
+         style="width:2.25em;height:2.25em;" />
+    GMP‑Ready Messaging
+  </h2>
 
-  <!-- ──────────── WHY GMP / REGULATED ──────────── -->
-  <section id="gmp" class="content-section container">
-<h2 class="section-title">
-  <img src="{{ '/assets/images/webp/security_icon.webp' | relative_url }}" alt="Security Icon" class="inline-icon" />
-  Built for GMP &amp; Regulated Workflows
-</h2>
-    <ul class="bullet-list check-list">
-      <li><strong>Segregation of Duties:</strong> each TrailMQ node (Production, Lab, Analytics) has a clearly validated scope.</li>
-      <li><strong>Auditable Messaging:</strong> every sent / received packet is logged &amp; hash‑chained.</li>
-      <li><strong>Detectable Failures:</strong> missing replies trigger alarm topics and REST‑visible events.</li>
-      <li><strong>Tamper‑proof Transport:</strong> TLS/mTLS&nbsp;+ JWT + immutable audit trail.</li>
-      <li><strong>Fail‑Safe Design:</strong> DLQ, offsets, heartbeats &amp; targeted alerts.</li>
+  <!-- kurzer, mittig gesetzter Lead‑Satz -->
+  <p class="lead" style="text-align:center;max-width:46rem;margin-inline:auto;">
+    Built for regulated environments where <em>traceability</em>, <em>data integrity</em>, and <em>validation</em> are non‑negotiable.
+  </p>
+
+  <!-- zentrierter Wrapper für die Liste -->
+  <div style="max-width:720px;margin:2.25rem auto 0;">
+    <ul class="bullet-list check-list" style="text-align:left;">
+      <li><strong>Segregation of Duties:</strong> zone‑based nodes (Prod, Lab, QA) with independent scopes.</li>
+      <li><strong>Hash‑Chained Audit:</strong> every packet exportable (JSON | CSV | PDF) for regulators.</li>
+      <li><strong>Smart Alarms:</strong> missing acks &amp; spec deviations raise instant alerts.</li>
+      <li><strong>Tamper‑Proof Transport:</strong> TLS/mTLS + JWT, OCSP rotation, immutable logs.</li>
+      <li><strong>Fail‑Safe Queuing:</strong> DLQ, offsets &amp; heartbeats guarantee zero‑loss.</li>
     </ul>
-  </section>
+  </div>
+</section>
+
 
 <!-- ──────────── TRAILMQ QUICK TOUR ──────────── -->
 <section id="quick-tour" class="rope-tour container">
@@ -131,31 +145,31 @@ description: Lightweight, secure, and auditable MQTT platform for Pharma and IIo
                 <li style="--x:0; --y:120;">
                     <a href="#topics" data-hover="{{ '/assets/images/webp/smart_topic.webp' | relative_url }}">
                         <img src="{{ '/assets/images/webp/smart_topic.webp' | relative_url }}" alt="" class="icon">
-                        <span>Topics</span>
+                       
                     </a>
                 </li>
                 <li style="--x:300; --y:80;">
                     <a href="#audit" data-hover="{{ '/assets/images/webp/audit_trail_logo_bright.webp' | relative_url }}">
                         <img src="{{ '/assets/images/webp/audit_trail_icon.webp' | relative_url }}" alt="" class="icon">
-                        <span>Audit Logs</span>
+                      
                     </a>
                 </li>
                 <li style="--x:600; --y:230;">
                     <a href="#security" data-hover="{{ '/assets/images/webp/security_logo_bright.webp' | relative_url }}">
                         <img src="{{ '/assets/images/webp/security_icon.webp' | relative_url }}" alt="" class="icon">
-                        <span>Security</span>
+                         
                     </a>
                 </li>
                 <li style="--x:900; --y:160;">
                     <a href="#builder" data-hover="{{ '/assets/images/webp/logo_trail_builder_bright.webp' | relative_url }}">
                         <img src="{{ '/assets/images/webp/logo_trail_builder.webp' | relative_url }}" alt="" class="icon">
-                        <span>TrailBuilder</span>
+                       
                     </a>
                 </li>
                 <li style="--x:1200; --y:100;">
                     <a href="#link" data-hover="{{ '/assets/images/webp/logo_trail_link_bright.webp' | relative_url }}">
                         <img src="{{ '/assets/images/webp/logo_trail_link.webp' | relative_url }}" alt="" class="icon">
-                        <span>TrailLink</span>
+                     
                     </a>
                 </li>
             </ul>
