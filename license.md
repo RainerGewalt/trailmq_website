@@ -1,27 +1,9 @@
----
-layout: default
-title: License
-permalink: /license/
----
+# Licensing
 
-# License
+TrailMQ is provided as a free Community Edition via Docker Hub.
 
-TrailMQ is an open-source project licensed under the [MIT License](https://opensource.org/licenses/MIT).
+The Community Edition allows local evaluation, testing and architectural validation.
+It is not licensed for unrestricted commercial redistribution or resale.
 
----
-
-### MIT License (MIT)
-
-Copyright © {{ site.time | date: "%Y" }} TrailMQ
-
-Permission is hereby granted, free of charge, to any person obtaining a copy  
-of this software and associated documentation files (the "Software"), to deal  
-in the Software without restriction, including without limitation the rights  
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell  
-copies of the Software, and to permit persons to whom the Software is  
-furnished to do so, subject to the following conditions:
-
-> The above copyright notice and this permission notice shall be included in  
-> all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND...
+Commercial and regulated production deployments
+are covered by a separate commercial license.
