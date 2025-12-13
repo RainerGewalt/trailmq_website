@@ -1,55 +1,41 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<!-- Primary Meta Tags -->
-<title>{{ page.title | default: site.title }}</title>
-<meta name="title" content="{{ page.title | default: site.title }}" />
+<title>{% if page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
 <meta name="description" content="{{ page.description | default: site.description }}" />
-<meta name="keywords" content="{{ page.keywords | default: 'MQTT broker, audit trail, GMP compliance, GxP, pharma messaging, IIoT, industrial IoT, regulated industries' }}" />
-<meta name="author" content="TrailMQ Team" />
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="author" content="TrailForge" />
+<meta name="robots" content="{{ page.robots | default: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}" />
 <meta name="theme-color" content="#0F3D3E" />
 <meta name="color-scheme" content="light dark" />
 
-<!-- Canonical URL -->
 <link rel="canonical" href="{{ page.url | absolute_url }}" />
 
-<!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{ page.url | absolute_url }}" />
 <meta property="og:title" content="{{ page.title | default: site.title }}" />
 <meta property="og:description" content="{{ page.description | default: site.description }}" />
-<meta property="og:image" content="{{ site.url }}/assets/images/webp/trailmq_og_image.webp" />
+<meta property="og:image" content="{{ '/assets/images/webp/trailmq_og_image.webp' | absolute_url }}" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="TrailMQ - Audit-First MQTT Platform" />
 <meta property="og:site_name" content="TrailMQ" />
 <meta property="og:locale" content="en_US" />
 
-<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:url" content="{{ page.url | absolute_url }}" />
 <meta name="twitter:title" content="{{ page.title | default: site.title }}" />
 <meta name="twitter:description" content="{{ page.description | default: site.description }}" />
-<meta name="twitter:image" content="{{ site.url }}/assets/images/webp/trailmq_og_image.webp" />
+<meta name="twitter:image" content="{{ '/assets/images/webp/trailmq_og_image.webp' | absolute_url }}" />
 
-<!-- Favicon -->
 <link rel="icon" type="image/png" href="{{ '/assets/images/icons/favicon-32x32.png' | relative_url }}" sizes="32x32" />
 <link rel="icon" type="image/png" href="{{ '/assets/images/icons/favicon-16x16.png' | relative_url }}" sizes="16x16" />
 <link rel="apple-touch-icon" href="{{ '/assets/images/icons/apple-touch-icon.png' | relative_url }}" sizes="180x180" />
 <link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}" />
 
-<!-- Preconnect to external domains -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-<!-- Stylesheets -->
 <link rel="stylesheet" href="{{ '/assets/css/landing.css' | relative_url }}" />
 
-<!-- Structured Data / JSON-LD -->
 <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -69,11 +55,6 @@
             "price": "0",
             "priceCurrency": "USD",
             "description": "Free Community Edition via Docker Hub"
-        },
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5",
-            "ratingCount": "1"
         }
     }
 </script>
@@ -84,7 +65,7 @@
         "@type": "Organization",
         "name": "TrailMQ",
         "url": "{{ site.url }}",
-        "logo": "{{ site.url }}/assets/images/webp/trailmq_logo_with_text_without_background.webp",
+        "logo": "{{ '/assets/images/webp/trailmq_logo_with_text_without_background.webp' | absolute_url }}",
         "sameAs": [
             "https://github.com/trailforge/trailmq",
             "https://hub.docker.com/r/trailforge/trailmq"
@@ -92,19 +73,6 @@
     }
 </script>
 
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X4FNZ19E53"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-X4FNZ19E53');
-</script>
-
-<!-- Scroll behavior -->
 <style>
-    html {
-        scroll-behavior: smooth;
-        scroll-padding-top: 80px;
-    }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 </style>

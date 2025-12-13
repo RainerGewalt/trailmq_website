@@ -8,20 +8,34 @@ permalink: /cookies/
 
 We respect your privacy.
 
-TrailMQ does **not** use tracking cookies, analytics tools, or third-party embeds that collect personal data.
+TrailMQ does **not** use tracking cookies, analytics tools, advertising networks
+or third-party embeds that collect personal data.
 
 ---
 
-### What is stored?
+## What is stored?
 
-This website may store strictly necessary technical cookies for the purpose of improving performance or remembering language preferences (if enabled), but no personal data is collected, analyzed, or sold.
+This website may use **strictly necessary technical cookies** to ensure
+basic functionality, security and performance.
+
+Examples may include:
+- Session-related cookies
+- Preference or language settings (if enabled)
+
+No personal data is collected, profiled, analyzed or sold.
 
 ---
 
-### External Links
+## Third-party services
 
-If you follow a link to an external site (e.g. GitHub), their privacy or cookie policies may apply.
+If you follow links to external services (for example Docker Hub),
+their respective privacy and cookie policies apply.
 
 ---
 
-If you have any concerns, feel free to [contact us](mailto:trailmq@yourdomain.com).
+## Contact
+
+If you have any questions regarding privacy or data protection,
+you can contact us at:
+
+**contact@trailmq.com**
