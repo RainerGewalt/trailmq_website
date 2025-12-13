@@ -1,3 +1,9 @@
+---
+layout: default
+title: License
+permalink: /license/
+---
+
 # Licensing
 
 TrailMQ is provided as a free Community Edition via Docker Hub.
