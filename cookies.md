@@ -14,7 +14,7 @@ TrailMQ does **not** use tracking cookies, analytics tools, or third-party embed
 
 ### What is stored?
 
-This website may store essential technical cookies for the purpose of improving performance or remembering language preferences (if enabled), but no personal data is collected, analyzed, or sold.
+This website may store strictly necessary technical cookies for the purpose of improving performance or remembering language preferences (if enabled), but no personal data is collected, analyzed, or sold.
 
 ---
 

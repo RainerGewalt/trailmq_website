@@ -1,5 +1,5 @@
-title: "TrailMQ"
-description: "Open Source Messaging for Regulated Industries"
+title: "TrailMQ – Audit-First MQTT for Regulated Industries"
+description: "Audit-first MQTT platform for regulated industries. TrailMQ adds traceability, security policies and audit-ready evidence to MQTT without changing machines."
 url: "https://trailmq.com"
 baseurl: ""                 # leer lassen, wenn Website direkt unter der Root-Domain läuft
 

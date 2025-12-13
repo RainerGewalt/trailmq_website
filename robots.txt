@@ -1,19 +1,28 @@
+# TrailMQ Robots.txt
+# https://trailmq.com/robots.txt
+
 User-agent: *
-Disallow: /admin/
-Disallow: /login/
-Disallow: /register/
-Disallow: /search/
-Disallow: /tags/
-Disallow: /drafts/
-Disallow: /404.html
-Disallow: /api/
-Disallow: /cgi-bin/
+Allow: /
 
-# Blockiere nur sensible Bereiche, nicht allgemeine Ressourcen
-Disallow: /private-images/
+# Block internal/build directories
+Disallow: /_site/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /.jekyll-cache/
 
-# Erlaube das Crawlen von CSS und JS
-Allow: /*.css
-Allow: /*.js
-
+# Sitemap location
 Sitemap: https://trailmq.com/sitemap.xml
+
+
+# Allow all major search engines explicitly
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Slurp
+Allow: /

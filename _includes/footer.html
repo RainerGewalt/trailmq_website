@@ -1,16 +1,16 @@
-<footer class="site-footer">
-    <p>&copy; {{ site.time | date: "%Y" }} TrailMQ. MIT-licensed, built with ❤️.</p>
-
-    <div class="footer-links">
-        <a href="https://github.com/trailforge/trailmq" target="_blank" rel="noopener">GitHub</a>
-        <a href="mailto:contact@trailmq.com">Contact</a>
-        <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back&nbsp;to&nbsp;top</a>
-    </div>
-
-    <div class="footer-meta">
-        <small>
-            <a href="/license/">License</a> &nbsp;&middot;&nbsp;
+<footer class="site-footer" role="contentinfo">
+    <div class="footer-content container">
+        <div class="footer-brand">
+            <p>&copy; {{ site.time | date: "%Y" }} TrailMQ by TrailForge.</p>
+        </div>
+        <nav class="footer-links" aria-label="Footer Navigation">
+            <a href="https://hub.docker.com/r/trailforge/trailmq" target="_blank" rel="noopener">Docker Hub</a>
+            <a href="mailto:contact@trailmq.com">Contact</a>
+        </nav>
+        <nav class="footer-meta" aria-label="Legal">
+            <a href="/license/">License</a>
             <a href="/cookies/">Cookies</a>
-        </small>
+            <a href="#top" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">↑ Top</a>
+        </nav>
     </div>
 </footer>
