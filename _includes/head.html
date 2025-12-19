@@ -3,7 +3,7 @@
 
 <title>{% if page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
 <meta name="description" content="{{ page.description | default: site.description }}" />
-<meta name="author" content="TrailForge" />
+<meta name="author" content="RainerGewalt" />
 <meta name="robots" content="{{ page.robots | default: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}" />
 <meta name="theme-color" content="#0F3D3E" />
 <meta name="color-scheme" content="light dark" />
@@ -46,16 +46,17 @@
         "description": "{{ page.description | default: site.description }}",
         "url": "{{ site.url }}",
         "author": {
-            "@type": "Organization",
-            "name": "TrailForge",
-            "url": "https://github.com/trailforge"
+            "@type": "Person",
+            "name": "Florian (RainerGewalt)",
+            "url": "https://github.com/RainerGewalt"
         },
         "offers": {
             "@type": "Offer",
             "price": "0",
             "priceCurrency": "USD",
             "description": "Free Community Edition via Docker Hub"
-        }
+        },
+        "downloadUrl": "https://hub.docker.com/r/rainergewalt/trailmq-backend"
     }
 </script>
 
@@ -67,8 +68,9 @@
         "url": "{{ site.url }}",
         "logo": "{{ '/assets/images/webp/trailmq_logo_with_text_without_background.webp' | absolute_url }}",
         "sameAs": [
-            "https://github.com/trailforge/trailmq",
-            "https://hub.docker.com/r/trailforge/trailmq"
+            "https://github.com/RainerGewalt/TrailMQ",
+            "https://hub.docker.com/r/rainergewalt/trailmq-backend",
+            "https://hub.docker.com/r/rainergewalt/trailmq-frontend"
         ]
     }
 </script>
