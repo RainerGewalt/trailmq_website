@@ -13,7 +13,6 @@ Disallow: /.jekyll-cache/
 # Sitemap location
 Sitemap: https://trailmq.com/sitemap.xml
 
-
 # Allow all major search engines explicitly
 User-agent: Googlebot
 Allow: /
