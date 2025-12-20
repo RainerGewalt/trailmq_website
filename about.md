@@ -1,6 +1,7 @@
 ---
 layout: default
 title: About TrailMQ
+description: Learn about TrailMQ - the audit-first MQTT platform designed for regulated industries where communication must be provable, traceable and reviewable.
 permalink: /about/
 ---
 
@@ -54,4 +55,31 @@ It provides **audit-ready technical evidence** that can be used within existing
 quality, validation and compliance frameworks.
 
 TrailMQ supports workflows aligned with:
-- GMP / G
+
+- GMP / GxP requirements
+- 21 CFR Part 11 (electronic records)
+- Annex 11 (computerized systems)
+- GAMP 5 guidelines
+
+---
+
+## Deployment Model
+
+TrailMQ follows a **freemium model**:
+
+- **Free to use**: Deploy via Docker, evaluate locally, integrate into your workflows
+- **No registration required**: Clone the GitHub repo and run docker compose
+- **Enterprise add-ons**: Commercial licenses and support packages available for validated production environments
+
+The deployment files are available on [GitHub](https://github.com/RainerGewalt/TrailMQ).
+Container images are hosted on Docker Hub:
+- [trailmq-backend](https://hub.docker.com/r/rainergewalt/trailmq-backend)
+- [trailmq-frontend](https://hub.docker.com/r/rainergewalt/trailmq-frontend)
+
+---
+
+## Contact
+
+For questions, feedback or enterprise inquiries:
+
+**contact@trailmq.com**
