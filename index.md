@@ -29,6 +29,10 @@ author: TrailMQ Team
         TrailMQ replaces custom audit scripts, log parsing pipelines and fragile compliance workflows.
       </p>
       
+      <p class="hero__scope">
+        No payload inspection. No live message streams. Evidence over observation.
+      </p>
+      
       <p class="hero__desc">
         Add audit trails, security policies and validation evidence to MQTT — so audits no longer depend on custom scripts or tribal knowledge.
       </p>
@@ -36,7 +40,7 @@ author: TrailMQ Team
       <ul class="hero__proof" role="list">
         <li>GMP / GxP aligned messaging</li>
         <li>Deploy in minutes with Docker</li>
-        <li>Free to use — Enterprise add-ons available</li>
+        <li>Free to evaluate — Enterprise licenses available</li>
       </ul>
       
       <div class="hero__cta">
@@ -88,6 +92,9 @@ author: TrailMQ Team
           </p>
           <p class="highlight-definition">
             <strong>"Audit-first"</strong> means traceability, evidence and validation are core design principles — not optional add-ons.
+          </p>
+          <p class="highlight-scope">
+            TrailMQ explains decisions and enforcement without exposing message content or secrets.
           </p>
         </div>
         
@@ -151,7 +158,7 @@ author: TrailMQ Team
             </svg>
           </div>
           <h3>Audit-Ready Messaging</h3>
-          <p>Each message includes a full audit payload with user context, timestamps and metadata—traceable, ready for compliance review without extra effort.</p>
+          <p>Every decision produces structured audit evidence (identity, timestamps, metadata) without inspecting message content—traceable, ready for compliance review without extra effort.</p>
         </article>
 
         <!-- Security by Policy -->
@@ -227,6 +234,10 @@ author: TrailMQ Team
               <td class="highlight-col"><strong>Hash-chained trails</strong></td>
             </tr>
             <tr>
+              <td>Debug & inspect payloads</td>
+              <td class="highlight-col"><strong>Explain decisions without exposing payloads</strong></td>
+            </tr>
+            <tr>
               <td>Basic auth</td>
               <td class="highlight-col"><strong>TLS + JWT + RBAC</strong></td>
             </tr>
@@ -252,11 +263,11 @@ author: TrailMQ Team
       
       <div class="gmp-grid">
         <ul class="check-list" role="list">
-          <li><strong>Segregation of duties</strong> via user ACM (topics and design level triggers)</li>
-          <li><strong>Immutable, hash-chained audit trails</strong>—impossible for "post-hoc edits"</li>
-          <li><strong>Controlled vocabulary</strong> — XSLT, JSON / XST tags</li>
-          <li><strong>Data integrity</strong> via message-level hashing (SHA-256 fingerprint)</li>
-          <li><strong>GAMP alignment</strong> with topic-level permission across validation process</li>
+          <li><strong>Immutable audit evidence</strong> — hash-chained, tamper-evident trails</li>
+          <li><strong>Segregation of duties</strong> — user and role-based access controls</li>
+          <li><strong>Data integrity controls</strong> — message-level verification</li>
+          <li><strong>Supports validation workflows</strong> — IQ/OQ/PQ documentation ready</li>
+          <li><strong>GAMP alignment</strong> — topic-level permissions across validation phases</li>
         </ul>
         
         <div class="gmp-badge">
@@ -278,15 +289,59 @@ author: TrailMQ Team
   </section>
 
 
-  <!-- ══════════════ PRODUCT TOUR ══════════════ -->
+  <!-- ══════════════ PLATFORM OVERVIEW ══════════════ -->
   <section id="tour" class="section section--light">
     <div class="container">
       <h2 class="section__title">Platform Overview</h2>
-      <p class="section__lead">Built-in primitives to support orchestration, evidence and compliance—from IQ/OQ to live.</p>
+      <p class="section__lead">Explainable visibility and enforcement—from IQ/OQ to live operations.</p>
 
       <div class="tour-grid">
         
-        <!-- Featured: Full Audit Trails -->
+        <!-- Status -->
+        <article class="tour-card" id="status">
+          <div class="tour-card__header">
+            <div class="tour-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <h3>Status</h3>
+          </div>
+          <p>System stability and aggregated behavior at a glance. Understand what's happening without exposing individual messages.</p>
+          <span class="tour-card__usecase">System health, connection states, throughput metrics</span>
+        </article>
+
+        <!-- Access -->
+        <article class="tour-card" id="access">
+          <div class="tour-card__header">
+            <div class="tour-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </div>
+            <h3>Access</h3>
+          </div>
+          <p>Boundaries and identity management. Define who can publish, subscribe and configure—with full audit trails.</p>
+          <span class="tour-card__usecase">Users, roles, ACLs, authentication</span>
+        </article>
+
+        <!-- Control -->
+        <article class="tour-card" id="control">
+          <div class="tour-card__header">
+            <div class="tour-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+            </div>
+            <h3>Control</h3>
+          </div>
+          <p>Policy changes with justification. Every configuration change is recorded with who, when and why.</p>
+          <span class="tour-card__usecase">Policies, retention rules, enforcement settings</span>
+        </article>
+
+        <!-- Audit (Featured) -->
         <article class="tour-card tour-card--featured" id="audit">
           <div class="tour-card__header">
             <div class="tour-card__icon">
@@ -297,14 +352,14 @@ author: TrailMQ Team
                 <line x1="16" y1="17" x2="8" y2="17"/>
               </svg>
             </div>
-            <h3>Full Audit Trails</h3>
+            <h3>Audit</h3>
           </div>
-          <p>An immutable, searchable event timeline showing who sent what, when and why—covering over IQ/OQ to live.</p>
+          <p>Evidence and exportable proofs. An immutable, searchable event timeline showing who sent what, when and why.</p>
           <p>Ideal for answering ad-hoc compliance questions after the fact, without rebuilding context from logs.</p>
-          <span class="tour-card__usecase">Use case: Instant, evidence-ready answers to audit questions</span>
+          <span class="tour-card__usecase">Evidence export, compliance reports, audit trails</span>
         </article>
 
-        <!-- Topics & Wildcards -->
+        <!-- Topic Hub -->
         <article class="tour-card" id="topics">
           <div class="tour-card__header">
             <div class="tour-card__icon">
@@ -312,54 +367,54 @@ author: TrailMQ Team
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
               </svg>
             </div>
-            <h3>Topics & Wildcards</h3>
+            <h3>Topic Hub</h3>
           </div>
-          <p>Use familiar MQTT topics for routing. Pattern-based subscriptions let teams filter messages by context—lab, device, event type.</p>
-          <span class="tour-card__usecase">Use case: Multi-area monitoring, context-aware routing</span>
+          <p>Topic contracts and decision traces. Use familiar MQTT topics for routing with pattern-based subscriptions.</p>
+          <span class="tour-card__usecase">Topic structure, wildcards, context-aware routing</span>
         </article>
 
-        <!-- Regulation-Ready -->
-        <article class="tour-card" id="security">
-          <div class="tour-card__header">
-            <div class="tour-card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                <polyline points="22 4 12 14.01 9 11.01"/>
-              </svg>
-            </div>
-            <h3>Regulation-Ready</h3>
-          </div>
-          <p>Supports MQTT, JSON, and audit-first defaults—fits cleanly into CSV-ready IQ/OQ workflows.</p>
-          <span class="tour-card__usecase">Use case: Faster validation, IQ/OQ documentation</span>
-        </article>
+      </div>
+    </div>
+  </section>
 
+
+  <!-- ══════════════ OPTIONAL MODULES ══════════════ -->
+  <section id="modules" class="section section--subtle">
+    <div class="container">
+      <h2 class="section__title section__title--secondary">Optional Modules</h2>
+      <p class="section__lead section__lead--secondary">
+        Planned extensions for advanced workflows. Available as part of enterprise packages.
+      </p>
+
+      <div class="modules-grid">
+        
         <!-- TrailBuilder -->
-        <article class="tour-card" id="builder">
-          <div class="tour-card__header">
-            <div class="tour-card__icon">
+        <article class="module-card" id="builder">
+          <div class="module-card__header">
+            <div class="module-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
               </svg>
             </div>
             <h3>TrailBuilder</h3>
+            <span class="module-card__badge">Planned</span>
           </div>
-          <p>Quickly build and test messaging-only flows with a built-in event orchestration tool.</p>
-          <span class="tour-card__usecase">Use case: Prototyping message flows, debugging pipelines</span>
+          <p>Visual event orchestration for prototyping and validating message flows before production deployment.</p>
         </article>
 
         <!-- TrailLink -->
-        <article class="tour-card" id="link">
-          <div class="tour-card__header">
-            <div class="tour-card__icon">
+        <article class="module-card" id="link">
+          <div class="module-card__header">
+            <div class="module-card__icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <polyline points="16 18 22 12 16 6"/>
                 <polyline points="8 6 2 12 8 18"/>
               </svg>
             </div>
             <h3>TrailLink</h3>
+            <span class="module-card__badge">Planned</span>
           </div>
-          <p>Ingress/multi-tenant message logs with optional enrichment for OPC UA, S7, and standard IoT bridges.</p>
-          <span class="tour-card__usecase">Use case: Bridging legacy systems, multi-protocol support</span>
+          <p>Protocol bridges for OPC UA, S7 and standard IoT gateways with optional message enrichment.</p>
         </article>
 
       </div>
@@ -371,11 +426,10 @@ author: TrailMQ Team
   <section id="ai" class="section section--subtle">
     <div class="container">
       <h2 class="section__title section__title--secondary">TrailAI Plugins</h2>
-
       <p class="section__lead section__lead--secondary">
-        Extend the platform with validated plugins or bring your own. Each plugin is sandboxed with declarative metadata.
+        Planned AI-powered extensions. Each plugin is sandboxed with declarative metadata.
       </p>
-      
+
       <div class="plugins-grid">
         <div class="plugin-item">
           <div class="plugin-item__icon">
@@ -413,6 +467,10 @@ author: TrailMQ Team
           <div><strong>Responder</strong><span>Auto-response</span></div>
         </div>
       </div>
+      
+      <p class="section__footnote">
+        These plugins are on the roadmap. Contact us for early access or enterprise discussions.
+      </p>
     </div>
   </section>
 
@@ -421,7 +479,7 @@ author: TrailMQ Team
   <section id="quickstart" class="section section--cta">
     <div class="container">
       <h2 class="section__title section__title--light">Start free. Scale when validated.</h2>
-      <p class="section__lead">TrailMQ is free to deploy and use. Enterprise add-ons available for production environments.</p>
+      <p class="section__lead">TrailMQ is free to deploy and evaluate. Enterprise licenses available for production environments.</p>
 
       <div class="quickstart-content">
         <div class="quickstart-text">
@@ -432,7 +490,10 @@ author: TrailMQ Team
             Clone the repo, run docker compose, and you're live in minutes. The deployment files are on GitHub — the container images are hosted on Docker Hub.
           </p>
           <p>
-            Enterprise licenses and support packages are available after validation for production use.
+            Enterprise licenses and support packages are available for validated production use.
+          </p>
+          <p class="quickstart-note">
+            <em>You won't see payloads or live streams in the UI by design. You will see enforcement, evidence, and decision explanations.</em>
           </p>
           <p class="quickstart-assurance">
             <a href="https://github.com/RainerGewalt/TrailMQ" target="_blank" rel="noopener" style="color:var(--clr-accent-light);text-decoration:underline">
@@ -452,8 +513,8 @@ docker compose up -d
 
 <span class="code-comment"># Open the Web UI</span>
 open http://localhost/trailmq/</code>
-          </div>
-          
+</div>
+
           <!-- Docker Hub Images Links -->
           <div class="docker-images">
             <div class="docker-images__title">Docker Hub Images</div>
