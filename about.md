@@ -46,6 +46,27 @@ directly into the messaging layer.
 
 ---
 
+## Explain, don't expose
+
+TrailMQ explains decisions and enforcement without exposing message content or secrets.
+
+You will see:
+
+- Who connected, when, and with what permissions
+- Which policies were enforced and why
+- What decisions were made at each step
+- Exportable audit evidence for compliance
+
+You will not see:
+
+- Raw message payloads
+- Live message streams
+- Content inspection or debugging tools
+
+This is by design. Evidence over observation.
+
+---
+
 ## Built for regulated environments
 
 TrailMQ is designed to **support validated systems**, not to replace validation
@@ -65,11 +86,11 @@ TrailMQ supports workflows aligned with:
 
 ## Deployment Model
 
-TrailMQ follows a **freemium model**:
+TrailMQ follows an **evaluation-first model**:
 
-- **Free to use**: Deploy via Docker, evaluate locally, integrate into your workflows
+- **Free to evaluate**: Deploy via Docker, test locally, integrate into your workflows
 - **No registration required**: Clone the GitHub repo and run docker compose
-- **Enterprise add-ons**: Commercial licenses and support packages available for validated production environments
+- **Commercial licensing**: Production use in regulated or commercial environments requires a valid license
 
 The deployment files are available on [GitHub](https://github.com/RainerGewalt/TrailMQ).
 Container images are hosted on Docker Hub:

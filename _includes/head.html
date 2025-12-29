@@ -46,68 +46,68 @@
 
 <!-- Structured Data: SoftwareApplication -->
 <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "TrailMQ",
-    "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Linux, Docker",
-    "description": "{{ page.description | default: site.description | strip_newlines | escape }}",
-    "url": "{{ site.url }}",
-    "author": {
-        "@type": "Person",
-        "name": "Florian (RainerGewalt)",
-        "url": "https://github.com/RainerGewalt"
-    },
-    "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD",
-        "description": "Free to use. Enterprise add-ons available for production environments."
-    },
-    "downloadUrl": "https://github.com/RainerGewalt/TrailMQ",
-    "installUrl": "https://hub.docker.com/r/rainergewalt/trailmq-backend",
-    "softwareVersion": "latest",
-    "releaseNotes": "https://github.com/RainerGewalt/TrailMQ/releases"
-}
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "TrailMQ",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Linux, Docker",
+        "description": "{{ page.description | default: site.description | strip_newlines | escape }}",
+        "url": "{{ site.url }}",
+        "author": {
+            "@type": "Person",
+            "name": "Florian (RainerGewalt)",
+            "url": "https://github.com/RainerGewalt"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "description": "Free to evaluate. Commercial license required for production use."
+        },
+        "downloadUrl": "https://github.com/RainerGewalt/TrailMQ",
+        "installUrl": "https://hub.docker.com/r/rainergewalt/trailmq-backend",
+        "softwareVersion": "latest",
+        "releaseNotes": "https://github.com/RainerGewalt/TrailMQ/releases"
+    }
 </script>
 
 <!-- Structured Data: Organization -->
 <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "TrailMQ",
-    "url": "{{ site.url }}",
-    "logo": "{{ '/assets/images/webp/trailmq_logo_with_text_without_background.webp' | absolute_url }}",
-    "sameAs": [
-        "https://github.com/RainerGewalt/TrailMQ",
-        "https://hub.docker.com/r/rainergewalt/trailmq-backend",
-        "https://hub.docker.com/r/rainergewalt/trailmq-frontend"
-    ],
-    "contactPoint": {
-        "@type": "ContactPoint",
-        "email": "contact@trailmq.com",
-        "contactType": "customer service"
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "TrailMQ",
+        "url": "{{ site.url }}",
+        "logo": "{{ '/assets/images/webp/trailmq_logo_with_text_without_background.webp' | absolute_url }}",
+        "sameAs": [
+            "https://github.com/RainerGewalt/TrailMQ",
+            "https://hub.docker.com/r/rainergewalt/trailmq-backend",
+            "https://hub.docker.com/r/rainergewalt/trailmq-frontend"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "contact@trailmq.com",
+            "contactType": "customer service"
+        }
     }
-}
 </script>
 
 <!-- Structured Data: WebPage -->
 <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "{{ page.title | default: site.title }}",
-    "description": "{{ page.description | default: site.description | strip_newlines | escape }}",
-    "url": "{{ page.url | absolute_url }}",
-    "inLanguage": "en-US",
-    "isPartOf": {
-        "@type": "WebSite",
-        "name": "TrailMQ",
-        "url": "{{ site.url }}"
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "{{ page.title | default: site.title }}",
+        "description": "{{ page.description | default: site.description | strip_newlines | escape }}",
+        "url": "{{ page.url | absolute_url }}",
+        "inLanguage": "en-US",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "TrailMQ",
+            "url": "{{ site.url }}"
+        }
     }
-}
 </script>
 
 <style>

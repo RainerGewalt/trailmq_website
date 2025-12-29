@@ -699,6 +699,105 @@ strong{font-weight:600;color:var(--clr-gray-800)}
 .community-links{display:flex;justify-content:center;gap:var(--space-md);margin-top:var(--space-xl);flex-wrap:wrap}
 
 /* ═══════════════════════════════════════════════════════════
+   HERO SCOPE – New scope line
+   ═══════════════════════════════════════════════════════════ */
+.hero__scope{
+    font-size:var(--fs-sm);
+    font-weight:500;
+    color:rgba(255,255,255,0.6);
+    margin-bottom:var(--space-lg);
+    letter-spacing:0.02em;
+    font-style:italic;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   HIGHLIGHT SCOPE – In intro section
+   ═══════════════════════════════════════════════════════════ */
+.highlight-scope{
+    font-size:var(--fs-sm);
+    color:var(--clr-gray-600);
+    margin-top:var(--space-md);
+    padding-top:var(--space-md);
+    border-top:1px solid var(--clr-gray-200);
+    font-style:italic;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   QUICKSTART NOTE – Expectation Guard
+   ═══════════════════════════════════════════════════════════ */
+.quickstart-note{
+    font-size:var(--fs-sm);
+    color:rgba(255,255,255,0.65);
+    padding:var(--space-md);
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:var(--radius-md);
+    margin-top:var(--space-md);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MODULES GRID – For Optional Modules section
+   ═══════════════════════════════════════════════════════════ */
+.modules-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:var(--space-xl);
+    max-width:56rem;
+    margin-inline:auto;
+}
+.module-card{
+    background:var(--clr-white);
+    border:1px solid var(--clr-gray-200);
+    border-radius:var(--radius-lg);
+    padding:var(--space-xl);
+    transition:all var(--transition-base);
+}
+.module-card:hover{
+    border-color:var(--clr-gray-300);
+    box-shadow:var(--shadow-md);
+}
+.module-card__header{
+    display:flex;
+    align-items:center;
+    gap:var(--space-md);
+    margin-bottom:var(--space-md);
+}
+.module-card__icon{
+    width:40px;
+    height:40px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--clr-gray-100);
+    border-radius:var(--radius-md);
+    color:var(--clr-primary);
+}
+.module-card__icon svg{width:20px;height:20px}
+.module-card__header h3{
+    font-size:var(--fs-md);
+    font-weight:600;
+    color:var(--clr-gray-800);
+    margin:0;
+}
+.module-card__badge{
+    display:inline-block;
+    padding:0.25rem 0.625rem;
+    font-size:var(--fs-xs);
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--clr-gray-500);
+    background:var(--clr-gray-100);
+    border-radius:var(--radius-full);
+    margin-left:auto;
+}
+.module-card p{
+    font-size:var(--fs-sm);
+    color:var(--clr-gray-600);
+    line-height:1.6;
+}
+
+/* ═══════════════════════════════════════════════════════════
    CLOSING – More impactful
    ═══════════════════════════════════════════════════════════ */
 .closing-quote{
@@ -740,6 +839,7 @@ strong{font-weight:600;color:var(--clr-gray-800)}
     .tour-grid{grid-template-columns:1fr}
     .tour-card--featured{grid-column:auto}
     .plugins-grid{grid-template-columns:repeat(2,1fr)}
+    .modules-grid{grid-template-columns:1fr}
     .gmp-grid{grid-template-columns:1fr;gap:var(--space-2xl)}
     .gmp-badge{margin-inline:auto}
     .quickstart-content{grid-template-columns:1fr;gap:var(--space-2xl)}
