@@ -1,7 +1,7 @@
 title: "TrailMQ – Audit-First MQTT for Regulated Industries"
 description: "Audit-first MQTT platform for regulated industries. TrailMQ adds traceability, security policies and audit-ready evidence to MQTT without changing machines."
 url: "https://trailmq.com"
-baseurl: ""                 # leer lassen, wenn Website direkt unter der Root-Domain läuft
+baseurl: ""
 
 collections:
   pages:
@@ -16,3 +16,15 @@ defaults:
 
 plugins:
   - jekyll-sitemap
+
+# Exclude from Jekyll build and sitemap
+exclude:
+  - IMPROVEMENTS.md
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules
+  - .git
+  - .gitignore
+  - "*.sh"
