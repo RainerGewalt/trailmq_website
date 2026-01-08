@@ -1,0 +1,133 @@
+---
+layout: wiki-base
+---
+
+<!-- Reading Progress Bar -->
+<div class="reading-progress">
+  <div class="reading-progress-bar" id="reading-progress"></div>
+</div>
+
+<!-- Breadcrumbs -->
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a href="{{ '/' | relative_url }}">Home</a>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+  <a href="{{ '/wiki/' | relative_url }}">Concepts</a>
+  {% if page.category %}
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+  <a href="{{ '/wiki/category/' | append: page.category | slugify | append: '/' | relative_url }}">{{ page.category }}</a>
+  {% endif %}
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+  <span aria-current="page">{{ page.title }}</span>
+</nav>
+
+<article itemscope itemtype="https://schema.org/Article">
+  
+  <!-- Article Header mit optionalem Cover-Image -->
+  <header class="article-header">
+    {% if page.image %}
+    <img 
+      src="{{ page.image | relative_url }}" 
+      alt="{{ page.image_alt | default: page.title }}" 
+      class="article-header__cover"
+      itemprop="image"
+    >
+    {% endif %}
+    
+    <h1 class="article-header__title" itemprop="headline">{{ page.title }}</h1>
+    
+    {% if page.lead %}
+    <p class="article-header__lead" itemprop="description">{{ page.lead }}</p>
+    {% elsif page.description %}
+    <p class="article-header__lead" itemprop="description">{{ page.description }}</p>
+    {% endif %}
+  </header>
+  
+  <!-- Article Meta -->
+  <div class="article-meta">
+    {% if page.date %}
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      <time itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+    </span>
+    {% endif %}
+    
+    {% if page.last_modified %}
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      Updated: <time itemprop="dateModified" datetime="{{ page.last_modified | date_to_xmlschema }}">{{ page.last_modified | date: "%b %d, %Y" }}</time>
+    </span>
+    {% endif %}
+    
+    {% if page.reading_time %}
+    <span>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      {{ page.reading_time }} min read
+    </span>
+    {% endif %}
+  </div>
+  
+  <!-- Table of Contents (optional) -->
+  {% if page.toc != false %}
+  {% assign headings = content | split: '<h2' %}
+  {% if headings.size > 2 %}
+  <nav class="toc" aria-label="Table of Contents">
+    <div class="toc-title">On this page</div>
+    <ol>
+      {% for heading in headings offset:1 %}
+        {% assign heading_content = heading | split: '</h2>' | first %}
+        {% assign id = heading_content | split: 'id="' | last | split: '"' | first %}
+        {% assign title = heading_content | split: '>' | last | strip_html | strip %}
+        {% if id != heading_content and title != "" %}
+        <li><a href="#{{ id }}">{{ title }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ol>
+  </nav>
+  {% endif %}
+  {% endif %}
+  
+  <!-- Main Content -->
+  <div class="article-content" itemprop="articleBody">
+    {{ content }}
+  </div>
+  
+  <!-- Tags -->
+  {% if page.tags and page.tags.size > 0 %}
+  <div class="tags" itemprop="keywords">
+    {% for tag in page.tags %}
+    <span class="tag">{{ tag }}</span>
+    {% endfor %}
+  </div>
+  {% endif %}
+  
+</article>
+
+<!-- Related Concepts -->
+{% assign related = site.wiki_articles | where: "category", page.category | where_exp: "item", "item.url != page.url" | limit: 3 %}
+{% if related.size > 0 %}
+<section class="related-articles">
+  <h3>Related Concepts</h3>
+  <div class="concepts-grid">
+    {% for article in related %}
+    <article class="concept-card">
+      {% if article.image %}
+      <img src="{{ article.image | relative_url }}" alt="{{ article.title }}" class="concept-card__cover">
+      {% else %}
+      <div class="concept-card__cover--placeholder">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+      </div>
+      {% endif %}
+      <div class="concept-card__body">
+        {% if article.category %}
+        <span class="concept-card__category">{{ article.category }}</span>
+        {% endif %}
+        <h4 class="concept-card__title"><a href="{{ article.url | relative_url }}">{{ article.title }}</a></h4>
+        <p class="concept-card__excerpt">{{ article.description | truncate: 100 }}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
