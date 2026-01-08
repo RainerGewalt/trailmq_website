@@ -57,3 +57,5 @@ Choosing an interval defines:
 That choice cannot be postponed to analytics.
 
 It must be made where process knowledge exists.
+
+[As proximity increases, interval choice becomes critical](/wiki/gmp-proximity/).

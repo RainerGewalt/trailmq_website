@@ -59,4 +59,6 @@ But the moment results matter, confidence collapses.
 Once trust, context, and auditability are solved, ROI appears immediately.
 This pattern repeats across sites and industries.
 
+[Trust cannot be added after automation](/wiki/cant-automate-trust/).
+
 AI only scales when trust scales.

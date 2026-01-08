@@ -146,3 +146,5 @@ Audit is not a logging problem.
 It is a design problem.
 
 And it must be solved where decisions are made, not where logs are collected.
+
+[Decisions must become first-class architectural elements](/wiki/decision-centric-architecture/).

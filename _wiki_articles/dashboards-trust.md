@@ -43,5 +43,7 @@ When something goes wrong.
 When decisions are challenged.
 When responsibility must be assigned.
 
+[Visibility does not equal auditability](/wiki/audit-is-not-logging/).
+
 Dashboards optimize for now.
 Trust optimizes for later.

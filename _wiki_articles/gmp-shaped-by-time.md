@@ -106,5 +106,7 @@ Architecture decides before audits begin.
 If time, context, and causality are preserved where they matter, audits become confirmation.
 If they are lost early, audits become reconstruction exercises.
 
+This is why [auditability cannot be reduced to logging](/wiki/audit-is-not-logging/).
+
 GMP is shaped by time.
 And time is shaped by architecture.

@@ -48,3 +48,5 @@ Pharma built its digital culture around:
 
 These principles are not obstacles.
 They are what make high-risk automation possible.
+
+[Trust in regulated environments cannot be automated after the fact](/wiki/cant-automate-trust/).
