@@ -3,21 +3,45 @@ description: "Audit-first MQTT platform for regulated industries. TrailMQ adds t
 url: "https://trailmq.com"
 baseurl: ""
 
+# -----------------------------------------------------------------------------
+# Collections
+# -----------------------------------------------------------------------------
 collections:
   pages:
     output: true
 
+  wiki_articles:
+    output: true
+    permalink: /wiki/:path/
+
+# -----------------------------------------------------------------------------
+# Defaults
+# -----------------------------------------------------------------------------
 defaults:
+  # Default for normal pages
   - scope:
       path: ""
       type: "pages"
     values:
       layout: default
 
+  # Default for wiki articles
+  - scope:
+      path: ""
+      type: "wiki_articles"
+    values:
+      layout: "wiki-article"
+      toc: true
+
+# -----------------------------------------------------------------------------
+# Plugins
+# -----------------------------------------------------------------------------
 plugins:
   - jekyll-sitemap
 
+# -----------------------------------------------------------------------------
 # Exclude from Jekyll build and sitemap
+# -----------------------------------------------------------------------------
 exclude:
   - IMPROVEMENTS.md
   - README.md
