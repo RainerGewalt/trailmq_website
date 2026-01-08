@@ -247,3 +247,11 @@ permalink: /wiki/
     </p>
   </div>
 </section>
+
+---
+
+**Author**
+
+This wiki is maintained by **Florian Przybylak**, working on the architecture of regulated industrial systems, data pipelines, and trustworthy automation.
+
+[LinkedIn](https://www.linkedin.com/in/florian-p-6a27ab1b8/)

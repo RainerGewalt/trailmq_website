@@ -55,5 +55,7 @@ Controlled change.
 Often this means decision support before automation.
 Not because AI is weak, but because responsibility must remain traceable.
 
+[GMP requirements tighten with proximity to execution](/wiki/gmp-proximity/).
+
 AI does not reduce responsibility.
 It increases it.

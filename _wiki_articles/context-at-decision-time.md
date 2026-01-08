@@ -84,6 +84,8 @@ It is a design responsibility.
 Systems must be built so that
 decisions carry their context with them.
 
+[Decisions without context cannot be explained](/wiki/decision-centric-architecture/).
+
 Only then can behavior remain explainable,
 auditable,
 and trustworthy.

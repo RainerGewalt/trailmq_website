@@ -50,6 +50,8 @@ Events must be deterministic, timestamped, and causally correct.
 The closer software is to the machine,
 the shorter the acceptable evaluation interval becomes.
 
+[Interval design follows proximity to execution](/wiki/intervals-commitments/).
+
 ---
 
 ## Where architectures break GMP thinking

@@ -89,5 +89,7 @@ human oversight shifts from execution to supervision.
 
 That only works if systems can explain themselves.
 
+[Context must exist at the moment a decision is made](/wiki/context-at-decision-time/).
+
 Decision-centric architecture is not a compliance feature.
 It is a prerequisite for trust.

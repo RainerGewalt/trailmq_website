@@ -38,5 +38,7 @@ When trust is not embedded in communication, every automation step multiplies un
 
 AI cannot be more trustworthy than the data it consumes.
 
+[Auditability is not created by collecting logs](/wiki/audit-is-not-logging/).
+
 Industry 5.0 will not be defined by faster automation.
 It will be defined by systems that can be trusted.
