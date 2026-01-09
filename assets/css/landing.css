@@ -885,3 +885,115 @@ strong{font-weight:600;color:var(--clr-gray-800)}
     .section{padding:1.5rem 0;break-inside:avoid}
     .section--dark,.section--cta{background:none;color:black}
 }
+/* =============================================================
+   RESPONSIVE CODE BLOCK FIX
+   Append this to the END of landing.css
+   ============================================================= */
+
+/* Fix: Code blocks causing horizontal overflow on mobile */
+.code-block {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.code-block code {
+    font-size: var(--fs-xs);
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+
+/* Smaller font on mobile for better fit */
+@media (max-width: 600px) {
+    .code-block {
+        padding: var(--space-md);
+        border-radius: var(--radius-md);
+    }
+
+    .code-block code {
+        font-size: 0.7rem;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+}
+
+/* Ensure parent containers don't overflow */
+.quickstart-code {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.quickstart-content {
+    overflow: hidden;
+}
+
+/* Global overflow protection */
+body {
+    overflow-x: hidden;
+}
+
+main {
+    overflow-x: hidden;
+}
+
+section {
+    overflow-x: hidden;
+}
+
+
+/* =============================================================
+   RESPONSIVE CODE BLOCK FIX
+   Append this to the END of landing.css
+   ============================================================= */
+
+/* Fix: Code blocks causing horizontal overflow on mobile */
+.code-block {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.code-block code {
+    font-size: var(--fs-xs);
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+
+/* Smaller font on mobile for better fit */
+@media (max-width: 600px) {
+    .code-block {
+        padding: var(--space-md);
+        border-radius: var(--radius-md);
+    }
+
+    .code-block code {
+        font-size: 0.7rem;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+}
+
+/* Ensure parent containers don't overflow */
+.quickstart-code {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.quickstart-content {
+    overflow: hidden;
+}
+
+/* Global overflow protection */
+body {
+    overflow-x: hidden;
+}
+
+main {
+    overflow-x: hidden;
+}
+
+section {
+    overflow-x: hidden;
+}
