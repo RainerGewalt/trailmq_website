@@ -6,33 +6,34 @@ permalink: /wiki/
 ---
 
 <div class="wiki-hero">
-  <h1 class="wiki-hero__title">Overview</h1>
-  <p class="wiki-hero__lead">This wiki is a thinking space.</p>
+  <h1 class="wiki-hero__title">Concepts</h1>
+  <p class="wiki-hero__lead">Why regulated systems fail even when the technology looks good.</p>
   <p class="wiki-hero__desc">
-    It explores how regulated, industrial, and automated systems should be designed when <strong>trust</strong>, <strong>traceability</strong>, and <strong>explainability</strong> matter as much as performance or scale.
+    This wiki covers trust, auditability, architecture and AI readiness in regulated environments.
+    Start with a reading path or browse by category.
   </p>
 </div>
 
 <!-- What this wiki is about -->
 <section class="wiki-intro">
-  <h2>What this wiki is about</h2>
-  <p>This wiki looks at questions such as:</p>
+  <h2>What you will find here</h2>
+  <p>Short, focused articles on problems practitioners in regulated systems actually face:</p>
   <ul class="wiki-questions">
     <li>Why do systems with "all the data" still fail audits?</li>
     <li>Why does AI remain stuck in pilots despite technical maturity?</li>
     <li>Why do dashboards increase visibility but not trust?</li>
     <li>Why does compliance break long before regulation is involved?</li>
   </ul>
-  <p>The answers are rarely technical. They are <strong>architectural</strong>.</p>
+  <p>The answers are architectural. Each article stops before implementation — because architecture must be understood before solutions make sense.</p>
 </section>
 
 <!-- Reading Paths -->
 <section class="reading-paths">
   <h2>Reading Paths</h2>
-  <p class="reading-paths__intro">If you are new here, these guided paths may help.</p>
-  
+  <p class="reading-paths__intro">Three guided paths depending on where you are starting from.</p>
+
   <div class="reading-paths__grid">
-    
+
     <!-- Path 1: Understanding Regulated Systems -->
     <div class="reading-path">
       <div class="reading-path__header">
@@ -47,7 +48,7 @@ permalink: /wiki/
         </div>
       </div>
       <p class="reading-path__desc">
-        For readers who sense that compliance and GMP are often discussed incorrectly, but cannot quite articulate why.
+        For readers who sense that compliance and GMP are often discussed incorrectly, but cannot quite say why.
       </p>
       <ol class="reading-path__steps">
         <li>
@@ -70,10 +71,10 @@ permalink: /wiki/
         </li>
       </ol>
       <div class="reading-path__outcome">
-        <strong>Outcome:</strong> Reframe regulation as a question of time, context, and architectural responsibility — not paperwork.
+        <strong>Outcome:</strong> Reframe regulation as a question of time, context and architectural responsibility — not paperwork.
       </div>
     </div>
-    
+
     <!-- Path 2: Designing Trustworthy Architectures -->
     <div class="reading-path">
       <div class="reading-path__header">
@@ -88,7 +89,7 @@ permalink: /wiki/
         </div>
       </div>
       <p class="reading-path__desc">
-        For architects, lead engineers, and system designers working across IT, OT, and data layers.
+        For architects and engineers working across IT, OT and data layers.
       </p>
       <ol class="reading-path__steps">
         <li>
@@ -120,7 +121,7 @@ permalink: /wiki/
         <strong>Outcome:</strong> Understand where systems silently lose explainability and how architectural choices determine long-term trust.
       </div>
     </div>
-    
+
     <!-- Path 3: AI in Regulated Environments -->
     <div class="reading-path">
       <div class="reading-path__header">
@@ -135,7 +136,7 @@ permalink: /wiki/
         </div>
       </div>
       <p class="reading-path__desc">
-        For readers involved in AI, data platforms, innovation, or digital transformation.
+        For readers involved in AI, data platforms or digital transformation in regulated contexts.
       </p>
       <ol class="reading-path__steps">
         <li>
@@ -164,19 +165,19 @@ permalink: /wiki/
         </li>
       </ol>
       <div class="reading-path__outcome">
-        <strong>Outcome:</strong> See why AI success depends less on models and more on context, pipelines, and accountability.
+        <strong>Outcome:</strong> See why AI success depends less on models and more on context, pipelines and accountability.
       </div>
     </div>
-    
+
   </div>
 </section>
 
 <!-- Browse by Category -->
 <section class="wiki-categories">
   <h2>Browse by Category</h2>
-  
+
   <div class="category-cards">
-    
+
     <a href="{{ '/wiki/category/foundations/' | relative_url }}" class="category-card">
       <div class="category-card__icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -189,7 +190,7 @@ permalink: /wiki/
       </div>
       <span class="category-card__arrow">→</span>
     </a>
-    
+
     <a href="{{ '/wiki/category/distinctions/' | relative_url }}" class="category-card">
       <div class="category-card__icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -202,7 +203,7 @@ permalink: /wiki/
       </div>
       <span class="category-card__arrow">→</span>
     </a>
-    
+
     <a href="{{ '/wiki/category/models/' | relative_url }}" class="category-card">
       <div class="category-card__icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -215,7 +216,7 @@ permalink: /wiki/
       </div>
       <span class="category-card__arrow">→</span>
     </a>
-    
+
     <a href="{{ '/wiki/category/implications/' | relative_url }}" class="category-card">
       <div class="category-card__icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -224,34 +225,14 @@ permalink: /wiki/
       </div>
       <div class="category-card__content">
         <h3 class="category-card__title">Implications</h3>
-        <p class="category-card__desc">What this means for AI, IIoT, and automation</p>
+        <p class="category-card__desc">What this means for AI, IIoT and automation</p>
       </div>
       <span class="category-card__arrow">→</span>
     </a>
-    
-  </div>
-</section>
 
-<!-- Note on Scope -->
-<section class="wiki-note">
-  <div class="wiki-note__icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
-    </svg>
-  </div>
-  <div class="wiki-note__content">
-    <h3>A note on scope</h3>
-    <p>
-      The ideas in this wiki intentionally stop <strong>before implementation</strong>.
-      Not because implementation is unimportant, but because architecture must be understood before solutions make sense.
-    </p>
   </div>
 </section>
 
 ---
 
-**Author**
-
-This wiki is maintained by **Florian Przybylak**, working on the architecture of regulated industrial systems, data pipelines, and trustworthy automation.
-
-[LinkedIn](https://www.linkedin.com/in/florian-p-6a27ab1b8/)
+Maintained by **Florian Przybylak** · [LinkedIn](https://www.linkedin.com/in/florian-p-6a27ab1b8/)

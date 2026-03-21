@@ -1,0 +1,2570 @@
+---
+layout: default
+title: "GxP Evidence Architecture"
+description: "How to build audit-ready systems for regulated industries. A decision-centric approach to Cloud, AI, and IIoT in GMP environments."
+permalink: /architecture-thinking/
+---
+
+<style>
+    /* ============================================================================
+       GXP EVIDENCE ARCHITECTURE EXPLORER - Production Version v2
+       With Decision Model, Snapshots, Scenario Flow
+       ============================================================================ */
+
+    :root {
+        --clr-primary: #0F3D3E;
+        --clr-primary-light: #1B5E5F;
+        --clr-primary-dark: #071E1F;
+        --clr-accent: #E85D04;
+        --clr-accent-light: #FF7A2E;
+
+        --clr-white: #FFFFFF;
+        --clr-gray-50: #F8FAFA;
+        --clr-gray-100: #EEF2F3;
+        --clr-gray-200: #D1D9DE;
+        --clr-gray-300: #B4C1C7;
+        --clr-gray-500: #6B7D87;
+        --clr-gray-600: #4A5B64;
+        --clr-gray-700: #364249;
+        --clr-gray-800: #232D32;
+        --clr-gray-900: #141A1D;
+
+        --clr-success: #10B981;
+        --clr-warning: #f39c12;
+        --clr-danger: #e74c3c;
+
+        --font-display: 'DM Sans', system-ui, sans-serif;
+        --font-body: 'DM Sans', system-ui, sans-serif;
+        --font-mono: 'JetBrains Mono', monospace;
+
+        --fs-xs: 0.75rem;
+        --fs-sm: 0.875rem;
+        --fs-base: 1rem;
+        --fs-md: 1.125rem;
+        --fs-lg: 1.3125rem;
+        --fs-xl: 1.625rem;
+        --fs-2xl: 2.25rem;
+        --fs-3xl: 2.875rem;
+
+        --radius-sm: 0.375rem;
+        --radius-md: 0.5rem;
+        --radius-lg: 0.75rem;
+        --radius-xl: 1rem;
+        --radius-2xl: 1.5rem;
+        --radius-full: 9999px;
+
+        --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+        --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+        --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
+        --shadow-xl: 0 12px 48px rgba(0,0,0,0.12);
+
+        --transition-fast: 150ms ease;
+        --transition-base: 250ms ease;
+        --transition-smooth: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Hero Section */
+    .architecture-hero {
+        background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-primary-light) 100%);
+        color: var(--clr-white);
+        padding: 5rem 0 4rem;
+        margin-top: 72px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .architecture-hero::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-image: radial-gradient(circle at 20% 50%, rgba(232, 93, 4, 0.1) 0%, transparent 50%);
+        pointer-events: none;
+    }
+
+    .architecture-hero .container {
+        max-width: 1100px;
+        position: relative;
+        z-index: 1;
+    }
+
+    .architecture-hero h1 {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        line-height: 1.1;
+        color: var(--clr-white);
+    }
+
+    .hero-statement {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: var(--radius-xl);
+        padding: 2rem;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+
+    .hero-statement h2 {
+        font-size: clamp(1.25rem, 3vw, 1.625rem);
+        font-weight: 400;
+        line-height: 1.4;
+        color: var(--clr-white);
+        opacity: 0.95;
+    }
+
+    /* Decision Mantra - NEW */
+    .decision-mantra {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .mantra-item {
+        background: rgba(255,255,255,0.06);
+        border-radius: var(--radius-lg);
+        padding: 1rem 1.25rem;
+        border-left: 3px solid var(--clr-accent);
+        font-size: var(--fs-sm);
+        line-height: 1.5;
+        color: rgba(255,255,255,0.9);
+    }
+
+    .mantra-item strong {
+        color: var(--clr-accent-light);
+        display: block;
+        margin-bottom: 0.25rem;
+        font-size: var(--fs-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    /* Controls - Sticky Bar */
+    .architecture-controls {
+        background: var(--clr-white);
+        border-bottom: 1px solid var(--clr-gray-200);
+        padding: 1.5rem 0;
+        position: sticky;
+        top: 72px;
+        z-index: 100;
+        box-shadow: var(--shadow-md);
+    }
+
+    .controls-wrapper {
+        display: flex;
+        gap: 3rem;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .control-section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.875rem;
+        align-items: center;
+    }
+
+    .control-label {
+        font-size: var(--fs-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--clr-gray-600);
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .control-pills {
+        display: flex;
+        gap: 0.625rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .pill {
+        padding: 0.625rem 1.25rem;
+        border: 2px solid var(--clr-gray-200);
+        border-radius: var(--radius-full);
+        background: var(--clr-white);
+        font-size: var(--fs-sm);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all var(--transition-smooth);
+        color: var(--clr-gray-700);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        white-space: nowrap;
+    }
+
+    .pill:hover {
+        border-color: var(--clr-primary);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(15, 61, 62, 0.15);
+    }
+
+    .pill.active {
+        border-color: var(--clr-primary);
+        background: var(--clr-primary);
+        color: var(--clr-white);
+        box-shadow: 0 4px 16px rgba(15, 61, 62, 0.25);
+    }
+
+    .pill-icon {
+        font-size: 1.125rem;
+        line-height: 1;
+    }
+
+    /* View Indicator */
+    .view-indicator {
+        position: fixed;
+        top: 180px;
+        right: 2rem;
+        background: linear-gradient(135deg, var(--clr-primary), var(--clr-primary-light));
+        color: white;
+        padding: 1.25rem 1.75rem;
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-xl);
+        z-index: 99;
+        min-width: 240px;
+        transform: translateX(320px);
+        transition: transform var(--transition-smooth);
+    }
+
+    .view-indicator.visible { transform: translateX(0); }
+
+    .view-indicator-title {
+        font-size: var(--fs-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        opacity: 0.75;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    .view-indicator-lens {
+        font-size: var(--fs-lg);
+        font-weight: 700;
+        margin-bottom: 0.375rem;
+        line-height: 1.2;
+    }
+
+    .view-indicator-scope {
+        font-size: var(--fs-sm);
+        opacity: 0.85;
+    }
+
+    .view-close {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        opacity: 0.6;
+        transition: opacity var(--transition-fast);
+        padding: 0;
+        line-height: 1;
+    }
+
+    .view-close:hover { opacity: 1; }
+
+    /* Content Stage */
+    .content-stage {
+        min-height: 60vh;
+        position: relative;
+        padding: 3rem 0;
+    }
+
+    .content-view {
+        opacity: 0;
+        transform: translateY(30px);
+        position: absolute;
+        top: 3rem;
+        left: 0; right: 0;
+        pointer-events: none;
+        transition: all var(--transition-smooth);
+    }
+
+    .content-view.active {
+        opacity: 1;
+        transform: translateY(0);
+        position: relative;
+        pointer-events: auto;
+    }
+
+    /* Common Section Styles */
+    .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .section-title {
+        font-size: clamp(1.875rem, 4vw, 2.5rem);
+        color: var(--clr-gray-900);
+        margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+        font-size: var(--fs-md);
+        color: var(--clr-gray-600);
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.7;
+    }
+
+    /* Gradient Tower (Proximity Lens) */
+    .gradient-tower {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+        margin: 3rem 0;
+    }
+
+    .tower-level {
+        background: var(--clr-white);
+        border-radius: var(--radius-xl);
+        padding: 2rem;
+        box-shadow: var(--shadow-md);
+        transition: all var(--transition-smooth);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        border-left: 5px solid;
+    }
+
+    .tower-level.critical { border-left-color: var(--clr-danger); }
+    .tower-level.important { border-left-color: var(--clr-warning); }
+    .tower-level.moderate { border-left-color: #3498db; }
+    .tower-level.low { border-left-color: var(--clr-gray-300); }
+
+    .tower-level:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .tower-icon { font-size: 3rem; margin-bottom: 1rem; display: block; line-height: 1; }
+
+    .tower-title {
+        font-size: var(--fs-xl);
+        font-weight: 700;
+        color: var(--clr-gray-900);
+        margin-bottom: 0.5rem;
+    }
+
+    .tower-time {
+        font-size: var(--fs-sm);
+        color: var(--clr-gray-600);
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+    }
+
+    .tower-metrics { display: flex; flex-direction: column; gap: 0.75rem; }
+
+    .metric {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: var(--fs-sm);
+    }
+
+    .metric-label { color: var(--clr-gray-600); font-weight: 500; }
+
+    .metric-value {
+        font-weight: 700;
+        color: var(--clr-gray-900);
+        padding: 0.25rem 0.75rem;
+        background: var(--clr-gray-100);
+        border-radius: var(--radius-full);
+        font-size: var(--fs-xs);
+    }
+
+    /* Timeline (Time Lens) */
+    .timeline-flow {
+        position: relative;
+        padding: 3rem 0;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .timeline-line {
+        position: absolute;
+        left: 50%;
+        top: 0; bottom: 0;
+        width: 3px;
+        background: linear-gradient(to bottom, var(--clr-primary), var(--clr-accent));
+        transform: translateX(-50%);
+    }
+
+    .timeline-event {
+        position: relative;
+        margin: 2.5rem 0;
+        display: grid;
+        grid-template-columns: 1fr 40px 1fr;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .timeline-event:nth-child(even) .event-content:first-child { order: 3; }
+    .timeline-event:nth-child(even) .event-content:last-child { order: 1; }
+
+    .event-content {
+        background: var(--clr-white);
+        padding: 1.5rem;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        transition: all var(--transition-base);
+    }
+
+    .event-content:hover {
+        transform: scale(1.03);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .event-dot {
+        width: 20px; height: 20px;
+        background: var(--clr-white);
+        border: 4px solid var(--clr-primary);
+        border-radius: 50%;
+        position: relative;
+        z-index: 2;
+        box-shadow: 0 0 0 8px rgba(15, 61, 62, 0.08);
+        margin: 0 auto;
+    }
+
+    .event-time {
+        font-size: var(--fs-xs);
+        color: var(--clr-accent);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 0.5rem;
+        font-family: var(--font-mono);
+    }
+
+    .event-title {
+        font-size: var(--fs-md);
+        font-weight: 700;
+        color: var(--clr-gray-900);
+        margin-bottom: 0.5rem;
+    }
+
+    .event-desc {
+        font-size: var(--fs-sm);
+        color: var(--clr-gray-600);
+        line-height: 1.6;
+    }
+
+    /* Split View (ALCOA++ & Gates) */
+    .split-view {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+    }
+
+    .split-panel {
+        background: var(--clr-white);
+        border-radius: var(--radius-xl);
+        padding: 2rem;
+        box-shadow: var(--shadow-md);
+        transition: all var(--transition-base);
+        border: 3px solid;
+    }
+
+    .split-panel.bad { border-color: var(--clr-danger); }
+    .split-panel.good { border-color: var(--clr-success); }
+    .split-panel.neutral { border-color: var(--clr-gray-300); }
+
+    .split-panel:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .panel-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 2px solid var(--clr-gray-100);
+    }
+
+    .panel-icon { font-size: 2.5rem; line-height: 1; }
+
+    .panel-title {
+        font-size: var(--fs-xl);
+        font-weight: 700;
+        color: var(--clr-gray-900);
+    }
+
+    /* Checklist Items */
+    .checklist { display: flex; flex-direction: column; gap: 0.875rem; }
+
+    .checklist-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem;
+        background: var(--clr-gray-50);
+        border-radius: var(--radius-md);
+        transition: all var(--transition-fast);
+    }
+
+    .checklist-item:hover { background: var(--clr-gray-100); }
+
+    .check-icon {
+        width: 24px; height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        flex-shrink: 0;
+        font-size: var(--fs-sm);
+    }
+
+    .checklist-item.present .check-icon { background: var(--clr-success); color: white; }
+    .checklist-item.missing .check-icon { background: var(--clr-danger); color: white; }
+
+    .check-label {
+        font-weight: 700;
+        color: var(--clr-gray-900);
+        margin-bottom: 0.25rem;
+        font-size: var(--fs-sm);
+    }
+
+    .check-desc {
+        font-size: var(--fs-xs);
+        color: var(--clr-gray-600);
+        line-height: 1.5;
+    }
+
+    /* Insight Box */
+    .insight-box {
+        background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-primary-light) 100%);
+        color: var(--clr-white);
+        padding: 2rem;
+        border-radius: var(--radius-xl);
+        margin: 2rem 0;
+        text-align: center;
+        box-shadow: var(--shadow-lg);
+    }
+
+    .insight-box strong {
+        display: block;
+        font-size: clamp(1.25rem, 3vw, 1.625rem);
+        margin-bottom: 0.75rem;
+        font-weight: 700;
+        color: var(--clr-white);
+    }
+
+    .insight-box p {
+        font-size: var(--fs-md);
+        line-height: 1.6;
+        opacity: 0.95;
+        margin: 0;
+    }
+
+    /* Anti-Pattern Box */
+    .anti-pattern-box {
+        background: linear-gradient(135deg, #fff5f5, #ffffff);
+        padding: 2rem;
+        border-radius: var(--radius-xl);
+        border: 2px solid var(--clr-danger);
+        margin: 2rem 0;
+    }
+
+    .anti-pattern-box h3 { color: #c0392b; margin-bottom: 1rem; font-size: var(--fs-xl); }
+    .anti-pattern-box p { color: var(--clr-gray-700); line-height: 1.7; font-size: var(--fs-md); }
+
+    /* Key Insight Box */
+    .key-insight-box {
+        background: var(--clr-gray-50);
+        padding: 2rem;
+        border-radius: var(--radius-xl);
+        border-left: 4px solid var(--clr-accent);
+        margin: 2rem 0;
+    }
+
+    .key-insight-box h3 { color: var(--clr-primary); margin-bottom: 1rem; font-size: var(--fs-xl); }
+    .key-insight-box p { color: var(--clr-gray-700); line-height: 1.7; font-size: var(--fs-md); }
+
+    /* Gate Flow */
+    .gate-flow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+    }
+
+    .gate-step {
+        padding: 1rem 1.5rem;
+        background: var(--clr-white);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        font-weight: 600;
+        color: var(--clr-gray-900);
+        transition: all var(--transition-fast);
+    }
+
+    .gate-step:hover {
+        transform: scale(1.05);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .gate-arrow { font-size: 1.5rem; color: var(--clr-accent); }
+
+    /* Evidence Set Table */
+    .evidence-table {
+        background: var(--clr-white);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+        margin: 2rem 0;
+    }
+
+    .evidence-row {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 1rem;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--clr-gray-100);
+    }
+
+    .evidence-row:last-child { border-bottom: none; }
+    .evidence-row:nth-child(even) { background: var(--clr-gray-50); }
+
+    .evidence-key {
+        font-weight: 700;
+        color: var(--clr-gray-900);
+        font-family: var(--font-mono);
+        font-size: var(--fs-sm);
+    }
+
+    .evidence-value {
+        color: var(--clr-gray-700);
+        font-size: var(--fs-sm);
+        line-height: 1.6;
+    }
+
+    /* Regulatory Box */
+    .regulatory-box {
+        background: var(--clr-white);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--clr-gray-200);
+        margin: 1.5rem 0;
+    }
+
+    .regulatory-box h4 { color: var(--clr-primary); margin-bottom: 0.75rem; font-size: var(--fs-md); }
+    .regulatory-box ul { list-style: none; padding: 0; margin: 0; }
+
+    .regulatory-box li {
+        padding: 0.5rem 0;
+        color: var(--clr-gray-700);
+        font-size: var(--fs-sm);
+        line-height: 1.6;
+        padding-left: 1.5rem;
+        position: relative;
+    }
+
+    .regulatory-box li::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: var(--clr-accent);
+        font-weight: 700;
+    }
+
+    /* Impact Stats */
+    .impact-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.5rem;
+        margin: 3rem 0;
+    }
+
+    .stat-card {
+        background: linear-gradient(135deg, var(--clr-white) 0%, var(--clr-gray-50) 100%);
+        padding: 2rem;
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-md);
+        text-align: center;
+        transition: all var(--transition-base);
+    }
+
+    .stat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .stat-value {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--clr-primary);
+        margin-bottom: 0.5rem;
+        display: block;
+        line-height: 1;
+    }
+
+    .stat-label {
+        font-size: var(--fs-sm);
+        color: var(--clr-gray-600);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    /* ============================================================================
+       SCENARIO FLOW - NEW
+       ============================================================================ */
+
+    .scenario-flow {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        margin: 3rem 0;
+        position: relative;
+    }
+
+    .scenario-flow::before {
+        content: '';
+        position: absolute;
+        left: 32px;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(
+                to bottom,
+                var(--clr-gray-300) 0%,
+                var(--clr-accent) 20%,
+                var(--clr-danger) 40%,
+                var(--clr-primary) 60%,
+                var(--clr-success) 80%,
+                var(--clr-primary-light) 100%
+        );
+    }
+
+    .scenario-step {
+        display: grid;
+        grid-template-columns: 64px 1fr;
+        gap: 1.5rem;
+        position: relative;
+        padding: 1rem 0;
+    }
+
+    .scenario-step-number {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--fs-xl);
+        font-weight: 800;
+        color: var(--clr-white);
+        z-index: 2;
+        box-shadow: var(--shadow-md);
+        flex-shrink: 0;
+    }
+
+    .scenario-step-number.step-baseline { background: var(--clr-gray-500); }
+    .scenario-step-number.step-ot { background: var(--clr-accent); }
+    .scenario-step-number.step-gate { background: var(--clr-danger); }
+    .scenario-step-number.step-snapshot { background: var(--clr-primary); }
+    .scenario-step-number.step-approval { background: #8B5CF6; }
+    .scenario-step-number.step-execution { background: var(--clr-warning); }
+    .scenario-step-number.step-verify { background: var(--clr-success); }
+
+    .scenario-step-content {
+        background: var(--clr-white);
+        border-radius: var(--radius-xl);
+        padding: 2rem;
+        box-shadow: var(--shadow-md);
+        transition: all var(--transition-base);
+    }
+
+    .scenario-step-content:hover {
+        box-shadow: var(--shadow-lg);
+        transform: translateX(4px);
+    }
+
+    .scenario-step-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .scenario-step-layer {
+        font-size: var(--fs-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 700;
+        padding: 0.25rem 0.75rem;
+        border-radius: var(--radius-full);
+        white-space: nowrap;
+    }
+
+    .layer-line { background: #FFF3E0; color: #E65100; }
+    .layer-site { background: #E3F2FD; color: #1565C0; }
+    .layer-cloud { background: #F3E5F5; color: #7B1FA2; }
+    .layer-all { background: var(--clr-gray-100); color: var(--clr-gray-700); }
+
+    .scenario-step-title {
+        font-size: var(--fs-lg);
+        font-weight: 700;
+        color: var(--clr-gray-900);
+    }
+
+    .scenario-step-desc {
+        color: var(--clr-gray-700);
+        font-size: var(--fs-sm);
+        line-height: 1.7;
+        margin-bottom: 1rem;
+    }
+
+    .scenario-events {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .scenario-event {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.625rem 1rem;
+        border-radius: var(--radius-md);
+        font-size: var(--fs-sm);
+        font-family: var(--font-mono);
+    }
+
+    .scenario-event.telemetry {
+        background: var(--clr-gray-50);
+        color: var(--clr-gray-600);
+        border: 1px solid var(--clr-gray-200);
+    }
+
+    .scenario-event.evidence {
+        background: #f0fff4;
+        color: #065f46;
+        border: 1px solid #bbf7d0;
+    }
+
+    .scenario-event.decision {
+        background: #fef3c7;
+        color: #92400e;
+        border: 1px solid #fde68a;
+    }
+
+    .scenario-event.part11 {
+        background: #fce7f3;
+        color: #9d174d;
+        border: 1px solid #fbcfe8;
+    }
+
+    .event-type-tag {
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-weight: 700;
+        padding: 0.125rem 0.5rem;
+        border-radius: var(--radius-sm);
+        white-space: nowrap;
+        font-family: var(--font-body);
+    }
+
+    .event-type-tag.tag-telemetry { background: var(--clr-gray-200); color: var(--clr-gray-700); }
+    .event-type-tag.tag-evidence { background: #bbf7d0; color: #065f46; }
+    .event-type-tag.tag-decision { background: #fde68a; color: #92400e; }
+    .event-type-tag.tag-part11 { background: #fbcfe8; color: #9d174d; }
+
+    /* ============================================================================
+       DECISION OBJECTS TABLE - NEW
+       ============================================================================ */
+
+    .decision-objects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.25rem;
+        margin: 2rem 0;
+    }
+
+    .decision-object {
+        background: var(--clr-white);
+        border-radius: var(--radius-lg);
+        padding: 1.5rem;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--clr-gray-200);
+        transition: all var(--transition-base);
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .decision-object:hover {
+        border-color: var(--clr-primary);
+        box-shadow: var(--shadow-md);
+    }
+
+    .decision-object-name {
+        font-weight: 700;
+        color: var(--clr-gray-900);
+        font-size: var(--fs-md);
+    }
+
+    .decision-object-authority {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .authority-badge {
+        font-size: var(--fs-xs);
+        padding: 0.25rem 0.625rem;
+        border-radius: var(--radius-full);
+        font-weight: 600;
+    }
+
+    .authority-badge.auth-line { background: #FFF3E0; color: #E65100; }
+    .authority-badge.auth-site { background: #E3F2FD; color: #1565C0; }
+    .authority-badge.auth-cloud { background: #F3E5F5; color: #7B1FA2; }
+
+    .decision-object-desc {
+        font-size: var(--fs-xs);
+        color: var(--clr-gray-600);
+        line-height: 1.5;
+    }
+
+    /* ============================================================================
+       WHAT TO AUDIT TABLE - NEW
+       ============================================================================ */
+
+    .audit-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+        margin: 2rem 0;
+    }
+
+    .audit-table thead th {
+        background: var(--clr-primary);
+        color: var(--clr-white);
+        padding: 1rem 1.25rem;
+        text-align: left;
+        font-size: var(--fs-sm);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    .audit-table tbody td {
+        padding: 1rem 1.25rem;
+        font-size: var(--fs-sm);
+        color: var(--clr-gray-700);
+        line-height: 1.5;
+        border-bottom: 1px solid var(--clr-gray-100);
+        background: var(--clr-white);
+        vertical-align: top;
+    }
+
+    .audit-table tbody tr:nth-child(even) td {
+        background: var(--clr-gray-50);
+    }
+
+    .audit-table tbody tr:hover td {
+        background: #f0f9ff;
+    }
+
+    .audit-table tbody td:first-child {
+        font-weight: 600;
+        color: var(--clr-gray-900);
+    }
+
+    .audit-table code {
+        background: var(--clr-gray-100);
+        padding: 0.125rem 0.375rem;
+        border-radius: var(--radius-sm);
+        font-family: var(--font-mono);
+        font-size: 0.8em;
+    }
+
+    /* ============================================================================
+       SNAPSHOT ANATOMY - NEW
+       ============================================================================ */
+
+    .snapshot-anatomy {
+        background: var(--clr-white);
+        border: 2px solid var(--clr-primary);
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        margin: 2rem 0;
+        box-shadow: var(--shadow-lg);
+    }
+
+    .snapshot-anatomy-header {
+        background: linear-gradient(135deg, var(--clr-primary), var(--clr-primary-light));
+        color: var(--clr-white);
+        padding: 1.25rem 2rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .snapshot-anatomy-header h3 {
+        font-size: var(--fs-lg);
+        font-weight: 700;
+        color: var(--clr-white);
+        margin: 0;
+    }
+
+    .snapshot-anatomy-body {
+        padding: 2rem;
+    }
+
+    .snapshot-fields {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+
+    .snapshot-field {
+        padding: 1rem;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--clr-gray-200);
+        background: var(--clr-gray-50);
+    }
+
+    .snapshot-field-key {
+        font-family: var(--font-mono);
+        font-size: var(--fs-xs);
+        font-weight: 700;
+        color: var(--clr-primary);
+        margin-bottom: 0.375rem;
+    }
+
+    .snapshot-field-value {
+        font-size: var(--fs-sm);
+        color: var(--clr-gray-700);
+        line-height: 1.5;
+    }
+
+    .snapshot-field-alcoa {
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--clr-accent);
+        font-weight: 700;
+        margin-top: 0.5rem;
+    }
+
+    /* Scope Filters */
+    .scope-filter { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+
+    .scope-filter.scope-dim {
+        opacity: 0.2;
+        filter: grayscale(0.7);
+        pointer-events: none;
+    }
+
+    .scope-filter.scope-hit { position: relative; }
+
+    .scope-filter.scope-hit::after {
+        content: '';
+        position: absolute;
+        inset: -4px;
+        border: 2px solid rgba(232, 93, 4, 0.3);
+        border-radius: var(--radius-xl);
+        pointer-events: none;
+        animation: scopePulse 0.6s ease-out;
+    }
+
+    @keyframes scopePulse {
+        0% { border-color: rgba(232, 93, 4, 0.6); box-shadow: 0 0 0 0 rgba(232, 93, 4, 0.4); }
+        100% { border-color: rgba(232, 93, 4, 0); box-shadow: 0 0 0 12px rgba(232, 93, 4, 0); }
+    }
+
+    /* Scope Summary Panel */
+    .scope-summary {
+        background: linear-gradient(135deg, #f8fafa 0%, #ffffff 100%);
+        border-bottom: 2px solid var(--clr-gray-200);
+        padding: 1.5rem 0;
+        display: none;
+        animation: slideDown 0.4s ease-out;
+    }
+
+    .scope-summary.active { display: block; }
+
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .scope-summary-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .scope-summary-section {
+        padding-left: 1.5rem;
+        border-left: 3px solid var(--clr-accent);
+    }
+
+    .scope-summary-title {
+        font-size: var(--fs-xs);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--clr-gray-600);
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+    }
+
+    .scope-summary-items {
+        list-style: none;
+        padding: 0; margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .scope-summary-items li {
+        font-size: var(--fs-sm);
+        color: var(--clr-gray-700);
+        line-height: 1.5;
+    }
+
+    .scope-summary-items strong { color: var(--clr-primary); font-weight: 600; }
+
+    /* Scope Intro Blurbs */
+    .scope-blurb {
+        margin-bottom: 1.5rem;
+        transition: all 0.4s ease;
+    }
+
+    .scope-blurb.scope-dim {
+        opacity: 0;
+        height: 0;
+        overflow: hidden;
+        margin: 0;
+    }
+
+    .scope-blurb.scope-hit { opacity: 1; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .architecture-hero { padding: 3rem 0 2rem; }
+        .architecture-controls { padding: 1rem 0; }
+        .controls-wrapper { gap: 1.5rem; }
+        .control-pills { width: 100%; }
+        .pill { flex: 1; justify-content: center; min-width: 0; }
+        .view-indicator { display: none; }
+        .scope-summary-content { grid-template-columns: 1fr; gap: 1.5rem; }
+        .gradient-tower { grid-template-columns: 1fr; }
+        .timeline-event { grid-template-columns: 1fr; gap: 1rem; }
+        .timeline-line { left: 20px; }
+        .event-dot { position: absolute; left: 12px; margin: 0; }
+        .event-content { margin-left: 50px; }
+        .split-view { grid-template-columns: 1fr; }
+        .evidence-row { grid-template-columns: 1fr; gap: 0.5rem; }
+        .gate-flow { flex-direction: column; }
+        .gate-arrow { transform: rotate(90deg); }
+        .decision-mantra { grid-template-columns: 1fr; }
+        .scenario-flow::before { left: 20px; }
+        .scenario-step { grid-template-columns: 40px 1fr; gap: 1rem; }
+        .scenario-step-number { width: 40px; height: 40px; font-size: var(--fs-sm); }
+        .audit-table { display: block; overflow-x: auto; }
+        .snapshot-fields { grid-template-columns: 1fr; }
+        .decision-objects-grid { grid-template-columns: 1fr; }
+    }
+</style>
+
+<!-- ==================== HERO ==================== -->
+<div class="architecture-hero">
+    <div class="container">
+        <h1>GxP Evidence Architecture</h1>
+        <div class="hero-statement">
+            <h2>GMP is a time, context, and decision problem – not a documentation problem.</h2>
+            <div class="decision-mantra">
+                <div class="mantra-item">
+                    <strong>Cloud</strong>
+                    Can trigger, never decide.
+                </div>
+                <div class="mantra-item">
+                    <strong>Line</strong>
+                    Decides fast. Irreversible.
+                </div>
+                <div class="mantra-item">
+                    <strong>Site</strong>
+                    Decides formally. Approval required.
+                </div>
+                <div class="mantra-item">
+                    <strong>Audit</strong>
+                    Built from Snapshots, not Logs.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== CONTROLS ==================== -->
+<div class="architecture-controls">
+    <div class="container">
+        <div class="controls-wrapper">
+            <div class="control-section">
+                <div class="control-label">
+                    <span>🔍</span> Perspective
+                </div>
+                <div class="control-pills">
+                    <button class="pill" data-lens="proximity">
+                        <span class="pill-icon">📍</span><span>Proximity</span>
+                    </button>
+                    <button class="pill" data-lens="time">
+                        <span class="pill-icon">⏱️</span><span>Time</span>
+                    </button>
+                    <button class="pill" data-lens="alcoa">
+                        <span class="pill-icon">✓</span><span>ALCOA++</span>
+                    </button>
+                    <button class="pill" data-lens="gates">
+                        <span class="pill-icon">🎯</span><span>Gates</span>
+                    </button>
+                    <button class="pill" data-lens="scenario">
+                        <span class="pill-icon">⚡</span><span>Scenario</span>
+                    </button>
+                </div>
+            </div>
+            <div class="control-section">
+                <div class="control-label">
+                    <span>🎯</span> Decision Layer
+                </div>
+                <div class="control-pills">
+                    <button class="pill active" data-scope="all">
+                        <span class="pill-icon">∞</span><span>All</span>
+                    </button>
+                    <button class="pill" data-scope="line">
+                        <span class="pill-icon">⚙️</span><span>Line</span>
+                    </button>
+                    <button class="pill" data-scope="site">
+                        <span class="pill-icon">🏭</span><span>Site</span>
+                    </button>
+                    <button class="pill" data-scope="cloud">
+                        <span class="pill-icon">☁️</span><span>Cloud</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="view-indicator" id="viewIndicator">
+    <button class="view-close" onclick="resetView()" aria-label="Close">×</button>
+    <div class="view-indicator-title">Active View</div>
+    <div class="view-indicator-lens" id="indicatorLens">Select a perspective</div>
+    <div class="view-indicator-scope" id="indicatorScope">All levels</div>
+</div>
+
+<!-- SCOPE SUMMARY PANEL -->
+<div class="scope-summary" id="scopeSummary">
+    <div class="container">
+        <div class="scope-summary-content">
+            <div class="scope-summary-section">
+                <div class="scope-summary-title">🎯 Decision Authority</div>
+                <ul class="scope-summary-items" id="summaryAuthority"></ul>
+            </div>
+            <div class="scope-summary-section">
+                <div class="scope-summary-title">📋 Required Evidence</div>
+                <ul class="scope-summary-items" id="summaryEvidence"></ul>
+            </div>
+            <div class="scope-summary-section">
+                <div class="scope-summary-title">⚡ Critical Controls</div>
+                <ul class="scope-summary-items" id="summaryControls"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== CONTENT VIEWS ==================== -->
+<div class="container">
+    <div class="content-stage">
+
+        <!-- ===== DEFAULT VIEW ===== -->
+        <div class="content-view active" id="view-default">
+            <div class="section-header">
+                <h2 class="section-title">Choose Your Perspective</h2>
+                <p class="section-subtitle">
+                    Select a <strong>Perspective</strong> to explore different architectural views,
+                    then use <strong>Decision Layer</strong> to filter by system level.
+                    Start with <strong>Scenario</strong> for a concrete OEE-to-Gate walkthrough.
+                </p>
+            </div>
+            <div class="impact-stats">
+                <div class="stat-card">
+                    <span class="stat-value">5</span>
+                    <span class="stat-label">Perspectives</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">7</span>
+                    <span class="stat-label">Decision Steps</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">8</span>
+                    <span class="stat-label">Decision Objects</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">3</span>
+                    <span class="stat-label">Audit Layers</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PROXIMITY VIEW ===== -->
+        <div class="content-view" id="view-proximity">
+            <div class="section-header">
+                <h2 class="section-title">The GMP Gradient</h2>
+                <p class="section-subtitle">
+                    GMP requirements scale with proximity to the process. The closer to the physical process,
+                    the higher the time resolution and the stricter the requirements.
+                </p>
+            </div>
+
+            <div class="insight-box">
+                <strong>GMP is not binary.</strong>
+                <p>It scales with proximity. Time resolution increases toward the machine. Causality becomes critical.</p>
+            </div>
+
+            <div class="scope-blurb scope-filter key-insight-box" data-scope="line all">
+                <h3>⚙️ Line (OT): Real-Time Truth</h3>
+                <p>
+                    <strong>Decisions are irreversible.</strong> When a PLC stops a line or marks a product NOK,
+                    there's no "undo". Event time and causal ordering are non-negotiable.
+                    Operator has authority. Cloud may never close loops directly.
+                </p>
+            </div>
+
+            <div class="scope-blurb scope-filter key-insight-box" data-scope="site all">
+                <h3>🏭 Site (MES): Batch Orchestration</h3>
+                <p>
+                    <strong>Context completeness is mandatory.</strong> Every event must be correlated to its batch.
+                    Recipe changes require approval. QA has final authority.
+                    Deviations trigger workflows, not just logs.
+                </p>
+            </div>
+
+            <div class="scope-blurb scope-filter key-insight-box" data-scope="cloud all">
+                <h3>☁️ Cloud: Decision Support, Not Authority</h3>
+                <p>
+                    <strong>Cloud analyzes the past, never current state.</strong> Provides recommendations, never executes.
+                    All changes must flow through site/line gates.
+                    OEE definitions are versioned standards, not code snippets.
+                </p>
+            </div>
+
+            <div class="gradient-tower">
+                <div class="tower-level low scope-filter" data-scope="cloud all">
+                    <span class="tower-icon">📊</span>
+                    <div class="tower-title">ERP</div>
+                    <div class="tower-time">Days / Weeks</div>
+                    <div class="tower-metrics">
+                        <div class="metric"><span class="metric-label">GxP Level</span><span class="metric-value">Low</span></div>
+                        <div class="metric"><span class="metric-label">Time Critical</span><span class="metric-value">No</span></div>
+                        <div class="metric"><span class="metric-label">Causality</span><span class="metric-value">Aggregated</span></div>
+                    </div>
+                </div>
+                <div class="tower-level moderate scope-filter" data-scope="site cloud all">
+                    <span class="tower-icon">🏭</span>
+                    <div class="tower-title">MES</div>
+                    <div class="tower-time">Hours / Shifts</div>
+                    <div class="tower-metrics">
+                        <div class="metric"><span class="metric-label">GxP Level</span><span class="metric-value">Medium</span></div>
+                        <div class="metric"><span class="metric-label">Time Critical</span><span class="metric-value">Moderate</span></div>
+                        <div class="metric"><span class="metric-label">Causality</span><span class="metric-value">Batch-level</span></div>
+                    </div>
+                </div>
+                <div class="tower-level important scope-filter" data-scope="site line all">
+                    <span class="tower-icon">🖥️</span>
+                    <div class="tower-title">SCADA</div>
+                    <div class="tower-time">Seconds / Minutes</div>
+                    <div class="tower-metrics">
+                        <div class="metric"><span class="metric-label">GxP Level</span><span class="metric-value">High</span></div>
+                        <div class="metric"><span class="metric-label">Time Critical</span><span class="metric-value">Yes</span></div>
+                        <div class="metric"><span class="metric-label">Causality</span><span class="metric-value">Time-series</span></div>
+                    </div>
+                </div>
+                <div class="tower-level critical scope-filter" data-scope="line all">
+                    <span class="tower-icon">⚙️</span>
+                    <div class="tower-title">PLC</div>
+                    <div class="tower-time">Milliseconds</div>
+                    <div class="tower-metrics">
+                        <div class="metric"><span class="metric-label">GxP Level</span><span class="metric-value">Critical</span></div>
+                        <div class="metric"><span class="metric-label">Time Critical</span><span class="metric-value">Essential</span></div>
+                        <div class="metric"><span class="metric-label">Causality</span><span class="metric-value">Real-time</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-insight-box">
+                <h3>💡 Cloud = MES Level</h3>
+                <p>
+                    Cloud typically operates at <strong>MES level</strong> (hours/days). This means it's suitable for
+                    aggregation and analytics, but <strong>critical control loops stay at the edge</strong>.
+                    GxP relevance only emerges when cloud decisions flow back to the line.
+                </p>
+            </div>
+
+            <div class="regulatory-box">
+                <h4>📋 Regulatory Implications</h4>
+                <ul>
+                    <li><strong>21 CFR Part 11:</strong> Applies only at decision points, not at every layer</li>
+                    <li><strong>EU Annex 11:</strong> System boundary must be explicit – cloud vs edge distinction matters</li>
+                    <li><strong>Validation:</strong> Risk-based approach scales with proximity</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===== TIME VIEW ===== -->
+        <div class="content-view" id="view-time">
+            <div class="section-header">
+                <h2 class="section-title">Time Is Architecture</h2>
+                <p class="section-subtitle">
+                    GMP demands <strong>event time</strong>, not file time. Context must exist at decision time,
+                    not be reconstructed later. Order and causality are non-negotiable.
+                </p>
+            </div>
+
+            <div class="insight-box">
+                <strong>Late-aggregated data cannot explain early decisions.</strong>
+                <p>GMP is fundamentally a time and order problem.</p>
+            </div>
+
+            <div class="scope-blurb scope-filter key-insight-box" data-scope="line all">
+                <h3>⚙️ Line: Monotonic Time & Causal Ordering</h3>
+                <p>
+                    <strong>Sequence is everything.</strong> Events must preserve causal order.
+                    Timestamps must be monotonic (no NTP jumps backward).
+                    Jitter budget: milliseconds. Late events cannot be reinserted into history.
+                </p>
+            </div>
+
+            <div class="scope-blurb scope-filter key-insight-box" data-scope="site all">
+                <h3>🏭 Site: Batch Context Stitching</h3>
+                <p>
+                    <strong>Context binds immediately.</strong> Phase/Recipe/Batch must exist at event time.
+                    Reconciliation windows for human events (shift handover, manual entry).
+                    Correlation IDs link all events in a batch lifecycle.
+                </p>
+            </div>
+
+            <div class="scope-blurb scope-filter key-insight-box" data-scope="cloud all">
+                <h3>☁️ Cloud: Event-Time Windows & Audit Storage</h3>
+                <p>
+                    <strong>Event time, not processing time.</strong> Analytics use event_time for windows, not ingest_time.
+                    Late arrivals handled via watermarks. Idempotency required.
+                    Audit storage optimized for retrieval, not insertion speed.
+                </p>
+            </div>
+
+            <div class="timeline-flow">
+                <div class="timeline-line"></div>
+                <div class="timeline-event scope-filter" data-scope="line all">
+                    <div class="event-content">
+                        <div class="event-time">14:35:42.123</div>
+                        <div class="event-title">⚙️ Event Occurs</div>
+                        <div class="event-desc">Sensor measurement at PLC level. Event time captured at source.</div>
+                    </div>
+                    <div class="event-dot"></div>
+                    <div></div>
+                </div>
+                <div class="timeline-event scope-filter" data-scope="line site all">
+                    <div></div>
+                    <div class="event-dot"></div>
+                    <div class="event-content">
+                        <div class="event-time">14:35:42.125</div>
+                        <div class="event-title">🎯 Context Added</div>
+                        <div class="event-desc">Phase, Recipe, Batch context attached <strong>immediately</strong>, not later.</div>
+                    </div>
+                </div>
+                <div class="timeline-event scope-filter" data-scope="site all">
+                    <div class="event-content">
+                        <div class="event-time">14:35:42.234</div>
+                        <div class="event-title">📡 Event Published</div>
+                        <div class="event-desc">Contextualized event sent via message broker. Correlation ID links to process chain.</div>
+                    </div>
+                    <div class="event-dot"></div>
+                    <div></div>
+                </div>
+                <div class="timeline-event scope-filter" data-scope="site cloud all">
+                    <div></div>
+                    <div class="event-dot"></div>
+                    <div class="event-content">
+                        <div class="event-time">14:35:43.012</div>
+                        <div class="event-title">💾 Evidence Stored</div>
+                        <div class="event-desc">Immutable storage. Event time preserved. File time (14:35:43) is irrelevant for GMP.</div>
+                    </div>
+                </div>
+                <div class="timeline-event scope-filter" data-scope="cloud all">
+                    <div class="event-content">
+                        <div class="event-time">15:00:00.000</div>
+                        <div class="event-title">📊 Analytics</div>
+                        <div class="event-desc">Cloud processes event. Uses event time for aggregation, not processing time.</div>
+                    </div>
+                    <div class="event-dot"></div>
+                    <div></div>
+                </div>
+            </div>
+
+            <div class="anti-pattern-box">
+                <h3>⚠️ Anti-Pattern: Reconstructed Context</h3>
+                <p>
+                    Many systems collect raw data and "add context later" in a data warehouse.
+                    <strong>This is regulatorily worthless.</strong> By the time you add context,
+                    the decision moment has passed. You're guessing, not observing.
+                </p>
+            </div>
+
+            <div class="anti-pattern-box">
+                <h3>⚠️ Anti-Pattern: Logs ≠ Audit Trails</h3>
+                <p>
+                    <strong>"Everything logged, nothing correlated"</strong> – the most common IT/OT failure pattern.
+                    Logs are technical (debugging, isolated, days retention). Audit trails are regulatory
+                    (business context, correlated, years retention). Collecting logs does not generate an audit trail.
+                </p>
+            </div>
+
+            <div class="key-insight-box">
+                <h3>✓ Controls: Time-First Architecture</h3>
+                <p style="margin-top: 0.5rem; color: var(--clr-gray-700);">
+                    Event time as primary timestamp (not system time) · Monotonic timestamps (no NTP time jumps) ·
+                    Causal ordering (correlation IDs, event chains) · Context at event time, not processing time
+                </p>
+            </div>
+
+            <div class="regulatory-box">
+                <h4>📋 Regulatory Requirements</h4>
+                <ul>
+                    <li><strong>21 CFR Part 11:</strong> Requires complete audit trails with time stamping</li>
+                    <li><strong>ALCOA++:</strong> Contemporaneous = captured at time of event</li>
+                    <li><strong>Validation:</strong> Prove that time is not manipulable</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===== ALCOA++ VIEW ===== -->
+        <div class="content-view" id="view-alcoa">
+            <div class="section-header">
+                <h2 class="section-title">Evidence ≠ Data</h2>
+                <p class="section-subtitle">
+                    Collecting data doesn't automatically generate evidence. Evidence requires
+                    <strong>Data + Context + Intent + Traceability</strong> aligned with ALCOA++ principles.
+                </p>
+            </div>
+
+            <div class="insight-box">
+                <strong>Evidence is Data + Context + Intent + Traceability</strong>
+                <p>The difference determines if your system is audit-ready or just data-rich.</p>
+            </div>
+
+            <div class="scope-blurb scope-filter key-insight-box" data-scope="line all">
+                <h3>⚙️ Line: Sequence_no Mandatory</h3>
+                <p>
+                    <strong>Attributable, Legible, Contemporaneous.</strong>
+                    Every event needs: producer_id + version, event_time (source!), sequence_no for causality.
+                    Original = first write to immutable store. State changes are decisions, not logs.
+                </p>
+            </div>
+
+            <div class="scope-blurb scope-filter key-insight-box" data-scope="site all">
+                <h3>🏭 Site: Correlation_id Mandatory</h3>
+                <p>
+                    <strong>Complete, Consistent, Enduring.</strong>
+                    Every event needs: batch_id, recipe_version (immutable), correlation_id, phase.
+                    Deviations must be classifiable. Completeness = all batch phases documented.
+                </p>
+            </div>
+
+            <div class="scope-blurb scope-filter key-insight-box" data-scope="cloud all">
+                <h3>☁️ Cloud: Dataset Fingerprints & Lineage</h3>
+                <p>
+                    <strong>Available, Traceable, Accurate.</strong>
+                    Every aggregation needs: oee_definition_id + version, dataset_fingerprint, lineage to source events.
+                    Model registry for AI. Analysis runs must be reproducible.
+                </p>
+            </div>
+
+            <div class="split-view">
+                <div class="split-panel bad">
+                    <div class="panel-header">
+                        <span class="panel-icon">📊</span>
+                        <div class="panel-title">Just Data</div>
+                    </div>
+                    <div class="checklist">
+                        <div class="checklist-item missing">
+                            <div class="check-icon">✗</div>
+                            <div>
+                                <div class="check-label">A – Attributable</div>
+                                <div class="check-desc">Who/what generated it? Unknown.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item missing">
+                            <div class="check-icon">✗</div>
+                            <div>
+                                <div class="check-label">C – Contemporaneous</div>
+                                <div class="check-desc">When exactly? Unclear.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item missing">
+                            <div class="check-icon">✗</div>
+                            <div>
+                                <div class="check-label">O – Original</div>
+                                <div class="check-desc">Copy or original? Unknown.</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item missing">
+                            <div class="check-icon">✗</div>
+                            <div>
+                                <div class="check-label">Complete</div>
+                                <div class="check-desc">Process context? Missing.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: #fff5f5; border-radius: var(--radius-md);">
+                        <strong style="color: #c0392b;">Result:</strong>
+                        <span style="color: var(--clr-gray-700);"> Numbers exist, but can't explain decisions</span>
+                    </div>
+                </div>
+
+                <div class="split-panel good">
+                    <div class="panel-header">
+                        <span class="panel-icon">⚖️</span>
+                        <div class="panel-title">Evidence</div>
+                    </div>
+                    <div class="checklist">
+                        <div class="checklist-item present">
+                            <div class="check-icon">✓</div>
+                            <div>
+                                <div class="check-label">A – Attributable</div>
+                                <div class="check-desc">Service v2.1, Sensor-42, Line-3</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item present">
+                            <div class="check-icon">✓</div>
+                            <div>
+                                <div class="check-label">C – Contemporaneous</div>
+                                <div class="check-desc">Event time: 14:35:42.123</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item present">
+                            <div class="check-icon">✓</div>
+                            <div>
+                                <div class="check-label">O – Original</div>
+                                <div class="check-desc">Append-only, immutable</div>
+                            </div>
+                        </div>
+                        <div class="checklist-item present">
+                            <div class="check-icon">✓</div>
+                            <div>
+                                <div class="check-label">Complete</div>
+                                <div class="check-desc">Phase, Recipe, Batch, Correlation ID</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: #f0fff4; border-radius: var(--radius-md);">
+                        <strong style="color: #0d8558;">Result:</strong>
+                        <span style="color: var(--clr-gray-700);"> Can explain every decision</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-insight-box">
+                <h3>📋 Minimum Evidence Set</h3>
+                <p style="margin-bottom: 1.5rem;">Every audit-ready event must contain these fields:</p>
+            </div>
+
+            <div class="evidence-table">
+                <div class="evidence-row"><div class="evidence-key">event_id</div><div class="evidence-value">Unique identifier (UUID)</div></div>
+                <div class="evidence-row"><div class="evidence-key">event_type</div><div class="evidence-value">Category (measurement, state_change, decision)</div></div>
+                <div class="evidence-row"><div class="evidence-key">event_time</div><div class="evidence-value">When it happened (source time, not system time)</div></div>
+                <div class="evidence-row"><div class="evidence-key">producer_id</div><div class="evidence-value">Service/sensor that generated it + version</div></div>
+                <div class="evidence-row"><div class="evidence-key">batch_id</div><div class="evidence-value">Manufacturing batch or order ID</div></div>
+                <div class="evidence-row"><div class="evidence-key">recipe_id</div><div class="evidence-value">Recipe + version (immutable)</div></div>
+                <div class="evidence-row"><div class="evidence-key">phase</div><div class="evidence-value">Process phase/state at event time</div></div>
+                <div class="evidence-row"><div class="evidence-key">correlation_id</div><div class="evidence-value">Links all events in same process chain</div></div>
+                <div class="evidence-row"><div class="evidence-key">sequence_no</div><div class="evidence-value">Order within process (for causality)</div></div>
+                <div class="evidence-row"><div class="evidence-key">hash</div><div class="evidence-value">Content fingerprint (optional: signature)</div></div>
+            </div>
+
+            <div class="regulatory-box">
+                <h4>📋 Regulatory Mapping</h4>
+                <ul>
+                    <li><strong>ALCOA++:</strong> All 9 principles directly map to these fields</li>
+                    <li><strong>21 CFR Part 11:</strong> Audit trail requirement = these fields + immutable storage</li>
+                    <li><strong>EU Annex 11:</strong> Data integrity = completeness + traceability</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===== GATES VIEW (ENHANCED) ===== -->
+        <div class="content-view" id="view-gates">
+            <div class="section-header">
+                <h2 class="section-title">Gates & Decisions</h2>
+                <p class="section-subtitle">
+                    GMP doesn't apply to systems – it applies to <strong>decisions</strong>.
+                    Gates make responsibility explicit and decisions auditable.
+                </p>
+            </div>
+
+            <div class="insight-box">
+                <strong>Only decisions are GxP-critical.</strong>
+                <p>Data, analytics, AI – none of this matters until someone makes a decision that affects the product.</p>
+            </div>
+
+            <div class="scope-blurb scope-filter key-insight-box" data-scope="line all">
+                <h3>⚙️ Line: Inline Gates & Auto-Rules</h3>
+                <p>
+                    <strong>Gates must be low-latency.</strong>
+                    Rule-based approval for speed (threshold checks). Operator override always available.
+                    Decision snapshot captures: who (rule/operator), what (OK/NOK), when (event_time),
+                    based_on (inference_result + model_version). Handshakes between PLC and Edge
+                    are "mini-gates" – state agreement protocols to avoid silent mismatches.
+                </p>
+            </div>
+
+            <div class="scope-blurb scope-filter key-insight-box" data-scope="site all">
+                <h3>🏭 Site: QA Gates & E-Signatures</h3>
+                <p>
+                    <strong>Formal approval workflow.</strong>
+                    Batch close requires QA e-signature. Recipe changes require supervisor approval.
+                    Decision snapshot captures: approval_chain, justification, deviation_refs,
+                    completeness_check_passed.
+                </p>
+            </div>
+
+            <div class="scope-blurb scope-filter key-insight-box" data-scope="cloud all">
+                <h3>☁️ Cloud: Change Proposals Only</h3>
+                <p>
+                    <strong>Never auto-execute.</strong>
+                    Cloud generates <code>change.requested</code> events, never <code>change.executed</code>.
+                    Site/Line gates review and approve. Decision snapshot captures:
+                    analysis_run_id, model_version, confidence, hypothesis, expected_effect.
+                </p>
+            </div>
+
+            <div class="key-insight-box">
+                <h3>🎯 What is a Gate?</h3>
+                <p>
+                    A <strong>Gate</strong> is not a workflow step. A Gate is the creation of a <strong>Decision Snapshot</strong>
+                    that proves: what was known at decision time. The system cannot proceed until criteria are checked,
+                    documented, and approved. Gates make responsibility explicit.
+                </p>
+            </div>
+
+            <div style="margin: 3rem 0;">
+                <h3 style="text-align: center; margin-bottom: 2rem; color: var(--clr-gray-900); font-size: var(--fs-xl);">
+                    Gate Process Flow
+                </h3>
+                <div class="gate-flow">
+                    <div class="gate-step">Propose</div>
+                    <div class="gate-arrow">→</div>
+                    <div class="gate-step">Gather Evidence</div>
+                    <div class="gate-arrow">→</div>
+                    <div class="gate-step">Snapshot</div>
+                    <div class="gate-arrow">→</div>
+                    <div class="gate-step">Approve</div>
+                    <div class="gate-arrow">→</div>
+                    <div class="gate-step">Execute</div>
+                    <div class="gate-arrow">→</div>
+                    <div class="gate-step">Verify</div>
+                </div>
+            </div>
+
+            <!-- DECISION SNAPSHOT ANATOMY - NEW -->
+            <div class="snapshot-anatomy">
+                <div class="snapshot-anatomy-header">
+                    <span style="font-size: 1.5rem;">📸</span>
+                    <h3>Decision Snapshot Anatomy</h3>
+                </div>
+                <div class="snapshot-anatomy-body">
+                    <p style="color: var(--clr-gray-600); margin-bottom: 1.5rem; font-size: var(--fs-sm); line-height: 1.6;">
+                        Every gate produces an immutable snapshot proving what was known at the moment of decision.
+                        This is where ALCOA++ becomes concrete.
+                    </p>
+                    <div class="snapshot-fields">
+                        <div class="snapshot-field">
+                            <div class="snapshot-field-key">dataset_fingerprint</div>
+                            <div class="snapshot-field-value">Hash of all data visible at decision time</div>
+                            <div class="snapshot-field-alcoa">→ Accurate</div>
+                        </div>
+                        <div class="snapshot-field">
+                            <div class="snapshot-field-key">query_definition</div>
+                            <div class="snapshot-field-value">What was queried, which time window, which sources</div>
+                            <div class="snapshot-field-alcoa">→ Complete</div>
+                        </div>
+                        <div class="snapshot-field">
+                            <div class="snapshot-field-key">source_versions</div>
+                            <div class="snapshot-field-value">Included sources and their exact versions</div>
+                            <div class="snapshot-field-alcoa">→ Traceable</div>
+                        </div>
+                        <div class="snapshot-field">
+                            <div class="snapshot-field-key">state_before</div>
+                            <div class="snapshot-field-value">System/batch/line state before the decision</div>
+                            <div class="snapshot-field-alcoa">→ Original</div>
+                        </div>
+                        <div class="snapshot-field">
+                            <div class="snapshot-field-key">proposed_state_after</div>
+                            <div class="snapshot-field-value">What the decision intends to change</div>
+                            <div class="snapshot-field-alcoa">→ Legible</div>
+                        </div>
+                        <div class="snapshot-field">
+                            <div class="snapshot-field-key">risk_classification</div>
+                            <div class="snapshot-field-value">Severity and approval level required</div>
+                            <div class="snapshot-field-alcoa">→ Consistent</div>
+                        </div>
+                        <div class="snapshot-field">
+                            <div class="snapshot-field-key">approver_id + role</div>
+                            <div class="snapshot-field-value">Who decided, with what authority</div>
+                            <div class="snapshot-field-alcoa">→ Attributable</div>
+                        </div>
+                        <div class="snapshot-field">
+                            <div class="snapshot-field-key">snapshot_time</div>
+                            <div class="snapshot-field-value">Exact time the snapshot was frozen</div>
+                            <div class="snapshot-field-alcoa">→ Contemporaneous</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="split-view">
+                <div class="split-panel neutral">
+                    <div class="panel-header">
+                        <span class="panel-icon">🤖</span>
+                        <div class="panel-title">AI / Analytics</div>
+                    </div>
+                    <div class="checklist">
+                        <div class="checklist-item present">
+                            <div class="check-icon">✓</div>
+                            <div><div class="check-label">Recommends</div><div class="check-desc">Calculates, predicts, suggests</div></div>
+                        </div>
+                        <div class="checklist-item present">
+                            <div class="check-icon">✓</div>
+                            <div><div class="check-label">Classifies</div><div class="check-desc">OK/NOK, anomaly detection</div></div>
+                        </div>
+                        <div class="checklist-item missing">
+                            <div class="check-icon">✗</div>
+                            <div><div class="check-label">Never Decides</div><div class="check-desc">No authority for GxP-relevant state</div></div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: var(--clr-gray-50); border-radius: var(--radius-md);">
+                        <strong style="color: var(--clr-gray-900);">Role:</strong>
+                        <span style="color: var(--clr-gray-700);"> Decision Support</span>
+                    </div>
+                </div>
+                <div class="split-panel good">
+                    <div class="panel-header">
+                        <span class="panel-icon">🎯</span>
+                        <div class="panel-title">Gate Process</div>
+                    </div>
+                    <div class="checklist">
+                        <div class="checklist-item present">
+                            <div class="check-icon">✓</div>
+                            <div><div class="check-label">Reviews</div><div class="check-desc">Checks AI/analytics output</div></div>
+                        </div>
+                        <div class="checklist-item present">
+                            <div class="check-icon">✓</div>
+                            <div><div class="check-label">Snapshots</div><div class="check-desc">Freezes evidence state at decision time</div></div>
+                        </div>
+                        <div class="checklist-item present">
+                            <div class="check-icon">✓</div>
+                            <div><div class="check-label">Decides</div><div class="check-desc">Approved state change with e-signature</div></div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: #f0fff4; border-radius: var(--radius-md);">
+                        <strong style="color: #0d8558;">Role:</strong>
+                        <span style="color: var(--clr-gray-700);"> Decision Authority</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DECISION OBJECTS - NEW -->
+            <div class="key-insight-box" style="margin-top: 3rem;">
+                <h3>📋 Decision Objects – What is Gateable?</h3>
+                <p>Not every event needs a gate. Only these state changes require formal decision authority:</p>
+            </div>
+
+            <div class="decision-objects-grid">
+                <div class="decision-object">
+                    <div class="decision-object-name">Batch Status Change</div>
+                    <div class="decision-object-authority">
+                        <span class="authority-badge auth-site">Site</span>
+                    </div>
+                    <div class="decision-object-desc">Start, hold, resume, close – every batch transition is a formal decision with QA involvement.</div>
+                </div>
+                <div class="decision-object">
+                    <div class="decision-object-name">Product Disposition (OK/NOK)</div>
+                    <div class="decision-object-authority">
+                        <span class="authority-badge auth-line">Line</span>
+                        <span class="authority-badge auth-site">Site</span>
+                    </div>
+                    <div class="decision-object-desc">Inline auto-rules at line, final disposition at site. Always requires snapshot.</div>
+                </div>
+                <div class="decision-object">
+                    <div class="decision-object-name">Recipe Parameter Change</div>
+                    <div class="decision-object-authority">
+                        <span class="authority-badge auth-site">Site</span>
+                    </div>
+                    <div class="decision-object-desc">Any setpoint or recipe change during production. Cloud may propose, site must approve.</div>
+                </div>
+                <div class="decision-object">
+                    <div class="decision-object-name">Model Version Change</div>
+                    <div class="decision-object-authority">
+                        <span class="authority-badge auth-site">Site</span>
+                        <span class="authority-badge auth-cloud">Cloud</span>
+                    </div>
+                    <div class="decision-object-desc">AI/ML model updates. Model = Recipe → must be approved, versioned, frozen during execution.</div>
+                </div>
+                <div class="decision-object">
+                    <div class="decision-object-name">OEE Definition Change</div>
+                    <div class="decision-object-authority">
+                        <span class="authority-badge auth-site">Site</span>
+                        <span class="authority-badge auth-cloud">Cloud</span>
+                    </div>
+                    <div class="decision-object-desc">How OEE is calculated is a versioned standard. Changing it changes what "good" means.</div>
+                </div>
+                <div class="decision-object">
+                    <div class="decision-object-name">Limit / Threshold Change</div>
+                    <div class="decision-object-authority">
+                        <span class="authority-badge auth-site">Site</span>
+                    </div>
+                    <div class="decision-object-desc">Alert thresholds, spec limits. These determine when gates trigger.</div>
+                </div>
+                <div class="decision-object">
+                    <div class="decision-object-name">Line Release Decision</div>
+                    <div class="decision-object-authority">
+                        <span class="authority-badge auth-line">Line</span>
+                        <span class="authority-badge auth-site">Site</span>
+                    </div>
+                    <div class="decision-object-desc">Re-starting a line after a stop. Requires verification that root cause is resolved.</div>
+                </div>
+                <div class="decision-object">
+                    <div class="decision-object-name">Deviation Closure</div>
+                    <div class="decision-object-authority">
+                        <span class="authority-badge auth-site">Site</span>
+                    </div>
+                    <div class="decision-object-desc">Closing a deviation requires evidence that CAPA is effective. Part 11 e-signature.</div>
+                </div>
+            </div>
+
+            <!-- WHAT TO AUDIT TABLE - NEW -->
+            <div class="key-insight-box" style="margin-top: 3rem;">
+                <h3>🔍 What to Audit: Event vs. Snapshot vs. Change</h3>
+                <p>Three fundamentally different audit artifacts. Most systems confuse them.</p>
+            </div>
+
+            <table class="audit-table">
+                <thead>
+                <tr>
+                    <th style="width: 20%;">Aspect</th>
+                    <th style="width: 27%;">Event</th>
+                    <th style="width: 27%;">Snapshot</th>
+                    <th style="width: 27%;">Change</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>What</td>
+                    <td>Something happened</td>
+                    <td>What was known at decision time</td>
+                    <td>State was modified</td>
+                </tr>
+                <tr>
+                    <td>Example</td>
+                    <td><code>oee.computed: 72%</code></td>
+                    <td>All data visible when gate opened</td>
+                    <td><code>recipe.param.updated</code></td>
+                </tr>
+                <tr>
+                    <td>Part 11?</td>
+                    <td>Rarely (only if state_change)</td>
+                    <td>Yes – core of the audit trail</td>
+                    <td>Always – e-signature required</td>
+                </tr>
+                <tr>
+                    <td>Immutable?</td>
+                    <td>Yes (append-only)</td>
+                    <td>Yes (frozen at creation)</td>
+                    <td>Yes (before + after captured)</td>
+                </tr>
+                <tr>
+                    <td>Key Fields</td>
+                    <td><code>event_time</code>, <code>producer_id</code>, <code>sequence_no</code></td>
+                    <td><code>dataset_fingerprint</code>, <code>source_versions</code>, <code>query_definition</code></td>
+                    <td><code>state_before</code>, <code>state_after</code>, <code>approver_id</code>, <code>e_signature</code></td>
+                </tr>
+                <tr>
+                    <td>Retention</td>
+                    <td>Months–Years (depends on type)</td>
+                    <td>Years (tied to batch lifecycle)</td>
+                    <td>Years (regulatory minimum)</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="anti-pattern-box">
+                <h3>⚠️ Common Mistake: AI as Decision Authority</h3>
+                <p>
+                    Many systems let AI "automatically approve" or "auto-execute" when confidence is high.
+                    <strong>This breaks GMP.</strong> AI can recommend with 99% confidence, but the gate must still
+                    formally approve. Even if approval is "one-click", the gate makes responsibility explicit.
+                </p>
+            </div>
+
+            <div class="key-insight-box">
+                <h3>🤝 Handshakes Are Mini-Gates</h3>
+                <p>
+                    PLC↔Edge handshakes in production data are a GxP pattern: a <strong>state agreement protocol</strong>
+                    to avoid silent mismatches and make state transitions auditable. They ensure PLC and Edge agree on
+                    the same product identity at the same time. Handshakes are inline gates at line level – same principle,
+                    lower latency.
+                </p>
+            </div>
+
+            <div class="regulatory-box">
+                <h4>📋 Regulatory Context</h4>
+                <ul>
+                    <li><strong>21 CFR Part 11:</strong> E-signatures required for decisions (meaning of signature must be clear)</li>
+                    <li><strong>EU Annex 11:</strong> Human oversight for critical decisions, even with automation</li>
+                    <li><strong>AI/ML Guidance:</strong> Model = Recipe → must be approved, versioned, frozen during execution</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ===== SCENARIO VIEW - NEW ===== -->
+        <div class="content-view" id="view-scenario">
+            <div class="section-header">
+                <h2 class="section-title">OEE Drop: Signal to Gate to Change</h2>
+                <p class="section-subtitle">
+                    A concrete walkthrough. OEE drops below threshold on Line 3.
+                    Cloud AI detects the anomaly. A gate process starts. A parameter change is proposed, approved, executed, and verified.
+                </p>
+            </div>
+
+            <div class="insight-box">
+                <strong>Cloud can trigger, but never decide. Line decides fast. Site decides formally.</strong>
+                <p>This is the same model everywhere – from simple threshold alerts to AI-driven parameter optimization.</p>
+            </div>
+
+            <div class="scenario-flow">
+
+                <!-- Step 0: Baseline -->
+                <div class="scenario-step scope-filter" data-scope="all">
+                    <div class="scenario-step-number step-baseline">0</div>
+                    <div class="scenario-step-content">
+                        <div class="scenario-step-header">
+                            <span class="scenario-step-layer layer-all">Pre-Condition</span>
+                            <div class="scenario-step-title">Baseline Definitions</div>
+                        </div>
+                        <div class="scenario-step-desc">
+                            Before anything can be "GxP evidence-ready", these baselines must exist as versioned, approved artifacts.
+                            They are already evidence-relevant because they determine how decisions are made.
+                        </div>
+                        <div class="scenario-events">
+                            <div class="scenario-event evidence">
+                                <span class="event-type-tag tag-evidence">Versioned</span>
+                                OEE Definition v3.1 (formula + state model)
+                            </div>
+                            <div class="scenario-event evidence">
+                                <span class="event-type-tag tag-evidence">Versioned</span>
+                                Threshold: OEE &lt; 78% → alert, &lt; 65% → gate
+                            </div>
+                            <div class="scenario-event evidence">
+                                <span class="event-type-tag tag-evidence">Versioned</span>
+                                AI Model v2.4 (approved for recommendation)
+                            </div>
+                            <div class="scenario-event evidence">
+                                <span class="event-type-tag tag-evidence">Versioned</span>
+                                Line State Model (Run, Stop, Microstop, Setup)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 1: OT/Line -->
+                <div class="scenario-step scope-filter" data-scope="line all">
+                    <div class="scenario-step-number step-ot">1</div>
+                    <div class="scenario-step-content">
+                        <div class="scenario-step-header">
+                            <span class="scenario-step-layer layer-line">Line / Edge</span>
+                            <div class="scenario-step-title">Event & Raw Computation</div>
+                        </div>
+                        <div class="scenario-step-desc">
+                            OEE is computed at the edge from Run/Stop/Microstop counts. Two event classes emerge:
+                            telemetry (data basis, not yet Part 11) and decision candidates (threshold violations, classifications).
+                        </div>
+                        <div class="scenario-events">
+                            <div class="scenario-event telemetry">
+                                <span class="event-type-tag tag-telemetry">Telemetry</span>
+                                cycle_count: 847, runtime_s: 3420, scrap: 12
+                            </div>
+                            <div class="scenario-event telemetry">
+                                <span class="event-type-tag tag-telemetry">Telemetry</span>
+                                stop_reason: "material_jam", duration_s: 180
+                            </div>
+                            <div class="scenario-event decision">
+                                <span class="event-type-tag tag-decision">Decision Candidate</span>
+                                oee.computed: 63.2% (threshold: 65%)
+                            </div>
+                            <div class="scenario-event evidence">
+                                <span class="event-type-tag tag-evidence">Evidence Min Set</span>
+                                event_time + seq_no + producer_id + sw_version + algo_id
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Gate Starts -->
+                <div class="scenario-step scope-filter" data-scope="site all">
+                    <div class="scenario-step-number step-gate">2</div>
+                    <div class="scenario-step-content">
+                        <div class="scenario-step-header">
+                            <span class="scenario-step-layer layer-site">Site</span>
+                            <div class="scenario-step-title">Gate Initiated</div>
+                        </div>
+                        <div class="scenario-step-desc">
+                            Threshold violation triggers a gate – logically at the site, not in the cloud.
+                            A <code>gate.requested</code> event is created. Evidence gathering begins:
+                            not random data loading, but a defined evidence pull against known sources.
+                        </div>
+                        <div class="scenario-events">
+                            <div class="scenario-event evidence">
+                                <span class="event-type-tag tag-evidence">Evidence</span>
+                                gate.requested: trigger=oee_below_limit, severity=high
+                            </div>
+                            <div class="scenario-event evidence">
+                                <span class="event-type-tag tag-evidence">Evidence Pull</span>
+                                last 30min raw events, current recipe v4.2, batch B-2026-0281
+                            </div>
+                            <div class="scenario-event evidence">
+                                <span class="event-type-tag tag-evidence">Evidence Pull</span>
+                                maintenance log refs, camera inspection summary, operator notes
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Decision Snapshot -->
+                <div class="scenario-step scope-filter" data-scope="site cloud all">
+                    <div class="scenario-step-number step-snapshot">3</div>
+                    <div class="scenario-step-content">
+                        <div class="scenario-step-header">
+                            <span class="scenario-step-layer layer-site">Site + Cloud</span>
+                            <div class="scenario-step-title">Decision Snapshot Created</div>
+                        </div>
+                        <div class="scenario-step-desc">
+                            This is the core artifact. The snapshot freezes everything that was known at decision time.
+                            It is immutable once created. Cloud AI contributes its recommendation as input to the snapshot,
+                            but the snapshot belongs to the site.
+                        </div>
+                        <div class="scenario-events">
+                            <div class="scenario-event evidence">
+                                <span class="event-type-tag tag-evidence">Snapshot</span>
+                                dataset_fingerprint: sha256:a4f8c...
+                            </div>
+                            <div class="scenario-event evidence">
+                                <span class="event-type-tag tag-evidence">Snapshot</span>
+                                sources: [edge_events, recipe_store, maint_log, ai_model_v2.4]
+                            </div>
+                            <div class="scenario-event decision">
+                                <span class="event-type-tag tag-decision">AI Recommendation</span>
+                                "Increase feed rate by 8%. Confidence: 87%. Expected OEE: 81%."
+                            </div>
+                            <div class="scenario-event evidence">
+                                <span class="event-type-tag tag-evidence">Snapshot</span>
+                                state_before: feed_rate=120, state_proposed: feed_rate=130
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Approval -->
+                <div class="scenario-step scope-filter" data-scope="site all">
+                    <div class="scenario-step-number step-approval">4</div>
+                    <div class="scenario-step-content">
+                        <div class="scenario-step-header">
+                            <span class="scenario-step-layer layer-site">Site</span>
+                            <div class="scenario-step-title">Part 11 Approval</div>
+                        </div>
+                        <div class="scenario-step-desc">
+                            Part 11 applies here because a recipe parameter changes. E-signature links the approver's identity
+                            to the exact snapshot content. The meaning of the signature is explicit.
+                        </div>
+                        <div class="scenario-events">
+                            <div class="scenario-event part11">
+                                <span class="event-type-tag tag-part11">Part 11</span>
+                                e_signature: supervisor_id=SUP-042, meaning="approved_change"
+                            </div>
+                            <div class="scenario-event part11">
+                                <span class="event-type-tag tag-part11">Part 11</span>
+                                reason: "AI recommendation reviewed, root cause plausible"
+                            </div>
+                            <div class="scenario-event evidence">
+                                <span class="event-type-tag tag-evidence">Evidence</span>
+                                linked_to: snapshot_id=SNAP-2026-04812
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Execution -->
+                <div class="scenario-step scope-filter" data-scope="line site all">
+                    <div class="scenario-step-number step-execution">5</div>
+                    <div class="scenario-step-content">
+                        <div class="scenario-step-header">
+                            <span class="scenario-step-layer layer-line">Line</span>
+                            <div class="scenario-step-title">Execution with Local Authority</div>
+                        </div>
+                        <div class="scenario-step-desc">
+                            Even though Cloud proposed "set feed_rate to 130", execution happens at the line/site
+                            with local authority. The operator confirms via HMI or the site service applies
+                            the approved change. Always with a reference to the decision snapshot.
+                        </div>
+                        <div class="scenario-events">
+                            <div class="scenario-event decision">
+                                <span class="event-type-tag tag-decision">Change</span>
+                                change.executed: feed_rate 120 → 130, by site_service
+                            </div>
+                            <div class="scenario-event evidence">
+                                <span class="event-type-tag tag-evidence">Evidence</span>
+                                gate_approval_ref: GATE-2026-00412, snapshot_ref: SNAP-2026-04812
+                            </div>
+                            <div class="scenario-event evidence">
+                                <span class="event-type-tag tag-evidence">Evidence</span>
+                                execution_authority: local (not cloud-direct)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6: Verification -->
+                <div class="scenario-step scope-filter" data-scope="line site cloud all">
+                    <div class="scenario-step-number step-verify">6</div>
+                    <div class="scenario-step-content">
+                        <div class="scenario-step-header">
+                            <span class="scenario-step-layer layer-all">All Layers</span>
+                            <div class="scenario-step-title">Verification & Closed Loop</div>
+                        </div>
+                        <div class="scenario-step-desc">
+                            After execution, verify: did the change have the expected effect?
+                            OEE recovery is measured. The gate is formally closed with verification evidence.
+                            If the effect was unexpected, a deviation is opened – not silently ignored.
+                        </div>
+                        <div class="scenario-events">
+                            <div class="scenario-event evidence">
+                                <span class="event-type-tag tag-evidence">Evidence</span>
+                                oee.computed: 79.4% (expected: 81%, within tolerance)
+                            </div>
+                            <div class="scenario-event evidence">
+                                <span class="event-type-tag tag-evidence">Evidence</span>
+                                gate.closed: outcome=effective, anomaly=resolved
+                            </div>
+                            <div class="scenario-event evidence">
+                                <span class="event-type-tag tag-evidence">Evidence</span>
+                                verification_evidence: [post_change_events, oee_trend, no_deviation]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- WHAT TO AUDIT - SCENARIO VERSION -->
+            <div class="key-insight-box">
+                <h3>🔍 In This Scenario: What Was Audited?</h3>
+                <p>Three distinct artifact types were produced – each with different retention and Part 11 requirements:</p>
+            </div>
+
+            <table class="audit-table">
+                <thead>
+                <tr>
+                    <th>Artifact</th>
+                    <th>Type</th>
+                    <th>Part 11?</th>
+                    <th>Example from Scenario</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Telemetry Events</td>
+                    <td>Event</td>
+                    <td>No</td>
+                    <td><code>cycle_count</code>, <code>stop_reason</code>, <code>runtime_s</code></td>
+                </tr>
+                <tr>
+                    <td>OEE Computation</td>
+                    <td>Event</td>
+                    <td>Only if it triggers a gate</td>
+                    <td><code>oee.computed: 63.2%</code> with algorithm version</td>
+                </tr>
+                <tr>
+                    <td>Gate Request</td>
+                    <td>Evidence</td>
+                    <td>Yes</td>
+                    <td><code>gate.requested</code> with trigger, severity, proposal_id</td>
+                </tr>
+                <tr>
+                    <td>Decision Snapshot</td>
+                    <td>Snapshot</td>
+                    <td>Yes – core artifact</td>
+                    <td>Frozen dataset with fingerprint, all source versions, AI recommendation</td>
+                </tr>
+                <tr>
+                    <td>Parameter Change</td>
+                    <td>Change</td>
+                    <td>Yes – e-signature</td>
+                    <td><code>feed_rate: 120 → 130</code> with approval chain</td>
+                </tr>
+                <tr>
+                    <td>Verification</td>
+                    <td>Evidence</td>
+                    <td>Yes</td>
+                    <td><code>gate.closed</code> with outcome, OEE recovery, deviation status</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="anti-pattern-box">
+                <h3>⚠️ Anti-Pattern: Cloud Closes the Loop Directly</h3>
+                <p>
+                    "Cloud detects OEE drop → Cloud sets parameter → Done."
+                    <strong>This is not GMP-compatible.</strong> The cloud can send <code>change.proposed</code>,
+                    but never <code>change.executed</code>. Execution requires local authority, a gate approval,
+                    and a decision snapshot. Without this, there is no audit trail for the parameter change.
+                </p>
+            </div>
+
+            <div class="regulatory-box">
+                <h4>📋 Where Part 11 Applies in This Flow</h4>
+                <ul>
+                    <li><strong>Step 0 (Baselines):</strong> Version control, change history – but not e-signature per se</li>
+                    <li><strong>Step 1 (Telemetry):</strong> Not Part 11. Data basis only.</li>
+                    <li><strong>Step 2–3 (Gate + Snapshot):</strong> Evidence generation – immutable, traceable</li>
+                    <li><strong>Step 4 (Approval):</strong> Full Part 11 – e-signature, meaning, identity, linked to snapshot</li>
+                    <li><strong>Step 5 (Execution):</strong> Part 11 – state change with before/after and authority</li>
+                    <li><strong>Step 6 (Verification):</strong> Evidence – closed loop documentation</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let currentLens = null;
+    let currentScope = 'all';
+
+    const scopeData = {
+        line: {
+            authority: [
+                '<strong>Operator</strong> has final authority',
+                '<strong>Rule-based</strong> gates for speed',
+                'Irreversible decisions (no undo)',
+                'Handshakes = mini-gates (state agreement)'
+            ],
+            evidence: [
+                '<strong>event_time</strong> (source timestamp!)',
+                '<strong>sequence_no</strong> (causal order)',
+                '<strong>model_version</strong> (if AI)',
+                '<strong>operator_id</strong> (if manual override)'
+            ],
+            controls: [
+                'Monotonic timestamps (no NTP jumps)',
+                'Context at event time (not later)',
+                'State changes = audit events',
+                'No cloud-direct execution'
+            ]
+        },
+        site: {
+            authority: [
+                '<strong>QA/Supervisor</strong> approval required',
+                'Gate process generates Decision Snapshots',
+                'Deviation triggers workflow',
+                'Part 11 e-signatures at gate decisions'
+            ],
+            evidence: [
+                '<strong>batch_id</strong> + recipe_version',
+                '<strong>correlation_id</strong> (all events linked)',
+                '<strong>decision_snapshot</strong> (frozen evidence)',
+                '<strong>e_signature</strong> (for critical decisions)'
+            ],
+            controls: [
+                'All events correlated to batch',
+                'Recipe immutable during batch',
+                'Snapshot boundary defined per gate',
+                'Change control for recipes & models'
+            ]
+        },
+        cloud: {
+            authority: [
+                '<strong>Recommendation only</strong> (no execution)',
+                'Site/Line gates required for changes',
+                'Proposals only: change.requested',
+                'Never: change.executed'
+            ],
+            evidence: [
+                '<strong>oee_definition_id</strong> + version',
+                '<strong>dataset_fingerprint</strong>',
+                '<strong>model_registry_ref</strong>',
+                '<strong>analysis_run_id</strong> (reproducible)'
+            ],
+            controls: [
+                'OEE definition versioned (not just code)',
+                'Model approval workflow',
+                'Drift monitoring active',
+                'Change proposals only (never execute)'
+            ]
+        }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initializeControls();
+    });
+
+    function initializeControls() {
+        document.querySelectorAll('[data-lens]').forEach(pill => {
+            pill.addEventListener('click', () => {
+                const lens = pill.dataset.lens;
+                document.querySelectorAll('[data-lens]').forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                currentLens = lens;
+                updateView();
+            });
+        });
+
+        document.querySelectorAll('[data-scope]').forEach(pill => {
+            pill.addEventListener('click', () => {
+                const scope = pill.dataset.scope;
+                document.querySelectorAll('[data-scope]').forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                currentScope = scope;
+                updateView();
+            });
+        });
+    }
+
+    function updateView() {
+        document.querySelectorAll('.content-view').forEach(view => {
+            view.classList.remove('active');
+        });
+
+        if (currentLens) {
+            const viewId = `view-${currentLens}`;
+            const view = document.getElementById(viewId);
+            if (view) {
+                setTimeout(() => { view.classList.add('active'); }, 50);
+            }
+            updateIndicator();
+            applyScope();
+        } else {
+            document.getElementById('view-default').classList.add('active');
+            document.getElementById('viewIndicator').classList.remove('visible');
+            hideScopeSummary();
+        }
+    }
+
+    function updateIndicator() {
+        const indicator = document.getElementById('viewIndicator');
+        const lensText = document.getElementById('indicatorLens');
+        const scopeText = document.getElementById('indicatorScope');
+
+        const lensLabels = {
+            'proximity': '📍 Process Proximity',
+            'time': '⏱️ Time & Causality',
+            'alcoa': '✓ ALCOA++ Principles',
+            'gates': '🎯 Gates & Decisions',
+            'scenario': '⚡ OEE Scenario'
+        };
+
+        const scopeLabels = {
+            'all': 'All System Levels',
+            'line': 'Line (OT) Focus',
+            'site': 'Site (MES) Focus',
+            'cloud': 'Cloud Focus'
+        };
+
+        lensText.textContent = lensLabels[currentLens] || '';
+        scopeText.textContent = scopeLabels[currentScope] || '';
+        indicator.classList.add('visible');
+    }
+
+    function applyScope() {
+        const items = Array.from(document.querySelectorAll('.scope-filter'));
+        let firstHit = null;
+
+        items.forEach(el => {
+            const scopes = (el.dataset.scope || '').split(' ');
+            const hit = (currentScope === 'all') || scopes.includes(currentScope);
+            el.classList.remove('scope-dim', 'scope-hit');
+
+            if (currentScope !== 'all') {
+                if (hit) {
+                    el.classList.add('scope-hit');
+                    if (!firstHit && el.offsetHeight > 0) firstHit = el;
+                } else {
+                    el.classList.add('scope-dim');
+                }
+            }
+        });
+
+        if (currentScope !== 'all') {
+            updateScopeSummary();
+            if (firstHit) {
+                setTimeout(() => {
+                    const headerOffset = 200;
+                    const elementPosition = firstHit.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }, 300);
+            }
+        } else {
+            hideScopeSummary();
+        }
+    }
+
+    function updateScopeSummary() {
+        const summary = document.getElementById('scopeSummary');
+        const data = scopeData[currentScope];
+        if (!data) { hideScopeSummary(); return; }
+
+        document.getElementById('summaryAuthority').innerHTML =
+            data.authority.map(item => `<li>${item}</li>`).join('');
+        document.getElementById('summaryEvidence').innerHTML =
+            data.evidence.map(item => `<li>${item}</li>`).join('');
+        document.getElementById('summaryControls').innerHTML =
+            data.controls.map(item => `<li>${item}</li>`).join('');
+
+        summary.classList.add('active');
+    }
+
+    function hideScopeSummary() {
+        document.getElementById('scopeSummary').classList.remove('active');
+    }
+
+    function resetView() {
+        currentLens = null;
+        currentScope = 'all';
+        document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+        document.querySelector('[data-scope="all"]').classList.add('active');
+        updateView();
+    }
+</script>
