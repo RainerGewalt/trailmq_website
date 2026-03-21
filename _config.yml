@@ -1,15 +1,13 @@
 title: "TrailMQ – Audit-First MQTT for Regulated Industries"
 description: "Audit-first MQTT platform for regulated industries. TrailMQ adds traceability, security policies and audit-ready evidence to MQTT without changing machines."
-url: "https://trailmq.com"
+url: "https://www.trailmq.com"
 baseurl: ""
+enforce_ssl: www.trailmq.com
 
 # -----------------------------------------------------------------------------
 # Collections
 # -----------------------------------------------------------------------------
 collections:
-  pages:
-    output: true
-
   wiki_articles:
     output: true
     permalink: /wiki/:path/
@@ -18,13 +16,6 @@ collections:
 # Defaults
 # -----------------------------------------------------------------------------
 defaults:
-  # Default for normal pages
-  - scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: default
-
   # Default for wiki articles
   - scope:
       path: ""
@@ -33,11 +24,23 @@ defaults:
       layout: "wiki-article"
       toc: true
 
+  # Default for normal pages in root
+  - scope:
+      path: ""
+    values:
+      layout: default
+
 # -----------------------------------------------------------------------------
 # Plugins
 # -----------------------------------------------------------------------------
 plugins:
   - jekyll-sitemap
+
+# -----------------------------------------------------------------------------
+# SEO & Canonical URLs
+# -----------------------------------------------------------------------------
+# Force trailing slashes for consistency
+permalink: pretty
 
 # -----------------------------------------------------------------------------
 # Exclude from Jekyll build and sitemap
@@ -51,4 +54,6 @@ exclude:
   - node_modules
   - .git
   - .gitignore
+  - .idea
   - "*.sh"
+  - .htaccess
