@@ -29,6 +29,9 @@ Quality assurance, validation teams and auditors need answers to questions like:
 
 TrailMQ exists to make these questions **technically answerable**.
 
+If you are evaluating MQTT in a regulated environment, start with:
+[Can an MQTT broker be GxP compliant?](/wiki/gxp-compliant-mqtt-broker/)
+
 ---
 
 ## Audit-first, not audit-later
