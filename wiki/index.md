@@ -25,6 +25,12 @@ permalink: /wiki/
     <li>Why does compliance break long before regulation is involved?</li>
   </ul>
   <p>The answers are architectural. Each article stops before implementation — because architecture must be understood before solutions make sense.</p>
+  <p>
+    If you are evaluating MQTT directly in a regulated environment, start with
+    <a href="{{ '/wiki/gxp-compliant-mqtt-broker/' | relative_url }}">
+      Can an MQTT broker be GxP compliant?
+    </a>
+  </p>
 </section>
 
 <!-- Reading Paths -->
@@ -51,6 +57,12 @@ permalink: /wiki/
         For readers who sense that compliance and GMP are often discussed incorrectly, but cannot quite say why.
       </p>
       <ol class="reading-path__steps">
+        <li>
+          <a href="{{ '/wiki/gxp-compliant-mqtt-broker/' | relative_url }}">
+            <span class="step-title">Can an MQTT broker be GxP compliant?</span>
+            <span class="step-arrow">→</span>
+          </a>
+        </li>
         <li>
           <a href="{{ '/wiki/gmp-shaped-by-time/' | relative_url }}">
             <span class="step-title">GMP is shaped by time</span>

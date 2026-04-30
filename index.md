@@ -99,6 +99,13 @@ author: TrailMQ Team
           You keep MQTT. TrailMQ adds a control and evidence layer on top.
           No change to your machines, no change to your broker, no proprietary lock-in.
         </p>
+
+        <p class="intro-learn-more">
+          New to regulated MQTT?
+          <a href="{{ '/wiki/gxp-compliant-mqtt-broker/' | relative_url }}">
+            Read why MQTT itself is not GxP compliant or non-compliant.
+          </a>
+        </p>
       </div>
 
     </div>
@@ -261,8 +268,59 @@ author: TrailMQ Team
         <p class="comparison-closer">
           <strong>TrailMQ does not compete with your broker.</strong>
           It makes broker decisions visible, reviewable and explainable.
+          <a href="{{ '/wiki/gxp-compliant-mqtt-broker/' | relative_url }}">
+            Learn what this means for GxP and MQTT.
+          </a>
         </p>
       </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════ FAQ / GXP MQTT ══════════════ -->
+  <section id="faq" class="section section--light">
+    <div class="container container--narrow">
+      <h2 class="section__title">Can MQTT be used in GxP environments?</h2>
+
+      <p class="section__lead">
+        MQTT can be used in regulated manufacturing, but a broker alone is not enough.
+        The relevant question is whether message decisions can be controlled, explained and reviewed later.
+      </p>
+
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>Can an MQTT broker be GxP compliant?</h3>
+          <p>
+            MQTT itself is not GxP compliant or non-compliant. It is a messaging protocol.
+            Compliance depends on the surrounding controls: identity, access policies, audit trails,
+            data integrity, change control and validation evidence.
+          </p>
+        </article>
+
+        <article class="faq-item">
+          <h3>What about data integrity and audit trails?</h3>
+          <p>
+            Standard brokers move messages. They usually do not explain who changed what,
+            which policy was active, why a message was allowed or blocked, and whether the evidence
+            is complete enough for later review.
+          </p>
+        </article>
+
+        <article class="faq-item">
+          <h3>Does TrailMQ make a system automatically compliant?</h3>
+          <p>
+            No. TrailMQ supports compliance by generating technical evidence.
+            Validation, risk assessment and procedural controls still remain the responsibility
+            of the regulated organization.
+          </p>
+        </article>
+      </div>
+
+      <p class="section__footnote">
+        <a href="{{ '/wiki/gxp-compliant-mqtt-broker/' | relative_url }}">
+          Read the full explanation: Can an MQTT broker be GxP compliant? →
+        </a>
+      </p>
     </div>
   </section>
 
@@ -329,7 +387,6 @@ author: TrailMQ Team
   </section>
 
 
-
   <!-- ══════════════ QUICKSTART ══════════════ -->
   <section id="quickstart" class="section section--cta">
     <div class="container">
@@ -393,7 +450,7 @@ open http://localhost/trailmq/</code>
           <a href="{{ '/wiki/' | relative_url }}"
              class="btn btn--ghost"
              style="margin-top: 0.5rem;">
-            Read the full setup guide →
+            Read the concepts →
           </a>
         </div>
       </div>
@@ -427,5 +484,38 @@ open http://localhost/trailmq/</code>
       </p>
     </div>
   </section>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can an MQTT broker be GxP compliant?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MQTT itself is not GxP compliant or non-compliant. It is a messaging protocol. Compliance depends on the surrounding controls such as identity, access policies, audit trails, data integrity, change control and validation evidence."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can MQTT be used in GMP-regulated manufacturing?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, MQTT can be used in GMP-regulated manufacturing, but the broker alone is not enough. The system must be able to control, explain and review message decisions later."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does TrailMQ make a system automatically compliant?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. TrailMQ supports compliance by generating technical evidence. Validation, risk assessment and procedural controls remain the responsibility of the regulated organization."
+        }
+      }
+    ]
+  }
+  </script>
 
 </main>
