@@ -384,6 +384,100 @@ author: TrailMQ Team
   </section>
 
 
+  <!-- ══════════════ API AND REVIEW SURFACES ══════════════ -->
+  <section id="api" class="section section--subtle">
+    <div class="container">
+      <h2 class="section__title">Built to be controlled and reviewed</h2>
+
+      <p class="section__lead">
+        TrailMQ is not only a Web UI. The same product functions are exposed
+        through a REST API so teams can integrate TrailMQ into scripts,
+        local checks, CI pipelines, monitoring tools and external systems.
+      </p>
+
+      <div class="audience-grid">
+        <div class="audience-card">
+          <div class="audience-card__icon">🧭</div>
+          <h3>Topic and policy control</h3>
+          <p>
+            Inspect controlled MQTT topics, review effective settings and resolve
+            which policy applies to a concrete message path.
+          </p>
+        </div>
+
+        <div class="audience-card">
+          <div class="audience-card__icon">📦</div>
+          <h3>Queue and dead-letter review</h3>
+          <p>
+            See what is queued, delayed or dead-lettered instead of losing
+            visibility when delivery cannot happen immediately.
+          </p>
+        </div>
+
+        <div class="audience-card">
+          <div class="audience-card__icon">🔍</div>
+          <h3>Audit and trust views</h3>
+          <p>
+            Review audit records, validate the audit chain and export
+            evidence-oriented records for later inspection.
+          </p>
+        </div>
+      </div>
+
+      <p class="section__footnote">
+        The Web UI uses the same API surface. What you can review in the UI can
+        also become part of automation, monitoring or external evaluation flows.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════ VERIFICATION PHILOSOPHY ══════════════ -->
+  <section id="verification" class="section section--light">
+    <div class="container container--narrow">
+      <h2 class="section__title">Verified for more than message transport</h2>
+
+      <p class="section__lead">
+        TrailMQ is developed with a scenario-based verification approach.
+        The goal is not only to check whether MQTT messages can be transported.
+        The goal is to check whether MQTT behavior remains controllable,
+        inspectable and reviewable under realistic conditions.
+      </p>
+
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>Runtime behavior</h3>
+          <p>
+            TrailMQ is exercised through MQTT over TLS, REST authentication,
+            topic control, policy resolution, queue handling and dead-letter paths.
+          </p>
+        </article>
+
+        <article class="faq-item">
+          <h3>Evidence behavior</h3>
+          <p>
+            Audit recording, audit-chain validation, readiness checks and
+            evidence-oriented exports are part of the internal verification mindset.
+          </p>
+        </article>
+
+        <article class="faq-item">
+          <h3>Failure behavior</h3>
+          <p>
+            Negative inputs, restricted actions, queue pressure and security-relevant
+            paths are treated as product scenarios, not only as technical edge cases.
+          </p>
+        </article>
+      </div>
+
+      <p class="section__footnote">
+        TrailMQ should not only move MQTT messages. It should help teams explain
+        what happened around those messages.
+      </p>
+    </div>
+  </section>
+
+
   <!-- ══════════════ QUICKSTART ══════════════ -->
   <section id="quickstart" class="section section--cta">
     <div class="container">
@@ -400,6 +494,11 @@ author: TrailMQ Team
             TrailMQ now ships with a guided launcher. It prepares runtime folders,
             creates local demo certificates when needed, generates evaluation credentials
             and starts the selected recipe.
+          </p>
+
+          <p>
+            After launch, you can use the Web UI or the REST API to inspect topics,
+            resolve policies, review queues and validate audit evidence.
           </p>
 
           <p>
@@ -537,6 +636,14 @@ MQTT WS   ws://localhost/mqtt</code>
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "No. TrailMQ supports compliance by generating technical evidence. Validation, risk assessment and procedural controls remain the responsibility of the regulated organization."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does TrailMQ provide a REST API?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. TrailMQ exposes product functions through a REST API so teams can inspect topics, resolve policies, review queues, validate audit evidence and integrate TrailMQ with scripts, checks, monitoring tools or external systems."
         }
       }
     ]
