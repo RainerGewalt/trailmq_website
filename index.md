@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "TrailMQ – Make MQTT Reviewable"
-description: "TrailMQ helps regulated teams control topic access, track changes and prove what happened on their MQTT systems. Not just a broker. A control and evidence layer."
-keywords: MQTT broker, audit trail, GMP compliance, GxP, pharma messaging, IIoT, industrial IoT, message queue, regulated industries, validation, traceability, docker, freemium
+title: "TrailMQ – Make Machine Messages Reviewable"
+description: "TrailMQ turns MQTT traffic into reviewable evidence by adding policy control, domain context, historical baselines and audit-linked decision traces."
+keywords: MQTT broker, MQTT audit trail, MQTT evidence layer, industrial MQTT, IIoT, domain context, historical baselines, KPI deviation, GxP, GMP, audit evidence, traceability, trusted industrial AI, AI-ready industrial data, regulated industries, validation, docker, freemium
 author: TrailMQ Team
 ---
 
-<main id="top" class="trailmq-page">
+<div id="top" class="trailmq-page">
 
   <!-- ══════════════ HERO ══════════════ -->
   <section class="hero">
@@ -19,36 +19,36 @@ author: TrailMQ Team
              height="80" />
       </a>
 
-      <span class="hero__badge">Built for regulated systems</span>
+      <span class="hero__badge">Built for regulated and quality-critical systems</span>
 
       <h1 class="hero__headline">
-        Make MQTT <em>reviewable</em>
+        Make machine messages <em>understandable, comparable and reviewable</em>
       </h1>
 
       <p class="hero__subline">
-        Standard brokers move messages. TrailMQ helps you prove what happened.
+        Standard brokers move MQTT messages. TrailMQ adds context, comparison and audit evidence.
       </p>
 
       <p class="hero__desc">
-        TrailMQ helps regulated teams control access, track changes and keep
-        reviewable audit evidence on top of MQTT. Start with the guided launcher,
-        choose a Starter Kit and run the stack locally in minutes.
+        TrailMQ helps industrial teams control MQTT access, explain broker decisions,
+        enrich machine messages with domain context and turn live values into
+        reviewable evidence. Start with the guided launcher, choose a Starter Kit
+        and run the stack locally in minutes.
       </p>
 
       <ul class="hero__proof" role="list">
-        <li>Know who changed what</li>
-        <li>Control access by policy</li>
-        <li>Keep reviewable audit evidence</li>
+        <li>Add machine, batch and metric context</li>
+        <li>Compare live values with historical baselines</li>
+        <li>Keep every decision linked to audit evidence</li>
       </ul>
 
       <div class="hero__cta">
         <a href="https://github.com/RainerGewalt/TrailMQ" class="btn btn--primary" target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
           Launch from GitHub
         </a>
 
-        <a href="#quickstart" class="btn btn--ghost">
-          See quickstart
+        <a href="#evidence-flow" class="btn btn--ghost">
+          See examples
         </a>
       </div>
     </div>
@@ -56,15 +56,15 @@ author: TrailMQ Team
     <!-- Visual Flow -->
     <div class="hero__flow" aria-hidden="true">
       <div class="flow-line">
-        <span class="flow-node">Your Machines</span>
+        <span class="flow-node">Machine Message</span>
         <span class="flow-arrow">→</span>
         <span class="flow-node">MQTT</span>
         <span class="flow-arrow">→</span>
-        <span class="flow-node flow-node--highlight">TrailMQ Layer</span>
+        <span class="flow-node flow-node--highlight">Context + Decision Layer</span>
         <span class="flow-arrow">→</span>
-        <span class="flow-node">Broker / Apps</span>
+        <span class="flow-node">Historical Baseline</span>
         <span class="flow-arrow">→</span>
-        <span class="flow-node">Reviewable Evidence</span>
+        <span class="flow-node">Audit Evidence</span>
       </div>
     </div>
 
@@ -82,17 +82,18 @@ author: TrailMQ Team
         <div class="intro-text__highlight">
           <p class="highlight-main">
             Later, teams often need to explain who changed what,
-            which policy was active and why something was allowed,
-            blocked or reconfigured.
+            which policy was active, what a machine message meant and why
+            something was allowed, blocked, deferred or calculated.
           </p>
           <p class="highlight-definition">
             Standard MQTT brokers tell you messages moved. They do not tell you
-            who changed what, which policy was active or why something was allowed
-            or blocked. TrailMQ keeps that evidence structured and reviewable
+            who changed what, which policy was active, what machine or batch context
+            was attached, which historical baseline was used or why a value became
+            a deviation. TrailMQ keeps that evidence structured and reviewable
             from the moment it happens.
           </p>
           <p class="highlight-scope">
-            Designed for GMP, GxP and IIoT environments where traceability is not optional.
+            Designed for GMP, GxP, IIoT and quality-critical environments where traceability is not optional.
           </p>
         </div>
 
@@ -113,6 +114,57 @@ author: TrailMQ Team
   </section>
 
 
+  <!-- ══════════════ CONTEXTUAL EVIDENCE FLOW ══════════════ -->
+  <section id="evidence-flow" class="section section--subtle">
+    <div class="container">
+      <h2 class="section__title">From MQTT message to reviewable evidence</h2>
+
+      <p class="section__lead">
+        TrailMQ is designed to turn live MQTT traffic into contextual evidence:
+        a machine message can be enriched with domain context, compared against
+        historical baselines and linked to an audit trail.
+      </p>
+
+      <div class="audience-grid">
+        <div class="audience-card">
+          <div class="audience-card__icon">🏷️</div>
+          <h3>1. Add domain context</h3>
+          <p>
+            Extract line, machine, batch and metric information from MQTT topics
+            and payload headers.
+          </p>
+          <p><code>production/line1/filler/batch/4711/temperature</code></p>
+        </div>
+
+        <div class="audience-card">
+          <div class="audience-card__icon">📊</div>
+          <h3>2. Compare with history</h3>
+          <p>
+            Feed historical baselines through REST and let TrailMQ compare live
+            values against expected or historical reference values.
+          </p>
+          <p><code>28.4 °C vs 22.5 °C baseline</code></p>
+        </div>
+
+        <div class="audience-card">
+          <div class="audience-card__icon">🔍</div>
+          <h3>3. Explain the decision</h3>
+          <p>
+            Link policy decisions, context extraction, baseline resolution and KPI
+            deviations to reviewable audit evidence.
+          </p>
+          <p><code>accepted → context → baseline → deviation → audit</code></p>
+        </div>
+      </div>
+
+      <p class="section__footnote">
+        This planned plugin flow makes TrailMQ useful beyond transport: machine
+        communication becomes understandable, comparable and reviewable.
+      </p>
+    </div>
+  </section>
+
+
   <!-- ══════════════ WHO IS IT FOR ══════════════ -->
   <section id="audience" class="section section--subtle">
     <div class="container">
@@ -128,8 +180,9 @@ author: TrailMQ Team
         <div class="audience-card">
           <div class="audience-card__icon">🏭</div>
           <h3>OT and Production Teams</h3>
-          <p>You need to know who changed a setpoint, when it happened and whether
-          the right policy was active. TrailMQ keeps that record without touching
+          <p>You need to know who changed a setpoint, when it happened, whether
+          the right policy was active and what the message meant in machine,
+          batch or metric context. TrailMQ keeps that record without touching
           your PLCs or sensors.</p>
         </div>
 
@@ -137,8 +190,8 @@ author: TrailMQ Team
           <div class="audience-card__icon">🧪</div>
           <h3>Pharma and Life Sciences</h3>
           <p>You operate under GMP. Auditors ask questions months later.
-          TrailMQ gives you structured, reviewable evidence for every
-          message decision, ready when you need it.</p>
+          TrailMQ gives you structured, reviewable evidence for message decisions,
+          deviations and technical controls, ready when you need it.</p>
         </div>
 
         <div class="audience-card">
@@ -146,7 +199,7 @@ author: TrailMQ Team
           <h3>IIoT Platform Engineers</h3>
           <p>You build the infrastructure others rely on.
           TrailMQ runs as a Docker-based Starter Kit, integrates without code changes
-          and produces audit evidence that downstream systems can consume.</p>
+          and produces evidence that downstream systems can consume.</p>
         </div>
       </div>
     </div>
@@ -156,8 +209,11 @@ author: TrailMQ Team
   <!-- ══════════════ CORE CAPABILITIES ══════════════ -->
   <section id="capabilities" class="section section--dark">
     <div class="container">
-      <h2 class="section__title section__title--light">Not just transport. Controlled messaging.</h2>
-      <p class="section__lead">TrailMQ does not replace your broker. It sits in front of it and gives every message decision a clear, reviewable record.</p>
+      <h2 class="section__title section__title--light">Not just transport. Contextual messaging.</h2>
+      <p class="section__lead">
+        TrailMQ does not replace your broker. It sits in front of it and adds
+        control, domain context, historical comparison and reviewable evidence.
+      </p>
 
       <div class="capabilities-grid">
 
@@ -210,7 +266,26 @@ author: TrailMQ Team
           </div>
           <h3>Structured, readable evidence</h3>
           <p>Not raw logs. Not binary blobs. Structured records that a validation engineer,
-          auditor or QA team can review without a developer in the room.</p>
+          auditor, QA team or OT owner can review without a developer in the room.</p>
+        </article>
+
+        <article class="capability-card">
+          <div class="capability-card__icon">🏷️</div>
+          <h3>Domain context enrichment</h3>
+          <p>
+            Planned plugins can turn technical MQTT topics into readable machine,
+            batch and metric context. This makes audit records understandable for
+            QA, OT and engineering teams.
+          </p>
+        </article>
+
+        <article class="capability-card">
+          <div class="capability-card__icon">📈</div>
+          <h3>Live vs historical comparison</h3>
+          <p>
+            Planned plugins can compare live MQTT values against REST-fed historical
+            baselines and record KPI deviations as audit-linked evidence.
+          </p>
         </article>
 
       </div>
@@ -251,6 +326,21 @@ author: TrailMQ Team
               <td class="highlight-col"><strong>Decision recorded with reason</strong></td>
             </tr>
             <tr>
+              <td>What does this MQTT value mean in process context?</td>
+              <td>Topic string only</td>
+              <td class="highlight-col"><strong>Machine, batch and metric context</strong></td>
+            </tr>
+            <tr>
+              <td>Was this live value normal or deviating?</td>
+              <td>Not available</td>
+              <td class="highlight-col"><strong>Compared with historical baseline</strong></td>
+            </tr>
+            <tr>
+              <td>What happened when required context was missing?</td>
+              <td>Usually invisible</td>
+              <td class="highlight-col"><strong>Deferred, queued or audited explicitly</strong></td>
+            </tr>
+            <tr>
               <td>Can I prove this data was not modified in transit?</td>
               <td>No</td>
               <td class="highlight-col"><strong>Tamper-evident log</strong></td>
@@ -264,7 +354,8 @@ author: TrailMQ Team
         </table>
         <p class="comparison-closer">
           <strong>TrailMQ does not compete with your broker.</strong>
-          It makes broker decisions visible, reviewable and explainable.
+          It makes broker decisions, machine context and deviation evidence visible,
+          reviewable and explainable.
           <a href="{{ '/wiki/gxp-compliant-mqtt-broker/' | relative_url }}">
             Learn what this means for GxP and MQTT.
           </a>
@@ -346,7 +437,10 @@ author: TrailMQ Team
   <section id="tour" class="section section--light">
     <div class="container">
       <h2 class="section__title">A layer, not a replacement</h2>
-      <p class="section__lead">TrailMQ works as a control proxy between your MQTT clients and your broker. Nothing about your existing setup needs to change.</p>
+      <p class="section__lead">
+        TrailMQ works as a control proxy between your MQTT clients and your broker.
+        Nothing about your existing setup needs to change.
+      </p>
 
       <div class="tour-grid">
 
@@ -359,7 +453,11 @@ author: TrailMQ Team
             </div>
             <h3>Proxy mode: transparent to your clients</h3>
           </div>
-          <p>Clients connect to TrailMQ instead of directly to the broker. TrailMQ applies policies, records decisions and forwards messages. Your clients see no difference. Your broker sees no difference. Your audit trail sees everything.</p>
+          <p>
+            Clients connect to TrailMQ instead of directly to the broker. TrailMQ applies policies,
+            records decisions and forwards messages. Your clients see no difference. Your broker
+            sees no difference. Your audit trail sees everything.
+          </p>
           <span class="tour-card__usecase">Same MQTT protocol. Same client libraries. No code changes.</span>
         </article>
 
@@ -375,7 +473,10 @@ author: TrailMQ Team
             </div>
             <h3>Audit log</h3>
           </div>
-          <p>An immutable, searchable event timeline showing who sent what, when and why. Answer compliance questions months later without rebuilding context from logs.</p>
+          <p>
+            An immutable, searchable event timeline showing who sent what, when and why.
+            Answer compliance questions months later without rebuilding context from logs.
+          </p>
           <span class="tour-card__usecase">Useful when: an auditor asks what happened six months ago.</span>
         </article>
 
@@ -387,7 +488,7 @@ author: TrailMQ Team
   <!-- ══════════════ API AND REVIEW SURFACES ══════════════ -->
   <section id="api" class="section section--subtle">
     <div class="container">
-      <h2 class="section__title">Built to be controlled and reviewed</h2>
+      <h2 class="section__title">Built to be controlled, fed and reviewed</h2>
 
       <p class="section__lead">
         TrailMQ is not only a Web UI. The same product functions are exposed
@@ -410,7 +511,7 @@ author: TrailMQ Team
           <h3>Queue and dead-letter review</h3>
           <p>
             See what is queued, delayed or dead-lettered instead of losing
-            visibility when delivery cannot happen immediately.
+            visibility when delivery or context-dependent processing cannot happen immediately.
           </p>
         </div>
 
@@ -422,11 +523,202 @@ author: TrailMQ Team
             evidence-oriented records for later inspection.
           </p>
         </div>
+
+        <div class="audience-card">
+          <div class="audience-card__icon">📈</div>
+          <h3>Historical context feed</h3>
+          <p>
+            Planned REST endpoints allow external systems to provide historical
+            baselines that can be used by plugins for live-vs-historical deviation checks.
+          </p>
+        </div>
       </div>
 
       <p class="section__footnote">
-        The Web UI uses the same API surface. What you can review in the UI can
-        also become part of automation, monitoring or external evaluation flows.
+        REST is not only for administration. It is also the planned integration surface
+        for historical baselines, plugin configuration and reviewable decision traces.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════ PLANNED PLUGIN LAYER ══════════════ -->
+  <section id="plugins" class="section section--light">
+    <div class="container">
+      <h2 class="section__title">Planned plugin layer</h2>
+
+      <p class="section__lead">
+        TrailMQ's planned plugin layer starts with a focused goal:
+        making MQTT messages more understandable, comparable and reviewable.
+      </p>
+
+      <div class="audience-grid">
+        <div class="audience-card">
+          <div class="audience-card__icon">🧾</div>
+          <h3>Decision Trace</h3>
+          <p>
+            Explains why accept, deny or rate-limit decisions happened and links
+            them to policies, clients, topics and audit evidence.
+          </p>
+        </div>
+
+        <div class="audience-card">
+          <div class="audience-card__icon">🏷️</div>
+          <h3>Domain Context Lite</h3>
+          <p>
+            Extracts machine, batch and metric context from topic patterns and
+            payload headers so MQTT events become domain-readable.
+          </p>
+        </div>
+
+        <div class="audience-card">
+          <div class="audience-card__icon">📥</div>
+          <h3>Historical Context Feed</h3>
+          <p>
+            Accepts historical comparison values through REST and makes them
+            available to other plugin capabilities.
+          </p>
+        </div>
+
+        <div class="audience-card">
+          <div class="audience-card__icon">📊</div>
+          <h3>KPI Lite</h3>
+          <p>
+            Compares live MQTT values with historical baselines and records
+            deviation metrics as audit-linked evidence.
+          </p>
+        </div>
+      </div>
+
+      <p class="section__footnote">
+        The first plugin layer is planned as embedded Standard Edition functionality:
+        simple to evaluate, deterministic by default and designed around explicit
+        context, queues and audit records. This creates an AI-ready evidence layer
+        without turning TrailMQ into an AI platform.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════ PLUGIN EXAMPLE ══════════════ -->
+  <section id="example-live-kpi" class="section section--subtle">
+    <div class="container container--narrow">
+      <h2 class="section__title">Example: Live vs historical KPI</h2>
+
+      <p class="section__lead">
+        A machine publishes a live temperature value through MQTT. TrailMQ extracts
+        the domain context, resolves a historical baseline and records the deviation
+        as reviewable evidence.
+      </p>
+
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>1. Feed a historical baseline through REST</h3>
+          <p>
+            An external system provides a baseline for <code>line1 / filler / temperature</code>.
+          </p>
+          <pre><code>{
+"context_key": {
+"line": "line1",
+"machine": "filler",
+"metric": "temperature"
+},
+"baseline": {
+"value": 22.5,
+"unit": "C",
+"source": "historical_average_30d"
+},
+"limits": {
+"warning_percent": 10,
+"critical_percent": 20
+}
+}</code></pre>
+</article>
+
+        <article class="faq-item">
+          <h3>2. Receive a live MQTT value</h3>
+          <p>
+            A machine publishes <code>28.4 °C</code> to
+            <code>production/line1/filler/batch/4711/temperature</code>.
+          </p>
+        </article>
+
+        <article class="faq-item">
+          <h3>3. Produce audit-linked deviation evidence</h3>
+          <p>
+            TrailMQ can link the live value, domain context, historical baseline,
+            calculated deviation and decision trace into one reviewable path.
+          </p>
+          <pre><code>{
+"metric": "temperature",
+"live_value": 28.4,
+"historical_value": 22.5,
+"deviation_percent": 26.22,
+"severity": "critical",
+"context": {
+"line": "line1",
+"machine": "filler",
+"batch_id": "4711",
+"metric": "temperature"
+}
+}</code></pre>
+</article>
+</div>
+
+      <p class="section__footnote">
+        If required historical context is missing, TrailMQ should not silently skip
+        the calculation. The planned queue behavior makes missing context explicit:
+        deferred, retryable and reviewable.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════ TRUSTED INDUSTRIAL AI FOUNDATION ══════════════ -->
+  <section id="industrial-ai-trust" class="section section--light">
+    <div class="container container--narrow">
+      <h2 class="section__title">A foundation for trusted Industrial AI</h2>
+
+      <p class="section__lead">
+        In GMP and quality-critical environments, the question is not only
+        whether an AI model is powerful. The question is whether the data,
+        context and decisions around that model can be trusted and reviewed.
+      </p>
+
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>AI needs more than raw machine data</h3>
+          <p>
+            A raw MQTT value is rarely enough. Before an AI system can reason
+            about industrial data, the value needs domain context: machine,
+            line, batch, metric, policy state and process relevance.
+          </p>
+        </article>
+
+        <article class="faq-item">
+          <h3>Deterministic context before AI recommendations</h3>
+          <p>
+            TrailMQ's planned plugin layer starts with deterministic context and
+            KPI logic: extract domain context, resolve historical baselines,
+            calculate deviations and link the result to audit evidence.
+          </p>
+        </article>
+
+        <article class="faq-item">
+          <h3>Trust comes from traceability</h3>
+          <p>
+            If AI later suggests, prioritizes or explains an event, TrailMQ can
+            provide the surrounding evidence layer: what data was used, which
+            context was attached, which baseline was resolved and which decision
+            path was recorded.
+          </p>
+        </article>
+      </div>
+
+      <p class="section__footnote">
+        TrailMQ is not positioned as an AI model or analytics platform. It is
+        designed as the controlled MQTT evidence layer that trusted Industrial AI
+        can build on.
       </p>
     </div>
   </section>
@@ -464,8 +756,9 @@ author: TrailMQ Team
         <article class="faq-item">
           <h3>Failure behavior</h3>
           <p>
-            Negative inputs, restricted actions, queue pressure and security-relevant
-            paths are treated as product scenarios, not only as technical edge cases.
+            Negative inputs, restricted actions, queue pressure, missing context and
+            security-relevant paths are treated as product scenarios, not only as
+            technical edge cases.
           </p>
         </article>
       </div>
@@ -518,11 +811,9 @@ author: TrailMQ Team
             <div class="docker-images__title">Images used by the launcher</div>
             <div class="docker-images__grid">
               <a href="https://hub.docker.com/r/rainergewalt/trailmq-backend" class="docker-image-link" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.186m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.185-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z"/></svg>
                 trailmq-backend
               </a>
               <a href="https://hub.docker.com/r/rainergewalt/trailmq-frontend" class="docker-image-link" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.186m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.185-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z"/></svg>
                 trailmq-frontend
               </a>
             </div>
@@ -554,7 +845,7 @@ cd TrailMQ
           <div class="code-block">
             <code><span class="code-comment"># Open TrailMQ</span>
 Web UI    http://localhost/trailmq/
-REST API  http://localhost/api
+REST API  http://localhost/api/v1
 MQTT TLS  localhost:8883
 MQTT WS   ws://localhost/mqtt</code>
 </div>
@@ -583,13 +874,12 @@ MQTT WS   ws://localhost/mqtt</code>
   <section class="section section--closing">
     <div class="container container--narrow" style="text-align:center;">
       <blockquote class="closing-quote">
-        Standard brokers move messages.<br>
-        <em>TrailMQ helps you prove what happened.</em>
+        Standard brokers move MQTT messages.<br>
+        <em>TrailMQ makes machine communication understandable, comparable and reviewable.</em>
       </blockquote>
 
       <div class="hero__cta" style="margin-top:3rem;">
         <a href="https://github.com/RainerGewalt/TrailMQ" class="btn btn--primary" target="_blank" rel="noopener">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
           Launch from GitHub
         </a>
 
@@ -645,9 +935,33 @@ MQTT WS   ws://localhost/mqtt</code>
           "@type": "Answer",
           "text": "Yes. TrailMQ exposes product functions through a REST API so teams can inspect topics, resolve policies, review queues, validate audit evidence and integrate TrailMQ with scripts, checks, monitoring tools or external systems."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the planned TrailMQ plugin layer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "TrailMQ's planned plugin layer focuses on making MQTT messages more understandable, comparable and reviewable. Planned plugins include Decision Trace, Domain Context Lite, Historical Context Feed and KPI Lite."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can TrailMQ compare live MQTT values with historical baselines?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This is part of the planned plugin layer. Historical baselines can be provided through REST, live MQTT values can be enriched with domain context, and KPI Lite can calculate deviation metrics that are linked to audit evidence."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is TrailMQ an Industrial AI platform?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. TrailMQ is not positioned as an AI model or analytics platform. It provides a controlled MQTT evidence layer with policy control, domain context, historical baselines, KPI deviations and decision traces that can support trusted Industrial AI use cases."
+        }
       }
     ]
   }
   </script>
 
-</main>
+</div>
