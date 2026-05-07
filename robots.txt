@@ -1,5 +1,5 @@
 # TrailMQ Robots.txt
-# https://www.trailmq.com/robots.txt
+# https://trailmq.com/robots.txt
 
 User-agent: *
 Allow: /
@@ -11,17 +11,4 @@ Disallow: /node_modules/
 Disallow: /.jekyll-cache/
 
 # Sitemap location
-Sitemap: https://www.trailmq.com/sitemap.xml
-
-# Allow all major search engines explicitly
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: DuckDuckBot
-Allow: /
-
-User-agent: Slurp
-Allow: /
+Sitemap: https://trailmq.com/sitemap.xml
