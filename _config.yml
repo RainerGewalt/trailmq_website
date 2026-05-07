@@ -1,8 +1,10 @@
 title: "TrailMQ – Audit-First MQTT for Regulated Industries"
 description: "Audit-first MQTT platform for regulated industries. TrailMQ adds traceability, security policies and audit-ready evidence to MQTT without changing machines."
-url: "https://www.trailmq.com"
+
+# Canonical domain
+# Important: use the non-www domain because GitHub Pages is configured with CNAME=trailmq.com
+url: "https://trailmq.com"
 baseurl: ""
-enforce_ssl: www.trailmq.com
 
 # -----------------------------------------------------------------------------
 # Collections
