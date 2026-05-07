@@ -13,6 +13,7 @@
             <ul class="nav-links" role="list">
                 <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
                 <li><a href="{{ '/#capabilities' | relative_url }}">Features</a></li>
+                <li><a href="{{ '/#evidence-flow' | relative_url }}">Examples</a></li>
                 <li><a href="{{ '/wiki/' | relative_url }}" {% if page.url contains '/wiki' %}class="active"{% endif %}>Concepts</a></li>
                 <li><a href="{{ '/architecture-thinking/' | relative_url }}" {% if page.url contains '/architecture-thinking' %}class="active"{% endif %}>Architecture</a></li>
                 <li><a href="{{ '/#quickstart' | relative_url }}">Get Started</a></li>
@@ -51,6 +52,7 @@
             <ul class="nav-mobile__links">
                 <li><a href="{{ '/' | relative_url }}">Home</a></li>
                 <li><a href="{{ '/#capabilities' | relative_url }}">Features</a></li>
+                <li><a href="{{ '/#evidence-flow' | relative_url }}">Examples</a></li>
                 <li><a href="{{ '/wiki/' | relative_url }}">Concepts</a></li>
                 <li><a href="{{ '/architecture-thinking/' | relative_url }}">Architecture</a></li>
                 <li><a href="{{ '/#quickstart' | relative_url }}">Get Started</a></li>
@@ -296,12 +298,13 @@
     }
 
     /* Responsive */
-    @media (max-width: 1024px) {
-        .nav-inner { gap: 1.5rem; }
+    @media (max-width: 1120px) {
+        .nav-inner { gap: 1.25rem; }
         .nav-links a { padding: 0.5rem 0.625rem; font-size: 0.8125rem; }
+        .nav-cta { padding: 0.5rem 0.875rem; }
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
         .nav-links { display: none; }
         .nav-cta-group { display: none; }
         .nav-toggle { display: flex; }
