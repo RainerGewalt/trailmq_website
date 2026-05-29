@@ -1,23 +1,48 @@
 <footer class="site-footer" role="contentinfo">
-    <div class="footer-content container">
-        <div class="footer-brand">
-            <p>&copy; {{ site.time | date: "%Y" }} TrailMQ · Maintained by <a href="https://www.linkedin.com/in/florian-p-6a27ab1b8/" target="_blank" rel="noopener">Florian Przybylak</a></p>
-        </div>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="{{ '/' | relative_url }}" class="brand">
+          <svg class="brand__mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <rect x="1" y="1" width="38" height="38" rx="10" fill="#0F3D3E"/>
+            <rect x="1" y="1" width="38" height="38" rx="10" stroke="#2E8C89" stroke-opacity="0.4" stroke-width="1.2"/>
+            <circle cx="11" cy="28.5" r="3" fill="#57AEAB"/>
+            <circle cx="20" cy="20" r="3" fill="#8FCCCA"/>
+            <path d="M11 28.5 L20 20 L29 11.5" stroke="#57AEAB" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="0.1 5"/>
+            <path d="M25 11.5 L28.5 15 L34 8" stroke="#E85D04" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="brand__word">Trail<b>MQ</b></span>
+        </a>
+        <p>The control and evidence layer for regulated MQTT. Turn machine communication into understandable, comparable and reviewable evidence.</p>
+      </div>
 
-        <nav class="footer-links" aria-label="Footer Navigation">
-            <a href="https://github.com/RainerGewalt/TrailMQ" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://hub.docker.com/r/rainergewalt/trailmq-backend" target="_blank" rel="noopener">Docker Hub</a>
-            <a href="mailto:contact@trailmq.com">Contact</a>
-        </nav>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="{{ '/#evidence' | relative_url }}">How it works</a>
+        <a href="{{ '/#capabilities' | relative_url }}">Capabilities</a>
+        <a href="{{ '/#compare' | relative_url }}">vs. Standard broker</a>
+        <a href="{{ '/#quickstart' | relative_url }}">Quickstart</a>
+      </div>
 
-        <nav class="footer-meta" aria-label="Legal">
-            <a href="{{ '/imprint/' | relative_url }}">Imprint</a>
-            <a href="{{ '/license/' | relative_url }}">License</a>
-            <a href="{{ '/cookies/' | relative_url }}">Cookies</a>
-            <a href="#top"
-               onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">
-                ↑ Top
-            </a>
-        </nav>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="{{ '/about/' | relative_url }}">About</a>
+        <a href="{{ '/wiki/' | relative_url }}">Wiki</a>
+        <a href="{{ '/architecture-thinking/' | relative_url }}">Architecture</a>
+        <a href="https://github.com/RainerGewalt/TrailMQ" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://hub.docker.com/r/rainergewalt/trailmq-backend" target="_blank" rel="noopener">Docker Hub</a>
+        <a href="mailto:contact@trailmq.com">Contact</a>
+      </div>
     </div>
+
+    <div class="footer-bottom">
+      <span>&copy; {{ site.time | date: "%Y" }} TrailMQ &middot; Maintained by <a href="https://www.linkedin.com/in/florian-p-6a27ab1b8/" target="_blank" rel="noopener">Florian Przybylak</a></span>
+      <nav aria-label="Legal">
+        <a href="{{ '/imprint/' | relative_url }}">Imprint</a>
+        <a href="{{ '/license/' | relative_url }}">License</a>
+        <a href="{{ '/cookies/' | relative_url }}">Cookies</a>
+        <a href="#top" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">&uarr; Top</a>
+      </nav>
+    </div>
+  </div>
 </footer>

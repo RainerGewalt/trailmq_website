@@ -1,25 +1,21 @@
 ---
-layout: default
-title: Licensing
+layout: page
+title: Licensing &amp; Usage
+crumb: License
 description: TrailMQ licensing information - commercial license with free evaluation access.
+subtitle: TrailMQ is distributed under a commercial license with free evaluation access. Docker images are publicly available for evaluation, testing and internal proof-of-concept deployments.
+updated: May 2026
 permalink: /license/
 ---
 
-# Licensing & Usage
+<div class="callout callout--accent">
+  <span class="callout__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg></span>
+  <div><p><strong>Production use in regulated or commercial environments requires a valid license.</strong> The source code is not open source.</p></div>
+</div>
 
-TrailMQ is distributed under a **commercial license with free evaluation access**.
+## Usage overview
 
-Docker images are publicly available to allow evaluation, testing, and internal proof-of-concept deployments.
-
-**Production use in regulated or commercial environments requires a valid license.**
-
-The source code is not open source.
-
----
-
-## Usage Overview
-
-| Usage Type | License |
+| Usage type | License |
 |------------|---------|
 | Evaluation / PoC | Free |
 | Internal testing | Free |
@@ -27,18 +23,14 @@ The source code is not open source.
 | Redistribution | Not permitted |
 | Source code modification | Not permitted |
 
----
-
-## What's Included (Evaluation)
+## What's included (evaluation)
 
 - Full TrailMQ Backend (MQTT Broker + REST API)
 - Full TrailMQ Frontend (Web UI)
 - Docker Compose deployment via GitHub
 - All core features: audit trails, policies, security
 
----
-
-## Enterprise Licenses
+## Enterprise licenses
 
 For validated production environments, commercial licenses and support packages are available:
 
@@ -48,29 +40,26 @@ For validated production environments, commercial licenses and support packages 
 - Validation documentation support
 - On-premise deployment assistance
 
----
-
-## Why Commercial Licensing?
+## Why commercial licensing?
 
 Licensing TrailMQ is about **accountability and trust**, not feature gating.
 
 Regulated environments require clarity about software provenance, support commitments and long-term maintenance. A commercial license provides that clarity.
 
----
+## Getting started
 
-## Getting Started
+**GitHub repository (deployment)** — [github.com/RainerGewalt/TrailMQ](https://github.com/RainerGewalt/TrailMQ){:target="_blank" rel="noopener"}
 
-**GitHub Repository (Deployment)**  
-[github.com/RainerGewalt/TrailMQ](https://github.com/RainerGewalt/TrailMQ)
+**Docker Hub images**
 
-**Docker Hub Images**
-- [rainergewalt/trailmq-backend](https://hub.docker.com/r/rainergewalt/trailmq-backend)
-- [rainergewalt/trailmq-frontend](https://hub.docker.com/r/rainergewalt/trailmq-frontend)
+- [rainergewalt/trailmq-backend](https://hub.docker.com/r/rainergewalt/trailmq-backend){:target="_blank" rel="noopener"}
+- [rainergewalt/trailmq-frontend](https://hub.docker.com/r/rainergewalt/trailmq-frontend){:target="_blank" rel="noopener"}
 
----
-
-## Questions?
-
-For licensing inquiries or enterprise discussions:
-
-**contact@trailmq.com**
+<div class="doc-cta">
+  <h3>Licensing inquiries</h3>
+  <p>For licensing questions or enterprise discussions, get in touch.</p>
+  <div class="actions">
+    <a href="mailto:contact@trailmq.com" class="btn btn--primary">contact@trailmq.com</a>
+    <a href="https://github.com/RainerGewalt/TrailMQ" target="_blank" rel="noopener" class="btn btn--outline" style="color:#fff;border-color:rgba(255,255,255,0.3)">View on GitHub</a>
+  </div>
+</div>

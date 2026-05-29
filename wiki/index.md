@@ -1,250 +1,121 @@
 ---
 layout: wiki-base
-title: "Overview"
-description: "A conceptual framework for thinking about regulated systems, industrial data, trust and AI readiness."
+title: TrailMQ Wiki
+description: Concepts, architecture notes and explainers for TrailMQ.
 permalink: /wiki/
 ---
 
-<div class="wiki-hero">
-  <h1 class="wiki-hero__title">Concepts</h1>
-  <p class="wiki-hero__lead">Why regulated systems fail even when the technology looks good.</p>
-  <p class="wiki-hero__desc">
-    This wiki covers trust, auditability, architecture and AI readiness in regulated environments.
-    Start with a reading path or browse by category.
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a href="{{ '/' | relative_url }}">Home</a>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="m9 18 6-6-6-6"/>
+  </svg>
+  <span aria-current="page">Wiki</span>
+</nav>
+
+<header class="article-header">
+  <h1 class="article-header__title">TrailMQ Wiki</h1>
+  <p class="article-header__lead">
+    Concepts, architecture notes and explainers around audit-first MQTT, regulated data flows,
+    evidence trails and industrial messaging.
   </p>
-</div>
+</header>
 
-<!-- What this wiki is about -->
-<section class="wiki-intro">
-  <h2>What you will find here</h2>
-  <p>Short, focused articles on problems practitioners in regulated systems actually face:</p>
-  <ul class="wiki-questions">
-    <li>Why do systems with "all the data" still fail audits?</li>
-    <li>Why does AI remain stuck in pilots despite technical maturity?</li>
-    <li>Why do dashboards increase visibility but not trust?</li>
-    <li>Why does compliance break long before regulation is involved?</li>
-  </ul>
-  <p>The answers are architectural. Each article stops before implementation — because architecture must be understood before solutions make sense.</p>
-  <p>
-    If you are evaluating MQTT directly in a regulated environment, start with
-    <a href="{{ '/wiki/gxp-compliant-mqtt-broker/' | relative_url }}">
-      Can an MQTT broker be GxP compliant?
-    </a>
-  </p>
-</section>
+{% assign wiki_articles = site.wiki_articles | sort: "order" %}
 
-<!-- Reading Paths -->
-<section class="reading-paths">
-  <h2>Reading Paths</h2>
-  <p class="reading-paths__intro">Three guided paths depending on where you are starting from.</p>
+{% if wiki_articles.size == 0 %}
+  {% assign wiki_articles = site.pages | where: "layout", "wiki-article" | sort: "order" %}
+{% endif %}
 
-  <div class="reading-paths__grid">
+{% if site.data.wiki_nav %}
+<section class="related-articles">
+  <h2 style="font-size: clamp(1.3rem, 2.5vw, 1.6rem); margin-bottom: 1rem; letter-spacing: -0.02em;">
+    Browse by topic
+  </h2>
 
-    <!-- Path 1: Understanding Regulated Systems -->
-    <div class="reading-path">
-      <div class="reading-path__header">
-        <div class="reading-path__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/>
+  <div class="concepts-grid">
+    {% for item in site.data.wiki_nav %}
+      {% unless item.url == '/wiki/' or item.url == '/wiki/glossary/' %}
+      <a
+        class="concept-card concept-card--clickable"
+        href="{{ item.url | relative_url }}"
+        aria-label="Open {{ item.title }}"
+      >
+        <div class="concept-card__cover--placeholder">
+          {% if item.icon %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            {{ item.icon }}
           </svg>
-        </div>
-        <div class="reading-path__meta">
-          <span class="reading-path__number">Path 1</span>
-          <h3 class="reading-path__title">Understanding Regulated Systems</h3>
-        </div>
-      </div>
-      <p class="reading-path__desc">
-        For readers who sense that compliance and GMP are often discussed incorrectly, but cannot quite say why.
-      </p>
-      <ol class="reading-path__steps">
-        <li>
-          <a href="{{ '/wiki/gxp-compliant-mqtt-broker/' | relative_url }}">
-            <span class="step-title">Can an MQTT broker be GxP compliant?</span>
-            <span class="step-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{ '/wiki/gmp-shaped-by-time/' | relative_url }}">
-            <span class="step-title">GMP is shaped by time</span>
-            <span class="step-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{ '/wiki/audit-is-not-logging/' | relative_url }}">
-            <span class="step-title">Audit is not logging</span>
-            <span class="step-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{ '/wiki/gmp-proximity/' | relative_url }}">
-            <span class="step-title">GMP is not binary – it scales with proximity</span>
-            <span class="step-arrow">→</span>
-          </a>
-        </li>
-      </ol>
-      <div class="reading-path__outcome">
-        <strong>Outcome:</strong> Reframe regulation as a question of time, context and architectural responsibility — not paperwork.
-      </div>
-    </div>
-
-    <!-- Path 2: Designing Trustworthy Architectures -->
-    <div class="reading-path">
-      <div class="reading-path__header">
-        <div class="reading-path__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+          {% else %}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
           </svg>
+          {% endif %}
         </div>
-        <div class="reading-path__meta">
-          <span class="reading-path__number">Path 2</span>
-          <h3 class="reading-path__title">Designing Trustworthy Architectures</h3>
-        </div>
-      </div>
-      <p class="reading-path__desc">
-        For architects and engineers working across IT, OT and data layers.
-      </p>
-      <ol class="reading-path__steps">
-        <li>
-          <a href="{{ '/wiki/decision-centric-architecture/' | relative_url }}">
-            <span class="step-title">Decision-centric architecture</span>
-            <span class="step-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{ '/wiki/context-at-decision-time/' | relative_url }}">
-            <span class="step-title">Why context must exist at decision time</span>
-            <span class="step-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{ '/wiki/intervals-commitments/' | relative_url }}">
-            <span class="step-title">Intervals are not abstractions – they are commitments</span>
-            <span class="step-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{ '/wiki/cant-automate-trust/' | relative_url }}">
-            <span class="step-title">We can't automate trust</span>
-            <span class="step-arrow">→</span>
-          </a>
-        </li>
-      </ol>
-      <div class="reading-path__outcome">
-        <strong>Outcome:</strong> Understand where systems silently lose explainability and how architectural choices determine long-term trust.
-      </div>
-    </div>
 
-    <!-- Path 3: AI in Regulated Environments -->
-    <div class="reading-path">
-      <div class="reading-path__header">
-        <div class="reading-path__icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-          </svg>
-        </div>
-        <div class="reading-path__meta">
-          <span class="reading-path__number">Path 3</span>
-          <h3 class="reading-path__title">AI in Regulated Environments</h3>
-        </div>
-      </div>
-      <p class="reading-path__desc">
-        For readers involved in AI, data platforms or digital transformation in regulated contexts.
-      </p>
-      <ol class="reading-path__steps">
-        <li>
-          <a href="{{ '/wiki/manufacturing-trust/' | relative_url }}">
-            <span class="step-title">Manufacturing is not behind in AI – it is behind in trust</span>
-            <span class="step-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{ '/wiki/process-understanding/' | relative_url }}">
-            <span class="step-title">AI is not the solution when the process is not understood</span>
-            <span class="step-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{ '/wiki/data-pipelines-ai/' | relative_url }}">
-            <span class="step-title">Why data pipelines decide whether regulated AI will succeed</span>
-            <span class="step-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="{{ '/wiki/ai-does-not-break-gmp/' | relative_url }}">
-            <span class="step-title">Why AI does not break GMP</span>
-            <span class="step-arrow">→</span>
-          </a>
-        </li>
-      </ol>
-      <div class="reading-path__outcome">
-        <strong>Outcome:</strong> See why AI success depends less on models and more on context, pipelines and accountability.
-      </div>
-    </div>
+        <div class="concept-card__body">
+          <span class="concept-card__category">Topic</span>
 
+          <h3 class="concept-card__title">
+            {{ item.title }}
+          </h3>
+
+          {% if item.children %}
+          <p class="concept-card__excerpt">
+            {{ item.children.size }} article{% if item.children.size != 1 %}s{% endif %} in this section.
+          </p>
+          {% else %}
+          <p class="concept-card__excerpt">
+            Read the concepts in this section.
+          </p>
+          {% endif %}
+        </div>
+      </a>
+      {% endunless %}
+    {% endfor %}
   </div>
 </section>
+{% endif %}
 
-<!-- Browse by Category -->
-<section class="wiki-categories">
-  <h2>Browse by Category</h2>
+<section class="related-articles">
+  <h2 style="font-size: clamp(1.3rem, 2.5vw, 1.6rem); margin-top: 3rem; margin-bottom: 1rem; letter-spacing: -0.02em;">
+    All articles
+  </h2>
 
-  <div class="category-cards">
+  {% if wiki_articles.size > 0 %}
+  <div class="articles-grid">
+    {% for article in wiki_articles %}
+      {% unless article.url == '/wiki/' %}
+      <article class="article-card">
+        {% if article.category %}
+        <div class="article-card-meta" style="margin-bottom: 0.4rem;">
+          {{ article.category }}
+        </div>
+        {% endif %}
 
-    <a href="{{ '/wiki/category/foundations/' | relative_url }}" class="category-card">
-      <div class="category-card__icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/>
-        </svg>
-      </div>
-      <div class="category-card__content">
-        <h3 class="category-card__title">Foundations</h3>
-        <p class="category-card__desc">Core principles behind trustworthy systems</p>
-      </div>
-      <span class="category-card__arrow">→</span>
-    </a>
+        <h3>
+          <a href="{{ article.url | relative_url }}">{{ article.title }}</a>
+        </h3>
 
-    <a href="{{ '/wiki/category/distinctions/' | relative_url }}" class="category-card">
-      <div class="category-card__icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-        </svg>
-      </div>
-      <div class="category-card__content">
-        <h3 class="category-card__title">Distinctions</h3>
-        <p class="category-card__desc">Concepts that are often confused</p>
-      </div>
-      <span class="category-card__arrow">→</span>
-    </a>
+        {% if article.description %}
+        <p>{{ article.description | truncate: 150 }}</p>
+        {% elsif article.excerpt %}
+        <p>{{ article.excerpt | strip_html | truncate: 150 }}</p>
+        {% endif %}
 
-    <a href="{{ '/wiki/category/models/' | relative_url }}" class="category-card">
-      <div class="category-card__icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-        </svg>
-      </div>
-      <div class="category-card__content">
-        <h3 class="category-card__title">Models</h3>
-        <p class="category-card__desc">Architectural ways of structuring complexity</p>
-      </div>
-      <span class="category-card__arrow">→</span>
-    </a>
-
-    <a href="{{ '/wiki/category/implications/' | relative_url }}" class="category-card">
-      <div class="category-card__icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-        </svg>
-      </div>
-      <div class="category-card__content">
-        <h3 class="category-card__title">Implications</h3>
-        <p class="category-card__desc">What this means for AI, IIoT and automation</p>
-      </div>
-      <span class="category-card__arrow">→</span>
-    </a>
-
+        <div class="article-card-meta">
+          {% if article.reading_time %}
+          {{ article.reading_time }} min read
+          {% endif %}
+        </div>
+      </article>
+      {% endunless %}
+    {% endfor %}
   </div>
+  {% else %}
+  <div class="wiki-empty" style="margin-top: 1.5rem;">
+    <p>No wiki articles found yet.</p>
+  </div>
+  {% endif %}
 </section>
-
----
-
-Maintained by **Florian Przybylak** · [LinkedIn](https://www.linkedin.com/in/florian-p-6a27ab1b8/)

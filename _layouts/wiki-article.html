@@ -2,11 +2,6 @@
 layout: wiki-base
 ---
 
-<!-- Reading Progress Bar -->
-<div class="reading-progress">
-  <div class="reading-progress-bar" id="reading-progress"></div>
-</div>
-
 <!-- Breadcrumbs -->
 <nav class="breadcrumbs" aria-label="Breadcrumb">
   <a href="{{ '/' | relative_url }}">Home</a>
@@ -21,27 +16,27 @@ layout: wiki-base
 </nav>
 
 <article itemscope itemtype="https://schema.org/Article">
-  
-  <!-- Article Header mit optionalem Cover-Image -->
+
+  <!-- Article Header -->
   <header class="article-header">
     {% if page.image %}
-    <img 
-      src="{{ page.image | relative_url }}" 
-      alt="{{ page.image_alt | default: page.title }}" 
+    <img
+      src="{{ page.image | relative_url }}"
+      alt="{{ page.image_alt | default: page.title }}"
       class="article-header__cover"
       itemprop="image"
     >
     {% endif %}
-    
+
     <h1 class="article-header__title" itemprop="headline">{{ page.title }}</h1>
-    
+
     {% if page.lead %}
     <p class="article-header__lead" itemprop="description">{{ page.lead }}</p>
     {% elsif page.description %}
     <p class="article-header__lead" itemprop="description">{{ page.description }}</p>
     {% endif %}
   </header>
-  
+
   <!-- Article Meta -->
   <div class="article-meta">
     {% if page.date %}
@@ -50,14 +45,14 @@ layout: wiki-base
       <time itemprop="datePublished" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
     </span>
     {% endif %}
-    
+
     {% if page.last_modified %}
     <span>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
       Updated: <time itemprop="dateModified" datetime="{{ page.last_modified | date_to_xmlschema }}">{{ page.last_modified | date: "%b %d, %Y" }}</time>
     </span>
     {% endif %}
-    
+
     {% if page.reading_time %}
     <span>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
@@ -65,8 +60,8 @@ layout: wiki-base
     </span>
     {% endif %}
   </div>
-  
-  <!-- Table of Contents (optional) -->
+
+  <!-- Table of Contents (auto-generated from h2 headings) -->
   {% if page.toc != false %}
   {% assign headings = content | split: '<h2' %}
   {% if headings.size > 2 %}
@@ -85,12 +80,12 @@ layout: wiki-base
   </nav>
   {% endif %}
   {% endif %}
-  
+
   <!-- Main Content -->
   <div class="article-content" itemprop="articleBody">
     {{ content }}
   </div>
-  
+
   <!-- Tags -->
   {% if page.tags and page.tags.size > 0 %}
   <div class="tags" itemprop="keywords">
@@ -99,7 +94,7 @@ layout: wiki-base
     {% endfor %}
   </div>
   {% endif %}
-  
+
 </article>
 
 <!-- Related Concepts -->
