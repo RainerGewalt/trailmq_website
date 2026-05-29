@@ -1,360 +1,47 @@
-<header class="site-header" role="banner">
-    <nav class="nav-main" aria-label="Main Navigation">
-        <div class="nav-inner container">
-            <!-- Logo -->
-            <a href="{{ '/' | relative_url }}" class="nav-logo" aria-label="TrailMQ Home">
-                <img src="{{ '/assets/images/webp/trailmq_logo_with_text_without_background.webp' | relative_url }}"
-                     alt="TrailMQ"
-                     width="180"
-                     height="52" />
-            </a>
+<header class="site-header" id="siteHeader" role="banner">
+  <div class="wrap nav">
+    <a href="{{ '/' | relative_url }}" class="brand" aria-label="TrailMQ home">
+      <svg class="brand__mark" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <rect x="1" y="1" width="38" height="38" rx="10" fill="#0F3D3E"/>
+        <rect x="1" y="1" width="38" height="38" rx="10" stroke="#2E8C89" stroke-opacity="0.4" stroke-width="1.2"/>
+        <circle cx="11" cy="28.5" r="3" fill="#57AEAB"/>
+        <circle cx="20" cy="20" r="3" fill="#8FCCCA"/>
+        <path d="M11 28.5 L20 20 L29 11.5" stroke="#57AEAB" stroke-width="1.8" stroke-linecap="round" stroke-dasharray="0.1 5"/>
+        <path d="M25 11.5 L28.5 15 L34 8" stroke="#E85D04" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand__word">Trail<b>MQ</b></span>
+    </a>
 
-            <!-- Navigation - EINHEITLICH für ALLE Seiten (Landing + Wiki) -->
-            <ul class="nav-links" role="list">
-                <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
-                <li><a href="{{ '/#capabilities' | relative_url }}">Features</a></li>
-                <li><a href="{{ '/#evidence-flow' | relative_url }}">Examples</a></li>
-                <li><a href="{{ '/wiki/' | relative_url }}" {% if page.url contains '/wiki' %}class="active"{% endif %}>Concepts</a></li>
-                <li><a href="{{ '/architecture-thinking/' | relative_url }}" {% if page.url contains '/architecture-thinking' %}class="active"{% endif %}>Architecture</a></li>
-                <li><a href="{{ '/#quickstart' | relative_url }}">Get Started</a></li>
-            </ul>
+    <ul class="nav__links" role="list">
+      <li><a href="{{ '/#evidence' | relative_url }}">How it works</a></li>
+      <li><a href="{{ '/#capabilities' | relative_url }}">Capabilities</a></li>
+      <li><a href="{{ '/wiki/' | relative_url }}" {% if page.url contains '/wiki' %}class="active"{% endif %}>Wiki</a></li>
+      <li><a href="{{ '/architecture-thinking/' | relative_url }}" {% if page.url contains '/architecture-thinking' %}class="active"{% endif %}>Architecture</a></li>
+      <li><a href="{{ '/#faq' | relative_url }}">FAQ</a></li>
+    </ul>
 
-            <!-- CTAs -->
-            <div class="nav-cta-group">
-                <a href="https://github.com/RainerGewalt/TrailMQ"
-                   class="nav-cta nav-cta--github"
-                   target="_blank"
-                   rel="noopener"
-                   aria-label="View TrailMQ on GitHub">
-                    <svg class="nav-cta__icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                    <span>GitHub</span>
-                </a>
-                <a href="{{ '/#quickstart' | relative_url }}" class="nav-cta nav-cta--primary">
-                    <span>Deploy Now</span>
-                </a>
-            </div>
+    <div class="nav__cta">
+      <a href="https://github.com/RainerGewalt/TrailMQ" class="nav__github" target="_blank" rel="noopener" aria-label="View TrailMQ on GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="{{ '/#quickstart' | relative_url }}" class="btn btn--primary btn--sm">Deploy now</a>
+    </div>
 
-            <!-- Mobile Toggle -->
-            <button class="nav-toggle"
-                    aria-label="Toggle navigation"
-                    aria-expanded="false"
-                    aria-controls="nav-mobile">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
+    <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMobile">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 
-        <!-- Mobile Menu - IDENTISCH mit Desktop Navigation -->
-        <div id="nav-mobile" class="nav-mobile" hidden>
-            <ul class="nav-mobile__links">
-                <li><a href="{{ '/' | relative_url }}">Home</a></li>
-                <li><a href="{{ '/#capabilities' | relative_url }}">Features</a></li>
-                <li><a href="{{ '/#evidence-flow' | relative_url }}">Examples</a></li>
-                <li><a href="{{ '/wiki/' | relative_url }}">Concepts</a></li>
-                <li><a href="{{ '/architecture-thinking/' | relative_url }}">Architecture</a></li>
-                <li><a href="{{ '/#quickstart' | relative_url }}">Get Started</a></li>
-            </ul>
-            <div class="nav-mobile__cta-group">
-                <a href="https://github.com/RainerGewalt/TrailMQ"
-                   class="nav-mobile__cta nav-mobile__cta--github"
-                   target="_blank"
-                   rel="noopener">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                    View on GitHub
-                </a>
-                <a href="{{ '/#quickstart' | relative_url }}" class="nav-mobile__cta nav-mobile__cta--primary">
-                    Deploy Now
-                </a>
-            </div>
-        </div>
-    </nav>
+  <div class="nav__mobile" id="navMobile">
+    <a href="{{ '/#evidence' | relative_url }}">How it works</a>
+    <a href="{{ '/#capabilities' | relative_url }}">Capabilities</a>
+    <a href="{{ '/wiki/' | relative_url }}">Wiki</a>
+    <a href="{{ '/architecture-thinking/' | relative_url }}">Architecture</a>
+    <a href="{{ '/#faq' | relative_url }}">FAQ</a>
+    <div class="nav__cta">
+      <a href="https://github.com/RainerGewalt/TrailMQ" class="nav__github" target="_blank" rel="noopener">View on GitHub</a>
+      <a href="{{ '/#quickstart' | relative_url }}" class="btn btn--primary">Deploy now</a>
+    </div>
+  </div>
 </header>
-
-<style>
-    /* =============================================================
-       HEADER – Vollständige Styles
-       ============================================================= */
-
-    .site-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-        background: rgba(15, 61, 62, 0.97);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .nav-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 2.5rem;
-        padding-block: 0.5rem;
-        min-height: 72px;
-    }
-
-    /* Logo */
-    .nav-logo {
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        padding: 0.5rem 0.75rem;
-        margin: -0.5rem -0.75rem;
-        border-radius: 0.625rem;
-        background: rgba(255, 255, 255, 0.03);
-        transition: all 0.2s ease;
-    }
-
-    .nav-logo:hover {
-        background: rgba(255, 255, 255, 0.06);
-    }
-
-    .nav-logo img {
-        height: 48px;
-        width: auto;
-        filter: brightness(1.05);
-        transition: filter 0.2s ease;
-    }
-
-    .nav-logo:hover img {
-        filter: brightness(1.1);
-    }
-
-    /* Navigation Links */
-    .nav-links {
-        display: flex;
-        gap: 0.25rem;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-
-    .nav-links a {
-        display: block;
-        padding: 0.5rem 0.875rem;
-        font-size: 0.875rem;
-        font-weight: 500;
-        color: rgba(255, 255, 255, 0.6);
-        letter-spacing: 0.01em;
-        border-radius: 0.375rem;
-        transition: all 0.2s ease;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-        color: rgba(255, 255, 255, 0.95);
-        background: rgba(255, 255, 255, 0.1);
-    }
-
-    /* CTA Group */
-    .nav-cta-group {
-        display: flex;
-        align-items: center;
-        gap: 0.625rem;
-    }
-
-    .nav-cta {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        font-size: 0.8125rem;
-        font-weight: 600;
-        color: #fff;
-        border-radius: 0.5rem;
-        transition: all 0.2s ease;
-    }
-
-    .nav-cta--github {
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        color: rgba(255, 255, 255, 0.8);
-    }
-    .nav-cta--github:hover {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: rgba(255, 255, 255, 0.25);
-        color: #fff;
-    }
-
-    .nav-cta--primary {
-        background: #E85D04;
-        border: 1px solid #E85D04;
-        box-shadow: 0 2px 8px rgba(232, 93, 4, 0.25);
-    }
-    .nav-cta--primary:hover {
-        background: #d15403;
-        border-color: #d15403;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(232, 93, 4, 0.35);
-    }
-
-    .nav-cta__icon {
-        flex-shrink: 0;
-        width: 16px;
-        height: 16px;
-        opacity: 0.9;
-    }
-
-    /* Mobile Toggle */
-    .nav-toggle {
-        display: none;
-        flex-direction: column;
-        justify-content: center;
-        gap: 5px;
-        width: 44px;
-        height: 44px;
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 0.5rem;
-        cursor: pointer;
-        padding: 10px;
-    }
-
-    .nav-toggle span {
-        display: block;
-        width: 100%;
-        height: 2px;
-        background: rgba(255, 255, 255, 0.8);
-        border-radius: 2px;
-        transition: all 0.25s ease;
-    }
-
-    .nav-toggle[aria-expanded="true"] span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-    .nav-toggle[aria-expanded="true"] span:nth-child(2) {
-        opacity: 0;
-    }
-    .nav-toggle[aria-expanded="true"] span:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
-    }
-
-    /* Mobile Menu */
-    .nav-mobile {
-        background: rgba(10, 39, 40, 0.98);
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 1.5rem;
-    }
-
-    .nav-mobile[hidden] { display: none; }
-
-    .nav-mobile__links {
-        list-style: none;
-        margin: 0 0 1.5rem;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 0.25rem;
-    }
-
-    .nav-mobile__links a {
-        display: block;
-        padding: 1rem 1.25rem;
-        font-size: 1rem;
-        font-weight: 500;
-        color: rgba(255, 255, 255, 0.85);
-        border-radius: 0.5rem;
-        transition: background 0.2s;
-    }
-
-    .nav-mobile__links a:hover {
-        background: rgba(255, 255, 255, 0.08);
-        color: #fff;
-    }
-
-    .nav-mobile__cta-group {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-
-    .nav-mobile__cta {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        width: 100%;
-        padding: 1rem;
-        font-size: 0.9375rem;
-        font-weight: 600;
-        color: #fff;
-        border-radius: 0.5rem;
-        text-align: center;
-    }
-    .nav-mobile__cta--github {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-    }
-    .nav-mobile__cta--primary {
-        background: #E85D04;
-    }
-
-    /* Responsive */
-    @media (max-width: 1120px) {
-        .nav-inner { gap: 1.25rem; }
-        .nav-links a { padding: 0.5rem 0.625rem; font-size: 0.8125rem; }
-        .nav-cta { padding: 0.5rem 0.875rem; }
-    }
-
-    @media (max-width: 960px) {
-        .nav-links { display: none; }
-        .nav-cta-group { display: none; }
-        .nav-toggle { display: flex; }
-        .nav-inner { min-height: 64px; }
-    }
-
-    @media (max-width: 600px) {
-        .nav-inner { padding-block: 0.375rem; min-height: 60px; }
-        .nav-logo img { height: 40px; }
-        .nav-logo { padding: 0.375rem 0.5rem; margin: -0.375rem -0.5rem; }
-    }
-
-    @media (max-width: 400px) {
-        .nav-logo img { height: 36px; }
-        .nav-toggle { width: 40px; height: 40px; padding: 8px; }
-    }
-</style>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const toggle = document.querySelector('.nav-toggle');
-        const mobile = document.getElementById('nav-mobile');
-
-        if (toggle && mobile) {
-            toggle.addEventListener('click', function() {
-                const expanded = toggle.getAttribute('aria-expanded') === 'true';
-                toggle.setAttribute('aria-expanded', !expanded);
-                mobile.hidden = expanded;
-            });
-
-            mobile.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    toggle.setAttribute('aria-expanded', 'false');
-                    mobile.hidden = true;
-                });
-            });
-        }
-
-        // Smooth scroll nur für Anchor-Links auf der gleichen Seite
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href.startsWith('#') && !href.startsWith('/#')) {
-                    const target = document.querySelector(href);
-                    if (target) {
-                        e.preventDefault();
-                        target.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }
-            });
-        });
-    });
-</script>

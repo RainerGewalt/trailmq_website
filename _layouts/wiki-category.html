@@ -6,38 +6,44 @@ layout: wiki-base
 <nav class="breadcrumbs" aria-label="Breadcrumb">
   <a href="{{ '/' | relative_url }}">Home</a>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-  <a href="{{ '/wiki/' | relative_url }}">Overview</a>
+  <a href="{{ '/wiki/' | relative_url }}">Concepts</a>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
   <span aria-current="page">{{ page.title }}</span>
 </nav>
 
-<h1>{{ page.title }}</h1>
+<header class="article-header">
+  <h1 class="article-header__title">{{ page.title }}</h1>
+  {% if page.description %}
+  <p class="article-header__lead">{{ page.description }}</p>
+  {% endif %}
+</header>
 
-{% if page.description %}
-<p class="article-header__lead">{{ page.description }}</p>
-{% endif %}
-
+{% if content != "" %}
 <div class="article-content">
   {{ content }}
 </div>
+{% endif %}
 
 {% assign articles = site.wiki_articles | where: "category", page.category_filter | sort: "order" %}
 
 {% if articles.size > 0 %}
-<h2 style="margin-top: var(--space-2xl);">Articles in this category</h2>
+<h2 style="font-size: clamp(1.3rem, 2.5vw, 1.6rem); margin-top: 3rem; margin-bottom: 0.4rem; letter-spacing: -0.02em;">Articles in this category</h2>
 <div class="articles-grid">
   {% for article in articles %}
   <article class="article-card">
     <h3><a href="{{ article.url | relative_url }}">{{ article.title }}</a></h3>
     <p>{{ article.description | truncate: 140 }}</p>
     <div class="article-card-meta">
-      {% if article.reading_time %}{{ article.reading_time }} min read{% endif %}
+      {% if article.reading_time %}
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;width:13px;height:13px;vertical-align:middle;margin-right:3px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      {{ article.reading_time }} min read
+      {% endif %}
     </div>
   </article>
   {% endfor %}
 </div>
 {% else %}
-<div class="wiki-empty" style="margin-top: var(--space-2xl);">
+<div class="wiki-empty" style="margin-top: 3rem;">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
     <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>

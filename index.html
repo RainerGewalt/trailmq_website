@@ -1,0 +1,515 @@
+---
+layout: default
+title: "TrailMQ — Make Machine Messages Reviewable"
+description: "TrailMQ turns MQTT traffic into reviewable evidence by adding policy control, domain context, historical baselines and audit-linked decision traces. Built for GxP, GMP and quality-critical IIoT."
+keywords: MQTT broker, MQTT audit trail, MQTT evidence layer, industrial MQTT, IIoT, domain context, historical baselines, KPI deviation, GxP, GMP, audit evidence, traceability, trusted industrial AI, AI-ready industrial data, regulated industries, validation, docker, freemium
+author: TrailMQ Team
+---
+
+<!-- Structured Data: FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Can an MQTT broker be GxP compliant?", "acceptedAnswer": { "@type": "Answer", "text": "MQTT itself is not GxP compliant or non-compliant. It is a messaging protocol. Compliance depends on the surrounding controls such as identity, access policies, audit trails, data integrity, change control and validation evidence." } },
+    { "@type": "Question", "name": "Can MQTT be used in GMP-regulated manufacturing?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, MQTT can be used in GMP-regulated manufacturing, but the broker alone is not enough. The system must be able to control, explain and review message decisions later." } },
+    { "@type": "Question", "name": "Does TrailMQ make a system automatically compliant?", "acceptedAnswer": { "@type": "Answer", "text": "No. TrailMQ supports compliance by generating technical evidence. Validation, risk assessment and procedural controls remain the responsibility of the regulated organization." } },
+    { "@type": "Question", "name": "Does TrailMQ provide a REST API?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrailMQ exposes product functions through a REST API so teams can inspect topics, resolve policies, review queues, validate audit evidence and integrate TrailMQ with scripts, checks, monitoring tools or external systems." } }
+  ]
+}
+</script>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <span class="hero__badge"><span class="dot"></span> Built for regulated &amp; quality-critical systems</span>
+      <h1>Make machine messages <em>understandable, comparable&nbsp;and reviewable</em></h1>
+      <p class="hero__sub">Standard brokers move MQTT messages. TrailMQ adds context, comparison and audit evidence.</p>
+      <p class="hero__desc">Control MQTT access, explain broker decisions, enrich machine messages with domain context, and turn live values into reviewable evidence — without changing your machines or your broker.</p>
+
+      <div class="hero__cta">
+        <a href="https://github.com/RainerGewalt/TrailMQ" class="btn btn--primary" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          Launch from GitHub
+        </a>
+        <a href="#evidence" class="btn btn--ghost-light">See how it works</a>
+      </div>
+
+      <div class="hero__trust">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Open source on GitHub</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Self-hosted via Docker</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> No cloud dependency</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> No vendor lock-in</div>
+      </div>
+    </div>
+
+    <div class="hero__visual">
+      <div class="ev-card">
+        <div class="ev-card__bar">
+          <span class="ev-card__dot ev-card__dot--ok"></span>
+          <span class="label">Audit Evidence Record</span>
+          <span class="ev-card__verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> chain verified</span>
+        </div>
+        <div class="ev-card__body">
+          <div class="ev-row"><span class="k">topic</span><span class="v">production/line1/filler/<br>batch/4711/temperature</span></div>
+          <div class="ev-row"><span class="k">context</span><span class="v">line1 · filler · batch <b>4711</b></span></div>
+          <div class="ev-row"><span class="k">live</span><span class="v"><b>28.4 °C</b> &nbsp;vs&nbsp; 22.5 °C baseline</span></div>
+          <div class="ev-row"><span class="k">decision</span><span class="v">accepted → enriched → compared</span></div>
+          <div class="ev-row"><span class="k">deviation</span><span class="v">+26.2% <span class="ev-pill ev-pill--crit">critical</span></span></div>
+          <div class="ev-row"><span class="k">policy</span><span class="v">policy@v7 <span class="ev-pill ev-pill--ok">active</span></span></div>
+        </div>
+        <div class="ev-card__chain">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          prev <span class="hash">a91f…7c2</span> → this <span class="hash">3e08…d14</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PROBLEM + PIPELINE ══════════════ -->
+<section class="section" id="evidence">
+  <div class="wrap">
+    <div class="section__head section__head--center">
+      <span class="eyebrow eyebrow--center">The problem</span>
+      <h2 class="h2">Fast transport is easy.<br>Explaining it later is hard.</h2>
+      <p class="lead">Months later, teams need to explain who changed what, which policy was active, what a machine message meant, and why something was allowed, blocked, deferred or calculated. A standard broker only tells you the message moved. TrailMQ keeps that evidence structured and reviewable from the moment it happens.</p>
+    </div>
+
+    <div class="pipeline">
+      <article class="pl-step">
+        <div class="pl-step__n">01</div>
+        <div class="pl-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></div>
+        <h3>Machine message</h3>
+        <p>A sensor publishes a raw value over MQTT.</p>
+      </article>
+      <article class="pl-step">
+        <div class="pl-step__n">02</div>
+        <div class="pl-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h.01M12 3l9 9-9 9-9-9z"/><path d="M3 12h6"/></svg></div>
+        <h3>Add context</h3>
+        <p>Line, machine, batch and metric extracted from topic and payload.</p>
+      </article>
+      <article class="pl-step pl-step--key">
+        <div class="pl-step__n">03</div>
+        <div class="pl-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 3-3 3 3 5-6"/></svg></div>
+        <h3>Compare &amp; decide</h3>
+        <p>Live value checked against historical baselines and policy.</p>
+      </article>
+      <article class="pl-step">
+        <div class="pl-step__n">04</div>
+        <div class="pl-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="m4.9 9 5.2 3M19.1 9l-5.2 3"/><circle cx="12" cy="14" r="6"/></svg></div>
+        <h3>Baseline resolved</h3>
+        <p>Expected reference values recorded with the decision.</p>
+      </article>
+      <article class="pl-step">
+        <div class="pl-step__n">05</div>
+        <div class="pl-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Audit evidence</h3>
+        <p>Everything linked into one reviewable, tamper-evident record.</p>
+      </article>
+    </div>
+
+    <p class="foot-note foot-note--center">You keep MQTT. TrailMQ adds a control and evidence layer on top — no change to your machines, no change to your broker, no proprietary lock-in. <a href="{{ '/wiki/gxp-compliant-mqtt-broker/' | relative_url }}" class="txtlink">Why MQTT alone is not GxP compliant <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+  </div>
+</section>
+
+<!-- ══════════════ CAPABILITIES (dark) ══════════════ -->
+<section class="section section--dark" id="capabilities">
+  <div class="wrap">
+    <div class="section__head">
+      <span class="eyebrow eyebrow--light">Capabilities</span>
+      <h2 class="h2">Not just transport.<br>Contextual, controlled messaging.</h2>
+      <p class="lead">TrailMQ does not replace your broker. It sits in front of it and adds control, domain context, historical comparison and reviewable evidence.</p>
+    </div>
+
+    <div class="feat-grid">
+      <article class="feat feat--key feat--wide">
+        <div class="feat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <span class="tag">Core</span>
+        <h3>Policy-controlled topic access</h3>
+        <p>Define who can publish or subscribe to which topics, under which conditions. Policies are versioned and always part of the audit record — so you can prove not just what happened, but which rule allowed or blocked it.</p>
+      </article>
+
+      <article class="feat">
+        <div class="feat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></div>
+        <h3>Immutable audit trail</h3>
+        <p>Every decision is written to a structured, append-only log that stays readable and reviewable later. No post-processing required.</p>
+      </article>
+
+      <article class="feat">
+        <div class="feat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/><path d="m18 9 2 2 3-3"/></svg></div>
+        <h3>Identity &amp; change tracking</h3>
+        <p>Know which client, user or service triggered a message, when a configuration changed and who changed it. Identity is connected to every event.</p>
+      </article>
+
+      <article class="feat">
+        <div class="feat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v4H4zM4 12h10v8H4z"/><path d="M18 12h2v8h-2z"/></svg></div>
+        <h3>Structured, readable evidence</h3>
+        <p>Not raw logs. Not binary blobs. Structured records a validation engineer, auditor, QA team or OT owner can review without a developer in the room.</p>
+      </article>
+
+      <article class="feat">
+        <div class="feat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 13.42 20.6a2 2 0 0 1-2.83 0l-7.18-7.18a2 2 0 0 1-.59-1.42V5a2 2 0 0 1 2-2h6.99a2 2 0 0 1 1.42.59l7.36 7.36a2 2 0 0 1 0 2.46z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div>
+        <span class="tag">Planned plugin</span>
+        <h3>Domain context enrichment</h3>
+        <p>Turn technical MQTT topics into readable machine, batch and metric context — making audit records understandable for QA, OT and engineering teams.</p>
+      </article>
+
+      <article class="feat">
+        <div class="feat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
+        <span class="tag">Planned plugin</span>
+        <h3>Live vs. historical comparison</h3>
+        <p>Compare live MQTT values against REST-fed historical baselines and record KPI deviations as audit-linked evidence.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ AUDIENCE ══════════════ -->
+<section class="section section--soft" id="audience">
+  <div class="wrap">
+    <div class="section__head section__head--center">
+      <span class="eyebrow eyebrow--center">Who it's for</span>
+      <h2 class="h2">Built for teams that need to explain later</h2>
+      <p class="lead">The layer between your MQTT traffic and the reviewable evidence an audit, a deviation or a regulator will eventually ask for.</p>
+    </div>
+
+    <div class="aud-grid">
+      <article class="aud">
+        <div class="aud__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M4 20V8l6-4v16M14 20V10l6-3v13"/><path d="M8 9v.01M8 13v.01M8 17v.01"/></svg></div>
+        <h3>OT &amp; Production teams</h3>
+        <p>Know who changed a setpoint, when it happened, whether the right policy was active and what the message meant in machine, batch or metric context — without touching your PLCs or sensors.</p>
+      </article>
+      <article class="aud">
+        <div class="aud__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2h6M10 2v6.5L5.5 17a2.5 2.5 0 0 0 2.2 3.7h8.6a2.5 2.5 0 0 0 2.2-3.7L14 8.5V2"/><path d="M7.5 14h9"/></svg></div>
+        <h3>Pharma &amp; Life Sciences</h3>
+        <p>You operate under GMP, and auditors ask questions months later. Get structured, reviewable evidence for message decisions, deviations and technical controls — ready when you need it.</p>
+      </article>
+      <article class="aud">
+        <div class="aud__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m14.7 6.3 3 3M4 20l4-1 9.5-9.5a2.1 2.1 0 0 0-3-3L5 16z"/><path d="M19 14v3a2 2 0 0 1-2 2H7"/></svg></div>
+        <h3>IIoT Platform engineers</h3>
+        <p>You build the infrastructure others rely on. TrailMQ runs as a Docker-based Starter Kit, integrates without code changes, and produces evidence that downstream systems can consume.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ COMPARISON ══════════════ -->
+<section class="section" id="compare">
+  <div class="wrap">
+    <div class="section__head section__head--center">
+      <span class="eyebrow eyebrow--center">Standard broker vs. TrailMQ</span>
+      <h2 class="h2">The questions a broker can't answer</h2>
+      <p class="lead">A standard broker tells you messages moved. Here is what it leaves unanswered.</p>
+    </div>
+
+    <div class="cmp">
+      <div class="cmp__head">
+        <div class="q">Question you need to answer</div>
+        <div class="std">Standard broker</div>
+        <div class="tmq">With TrailMQ</div>
+      </div>
+      <div class="cmp__row">
+        <div class="q">Who changed this topic configuration?</div>
+        <div class="std"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg> No record</div>
+        <div class="tmq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Identity tracked</div>
+      </div>
+      <div class="cmp__row">
+        <div class="q">Which policy was active when this message was sent?</div>
+        <div class="std"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Not tracked</div>
+        <div class="tmq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Policy version in audit log</div>
+      </div>
+      <div class="cmp__row">
+        <div class="q">Why was this message blocked?</div>
+        <div class="std"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg> No explanation</div>
+        <div class="tmq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Decision recorded with reason</div>
+      </div>
+      <div class="cmp__row">
+        <div class="q">What does this MQTT value mean in process context?</div>
+        <div class="std"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Topic string only</div>
+        <div class="tmq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Machine, batch &amp; metric context</div>
+      </div>
+      <div class="cmp__row">
+        <div class="q">Was this live value normal or deviating?</div>
+        <div class="std"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Not available</div>
+        <div class="tmq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Compared with historical baseline</div>
+      </div>
+      <div class="cmp__row">
+        <div class="q">Can I prove this data was not modified in transit?</div>
+        <div class="std"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg> No</div>
+        <div class="tmq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Tamper-evident log</div>
+      </div>
+      <div class="cmp__row">
+        <div class="q">Is this evidence ready for a GMP audit?</div>
+        <div class="std"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg> No</div>
+        <div class="tmq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Structured, reviewable records</div>
+      </div>
+    </div>
+
+    <p class="cmp__closer"><strong>TrailMQ does not compete with your broker.</strong> It makes broker decisions, machine context and deviation evidence visible, reviewable and explainable.</p>
+  </div>
+</section>
+
+<!-- ══════════════ REGULATED ══════════════ -->
+<section class="section section--soft" id="regulated">
+  <div class="wrap">
+    <div class="section__head">
+      <span class="eyebrow">Regulated environments</span>
+      <h2 class="h2">Designed for where traceability is not optional</h2>
+      <p class="lead">TrailMQ serves as a technical control in support of compliance processes. It does not replace full regulatory assessment or validation — it gives you the evidence those processes depend on.</p>
+    </div>
+
+    <div class="std-grid">
+      <ul class="std-list">
+        <li>
+          <span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span><strong>Immutable audit evidence</strong><span>Hash-chained, tamper-evident trails</span></span>
+        </li>
+        <li>
+          <span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span><strong>Segregation of duties</strong><span>User and role-based access controls</span></span>
+        </li>
+        <li>
+          <span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span><strong>Data integrity controls</strong><span>Message-level verification</span></span>
+        </li>
+        <li>
+          <span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span><strong>Supports validation workflows</strong><span>IQ / OQ / PQ documentation ready</span></span>
+        </li>
+        <li>
+          <span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span><strong>GAMP alignment</strong><span>Topic-level permissions across validation phases</span></span>
+        </li>
+      </ul>
+
+      <div class="badges">
+        <div class="badge">
+          <div class="badge__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <strong>GMP</strong><span>Good Manufacturing Practice</span>
+        </div>
+        <div class="badge">
+          <div class="badge__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h18"/></svg></div>
+          <strong>GAMP 5</strong><span>Risk-based validation</span>
+        </div>
+        <div class="badge">
+          <div class="badge__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div>
+          <strong>21 CFR Part 11</strong><span>Electronic records</span>
+        </div>
+        <div class="badge">
+          <div class="badge__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <strong>Data integrity</strong><span>ALCOA+ principles</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="foot-note">TrailMQ is early-stage software and a technical control, not a compliance guarantee. Validation, risk assessment and procedural controls remain the responsibility of the regulated organization.</p>
+  </div>
+</section>
+
+<!-- ══════════════ EXAMPLE: KPI ══════════════ -->
+<section class="section">
+  <div class="wrap wrap--narrow">
+    <div class="section__head section__head--center">
+      <span class="eyebrow eyebrow--center">Worked example</span>
+      <h2 class="h2">From a live value to reviewable deviation</h2>
+      <p class="lead">A machine publishes a live temperature. TrailMQ extracts the domain context, resolves a historical baseline, and records the deviation as evidence.</p>
+    </div>
+
+    <div class="kpi-steps">
+      <article class="kpi-step">
+        <div class="kpi-step__n">1</div>
+        <div class="kpi-step__body">
+          <h3>Feed a historical baseline through REST</h3>
+          <p>An external system provides a baseline for <code class="inline">line1 / filler / temperature</code>.</p>
+          <div class="codecard">
+            <div class="codecard__bar"><span class="tl"><i></i><i></i><i></i></span><span class="label">POST /api/v1/baselines</span></div>
+            <pre><code><span class="c-com">// expected reference for this context</span>
+{
+  <span class="c-key">"context_key"</span>: { <span class="c-key">"line"</span>: <span class="c-str">"line1"</span>, <span class="c-key">"machine"</span>: <span class="c-str">"filler"</span>, <span class="c-key">"metric"</span>: <span class="c-str">"temperature"</span> },
+  <span class="c-key">"baseline"</span>: { <span class="c-key">"value"</span>: <span class="c-num">22.5</span>, <span class="c-key">"unit"</span>: <span class="c-str">"C"</span>, <span class="c-key">"source"</span>: <span class="c-str">"historical_average_30d"</span> },
+  <span class="c-key">"limits"</span>: { <span class="c-key">"warning_percent"</span>: <span class="c-num">10</span>, <span class="c-key">"critical_percent"</span>: <span class="c-num">20</span> }
+}</code></pre>
+          </div>
+        </div>
+      </article>
+
+      <article class="kpi-step">
+        <div class="kpi-step__n">2</div>
+        <div class="kpi-step__body">
+          <h3>Receive a live MQTT value</h3>
+          <p>A machine publishes <code class="inline">28.4 °C</code> to <code class="inline">production/line1/filler/batch/4711/temperature</code>.</p>
+        </div>
+      </article>
+
+      <article class="kpi-step">
+        <div class="kpi-step__n">3</div>
+        <div class="kpi-step__body">
+          <h3>Produce audit-linked deviation evidence</h3>
+          <p>TrailMQ links the live value, context, baseline, deviation and decision trace into one reviewable path.</p>
+          <div class="codecard">
+            <div class="codecard__bar"><span class="tl"><i></i><i></i><i></i></span><span class="label">evidence record</span></div>
+            <pre><code>{
+  <span class="c-key">"metric"</span>: <span class="c-str">"temperature"</span>,
+  <span class="c-key">"live_value"</span>: <span class="c-num">28.4</span>,
+  <span class="c-key">"historical_value"</span>: <span class="c-num">22.5</span>,
+  <span class="c-key">"deviation_percent"</span>: <span class="c-num">26.22</span>,
+  <span class="c-key">"severity"</span>: <span class="c-crit">"critical"</span>,
+  <span class="c-key">"context"</span>: { <span class="c-key">"line"</span>: <span class="c-str">"line1"</span>, <span class="c-key">"machine"</span>: <span class="c-str">"filler"</span>, <span class="c-key">"batch_id"</span>: <span class="c-str">"4711"</span> }
+}</code></pre>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <p class="foot-note foot-note--center">If required historical context is missing, TrailMQ does not silently skip the calculation. Missing context becomes explicit: deferred, retryable and reviewable.</p>
+  </div>
+</section>
+
+<!-- ══════════════ AI FOUNDATION ══════════════ -->
+<section class="section section--soft">
+  <div class="wrap">
+    <div class="section__head">
+      <span class="eyebrow">Trusted Industrial AI</span>
+      <h2 class="h2">A trustworthy foundation before the model</h2>
+      <p class="lead">In GMP and quality-critical environments, the question is not only whether an AI model is powerful — it's whether the data, context and decisions around that model can be trusted and reviewed.</p>
+    </div>
+
+    <div class="split">
+      <div class="split-list">
+        <div class="it">
+          <div class="it__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="4"/></svg></div>
+          <div><h3>AI needs more than raw machine data</h3><p>Before a model can reason about industrial data, the value needs domain context: machine, line, batch, metric, policy state and process relevance.</p></div>
+        </div>
+        <div class="it">
+          <div class="it__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg></div>
+          <div><h3>Deterministic context first</h3><p>Extract domain context, resolve historical baselines, calculate deviations and link the result to audit evidence — deterministic by default.</p></div>
+        </div>
+        <div class="it">
+          <div class="it__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div><h3>Trust comes from traceability</h3><p>If AI later suggests or explains an event, TrailMQ provides the surrounding evidence: what data was used, which context applied, which baseline resolved and which decision path was recorded.</p></div>
+        </div>
+      </div>
+
+      <div class="stack-vis">
+        <div class="stack-layer stack-layer--ai"><span class="n">04</span> Trusted Industrial AI</div>
+        <div class="stack-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7 7 7-7"/></svg></div>
+        <div class="stack-layer stack-layer--tmq"><span class="n">03</span> TrailMQ evidence layer</div>
+        <div class="stack-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7 7 7-7"/></svg></div>
+        <div class="stack-layer stack-layer--data"><span class="n">02</span> MQTT broker</div>
+        <div class="stack-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7 7 7-7"/></svg></div>
+        <div class="stack-layer stack-layer--data"><span class="n">01</span> Machines &amp; sensors</div>
+      </div>
+    </div>
+
+    <p class="foot-note">TrailMQ is not positioned as an AI model or analytics platform. It is the controlled MQTT evidence layer that trusted Industrial AI can build on.</p>
+  </div>
+</section>
+
+<!-- ══════════════ QUICKSTART ══════════════ -->
+<section class="section section--dark" id="quickstart">
+  <div class="wrap">
+    <div class="section__head">
+      <span class="eyebrow eyebrow--light">Quickstart</span>
+      <h2 class="h2">Start TrailMQ with one command</h2>
+      <p class="lead">Clone the repo, run the guided launcher and choose your first Starter Kit. TrailMQ prepares the stack for you.</p>
+    </div>
+
+    <div class="qs-grid">
+      <div class="qs-text">
+        <p>The guided launcher prepares runtime folders, creates local demo certificates when needed, generates evaluation credentials and starts the selected recipe.</p>
+        <p>After launch, use the Web UI or the REST API to inspect topics, resolve policies, review queues and validate audit evidence.</p>
+        <p class="accentline">No migration. No downtime. No code changes on your MQTT clients.</p>
+        <div class="qs-docker">
+          <a href="https://hub.docker.com/r/rainergewalt/trailmq-backend" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 5h2v2h-2zm-3 0h2v2h-2zM7 5h2v2H7zm3 3h2v2h-2zm-3 0h2v2H7zM4 8h2v2H4zm18 1c-.6-.4-1.9-.5-2.9-.3-.1-.9-.6-1.7-1.4-2.3l-.5-.4-.4.5c-.5.7-.7 1.8-.6 2.6.1.3.2.6.4.9-.4.2-1.1.5-2 .5H1.3l-.1.5c-.2 1.6.1 3.3 1 4.6 1 1.4 2.6 2.1 4.7 2.1 4.5 0 7.9-2.1 9.5-5.9 1.1 0 3.3 0 4.4-2.1l.2-.4-.4-.3z"/></svg>
+            trailmq-backend
+          </a>
+          <a href="https://hub.docker.com/r/rainergewalt/trailmq-frontend" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 5h2v2h-2zm-3 0h2v2h-2zM7 5h2v2H7zm3 3h2v2h-2zm-3 0h2v2H7zM4 8h2v2H4zm18 1c-.6-.4-1.9-.5-2.9-.3-.1-.9-.6-1.7-1.4-2.3l-.5-.4-.4.5c-.5.7-.7 1.8-.6 2.6.1.3.2.6.4.9-.4.2-1.1.5-2 .5H1.3l-.1.5c-.2 1.6.1 3.3 1 4.6 1 1.4 2.6 2.1 4.7 2.1 4.5 0 7.9-2.1 9.5-5.9 1.1 0 3.3 0 4.4-2.1l.2-.4-.4-.3z"/></svg>
+            trailmq-frontend
+          </a>
+        </div>
+        <p class="qs-note">TrailMQ is early-stage software. Evaluate it carefully before using it in critical production environments. Free to evaluate — contact us for production licensing.</p>
+      </div>
+
+      <div class="qs-code">
+        <div class="codecard">
+          <div class="codecard__bar"><span class="tl"><i></i><i></i><i></i></span><span class="label">terminal</span></div>
+          <pre><code><span class="c-com"># Clone the TrailMQ deployment repo</span>
+git clone https://github.com/RainerGewalt/TrailMQ.git
+cd TrailMQ
+
+<span class="c-com"># Start the guided launcher</span>
+./trailmq launch</code></pre>
+        </div>
+        <div class="codecard">
+          <div class="codecard__bar"><span class="tl"><i></i><i></i><i></i></span><span class="label">launcher</span></div>
+          <pre><code><span class="c-com"># Choose your Starter Kit</span>
+[1] Secure MQTT Core
+
+<span class="c-key">✓</span> Runtime folders prepared
+<span class="c-key">✓</span> Config ready
+<span class="c-key">✓</span> Evaluation credentials generated
+<span class="c-key">✓</span> Active recipe set
+<span class="c-key">✓</span> Stack is up</code></pre>
+        </div>
+        <div class="codecard">
+          <div class="codecard__bar"><span class="tl"><i></i><i></i><i></i></span><span class="label">endpoints</span></div>
+          <pre><code>Web UI    http://localhost/trailmq/
+REST API  http://localhost/api/v1
+MQTT TLS  localhost:8883
+MQTT WS   ws://localhost/mqtt</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FAQ ══════════════ -->
+<section class="section" id="faq">
+  <div class="wrap wrap--narrow">
+    <div class="section__head section__head--center">
+      <span class="eyebrow eyebrow--center">FAQ</span>
+      <h2 class="h2">Can MQTT be used in GxP environments?</h2>
+      <p class="lead">MQTT can be used in regulated manufacturing, but a broker alone is not enough. The real question is whether message decisions can be controlled, explained and reviewed later.</p>
+    </div>
+
+    <div class="faq">
+      <details class="faq-item" open>
+        <summary>Can an MQTT broker be GxP compliant? <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="faq-item__body">MQTT itself is not GxP compliant or non-compliant — it is a messaging protocol. Compliance depends on the surrounding controls: identity, access policies, audit trails, data integrity, change control and validation evidence.</div>
+      </details>
+      <details class="faq-item">
+        <summary>What about data integrity and audit trails? <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="faq-item__body">Standard brokers move messages. They usually do not explain who changed what, which policy was active, why a message was allowed or blocked, and whether the evidence is complete enough for later review.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Does TrailMQ make a system automatically compliant? <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="faq-item__body">No. TrailMQ supports compliance by generating technical evidence. Validation, risk assessment and procedural controls remain the responsibility of the regulated organization.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Does TrailMQ provide a REST API? <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="faq-item__body">Yes. TrailMQ exposes product functions through a REST API so teams can inspect topics, resolve policies, review queues, validate audit evidence and integrate TrailMQ with scripts, local checks, CI pipelines, monitoring tools or external systems.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Can TrailMQ compare live values with historical baselines? <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="faq-item__body">This is part of the planned plugin layer. Historical baselines can be provided through REST, live MQTT values can be enriched with domain context, and KPI Lite can calculate deviation metrics linked to audit evidence.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CLOSING ══════════════ -->
+<section class="section section--closing">
+  <div class="wrap wrap--narrow">
+    <blockquote class="closing-quote">Standard brokers move MQTT messages.<br><em>TrailMQ makes machine communication understandable, comparable and reviewable.</em></blockquote>
+    <div class="closing-cta">
+      <a href="https://github.com/RainerGewalt/TrailMQ" class="btn btn--primary" target="_blank" rel="noopener">Launch from GitHub</a>
+      <a href="mailto:contact@trailmq.com" class="btn btn--ghost-light">Contact for licensing</a>
+    </div>
+    <p class="closing-meta">Free to evaluate. No cloud dependency. No vendor lock-in. &nbsp;·&nbsp; <a href="mailto:contact@trailmq.com">contact@trailmq.com</a></p>
+  </div>
+</section>
