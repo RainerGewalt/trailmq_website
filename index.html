@@ -1,8 +1,8 @@
 ---
 layout: default
-title: "TrailMQ — Reviewable MQTT Evidence"
-description: "TrailMQ turns MQTT decisions into reviewable evidence with policy control, identity context and audit-linked traces for GxP, GMP and quality-critical IIoT."
-keywords: MQTT broker, MQTT audit trail, MQTT evidence layer, MQTT policy control, industrial MQTT, IIoT, domain context, historical baselines, KPI deviation, GxP, GMP, audit evidence, traceability, trusted industrial AI, AI-ready industrial data, regulated industries, validation, docker, free evaluation, commercial license
+title: "TrailMQ — GxP MQTT Audit Trail & Data Integrity"
+description: "TrailMQ adds policy control, audit trails and data integrity evidence to MQTT brokers for reliable messaging in GMP-regulated manufacturing and GxP IIoT."
+keywords: MQTT broker, GxP compliant MQTT broker, reliable MQTT messaging, GMP-regulated manufacturing, MQTT audit trail, MQTT data integrity, IoT audit log, MQTT evidence layer, MQTT policy control, industrial MQTT, IIoT, domain context, historical baselines, KPI deviation, GxP, GMP, audit evidence, traceability, trusted industrial AI, AI-ready industrial data, regulated industries, validation, docker, free evaluation, commercial license
 author: TrailMQ Team
 ---
 
@@ -13,7 +13,9 @@ author: TrailMQ Team
   "@type": "FAQPage",
   "mainEntity": [
     { "@type": "Question", "name": "Can an MQTT broker be GxP compliant?", "acceptedAnswer": { "@type": "Answer", "text": "MQTT itself is not GxP compliant or non-compliant. It is a messaging protocol. Compliance depends on the surrounding controls such as identity, access policies, audit trails, data integrity, change control and validation evidence." } },
+    { "@type": "Question", "name": "What about data integrity and audit trails when using MQTT?", "acceptedAnswer": { "@type": "Answer", "text": "MQTT delivery proves that a message was transported, not that the record is complete, attributable, legible and reviewable. Regulated systems need audit trails that capture identity, timing, policy version, decision reason, sequence and change context." } },
     { "@type": "Question", "name": "Can MQTT be used in GMP-regulated manufacturing?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, MQTT can be used in GMP-regulated manufacturing, but the broker alone is not enough. The system must be able to control, explain and review message decisions later." } },
+    { "@type": "Question", "name": "How do you ensure reliable MQTT messaging in GMP-regulated manufacturing?", "acceptedAnswer": { "@type": "Answer", "text": "Use MQTT reliability features such as QoS, durable sessions and retained state where appropriate, then add regulated controls around them: identity, authorization, validated configuration, failure handling, replay or dead-letter handling, time synchronization, audit trails and data integrity evidence." } },
     { "@type": "Question", "name": "Does TrailMQ make a system automatically compliant?", "acceptedAnswer": { "@type": "Answer", "text": "No. TrailMQ supports compliance by generating technical evidence. Validation, risk assessment and procedural controls remain the responsibility of the regulated organization." } },
     { "@type": "Question", "name": "Does TrailMQ provide a REST API?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. TrailMQ exposes product functions through a REST API so teams can inspect topics, resolve policies, review queues, validate audit evidence and integrate TrailMQ with scripts, checks, monitoring tools or external systems." } },
     { "@type": "Question", "name": "Is TrailMQ open source?", "acceptedAnswer": { "@type": "Answer", "text": "No. TrailMQ provides public evaluation access through GitHub and Docker images, but production use in regulated or commercial environments requires a valid commercial license." } }
@@ -322,6 +324,37 @@ author: TrailMQ Team
   </div>
 </section>
 
+<!-- ══════════════ GMP MQTT RELIABILITY ══════════════ -->
+<section class="section section--dark" id="gmp-mqtt-reliability">
+  <div class="wrap">
+    <div class="section__head">
+      <span class="eyebrow eyebrow--light">GMP MQTT reliability</span>
+      <h2 class="h2">Reliable MQTT messaging in GMP-regulated manufacturing means more than delivery</h2>
+      <p class="lead">MQTT QoS, durable sessions and retained messages help with transport behavior. GMP-relevant reliability also requires evidence that the right client acted, the right policy was active, failures were handled explicitly and the record can be reviewed later.</p>
+    </div>
+
+    <div class="feat-grid">
+      <article class="feat">
+        <div class="feat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/><path d="M8 9h8M8 13h5"/></svg></div>
+        <h3>Transport behavior</h3>
+        <p>Choose QoS, retained state and session behavior deliberately, then document where message loss, duplication, replay and reconnect behavior can affect process decisions.</p>
+      </article>
+      <article class="feat">
+        <div class="feat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Controlled decisions</h3>
+        <p>Bind publish and subscribe decisions to client identity, role, topic policy and configuration version so allowed and blocked actions are explainable.</p>
+      </article>
+      <article class="feat">
+        <div class="feat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
+        <h3>Reviewable evidence</h3>
+        <p>Store sequence, timing, decision reason, policy state and change context as structured evidence instead of relying on broker logs alone.</p>
+      </article>
+    </div>
+
+    <p class="foot-note">For a deeper checklist, read <a href="{{ '/wiki/reliable-mqtt-gmp-manufacturing/' | relative_url }}" class="txtlink">how to ensure reliable MQTT messaging in GMP-regulated manufacturing <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+  </div>
+</section>
+
 <!-- ══════════════ EXAMPLE: KPI ══════════════ -->
 <section class="section">
   <div class="wrap wrap--narrow">
@@ -497,7 +530,15 @@ MQTT WS   ws://localhost/mqtt</code></pre>
       </details>
       <details class="faq-item">
         <summary>What about data integrity and audit trails? <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="faq-item__body">Standard brokers move messages. They usually do not explain who changed what, which policy was active, why a message was allowed or blocked, and whether the evidence is complete enough for later review.</div>
+        <div class="faq-item__body">Standard brokers move messages. They usually do not prove who changed what, which policy was active, why a message was allowed or blocked, whether a record stayed complete and whether the evidence is complete enough for later review.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Can MQTT be used in GMP-regulated manufacturing? <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="faq-item__body">Yes. MQTT can be used in GMP-regulated manufacturing when the surrounding system controls access, validates configuration, handles failures explicitly and preserves audit-ready evidence for GMP-relevant message decisions.</div>
+      </details>
+      <details class="faq-item">
+        <summary>How do you ensure reliable MQTT messaging in GMP-regulated manufacturing? <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="faq-item__body">Start with MQTT transport controls such as QoS, persistent sessions and retained messages where they fit the risk. Then add regulated controls: authenticated clients, topic-level authorization, validated configuration, explicit failure handling, dead-letter or retry review, synchronized time, audit trails and data integrity evidence. <a href="{{ '/wiki/reliable-mqtt-gmp-manufacturing/' | relative_url }}" class="txtlink">Read the full checklist <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
       </details>
       <details class="faq-item">
         <summary>Does TrailMQ make a system automatically compliant? <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>

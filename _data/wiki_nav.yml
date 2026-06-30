@@ -10,6 +10,8 @@
   children:
     - title: "Can an MQTT broker be GxP compliant?"
       url: "/wiki/gxp-compliant-mqtt-broker/"
+    - title: "How to ensure reliable MQTT messaging in GMP-regulated manufacturing"
+      url: "/wiki/reliable-mqtt-gmp-manufacturing/"
     - title: "GMP is shaped by time"
       url: "/wiki/gmp-shaped-by-time/"
     - title: "What we can learn from Pharma"
