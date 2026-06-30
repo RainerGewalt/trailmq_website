@@ -29,7 +29,7 @@ permalink: /wiki/
 
 {% if site.data.wiki_nav %}
 <section class="related-articles">
-  <h2 style="font-size: clamp(1.3rem, 2.5vw, 1.6rem); margin-bottom: 1rem; letter-spacing: -0.02em;">
+  <h2 style="font-size: clamp(1.3rem, 2.5vw, 1.6rem); margin-bottom: 1rem; letter-spacing: 0;">
     Browse by topic
   </h2>
 
@@ -79,7 +79,7 @@ permalink: /wiki/
 {% endif %}
 
 <section class="related-articles">
-  <h2 style="font-size: clamp(1.3rem, 2.5vw, 1.6rem); margin-top: 3rem; margin-bottom: 1rem; letter-spacing: -0.02em;">
+  <h2 style="font-size: clamp(1.3rem, 2.5vw, 1.6rem); margin-top: 3rem; margin-bottom: 1rem; letter-spacing: 0;">
     All articles
   </h2>
 

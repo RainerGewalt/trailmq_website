@@ -1,10 +1,10 @@
 ---
 layout: page
-title: Cookie &amp; Privacy Policy
-crumb: Cookies &amp; Privacy
+title: "Cookie & Privacy Policy"
+crumb: "Cookies & Privacy"
 description: TrailMQ does not use tracking cookies, analytics tools or advertising networks. We respect your privacy and collect no personal data.
 subtitle: We respect your privacy. TrailMQ uses no tracking cookies, no analytics, no advertising networks and no third-party embeds that collect personal data.
-updated: May 2026
+updated: June 2026
 permalink: /cookies/
 ---
 
@@ -15,29 +15,42 @@ permalink: /cookies/
 
 ## What is stored?
 
-This website may use **strictly necessary technical cookies** to ensure basic functionality, security and performance. These never identify you personally.
+This website does not set cookies for tracking, analytics or advertising purposes.
 
-- Session-related cookies
-- Preference or language settings (if enabled)
+The site may use **strictly necessary technical cookies** if required for basic functionality or security. These never identify you personally, are not shared with third parties, and are not used for profiling.
 
-No personal data is collected, profiled, analyzed or sold.
+No personal data is collected, profiled, analyzed or sold by this website.
 
 ## Third-party services
 
-If you follow links to external services (for example GitHub or Docker Hub), their respective privacy and cookie policies apply once you leave this site.
+### Google Fonts
 
-- [GitHub Privacy Policy](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement){:target="_blank" rel="noopener"}
+This website loads typefaces from **Google Fonts** (fonts.googleapis.com, fonts.gstatic.com). When your browser requests font files, your IP address is transmitted to Google's servers. This is a technical dependency for rendering the site's typography.
+
+No personal usage data is collected or stored by this website as a result of this request. For details on how Google processes data received through font requests, see the [Google Privacy Policy](https://policies.google.com/privacy){:target="_blank" rel="noopener"} and [Google Fonts FAQ](https://developers.google.com/fonts/faq/privacy){:target="_blank" rel="noopener"}.
+
+If you prefer to prevent this request, you can block fonts.googleapis.com in your browser or use a privacy extension. The site remains fully functional with system fallback fonts.
+
+### External links
+
+If you follow links to external services such as GitHub or Docker Hub, their respective privacy and cookie policies apply once you leave this site.
+
+- [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement){:target="_blank" rel="noopener"}
 - [Docker Hub Privacy Policy](https://www.docker.com/legal/privacy){:target="_blank" rel="noopener"}
 
 ## Your rights
 
-Because TrailMQ collects no personal data through this website, there is nothing to request, correct or delete. If you contact us by email, we use your message only to respond to your inquiry.
+Because TrailMQ collects no personal data through this website, there is nothing to request, correct or delete under Art. 15–17 GDPR.
+
+If you contact us by email, we use your message only to respond to your inquiry and do not store it beyond that purpose.
+
+For questions about privacy or data protection under GDPR, contact us at the address listed in the [Imprint](/imprint/).
 
 <div class="doc-cta">
   <h3>Questions about privacy?</h3>
   <p>If you have any questions regarding privacy or data protection, reach out any time.</p>
   <div class="actions">
     <a href="mailto:contact@trailmq.com" class="btn btn--primary">contact@trailmq.com</a>
-    <a href="{{ '/license/' | relative_url }}" class="btn btn--outline" style="color:#fff;border-color:rgba(255,255,255,0.3)">View licensing</a>
+    <a href="{{ '/imprint/' | relative_url }}" class="btn btn--outline" style="color:#fff;border-color:rgba(255,255,255,0.3)">Imprint</a>
   </div>
 </div>

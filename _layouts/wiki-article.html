@@ -2,6 +2,8 @@
 layout: wiki-base
 ---
 
+{% assign category_slug = page.category | slugify %}
+
 <!-- Breadcrumbs -->
 <nav class="breadcrumbs" aria-label="Breadcrumb">
   <a href="{{ '/' | relative_url }}">Home</a>
@@ -9,7 +11,7 @@ layout: wiki-base
   <a href="{{ '/wiki/' | relative_url }}">Concepts</a>
   {% if page.category %}
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-  <a href="{{ '/wiki/category/' | append: page.category | slugify | append: '/' | relative_url }}">{{ page.category }}</a>
+  <a href="{{ '/wiki/category/' | append: category_slug | append: '/' | relative_url }}">{{ page.category }}</a>
   {% endif %}
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
   <span aria-current="page">{{ page.title }}</span>
@@ -25,6 +27,7 @@ layout: wiki-base
       alt="{{ page.image_alt | default: page.title }}"
       class="article-header__cover"
       itemprop="image"
+      decoding="async"
     >
     {% endif %}
 
@@ -106,7 +109,7 @@ layout: wiki-base
     {% for article in related %}
     <article class="concept-card">
       {% if article.image %}
-      <img src="{{ article.image | relative_url }}" alt="{{ article.title }}" class="concept-card__cover">
+      <img src="{{ article.image | relative_url }}" alt="{{ article.title }}" class="concept-card__cover" loading="lazy" decoding="async">
       {% else %}
       <div class="concept-card__cover--placeholder">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">

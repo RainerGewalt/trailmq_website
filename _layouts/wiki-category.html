@@ -27,7 +27,7 @@ layout: wiki-base
 {% assign articles = site.wiki_articles | where: "category", page.category_filter | sort: "order" %}
 
 {% if articles.size > 0 %}
-<h2 style="font-size: clamp(1.3rem, 2.5vw, 1.6rem); margin-top: 3rem; margin-bottom: 0.4rem; letter-spacing: -0.02em;">Articles in this category</h2>
+<h2 style="font-size: clamp(1.3rem, 2.5vw, 1.6rem); margin-top: 3rem; margin-bottom: 0.4rem; letter-spacing: 0;">Articles in this category</h2>
 <div class="articles-grid">
   {% for article in articles %}
   <article class="article-card">

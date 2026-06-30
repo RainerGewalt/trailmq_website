@@ -42,20 +42,40 @@ TrailMQ is designed to answer more useful questions — what the message meant, 
 
 That turns MQTT from a pure transport mechanism into a source of structured, reviewable evidence.
 
-## Audit-first, not audit-later
+## What is available now
 
-TrailMQ treats auditability as a **core design principle**, not an afterthought. Instead of relying on log files and external tooling, it embeds the following directly into the messaging layer:
+The current evaluation build is a full self-hosted stack:
 
-- Policy-driven enforcement
-- Hash-chained audit trails
-- Retention and sequencing rules
-- Explicit violation handling
-- Queue and dead-letter visibility
-- Evidence-oriented API surfaces
+**MQTT broker**
+TLS on port 8883 and WebSocket transport. Standard MQTT clients connect without modification.
+
+**Policy engine**
+Versioned access rules control which clients can publish or subscribe to which topics. Policy versions are recorded with every audit event so later reviews can match decisions to the rule set that was active.
+
+**Audit trail**
+Broker decisions are written as hash-chained, sequenced records. The chain can be verified to detect gaps or tampering.
+
+**Identity and user management**
+Users, roles and client credentials are managed through the REST API and admin UI. Change events are linked to the audit record.
+
+**Connected client visibility**
+The REST API surfaces which MQTT clients are currently connected and what topics they access.
+
+**Queue and dead-letter visibility**
+Queue state and dead-letter entries are inspectable through the REST API without requiring broker-level access.
+
+**REST API**
+Full programmatic access at `/api/v1`. Covers authentication, topics, clients, users, policies, queue state, audit evidence, plugin state and system capabilities.
+
+**Admin UI**
+A React-based admin interface served at `/trailmq/`. Covers topic management, user and client management, policy review, audit evidence and queue status — without requiring API knowledge.
+
+**Plugin architecture**
+The system includes plugin slots with capability discovery through the API. Plugin state and available capabilities are inspectable at runtime.
 
 ## Planned plugin layer
 
-The planned plugin layer is focused on one practical goal: make MQTT messages more understandable, comparable and reviewable. The first planned embedded plugins are:
+The planned plugin layer is focused on one practical goal: make MQTT messages more understandable, comparable and reviewable in process terms. The first planned embedded plugins are:
 
 - **Decision Trace** — explains why accept, deny or rate-limit decisions happened
 - **Domain Context Lite** — extracts machine, batch and metric context from topics and payload headers
@@ -71,9 +91,20 @@ Together, these plugins support a concrete flow:
 5. The result is linked to the audit chain.
 6. If context is missing, the calculation is deferred instead of silently skipped.
 
+## Audit-first, not audit-later
+
+TrailMQ treats auditability as a **core design principle**, not an afterthought. Instead of relying on log files and external tooling, it embeds the following directly into the messaging layer:
+
+- Policy-driven enforcement
+- Hash-chained audit trails
+- Retention and sequencing rules
+- Explicit violation handling
+- Queue and dead-letter visibility
+- Evidence-oriented API surfaces
+
 ## Explain, don't expose
 
-TrailMQ explains decisions and enforcement without turning itself into a raw message inspection tool. You will see who connected and with what permissions, which policies were enforced and why, what decisions were made at each step, which domain context was attached, which historical baseline was used, whether calculations were completed, deferred or failed, and exportable audit evidence for review.
+TrailMQ explains decisions and enforcement without turning itself into a raw message inspection tool. The core system surfaces who connected and with what permissions, which policies were enforced and why, and exportable audit evidence for review. The planned plugin layer adds domain context, historical baselines and calculation outcomes where those richer process signals are configured.
 
 You do not need to expose TrailMQ as a general-purpose live debugging console. This is by design: **evidence over observation**.
 

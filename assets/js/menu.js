@@ -25,9 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             activateStep(step);
             // Smooth‑Scroll zur Rope‑Section
-            const sectionTop = document
-                .getElementById("quick-tour")
-                .getBoundingClientRect().top + window.scrollY - headerOffset;
+            const section = document.getElementById("quick-tour");
+            if (!section) return;
+            const sectionTop = section.getBoundingClientRect().top + window.scrollY - headerOffset;
             window.scrollTo({ top: sectionTop, behavior: "smooth" });
             history.replaceState(null, "", `#${step}`);
         });

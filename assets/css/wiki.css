@@ -1,92 +1,7 @@
 /* =============================================================
    TrailMQ — Wiki / Concepts
-   Loaded after landing.css. Shares all tokens.
-   Design: enterprise-precise, engineering-credible.
+   Loaded after landing.css. Inherits all tokens and resets.
    ============================================================= */
-
-/* ---- Design tokens (synced with new landing.css) ---- */
-:root {
-  --teal-950: #04110F;
-  --teal-900: #07211F;
-  --teal-850: #0A2C2A;
-  --teal-800: #0E3937;
-  --teal-700: #0F3D3E;
-  --teal-600: #14504F;
-  --teal-500: #1C6A68;
-  --teal-400: #2E8C89;
-  --teal-300: #57AEAB;
-  --teal-200: #8FCCCA;
-
-  --accent:      #E85D04;
-  --accent-light: #FF7A2E;
-  --accent-dark:  #C24D03;
-  --accent-soft:  rgba(232, 93, 4, 0.10);
-  --accent-ring:  rgba(232, 93, 4, 0.28);
-
-  --ink-950: #0A1414;
-  --ink-900: #0E1B1B;
-  --ink-800: #1B2A2A;
-  --ink-700: #2C3D3D;
-  --ink-600: #46595A;
-  --ink-500: #647778;
-  --ink-400: #8A9C9D;
-  --ink-300: #B7C6C6;
-
-  --line:       #E3EAEA;
-  --line-strong: #D2DDDD;
-  --bg:         #FFFFFF;
-  --bg-soft:    #F4F8F7;
-  --bg-tint:    #EEF4F3;
-  --bg-card:    #FFFFFF;
-
-  --font-display: 'DM Sans', system-ui, -apple-system, sans-serif;
-  --font-body:    'DM Sans', system-ui, -apple-system, sans-serif;
-  --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
-
-  --r-sm:   8px;
-  --r-md:   12px;
-  --r-lg:   18px;
-  --r-xl:   26px;
-  --r-full: 999px;
-
-  --sh-xs: 0 1px 2px rgba(11, 35, 35, 0.05);
-  --sh-sm: 0 2px 8px rgba(11, 35, 35, 0.06);
-  --sh-md: 0 10px 30px -12px rgba(11, 35, 35, 0.16);
-  --sh-lg: 0 28px 60px -24px rgba(8, 30, 30, 0.30);
-
-  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --dur:  280ms;
-
-  --gut:  clamp(1.25rem, 4vw, 2.5rem);
-}
-
-/* ---- Body reset for wiki pages ---- */
-body.wiki {
-  background: var(--bg);
-  font-family: var(--font-body);
-  font-size: 1.0625rem;
-  line-height: 1.65;
-  color: var(--ink-700);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  overflow-x: hidden;
-}
-body.wiki *, body.wiki *::before, body.wiki *::after {
-  box-sizing: border-box;
-}
-body.wiki img, body.wiki svg { max-width: 100%; display: block; }
-body.wiki a { color: inherit; text-decoration: none; }
-body.wiki button { font: inherit; cursor: pointer; }
-body.wiki h1, body.wiki h2, body.wiki h3, body.wiki h4 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  color: var(--ink-900);
-}
-body.wiki strong { font-weight: 600; color: var(--ink-900); }
-body.wiki ::selection { background: var(--accent); color: #fff; }
-body.wiki :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
 /* ---- Layout: wrap primitive ---- */
 .wiki .container,
@@ -292,7 +207,7 @@ body.wiki :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px
 }
 .wiki-hero__title {
   font-size: clamp(2rem, 5vw, 3rem);
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
 }
 .wiki-hero__lead {
   margin-top: 0.9rem;
@@ -316,7 +231,7 @@ body.wiki :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px
 .wiki-intro h2 {
   font-size: clamp(1.4rem, 3vw, 1.85rem);
   margin-bottom: 0.5rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 .wiki-intro > p {
   color: var(--ink-500);
@@ -352,7 +267,7 @@ body.wiki :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px
 .reading-paths h2 {
   font-size: clamp(1.4rem, 3vw, 1.85rem);
   margin-bottom: 0.5rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 .reading-paths__intro {
   color: var(--ink-500);
@@ -478,7 +393,7 @@ body.wiki :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px
 .wiki-categories h2 {
   font-size: clamp(1.4rem, 3vw, 1.85rem);
   margin-bottom: 1.4rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 .category-cards {
   display: grid;
@@ -569,7 +484,7 @@ body.wiki :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px
 }
 .article-header__title {
   font-size: clamp(1.8rem, 4.5vw, 2.75rem);
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
   line-height: 1.1;
 }
 .article-header__lead {
@@ -900,7 +815,7 @@ body.wiki :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px
 .glossary-header { margin-bottom: 2.5rem; }
 .glossary-header h1 {
   font-size: clamp(2rem, 5vw, 3rem);
-  letter-spacing: -0.03em;
+  letter-spacing: 0;
 }
 .glossary-intro {
   margin-top: 1rem;
@@ -1106,7 +1021,7 @@ body.wiki :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px
   pointer-events:none;
 }
 .arch-hero__in { position: relative; z-index: 1; }
-.arch-hero h1 { color: #fff; font-size: clamp(2.2rem, 5.5vw, 3.6rem); letter-spacing: -0.035em; }
+.arch-hero h1 { color: #fff; font-size: clamp(2.2rem, 5.5vw, 3.6rem); letter-spacing: 0; }
 .arch-hero__sub { margin-top: 1.1rem; font-size: clamp(1.05rem, 2vw, 1.35rem); color: rgba(255,255,255,0.78); max-width: 44rem; line-height: 1.5; }
 .arch-claim {
   margin-top: 2.4rem;
@@ -1115,7 +1030,7 @@ body.wiki :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px
   border-radius: var(--r-lg);
   padding: clamp(1.4rem, 3vw, 2rem);
 }
-.arch-claim__lead { font-size: clamp(1.15rem, 2.4vw, 1.55rem); font-weight: 600; color: #fff; letter-spacing: -0.01em; }
+.arch-claim__lead { font-size: clamp(1.15rem, 2.4vw, 1.55rem); font-weight: 600; color: #fff; letter-spacing: 0; }
 .arch-claim__lead em { font-style: normal; color: var(--accent-light); }
 .arch-claim__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; margin-top: 1.5rem; }
 .arch-claim__item {
@@ -1165,7 +1080,7 @@ body.wiki :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px
   border-radius: var(--r-lg);
   text-align: center;
 }
-.arch-stat .n { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: var(--teal-700); letter-spacing: -0.03em; line-height: 1; }
+.arch-stat .n { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: var(--teal-700); letter-spacing: 0; line-height: 1; }
 .arch-stat .l { margin-top: 0.6rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-500); }
 
 /* perspective panels */
