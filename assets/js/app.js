@@ -29,20 +29,60 @@
   }
 
   // Reveal on scroll
+  var io;
   var revealEls = [];
+  var reduceMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function reveal(el) {
+    el.classList.add('in');
+    if (io) io.unobserve(el);
+  }
+  function revealVisibleNow() {
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    revealEls.forEach(function (el) {
+      if (el.classList.contains('in')) return;
+      var rect = el.getBoundingClientRect();
+      if (rect.top < vh * 0.92 && rect.bottom > 0) reveal(el);
+    });
+  }
+  function syncHashTarget() {
+    if (!window.location.hash || window.location.hash.length < 2) return;
+    var id = window.location.hash.slice(1);
+    try { id = decodeURIComponent(id); } catch (e) {}
+    var target = document.getElementById(id);
+    if (!target) return;
+    var pad = parseFloat(window.getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+    var top = target.getBoundingClientRect().top + window.pageYOffset - pad;
+    window.scrollTo(0, top);
+    window.setTimeout(revealVisibleNow, 80);
+  }
+  function scheduleHashSync(delay) {
+    window.setTimeout(syncHashTarget, delay);
+  }
   document.querySelectorAll('.section .section__head, .pipeline, .feat-grid, .aud-grid, .cmp, .std-grid, .kpi-steps, .split, .qs-grid, .faq, .closing-quote').forEach(function (el) {
     el.classList.add('reveal');
     revealEls.push(el);
   });
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
+  if (reduceMotion) {
+    revealEls.forEach(reveal);
+  } else if ('IntersectionObserver' in window) {
+    io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        if (e.isIntersecting) reveal(e.target);
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
     revealEls.forEach(function (el) { io.observe(el); });
+    window.setTimeout(revealVisibleNow, 80);
+    scheduleHashSync(160);
+    scheduleHashSync(700);
+    window.addEventListener('load', function () {
+      scheduleHashSync(120);
+    });
+    window.addEventListener('hashchange', function () {
+      scheduleHashSync(120);
+    });
   } else {
-    revealEls.forEach(function (el) { el.classList.add('in'); });
+    revealEls.forEach(reveal);
   }
 
   // Active nav link on scroll (homepage section spy)
@@ -84,7 +124,4 @@
     });
   });
 
-  // Footer year (fallback if not set by Liquid)
-  var y = document.getElementById('year');
-  if (y && !y.textContent.trim()) y.textContent = String(new Date().getFullYear());
 })();

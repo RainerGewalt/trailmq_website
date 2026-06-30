@@ -1,10 +1,10 @@
 ---
 layout: page
-title: Licensing &amp; Usage
+title: "Licensing & Usage"
 crumb: License
 description: TrailMQ licensing information - commercial license with free evaluation access.
 subtitle: TrailMQ is distributed under a commercial license with free evaluation access. Docker images are publicly available for evaluation, testing and internal proof-of-concept deployments.
-updated: May 2026
+updated: June 2026
 permalink: /license/
 ---
 
@@ -23,12 +23,30 @@ permalink: /license/
 | Redistribution | Not permitted |
 | Source code modification | Not permitted |
 
-## What's included (evaluation)
+## What is included in the evaluation
 
-- Full TrailMQ Backend (MQTT Broker + REST API)
-- Full TrailMQ Frontend (Web UI)
-- Docker Compose deployment via GitHub
-- All core features: audit trails, policies, security
+The evaluation build provides the full TrailMQ stack as Docker images:
+
+**Backend**
+- MQTT broker with TLS (port 8883) and WebSocket transport
+- Policy engine: versioned access rules for publish and subscribe
+- Hash-chained, tamper-evident audit trail
+- User and role management with authentication
+- Connected client visibility
+- Queue state and dead-letter visibility
+- REST API at `/api/v1` with full programmatic access to all controls
+- Plugin architecture with capability discovery
+
+**Frontend**
+- React-based admin UI served at `/trailmq/`
+- Topic management, user management, policy review, audit evidence, queue status
+
+**Deployment**
+- Docker Compose setup via GitHub deployment repository
+- Guided launcher with evaluation credential generation
+- Self-hosted — no cloud dependency, no telemetry
+
+The evaluation build is intended for local testing, proof-of-concept work and integration evaluation. It is not licensed for production use in regulated or commercial environments.
 
 ## Enterprise licenses
 

@@ -7,21 +7,35 @@
 {% assign canonical_path = canonical_path | append: '/' %}
 {% endif %}
 {% assign canonical_url = canonical_path | absolute_url %}
+{% if page.url == '/' %}
+{% assign seo_title = page.title | default: site.title %}
+{% elsif page.title %}
+{% assign seo_title = page.title | append: ' · TrailMQ' %}
+{% else %}
+{% assign seo_title = site.title %}
+{% endif %}
+{% assign seo_description = page.description | default: site.description %}
+{% if page.image %}
+{% assign og_image = page.image | absolute_url %}
+{% else %}
 {% assign og_image = '/assets/images/webp/trailmq_og_image.webp' | absolute_url %}
+{% endif %}
+{% assign og_image_alt = page.image_alt | default: page.title | default: 'TrailMQ audit-first MQTT evidence layer' %}
 {% assign logo_image = '/assets/images/webp/trailmq_logo_with_text_without_background.webp' | absolute_url %}
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>{% if page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-<meta name="description" content="{{ page.description | default: site.description | escape }}" />
+<title>{{ seo_title | escape }}</title>
+<meta name="description" content="{{ seo_description | escape }}" />
 <meta name="author" content="{{ page.author | default: site.author | default: 'TrailMQ Team' | escape }}" />
 <meta name="robots" content="{{ page.robots | default: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}" />
 <meta name="theme-color" content="#0F3D3E" />
 <meta name="color-scheme" content="light" />
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/icons/favicon-32x32.png' | relative_url }}" />
 
 <!-- Keywords for SEO -->
-<meta name="keywords" content="{{ page.keywords | default: 'MQTT broker, MQTT audit trail, MQTT evidence layer, industrial MQTT, IIoT, domain context, historical baselines, KPI deviation, GxP, GMP, audit evidence, traceability, trusted industrial AI, AI-ready industrial data, docker, freemium' | escape }}" />
+<meta name="keywords" content="{{ page.keywords | default: 'MQTT broker, MQTT audit trail, MQTT evidence layer, MQTT policy control, industrial MQTT, IIoT, domain context, historical baselines, KPI deviation, GxP, GMP, audit evidence, traceability, trusted industrial AI, AI-ready industrial data, docker, free evaluation, commercial license' | escape }}" />
 
 <!-- Canonical URL -->
 <link rel="canonical" href="{{ canonical_url }}" />
@@ -29,94 +43,113 @@
 <!-- Open Graph -->
 <meta property="og:type" content="{% if page.layout == 'wiki-article' %}article{% else %}website{% endif %}" />
 <meta property="og:url" content="{{ canonical_url }}" />
-<meta property="og:title" content="{{ page.title | default: site.title | escape }}" />
-<meta property="og:description" content="{{ page.description | default: site.description | escape }}" />
+<meta property="og:title" content="{{ seo_title | escape }}" />
+<meta property="og:description" content="{{ seo_description | escape }}" />
 <meta property="og:image" content="{{ og_image }}" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
+<meta property="og:image:type" content="image/webp" />
+{% unless page.image %}<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />{% endunless %}
+<meta property="og:image:alt" content="{{ og_image_alt | escape }}" />
 <meta property="og:site_name" content="TrailMQ" />
 <meta property="og:locale" content="en_US" />
+{% if page.layout == 'wiki-article' %}
+{% if page.date %}<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}" />{% endif %}
+{% if page.last_modified %}<meta property="article:modified_time" content="{{ page.last_modified | date_to_xmlschema }}" />{% endif %}
+{% for tag in page.tags %}<meta property="article:tag" content="{{ tag | escape }}" />{% endfor %}
+{% endif %}
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="{{ page.title | default: site.title | escape }}" />
-<meta name="twitter:description" content="{{ page.description | default: site.description | escape }}" />
+<meta name="twitter:title" content="{{ seo_title | escape }}" />
+<meta name="twitter:description" content="{{ seo_description | escape }}" />
 <meta name="twitter:image" content="{{ og_image }}" />
+<meta name="twitter:image:alt" content="{{ og_image_alt | escape }}" />
 
-<!-- Fonts -->
+<!-- Fonts (non-blocking — avoids render-blocking request) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap" media="print" onload="this.onload=null;this.media='all'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap" /></noscript>
 
 <!-- Main Stylesheet -->
 <link rel="stylesheet" href="{{ '/assets/css/landing.css' | relative_url }}" />
 
+{% if page.url == '/' %}
 <!-- Structured Data: SoftwareApplication -->
 <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "TrailMQ",
-        "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Linux, Docker",
-        "description": {{ page.description | default: site.description | strip_newlines | jsonify }},
-    "url": {{ site.url | jsonify }},
-    "author": {
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": {{ site.url | append: '/#software' | jsonify }},
+  "name": "TrailMQ",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Linux, Docker",
+  "description": {{ seo_description | strip_newlines | jsonify }},
+  "url": {{ site.url | jsonify }},
+  "image": {{ og_image | jsonify }},
+  "publisher": {
+    "@id": {{ site.url | append: '/#organization' | jsonify }}
+  },
+  "author": {
     "@type": "Person",
     "name": "Florian Przybylak",
     "url": "https://github.com/RainerGewalt"
-    },
-    "offers": {
+  },
+  "offers": {
     "@type": "Offer",
     "price": "0",
     "priceCurrency": "USD",
     "description": "Free to evaluate. Commercial license required for production use."
-    },
-    "downloadUrl": "https://github.com/RainerGewalt/TrailMQ",
-    "installUrl": "https://hub.docker.com/r/rainergewalt/trailmq-backend",
-    "softwareVersion": "latest",
-    "releaseNotes": "https://github.com/RainerGewalt/TrailMQ/releases"
-    }
+  },
+  "downloadUrl": "https://github.com/RainerGewalt/TrailMQ",
+  "installUrl": "https://hub.docker.com/r/rainergewalt/trailmq-backend",
+  "softwareVersion": "latest",
+  "releaseNotes": "https://github.com/RainerGewalt/TrailMQ/releases"
+}
 </script>
+{% endif %}
 
 <!-- Structured Data: Organization -->
 <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "TrailMQ",
-        "url": {{ site.url | jsonify }},
-    "logo": {{ logo_image | jsonify }},
-    "sameAs": [
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": {{ site.url | append: '/#organization' | jsonify }},
+  "name": "TrailMQ",
+  "description": "Control and evidence layer for regulated MQTT. Policy-controlled topic access, identity context and audit-linked evidence for GxP, GMP and quality-critical IIoT.",
+  "url": {{ site.url | jsonify }},
+  "logo": {{ logo_image | jsonify }},
+  "sameAs": [
     "https://github.com/RainerGewalt/TrailMQ",
     "https://hub.docker.com/r/rainergewalt/trailmq-backend",
     "https://hub.docker.com/r/rainergewalt/trailmq-frontend"
-    ],
-    "contactPoint": {
+  ],
+  "contactPoint": {
     "@type": "ContactPoint",
     "email": "contact@trailmq.com",
     "contactType": "customer service"
-    }
-    }
+  }
+}
 </script>
 
 <!-- Structured Data: WebPage -->
 <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": {{ page.title | default: site.title | jsonify }},
-    "description": {{ page.description | default: site.description | strip_newlines | jsonify }},
-    "url": {{ canonical_url | jsonify }},
-    "inLanguage": "en-US",
-    "isPartOf": {
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": {{ canonical_url | append: '#webpage' | jsonify }},
+  "name": {{ seo_title | jsonify }},
+  "description": {{ seo_description | strip_newlines | jsonify }},
+  "url": {{ canonical_url | jsonify }},
+  "inLanguage": "en-US",
+  "isPartOf": {
     "@type": "WebSite",
+    "@id": {{ site.url | append: '/#website' | jsonify }},
     "name": "TrailMQ",
     "url": {{ site.url | jsonify }}
-    }
-    }
+  },
+  "publisher": {
+    "@id": {{ site.url | append: '/#organization' | jsonify }}
+  }
+}
 </script>
-
-<style>
-    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
-</style>

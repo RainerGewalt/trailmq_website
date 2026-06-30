@@ -37,7 +37,7 @@
       panel.classList.toggle('show', panel.getAttribute('data-panel') === p);
     });
     var m = META[p];
-    if (m) { eyebrow.textContent = m.e; title.textContent = m.t; lead.textContent = m.l; }
+    if (m && eyebrow && title && lead) { eyebrow.textContent = m.e; title.textContent = m.t; lead.textContent = m.l; }
     // ALCOA cards are layer-agnostic — hide the layer control there
     if (layerRow) layerRow.style.display = (p === 'alcoa') ? 'none' : '';
     applyLayer();
