@@ -7,10 +7,13 @@
 {% assign canonical_path = canonical_path | append: '/' %}
 {% endif %}
 {% assign canonical_url = canonical_path | absolute_url %}
-{% if page.url == '/' %}
-{% assign seo_title = page.title | default: site.title %}
+{% assign page_title = page.title | default: site.title %}
+{% if page.seo_title %}
+{% assign seo_title = page.seo_title %}
+{% elsif page.url == '/' %}
+{% assign seo_title = page_title %}
 {% elsif page.title %}
-{% assign seo_title = page.title | append: ' · TrailMQ' %}
+{% assign seo_title = page_title | append: ' · TrailMQ' %}
 {% else %}
 {% assign seo_title = site.title %}
 {% endif %}
@@ -20,7 +23,7 @@
 {% else %}
 {% assign og_image = '/assets/images/webp/trailmq_og_image.webp' | absolute_url %}
 {% endif %}
-{% assign og_image_alt = page.image_alt | default: page.title | default: 'TrailMQ audit-first MQTT evidence layer' %}
+{% assign og_image_alt = page.image_alt | default: page_title | default: 'TrailMQ audit-first MQTT evidence layer' %}
 {% assign logo_image = '/assets/images/webp/trailmq_logo_with_text_without_background.webp' | absolute_url %}
 
 <meta charset="utf-8" />
@@ -129,6 +132,22 @@
     "email": "contact@trailmq.com",
     "contactType": "customer service"
   }
+}
+</script>
+
+<!-- Structured Data: WebSite -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": {{ site.url | append: '/#website' | jsonify }},
+  "name": "TrailMQ",
+  "url": {{ site.url | jsonify }},
+  "description": {{ site.description | strip_newlines | jsonify }},
+  "publisher": {
+    "@id": {{ site.url | append: '/#organization' | jsonify }}
+  },
+  "inLanguage": "en-US"
 }
 </script>
 

@@ -1,8 +1,10 @@
 ---
 layout: wiki-article
 title: "Can an MQTT broker be GxP compliant?"
-description: "Why MQTT itself is not GxP compliant or non-compliant and why compliance depends on auditability, data integrity and decision context around the broker."
+seo_title: "GxP MQTT broker: data integrity and audit trails | TrailMQ"
+description: "Can you be GxP compliant when using an MQTT broker? Why MQTT is only transport and what data integrity, audit trail and validation evidence require."
 date: 2026-04-30
+last_modified: 2026-06-30
 category: "Foundations"
 tags:
   - MQTT
@@ -34,6 +36,20 @@ And it does not prevent compliance.
 The decisive question is different:
 
 Can the system explain what happened?
+
+---
+
+## Short answer
+
+Yes, MQTT can be used inside a GxP-relevant system.
+
+No, the broker is not GxP compliant by itself.
+
+For data integrity and audit trails, the surrounding system must prove more than message delivery.
+It must preserve who acted, when it happened, which topic and operation were involved, which policy was active, why the action was allowed or blocked, what changed and whether the evidence can still be trusted later.
+
+If you need the practical reliability checklist for production use, read:
+[How to ensure reliable MQTT messaging in GMP-regulated manufacturing](/wiki/reliable-mqtt-gmp-manufacturing/).
 
 ---
 

@@ -554,6 +554,9 @@ strong { font-weight: 600; color: var(--ink-900); }
 }
 .section--dark .h2 { color: #fff; }
 .section--dark .lead { color: rgba(255,255,255,0.66); }
+.section--dark .foot-note { color: rgba(255,255,255,0.62); }
+.section--dark .foot-note .txtlink { color: var(--teal-200); }
+.section--dark .foot-note .txtlink:hover { color: #fff; }
 .section--soft { background: var(--bg-soft); }
 
 /* ============================================================
