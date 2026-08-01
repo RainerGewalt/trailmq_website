@@ -95,13 +95,13 @@
   <div class="wiki-layout">
     {% include wiki/sidebar.html %}
 
-    <main class="wiki-main">
+    <main class="wiki-main" id="top" tabindex="-1">
       {{ content }}
     </main>
   </div>
 
   <!-- Mobile Sidebar Toggle (FAB) -->
-  <button class="wiki-mobile-toggle" id="wiki-mobile-toggle" aria-label="Open navigation">
+  <button class="wiki-mobile-toggle" id="wiki-mobile-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="wiki-sidebar">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <path d="M3 12h18M3 6h18M3 18h18"/>
     </svg>
@@ -126,11 +126,13 @@
       function closeSide() {
         if (side) side.classList.remove('open');
         if (overlay) overlay.classList.remove('show');
+        if (fab) fab.setAttribute('aria-expanded', 'false');
       }
       if (fab && side) {
         fab.addEventListener('click', function () {
           var open = side.classList.toggle('open');
           if (overlay) overlay.classList.toggle('show', open);
+          fab.setAttribute('aria-expanded', String(open));
         });
       }
       if (overlay) overlay.addEventListener('click', closeSide);

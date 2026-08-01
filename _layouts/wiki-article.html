@@ -22,11 +22,20 @@ layout: wiki-base
   <!-- Article Header -->
   <header class="article-header">
     {% if page.image %}
+    {%- comment -%}
+      Cover art is the LCP element on an article. The intrinsic size lets
+      the browser reserve the box before the bytes arrive (no layout shift),
+      and fetchpriority pulls it out of the default low-priority queue.
+      All covers are authored at 1024x1536.
+    {%- endcomment -%}
     <img
       src="{{ page.image | relative_url }}"
       alt="{{ page.image_alt | default: page.title }}"
       class="article-header__cover"
+      width="1024"
+      height="1536"
       itemprop="image"
+      fetchpriority="high"
       decoding="async"
     >
     {% endif %}
