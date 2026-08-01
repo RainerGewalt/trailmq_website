@@ -14,6 +14,7 @@ reading_time: 7
 featured: true
 order: 2
 image: /assets/images/wiki/gmp-proximity.webp
+image_alt: "A process sensor in the foreground leads toward a glass-walled control room in the distance."
 lead: "GMP is often treated as a switch: compliant or non-compliant. In real systems, it behaves very differently. It follows a gradient that tightens as software moves closer to physical execution."
 ---
 

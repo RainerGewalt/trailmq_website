@@ -27,6 +27,9 @@ layout: wiki-base
       alt="{{ page.image_alt | default: page.title }}"
       class="article-header__cover"
       itemprop="image"
+      width="1536"
+      height="1024"
+      fetchpriority="high"
       decoding="async"
     >
     {% endif %}
@@ -101,15 +104,15 @@ layout: wiki-base
 </article>
 
 <!-- Related Concepts -->
-{% assign related = site.wiki_articles | where: "category", page.category | where_exp: "item", "item.url != page.url" | limit: 3 %}
+{% assign related = site.wiki_articles | where: "category", page.category | where_exp: "item", "item.url != page.url" %}
 {% if related.size > 0 %}
 <section class="related-articles">
   <h3>Related Concepts</h3>
   <div class="concepts-grid">
-    {% for article in related %}
+    {% for article in related limit: 3 %}
     <article class="concept-card">
       {% if article.image %}
-      <img src="{{ article.image | relative_url }}" alt="{{ article.title }}" class="concept-card__cover" loading="lazy" decoding="async">
+      <img src="{{ article.image | relative_url }}" alt="{{ article.image_alt | default: article.title }}" class="concept-card__cover" width="1536" height="1024" loading="lazy" decoding="async">
       {% else %}
       <div class="concept-card__cover--placeholder">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">

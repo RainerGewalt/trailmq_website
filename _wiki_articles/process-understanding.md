@@ -13,6 +13,7 @@ reading_time: 7
 featured: true
 order: 2
 image: /assets/images/wiki/process-understanding.webp
+image_alt: "Two process experts inspect a valve sequence and physical sample before using a model."
 lead: "AI does not fail because models are weak. It fails because process context is weak. Without understanding what happened and when, AI has nothing meaningful to learn from."
 ---
 

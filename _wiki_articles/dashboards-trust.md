@@ -13,6 +13,7 @@ reading_time: 6
 featured: false
 order: 4
 image: /assets/images/wiki/dashboards-trust.webp
+image_alt: "A quality specialist checks a physical production sample while a dashboard remains out of focus."
 lead: "Dashboards increase visibility, but trust emerges from explainability. Without traceability, visibility becomes illusion."
 ---
 

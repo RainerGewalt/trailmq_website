@@ -14,6 +14,7 @@ reading_time: 6
 featured: false
 order: 2
 image: /assets/images/wiki/context-decision-time.webp
+image_alt: "A cleanroom operator adjusts a process valve beside a synchronized clock and sensor."
 lead: "Many systems attempt to rebuild context after something has happened. In regulated environments, this is too late. Context must exist at the moment a decision is made."
 ---
 

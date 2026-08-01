@@ -14,6 +14,7 @@ reading_time: 7
 featured: true
 order: 3
 image: /assets/images/wiki/cant-automate-trust.webp
+image_alt: "Two technicians verify a secured industrial data connection inside a control cabinet."
 lead: "Industry automates data but still validates trust manually. Without embedding trust into communication itself, automation only multiplies uncertainty."
 ---
 
