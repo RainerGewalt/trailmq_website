@@ -21,15 +21,13 @@ The site may use **strictly necessary technical cookies** if required for basic 
 
 No personal data is collected, profiled, analyzed or sold by this website.
 
+## Fonts
+
+The typefaces used on this site — DM Sans and JetBrains Mono, both licensed under the SIL Open Font License — are **served from this website's own domain**. No font CDN is contacted, so no request carrying your IP address is made to Google or any other font provider while you read these pages.
+
 ## Third-party services
 
-### Google Fonts
-
-This website loads typefaces from **Google Fonts** (fonts.googleapis.com, fonts.gstatic.com). When your browser requests font files, your IP address is transmitted to Google's servers. This is a technical dependency for rendering the site's typography.
-
-No personal usage data is collected or stored by this website as a result of this request. For details on how Google processes data received through font requests, see the [Google Privacy Policy](https://policies.google.com/privacy){:target="_blank" rel="noopener"} and [Google Fonts FAQ](https://developers.google.com/fonts/faq/privacy){:target="_blank" rel="noopener"}.
-
-If you prefer to prevent this request, you can block fonts.googleapis.com in your browser or use a privacy extension. The site remains fully functional with system fallback fonts.
+Loading a page on this site contacts no third-party server: no analytics, no tag managers, no embedded players, no font or script CDNs.
 
 ### External links
 

@@ -4,6 +4,46 @@
    Design language: precise, calm, engineering-credible.
    ============================================================= */
 
+/* =============================================================
+   SELF-HOSTED FONTS
+   Served from our own origin so no visitor data reaches a third
+   party — this is what /cookies/ promises. Both faces are
+   variable fonts, so one file covers every weight we use.
+   DM Sans and JetBrains Mono are licensed under the SIL OFL 1.1.
+   ============================================================= */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/assets/fonts/dm-sans-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/assets/fonts/dm-sans-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('/assets/fonts/jetbrains-mono-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url('/assets/fonts/jetbrains-mono-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 :root {
   /* ---- Brand: teal spine ---- */
   --teal-950: #04110F;
@@ -112,6 +152,27 @@ p { text-wrap: pretty; }
 strong { font-weight: 600; color: var(--ink-900); }
 ::selection { background: var(--accent); color: #fff; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+/* The main landmark only takes focus when the skip link sends it there,
+   so it must never draw a ring during ordinary mouse use. */
+main:focus { outline: none; }
+
+/* Skip link: off-screen until focused, then pinned over the header. */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  z-index: 200;
+  transform: translate(-50%, -120%);
+  padding: 0.7rem 1.3rem;
+  background: var(--teal-700);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 0 0 var(--r-md) var(--r-md);
+  box-shadow: var(--sh-md);
+  transition: transform var(--dur) var(--ease);
+}
+.skip-link:focus { transform: translate(-50%, 0); }
 
 /* ---- Layout primitives ---- */
 .wrap { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gut); }
@@ -427,6 +488,9 @@ strong { font-weight: 600; color: var(--ink-900); }
   color: #5fd6a3;
 }
 .ev-card__verify svg { width: 13px; height: 13px; }
+/* A refusal is message evidence, which the validated chain does not
+   cover. The badge says so rather than implying a green check. */
+.ev-card__verify--scope { color: rgba(255,255,255,0.5); }
 .ev-card__body { padding: 1.1rem 1.1rem 1.25rem; }
 .ev-row {
   display: grid;
@@ -585,6 +649,155 @@ strong { font-weight: 600; color: var(--ink-900); }
 .aud__icon svg { width: 24px; height: 24px; }
 .aud h3 { font-size: 1.2rem; margin-bottom: 0.7rem; }
 .aud p { font-size: 0.95rem; color: var(--ink-500); line-height: 1.6; }
+
+/* ============================================================
+   PROMISE SECTION
+   Cards, terminal transcript and the capability matrix used by
+   #promise. Light-section counterpart to .feat / .feat-grid.
+   ============================================================ */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.1rem;
+  margin-top: 2.5rem;
+  align-items: start;
+}
+
+.card {
+  min-width: 0;
+  padding: 1.6rem;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-sm);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur);
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sh-md);
+  border-color: var(--line-strong);
+}
+.card h3 {
+  font-size: 1.12rem;
+  margin-bottom: 0.6rem;
+  color: var(--ink-900);
+}
+.card p { font-size: 0.94rem; color: var(--ink-500); line-height: 1.65; }
+.card p + p { margin-top: 0.7rem; }
+.card code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--bg-tint);
+  color: var(--teal-600);
+  padding: 0.1em 0.4em;
+  border-radius: 5px;
+  overflow-wrap: anywhere;
+}
+.card ul { list-style: none; display: grid; gap: 0.55rem; }
+.card li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.92rem;
+  color: var(--ink-500);
+  line-height: 1.55;
+}
+.card ul + p { margin-top: 1.1rem; }
+
+/* Shipped vs. roadmap — the page's most important honesty signal,
+   so the two lists must not look interchangeable. */
+.card--now li::before,
+.card--planned li::before {
+  position: absolute;
+  left: 0;
+  top: 0.42em;
+  width: 13px;
+  height: 13px;
+}
+.card--now li::before {
+  content: "";
+  background: var(--ok);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.card--planned li::before {
+  content: "";
+  top: 0.5em;
+  width: 9px;
+  height: 9px;
+  border: 1.5px dashed var(--ink-400);
+  border-radius: 50%;
+}
+.card--planned li { color: var(--ink-400); }
+.card--now { border-color: rgba(21, 145, 107, 0.28); }
+.card--planned { background: var(--bg-soft); box-shadow: none; }
+
+/* Limits and exclusions — deliberately quieter than the claims. */
+.card--limit { background: var(--bg-soft); box-shadow: none; }
+.card--limit h3 { font-size: 1.04rem; }
+.card--limit p { font-size: 0.9rem; }
+
+/* Terminal transcript */
+.code-block {
+  margin-top: 2.2rem;
+  padding: 1.2rem 1.35rem;
+  background: var(--ink-950);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--r-md);
+  box-shadow: var(--sh-md);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.code-block code {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.86);
+  white-space: pre;
+}
+
+/* Capability matrix. Scrolls inside its own box so the page body
+   never scrolls sideways on a phone. */
+.table-wrap {
+  margin-top: 2.2rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-sm);
+}
+.cmp-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.cmp-table th,
+.cmp-table td {
+  padding: 0.9rem 1.1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+.cmp-table thead th {
+  background: var(--bg-soft);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink-500);
+  white-space: nowrap;
+}
+.cmp-table thead th:last-child { background: var(--teal-700); color: #fff; }
+.cmp-table tbody td { color: var(--ink-500); }
+.cmp-table tbody td:first-child { font-weight: 500; color: var(--ink-800); }
+.cmp-table tbody td:last-child {
+  color: var(--teal-600);
+  font-weight: 500;
+  background: rgba(15, 61, 62, 0.035);
+}
+.cmp-table tbody tr:last-child td { border-bottom: none; }
 
 /* ============================================================
    COMPARISON TABLE
@@ -892,6 +1105,7 @@ strong { font-weight: 600; color: var(--ink-900); }
   .pipeline { grid-template-columns: 1fr 1fr; }
   .pl-step::after { display: none; }
   .feat-grid { grid-template-columns: 1fr 1fr; }
+  .cards { grid-template-columns: 1fr 1fr; }
   .aud-grid { grid-template-columns: 1fr; }
   .std-grid, .qs-grid, .split { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -903,6 +1117,7 @@ strong { font-weight: 600; color: var(--ink-900); }
   body { font-size: 1rem; }
   .pipeline { grid-template-columns: 1fr; }
   .feat-grid { grid-template-columns: 1fr; }
+  .cards { grid-template-columns: 1fr; }
   .feat--wide { grid-column: auto; }
   .cmp__head, .cmp__row { grid-template-columns: 1fr; }
   .cmp__head .std, .cmp__head .q { display: none; }

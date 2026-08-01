@@ -59,7 +59,7 @@
   function scheduleHashSync(delay) {
     window.setTimeout(syncHashTarget, delay);
   }
-  document.querySelectorAll('.section .section__head, .pipeline, .feat-grid, .aud-grid, .cmp, .std-grid, .kpi-steps, .split, .qs-grid, .faq, .closing-quote').forEach(function (el) {
+  document.querySelectorAll('.section .section__head, .pipeline, .feat-grid, .cards, .code-block, .table-wrap, .aud-grid, .cmp, .std-grid, .kpi-steps, .split, .qs-grid, .faq, .closing-quote').forEach(function (el) {
     el.classList.add('reveal');
     revealEls.push(el);
   });
@@ -86,7 +86,7 @@
   }
 
   // Active nav link on scroll (homepage section spy)
-  var sections = ['evidence', 'capabilities', 'compare', 'regulated', 'faq']
+  var sections = ['promise', 'evidence', 'capabilities', 'compare', 'regulated', 'faq']
     .map(function (id) { return document.getElementById(id); })
     .filter(Boolean);
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav__links a'));
