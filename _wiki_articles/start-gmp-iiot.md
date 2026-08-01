@@ -14,6 +14,7 @@ reading_time: 6
 featured: false
 order: 5
 image: /assets/images/wiki/start-gmp-iiot.webp
+image_alt: "An engineer traces one sensor connection through an edge gateway to a review tablet."
 lead: "GMP is not a checklist. It is a mindset that starts by understanding where data becomes critical and how trust is preserved along its path."
 ---
 

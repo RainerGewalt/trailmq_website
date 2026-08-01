@@ -14,6 +14,7 @@ reading_time: 7
 featured: true
 order: 3
 image: /assets/images/wiki/ai-does-not-break-gmp.webp
+image_alt: "Two cleanroom specialists review an AI-assisted result beside a separate physical approval control."
 lead: "AI is often seen as incompatible with GMP. In reality, GMP fails when architecture becomes implicit. AI merely amplifies weaknesses that already exist."
 ---
 

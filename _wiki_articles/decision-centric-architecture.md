@@ -14,6 +14,7 @@ reading_time: 7
 featured: true
 order: 3
 image: /assets/images/wiki/decision-centric.webp
+image_alt: "Two reviewers assess a physical approve-or-hold control in an industrial control room."
 lead: "Modern systems move data efficiently, but often fail to explain why outcomes occur. Decision-centric architecture shifts the focus from data movement to accountable system behavior."
 ---
 

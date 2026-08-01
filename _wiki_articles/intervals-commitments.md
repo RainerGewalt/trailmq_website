@@ -14,6 +14,7 @@ reading_time: 6
 featured: false
 order: 3
 image: /assets/images/wiki/intervals-commitments.webp
+image_alt: "A gloved hand places the final sample beside a process timer and three batch vials."
 lead: "Intervals are often treated as a convenient abstraction. In regulated and industrial systems, they are commitments that define meaning and accountability."
 ---
 
