@@ -755,16 +755,44 @@ main:focus { outline: none; }
 }
 
 /* Capability matrix. Scrolls inside its own box so the page body
-   never scrolls sideways on a phone. */
+   never scrolls sideways on a phone.
+   The frame and the scroller are separate elements on purpose: the edge
+   fade has to sit above the cells, and the header row is opaque, so a
+   background on the scrolling element itself would be painted under it. */
 .table-wrap {
+  position: relative;
   margin-top: 2.2rem;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
   background: var(--bg-card);
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
   box-shadow: var(--sh-sm);
+  overflow: hidden;
 }
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+/* Below this width the matrix is wider than its frame, so signal it. */
+@media (max-width: 820px) {
+  .table-wrap::after {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    right: 0;
+    width: 46px;
+    pointer-events: none;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), var(--bg-card) 78%);
+  }
+}
+.table-hint {
+  display: none;
+  margin-top: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-400);
+}
+@media (max-width: 820px) { .table-hint { display: block; } }
 .cmp-table {
   width: 100%;
   min-width: 760px;
