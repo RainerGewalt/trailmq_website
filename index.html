@@ -27,17 +27,17 @@ author: TrailMQ Team
 <section class="hero">
   <div class="wrap hero__grid">
     <div class="hero__copy">
-      <span class="hero__badge"><span class="dot"></span> Evaluation access for regulated &amp; quality-critical systems</span>
-      <h1>Make MQTT decisions <em>explainable and reviewable</em></h1>
-      <p class="hero__sub">Standard brokers move MQTT messages. TrailMQ adds policy control, identity context and audit-linked evidence.</p>
-      <p class="hero__desc">Control topic access, explain broker decisions and keep structured evidence for later review. Planned plugins extend this with domain context and historical baseline comparison — without changing your machines or MQTT clients.</p>
+      <span class="hero__badge"><span class="dot"></span> Self-hosted evaluation · runs on your own machine</span>
+      <h1>Control MQTT access.<br><em>Understand every decision.</em><br>Prove what happened.</h1>
+      <p class="hero__sub">Review recorded MQTT decisions together with their actual validation scope and integrity status.</p>
+      <p class="hero__desc">Connect clients, control topic access, understand allowed and denied operations, and inspect what can actually be proven. Self-hosted, no cloud dependency, and no change to your machines or MQTT clients.</p>
 
       <div class="hero__cta">
         <a href="https://github.com/RainerGewalt/TrailMQ" class="btn btn--primary" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          Evaluate on GitHub
+          Start local evaluation
         </a>
-        <a href="#evidence" class="btn btn--ghost-light">See how it works</a>
+        <a href="#promise" class="btn btn--ghost-light">See a denied publish</a>
       </div>
 
       <div class="hero__trust">
@@ -52,22 +52,139 @@ author: TrailMQ Team
       <div class="ev-card">
         <div class="ev-card__bar">
           <span class="ev-card__dot ev-card__dot--ok"></span>
-          <span class="label">Evidence Record Example</span>
+          <span class="label">A denied publish, as recorded</span>
           <span class="ev-card__verify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> chain verified</span>
         </div>
         <div class="ev-card__body">
-          <div class="ev-row"><span class="k">topic</span><span class="v">production/line1/filler/<br>batch/4711/temperature</span></div>
-          <div class="ev-row"><span class="k">context</span><span class="v">line1 · filler · batch <b>4711</b></span></div>
-          <div class="ev-row"><span class="k">live</span><span class="v"><b>28.4 °C</b> &nbsp;vs&nbsp; 22.5 °C baseline</span></div>
-          <div class="ev-row"><span class="k">decision</span><span class="v">accepted → enriched → compared</span></div>
-          <div class="ev-row"><span class="k">deviation</span><span class="v">+26.2% <span class="ev-pill ev-pill--crit">critical</span></span></div>
-          <div class="ev-row"><span class="k">policy</span><span class="v">policy@v7 <span class="ev-pill ev-pill--ok">active</span></span></div>
+          <div class="ev-row"><span class="k">event</span><span class="v"><b>Publish refused</b> <span class="ev-pill ev-pill--crit">Denied</span></span></div>
+          <div class="ev-row"><span class="k">topic</span><span class="v">restricted/ops/config</span></div>
+          <div class="ev-row"><span class="k">user</span><span class="v">testuser</span></div>
+          <div class="ev-row"><span class="k">client</span><span class="v">plantops-lf12-probe9182</span></div>
+          <div class="ev-row"><span class="k">reason</span><span class="v">publish refused:<br>acl_insufficient_permissions</span></div>
+          <div class="ev-row"><span class="k">evidence</span><span class="v">Recorded <span class="ev-pill ev-pill--ok">no message forwarded</span></span></div>
         </div>
         <div class="ev-card__chain">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
           prev <span class="hash">a91f…7c2</span> → this <span class="hash">3e08…d14</span>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ THE PROMISE: CONNECT / CONTROL / UNDERSTAND / PROVE ══════════════ -->
+<section class="section" id="promise">
+  <div class="wrap">
+    <div class="section__head section__head--center">
+      <h2 class="h2">Four steps, in this order</h2>
+      <p class="section__sub">This is what the product does today, from a clean install, in about fifteen minutes.</p>
+    </div>
+
+    <div class="cards">
+      <article class="card">
+        <h3>Connect</h3>
+        <p>Standard MQTT over TLS or WebSocket. <code>mosquitto</code>, <code>paho-mqtt</code>, <code>mqtt.js</code> or a browser client — no SDK, no sidecar, no proxy. Two commands bring the stack up and prove one message end to end.</p>
+      </article>
+      <article class="card">
+        <h3>Control</h3>
+        <p>Every action passes two independent gates: the role's own permissions, and the topic rule that scopes where it applies. Namespaces nobody configured are denied by default. Rules are created, edited and deleted in the product.</p>
+      </article>
+      <article class="card">
+        <h3>Understand</h3>
+        <p>A denied publish or subscribe is one row, attributed to both the authenticated account and the MQTT client id it was sent from, with the topic that was evaluated and the reason it was refused.</p>
+      </article>
+      <article class="card">
+        <h3>Prove</h3>
+        <p>Three separate questions stay separate: was the operation <b>permitted</b>, was it <b>recorded</b>, and does the validated chain <b>cover</b> that record. TrailMQ states its own scope, and what it excludes.</p>
+      </article>
+    </div>
+
+    <div class="section__head section__head--center" style="margin-top:3rem">
+      <h2 class="h2">What a denial actually looks like</h2>
+    </div>
+    <pre class="code-block"><code># A publisher attempts a topic its role does not cover
+$ mosquitto_pub -t restricted/ops/config -m '{"setpoint":42}' -q 1 ...
+Publish error: Not authorized
+
+# The intended subscriber receives nothing on that topic — verified by byte count,
+# with a permitted control subscriber proving the absence is not vacuous.
+
+# In the product, Activity → filter Outcome: Denied
+Publish refused   restricted/ops/config   Denied   Recorded
+  Actor    testuser
+  Client   plantops-lf12-probe9182
+  Reason   publish refused: acl_insufficient_permissions</code></pre>
+
+    <div class="section__head section__head--center" style="margin-top:3rem">
+      <h2 class="h2">Compared with what you have now</h2>
+    </div>
+    <div class="table-wrap">
+      <table class="cmp">
+        <thead>
+          <tr><th scope="col">Question</th><th scope="col">Broker dashboard</th><th scope="col">ACL configuration</th><th scope="col">Raw logs</th><th scope="col">TrailMQ</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Who may publish here?</td><td>Not shown</td><td>Readable, if you know the file</td><td>Not shown</td><td>Access page, per topic and role</td></tr>
+          <tr><td>Why was this refused?</td><td>Not shown</td><td>Inferable</td><td>Correlate by hand</td><td>On the row, with the topic that was evaluated</td></tr>
+          <tr><td>Who was refused?</td><td>Connection counts</td><td>Not applicable</td><td>Client id or username, rarely both</td><td>Both, and either one finds the record</td></tr>
+          <tr><td>Was it recorded?</td><td>Not applicable</td><td>Not applicable</td><td>If retention allowed</td><td>Stated per record</td></tr>
+          <tr><td>Can edits to the history be detected?</td><td>No</td><td>No</td><td>Needs an external pipeline</td><td>Hash-linked chain, with its scope stated</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section__head section__head--center" style="margin-top:3rem">
+      <h2 class="h2">Available now, and planned</h2>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <h3>Available now</h3>
+        <ul>
+          <li>Authenticated MQTT over TLS and WebSocket</li>
+          <li>Role plus topic-rule authorization, deny by default</li>
+          <li>Rule create, edit and delete in the product</li>
+          <li>Allowed and denied operations recorded and attributable</li>
+          <li>Hash-linked system and action chain, with its scope and exclusions stated</li>
+          <li>REST API for topics, policies, queues and evidence</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>Planned</h3>
+        <ul>
+          <li>Governance map and graph views</li>
+          <li>Domain context enrichment and historical baseline comparison</li>
+          <li>Agent-assisted investigation</li>
+          <li>A public read-only verification interface</li>
+          <li>Export and evidence packaging</li>
+        </ul>
+        <p><b>None of this is in the current product</b>, and nothing on this page describes it as if it were.</p>
+      </article>
+    </div>
+
+    <div class="section__head section__head--center" style="margin-top:3rem">
+      <h2 class="h2">What TrailMQ does not claim</h2>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <h3>Downstream delivery</h3>
+        <p>TrailMQ proves an operation was authorized and accepted at the broker. It does not show message payloads or name which subscribers received them. Delivery is proven by your own subscriber, and the documentation says so before you start.</p>
+      </article>
+      <article class="card">
+        <h3>Evidence integrity</h3>
+        <p>The chain proves internal consistency over system and action entries — sign-ins, administrative changes, policy and rule changes. It is <b>not</b> externally anchored, <b>not</b> digitally signed, and does <b>not</b> cover message evidence, which includes <b>publish and subscribe refusals</b>. A reviewer inspecting a denial sees it marked <code>Outside validated scope</code>. If your requirement is a tamper-checked record of individual MQTT decisions, that is not what this check proves today.</p>
+      </article>
+      <article class="card">
+        <h3>Compliance</h3>
+        <p>TrailMQ is a technical building block for traceability-sensitive systems. It is not a compliance certification, not WORM storage, and not a notarization service. A denied QoS 0 publish is silently discarded because the protocol carries no acknowledgement to refuse — documented, not hidden.</p>
+      </article>
+    </div>
+
+    <div class="section__head section__head--center" style="margin-top:3rem">
+      <p class="section__sub">
+        Evaluating TrailMQ with a real MQTT use case?
+        <a href="mailto:contact@trailmq.com?subject=TrailMQ%20evaluation">Share your setup experience or request onboarding support</a>.
+        TrailMQ sends no telemetry: no topics, payloads, identities or operational metadata leave your machine.
+      </p>
     </div>
   </div>
 </section>
