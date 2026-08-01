@@ -14,6 +14,7 @@ reading_time: 7
 featured: false
 order: 6
 image: /assets/images/wiki/iiot-gmp-basics.webp
+image_alt: "A cleanroom operator checks a controlled sensor-to-gateway path and sealed sample."
 lead: "Connectivity alone does not create trust. In regulated IIoT systems, data must be traceable, validated and governed throughout its lifecycle."
 ---
 

@@ -14,6 +14,7 @@ reading_time: 6
 featured: true
 order: 1
 image: /assets/images/wiki/manufacturing-trust.webp
+image_alt: "An engineer verifies a sensor and batch sample beside an advanced robotic production cell."
 lead: "Manufacturing does not struggle with AI capability. It struggles with trust. Without traceable, contextualized and auditable data, AI remains a pilot regardless of model quality."
 ---
 

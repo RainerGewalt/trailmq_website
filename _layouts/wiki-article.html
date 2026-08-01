@@ -26,14 +26,14 @@ layout: wiki-base
       Cover art is the LCP element on an article. The intrinsic size lets
       the browser reserve the box before the bytes arrive (no layout shift),
       and fetchpriority pulls it out of the default low-priority queue.
-      All covers are authored at 1024x1536.
+      All covers are authored at 1536x1024.
     {%- endcomment -%}
     <img
       src="{{ page.image | relative_url }}"
       alt="{{ page.image_alt | default: page.title }}"
       class="article-header__cover"
-      width="1024"
-      height="1536"
+      width="1536"
+      height="1024"
       itemprop="image"
       fetchpriority="high"
       decoding="async"
@@ -110,15 +110,15 @@ layout: wiki-base
 </article>
 
 <!-- Related Concepts -->
-{% assign related = site.wiki_articles | where: "category", page.category | where_exp: "item", "item.url != page.url" | limit: 3 %}
+{% assign related = site.wiki_articles | where: "category", page.category | where_exp: "item", "item.url != page.url" %}
 {% if related.size > 0 %}
 <section class="related-articles">
   <h3>Related Concepts</h3>
   <div class="concepts-grid">
-    {% for article in related %}
+    {% for article in related limit: 3 %}
     <article class="concept-card">
       {% if article.image %}
-      <img src="{{ article.image | relative_url }}" alt="{{ article.title }}" class="concept-card__cover" loading="lazy" decoding="async">
+      <img src="{{ article.image | relative_url }}" alt="{{ article.image_alt | default: article.title }}" class="concept-card__cover" width="1536" height="1024" loading="lazy" decoding="async">
       {% else %}
       <div class="concept-card__cover--placeholder">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">

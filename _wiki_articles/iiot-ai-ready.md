@@ -14,6 +14,7 @@ reading_time: 6
 featured: true
 order: 4
 image: /assets/images/wiki/iiot-ai-ready.webp
+image_alt: "An engineer validates connected sensors and an edge computer on a production line."
 lead: "Being AI ready does not mean connecting a model. It means building an infrastructure that can validate, contextualize and explain data reliably."
 ---
 

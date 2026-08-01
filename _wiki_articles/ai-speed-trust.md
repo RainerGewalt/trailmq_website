@@ -14,6 +14,7 @@ reading_time: 6
 featured: false
 order: 6
 image: /assets/images/wiki/ai-speed-trust.webp
+image_alt: "A quality specialist reviews a sealed record beside a precision clock while a production line moves behind her."
 lead: "Fast AI innovation means little if its behavior cannot be explained. Regulated systems demand architectures that balance learning speed with continuous trust."
 ---
 

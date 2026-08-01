@@ -14,6 +14,7 @@ reading_time: 6
 featured: true
 order: 4
 image: /assets/images/wiki/logs-vs-audit.webp
+image_alt: "A quality specialist reviews a tamper-evident record beside a blurred technical log display."
 lead: "A stream of log entries is not an audit trail. In regulated systems, the difference determines whether data can be trusted under inspection."
 ---
 
