@@ -14,6 +14,7 @@ reading_time: 7
 featured: true
 order: 5
 image: /assets/images/wiki/data-pipelines-ai.webp
+image_alt: "An engineer verifies a continuous sensor-to-gateway data path on a manufacturing line."
 lead: "AI success in regulated environments is decided long before any model is trained. It depends on whether data pipelines can prove every step from sensor to decision."
 ---
 

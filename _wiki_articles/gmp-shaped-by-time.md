@@ -14,6 +14,7 @@ reading_time: 6
 featured: true
 order: 1
 image: /assets/images/wiki/gmp-shaped-by-time.webp
+image_alt: "A precision clock and cleanroom operator frame an active pharmaceutical batch process."
 lead: "GMP is often discussed as a rule set or a documentation burden. In reality, it is shaped by time, proximity to the process, and architectural decisions made long before the first audit begins."
 ---
 

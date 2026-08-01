@@ -18,6 +18,7 @@ reading_time: 7
 featured: true
 order: 1
 image: /assets/images/wiki/gxp-compliant-mqtt-broker.webp
+image_alt: "A cleanroom engineer reviews an industrial MQTT gateway beside a pharmaceutical production line."
 lead: "MQTT is not GxP compliant or non-compliant by itself. In regulated manufacturing, the real question is whether message decisions can be controlled, explained and reviewed later."
 ---
 

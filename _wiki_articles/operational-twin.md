@@ -14,6 +14,7 @@ reading_time: 7
 featured: true
 order: 5
 image: /assets/images/wiki/operational-twin.webp
+image_alt: "An operator compares a physical vessel sample with its monitored process state."
 lead: "An operational twin is not a visual replica. It is a system that translates physical process reality into meaningful, comparable and auditable representations."
 ---
 

@@ -14,6 +14,7 @@ reading_time: 7
 featured: false
 order: 4
 image: /assets/images/wiki/hardest-problem-ai.webp
+image_alt: "An engineer aligns batch samples with process time and operating data."
 lead: "The hardest problem in Industrial AI is not prediction. It is understanding data in the correct process context across time, batches and conditions."
 ---
 

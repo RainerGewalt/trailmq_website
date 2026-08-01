@@ -14,6 +14,7 @@ reading_time: 6
 featured: false
 order: 2
 image: /assets/images/wiki/learn-from-pharma.webp
+image_alt: "Two cleanroom specialists review a sealed pharmaceutical batch sample together."
 lead: "Pharma learned early that speed is irrelevant without trust. Its digital culture offers lessons that extend far beyond regulated environments."
 ---
 

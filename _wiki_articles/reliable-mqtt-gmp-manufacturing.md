@@ -17,7 +17,8 @@ tags:
 reading_time: 8
 featured: true
 order: 2
-image: /assets/images/wiki/iiot-gmp-basics.webp
+image: /assets/images/wiki/reliable-mqtt-gmp-manufacturing.webp
+image_alt: "A technician tests redundant industrial gateways beside a pharmaceutical production line."
 lead: "Reliable MQTT messaging in GMP-regulated manufacturing is not only a broker setting. It combines MQTT delivery behavior with identity, policy control, failure handling, audit trails and data integrity evidence."
 ---
 

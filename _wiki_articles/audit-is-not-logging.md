@@ -14,6 +14,7 @@ reading_time: 6
 featured: true
 order: 1
 image: /assets/images/wiki/audit-not-logging.webp
+image_alt: "An auditor compares technical event logs with a structured evidence folder at an industrial review desk."
 lead: "Many systems log everything and still fail audits. The reason is simple: logs record actions, but audits must explain decisions."
 ---
 
