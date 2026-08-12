@@ -1,10 +1,10 @@
 ---
 layout: wiki-article
 title: "Can an MQTT broker be GxP compliant?"
-seo_title: "GxP MQTT broker: data integrity and audit trails | TrailMQ"
-description: "Can you be GxP compliant when using an MQTT broker? Why MQTT is only transport and what data integrity, audit trail and validation evidence require."
+seo_title: "Can an MQTT Broker Be GxP Compliant? | TrailMQ"
+description: "Yes, MQTT can be used in a GxP system—but a broker is not compliant by itself. Learn what data integrity, audit trails and validation must cover."
 date: 2026-04-30
-last_modified: 2026-06-30
+last_modified_at: 2026-08-12
 category: "Foundations"
 tags:
   - MQTT
@@ -19,32 +19,12 @@ featured: true
 order: 1
 image: /assets/images/wiki/gxp-compliant-mqtt-broker.webp
 image_alt: "A cleanroom engineer reviews an industrial MQTT gateway beside a pharmaceutical production line."
-lead: "MQTT is not GxP compliant or non-compliant by itself. In regulated manufacturing, the real question is whether message decisions can be controlled, explained and reviewed later."
----
-
-## Can an MQTT broker be GxP compliant?
-
-MQTT itself is not GxP compliant.
-
-It is also not GxP non-compliant.
-
-MQTT is a messaging protocol.
-A broker moves messages between publishers and subscribers.
-
-That alone does not create compliance.
-And it does not prevent compliance.
-
-The decisive question is different:
-
-Can the system explain what happened?
-
+lead: "Yes, MQTT can be used in a GxP-relevant system. The broker is not compliant by itself; compliance depends on intended use, technical controls, validation and the surrounding quality system."
 ---
 
 ## Short answer
 
-Yes, MQTT can be used inside a GxP-relevant system.
-
-No, the broker is not GxP compliant by itself.
+**Yes, MQTT can be used inside a GxP-relevant system. No, an MQTT broker is not GxP compliant by itself.** MQTT is a messaging protocol; compliance belongs to the configured system and its intended use.
 
 For data integrity and audit trails, the surrounding system must prove more than message delivery.
 It must preserve who acted, when it happened, which topic and operation were involved, which policy was active, why the action was allowed or blocked, what changed and whether the evidence can still be trusted later.
@@ -235,25 +215,23 @@ It emerges from controlled, explainable system behavior.
 
 ## Where TrailMQ fits
 
-TrailMQ is designed for this gap.
+TrailMQ is a self-hosted MQTT broker designed for this gap. Standard MQTT clients connect to it directly over TLS or WebSocket.
 
-It does not try to make MQTT something else.
-
-It keeps MQTT as transport,
-but adds a control and evidence layer around it.
+In TrailMQ {{ site.product_version }}, each action must pass the identity's role permission and the namespace/topic rule. Allowed operations and refusals are stored in a dedicated MQTT decision store with identity, client, action, topic, outcome and a canonical denial reason.
 
 The purpose is to make message behavior reviewable:
 
 Who connected.
 Who published.
 Who subscribed.
-Which policy was active.
 Why something was allowed.
 Why something was blocked.
 What changed.
-And whether the evidence still holds.
+And which integrity scope applies to the evidence being reviewed.
 
 This is the difference between moving messages and explaining message decisions.
+
+The integrity boundary matters: TrailMQ's hash-linked validation checks the separate system/action store. It does **not** tamper-check MQTT message evidence, including publish and subscribe refusals. The public [architecture and trust model](https://github.com/RainerGewalt/TrailMQ/blob/master/docs/architecture.md) documents that scope.
 
 ---
 
@@ -274,7 +252,7 @@ A regulated environment still needs:
 * periodic review
 * and quality ownership
 
-TrailMQ can provide technical controls and audit-ready evidence.
+TrailMQ can provide technical controls and reviewable evidence for assessment.
 
 The organization still owns the compliance process.
 
@@ -294,3 +272,5 @@ If the answer is no,
 the broker may still be working technically.
 
 But the system is not yet audit-ready.
+
+For a field-by-field evaluation guide, read [what an MQTT data transaction audit trail solution should record](/wiki/mqtt-data-transaction-audit-trail/).

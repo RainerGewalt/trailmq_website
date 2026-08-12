@@ -18,6 +18,7 @@
 {% assign seo_title = site.title %}
 {% endif %}
 {% assign seo_description = page.description | default: site.description %}
+{% assign page_modified = page.last_modified_at | default: page.last_modified %}
 {% comment %}
   Social preview image. Always a 1200x630 JPEG: LinkedIn, Slack and
   Facebook render WebP unreliably, and the wiki cover art is 2:3
@@ -48,9 +49,6 @@
 <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/images/icons/favicon-16x16.png' | relative_url }}" />
 <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/icons/apple-touch-icon.png' | relative_url }}" />
 
-<!-- Keywords for SEO -->
-<meta name="keywords" content="{{ page.keywords | default: 'MQTT broker, MQTT audit trail, MQTT evidence layer, MQTT policy control, industrial MQTT, IIoT, domain context, historical baselines, KPI deviation, GxP, GMP, audit evidence, traceability, trusted industrial AI, AI-ready industrial data, docker, free evaluation, commercial license' | escape }}" />
-
 <!-- Canonical URL -->
 <link rel="canonical" href="{{ canonical_url }}" />
 
@@ -68,7 +66,7 @@
 <meta property="og:locale" content="en_US" />
 {% if page.layout == 'wiki-article' %}
 {% if page.date %}<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}" />{% endif %}
-{% if page.last_modified %}<meta property="article:modified_time" content="{{ page.last_modified | date_to_xmlschema }}" />{% endif %}
+{% if page_modified %}<meta property="article:modified_time" content="{{ page_modified | date_to_xmlschema }}" />{% endif %}
 {% for tag in page.tags %}<meta property="article:tag" content="{{ tag | escape }}" />{% endfor %}
 {% endif %}
 
@@ -88,41 +86,6 @@
 <!-- Main Stylesheet -->
 <link rel="stylesheet" href="{{ '/assets/css/landing.css' | relative_url }}" />
 
-{% if page.url == '/' %}
-<!-- Structured Data: SoftwareApplication -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "@id": {{ site.url | append: '/#software' | jsonify }},
-  "name": "TrailMQ",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Linux, Docker",
-  "description": {{ seo_description | strip_newlines | jsonify }},
-  "url": {{ site.url | jsonify }},
-  "image": {{ og_image | jsonify }},
-  "publisher": {
-    "@id": {{ site.url | append: '/#organization' | jsonify }}
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Florian Przybylak",
-    "url": "https://github.com/RainerGewalt"
-  },
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD",
-    "description": "Free to evaluate. Commercial license required for production use."
-  },
-  "downloadUrl": "https://github.com/RainerGewalt/TrailMQ",
-  "installUrl": "https://hub.docker.com/r/rainergewalt/trailmq-backend",
-  "softwareVersion": "latest",
-  "releaseNotes": "https://github.com/RainerGewalt/TrailMQ/releases"
-}
-</script>
-{% endif %}
-
 <!-- Structured Data: Organization -->
 <script type="application/ld+json">
 {
@@ -130,7 +93,7 @@
   "@type": "Organization",
   "@id": {{ site.url | append: '/#organization' | jsonify }},
   "name": "TrailMQ",
-  "description": "Control and evidence layer for regulated MQTT. Policy-controlled topic access, identity context and audit-linked evidence for GxP, GMP and quality-critical IIoT.",
+  "description": "Self-hosted MQTT broker with role and topic policy enforcement, attributable MQTT decision records and a scope-defined system/action integrity check.",
   "url": {{ site.url | jsonify }},
   "logo": {{ logo_image | jsonify }},
   "sameAs": [
@@ -181,5 +144,8 @@
   "publisher": {
     "@id": {{ site.url | append: '/#organization' | jsonify }}
   }
+  {% if page_modified %},
+  "dateModified": {{ page_modified | date_to_xmlschema | jsonify }}
+  {% endif %}
 }
 </script>

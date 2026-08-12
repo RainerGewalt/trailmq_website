@@ -12,7 +12,7 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "TechArticle",
+    "@type": "Article",
     "@id": {{ page.url | absolute_url | append: '#article' | jsonify }},
     "headline": {{ page.title | jsonify }},
     "description": {{ page.description | default: page.excerpt | strip_html | truncate: 160 | jsonify }},
@@ -20,10 +20,12 @@
     "inLanguage": "en-US",
     {% if page.image %}"image": {{ page.image | absolute_url | jsonify }},{% endif %}
     {% if page.date %}"datePublished": {{ page.date | date_to_xmlschema | jsonify }},{% endif %}
-    "dateModified": {{ page.last_modified | default: page.date | date_to_xmlschema | jsonify }},
+    "dateModified": {{ page.last_modified_at | default: page.last_modified | default: page.date | date_to_xmlschema | jsonify }},
     {% if page.reading_time %}"timeRequired": "PT{{ page.reading_time }}M",{% endif %}
     "author": {
-      "@id": {{ site.url | append: '/#organization' | jsonify }}
+      "@type": "Organization",
+      "name": "TrailMQ Team",
+      "url": {{ '/about/' | absolute_url | jsonify }}
     },
     "publisher": {
       "@id": {{ site.url | append: '/#organization' | jsonify }}
@@ -37,7 +39,8 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": {{ page.url | absolute_url | append: '#webpage' | jsonify }}
-    }
+    },
+    "articleSection": {{ page.category | default: 'TrailMQ Concepts' | jsonify }}
     {% if page.tags %},
     "keywords": {{ page.tags | join: ', ' | jsonify }}
     {% endif %}
