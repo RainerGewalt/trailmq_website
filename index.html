@@ -1,19 +1,22 @@
 ---
 layout: default
-title: "TrailMQ — GxP MQTT Broker & Audit Trail Evidence"
-description: "TrailMQ is a self-hosted MQTT broker with policy enforcement and attributable decision records for GxP, GMP and industrial MQTT evaluation."
+title: "TrailMQ — Policy-Controlled MQTT Broker & Audit Trail"
+description: "TrailMQ is a self-hosted MQTT broker built for auditable, policy-controlled messaging, with attributable decision records for regulated and industrial systems."
 author: TrailMQ Team
 last_modified_at: 2026-08-12
 ---
+
+<!-- Claim gate: do not describe MQTT decision evidence as cryptographically
+     verifiable until Decision Evidence v1 acceptance tests have passed. -->
 
 <!-- ══════════════ HERO ══════════════ -->
 <section class="hero">
   <div class="wrap hero__grid">
     <div class="hero__copy">
-      <span class="hero__badge"><span class="dot"></span> Self-hosted evaluation · runs on your own machine</span>
-      <h1>Govern MQTT access.<br><em>Review every decision.</em><br>Know what the evidence proves.</h1>
-      <p class="hero__sub">Review recorded MQTT decisions together with their actual validation scope and integrity status.</p>
-      <p class="hero__desc">TrailMQ is a self-hosted MQTT broker with built-in policy enforcement and attributable decision records. Standard MQTT clients connect directly over TLS or WebSocket—without a TrailMQ SDK, proxy or sidecar.</p>
+      <span class="hero__badge"><span class="dot"></span> TrailMQ {{ site.product_version }} · self-hosted evaluation</span>
+      <h1>Policy-controlled MQTT.<br><em>Decisions you can review.</em></h1>
+      <p class="hero__sub">TrailMQ is an MQTT broker built for auditable, policy-controlled messaging.</p>
+      <p class="hero__desc">TrailMQ authenticates standard MQTT clients, enforces role and topic rules, and records attributable allow and deny decisions for later review—without a TrailMQ SDK, proxy or sidecar.</p>
 
       <div class="hero__cta">
         <a href="https://github.com/RainerGewalt/TrailMQ" class="btn btn--primary" target="_blank" rel="noopener">
@@ -35,8 +38,8 @@ last_modified_at: 2026-08-12
       <div class="ev-card">
         <div class="ev-card__bar">
           <span class="ev-card__dot ev-card__dot--ok"></span>
-          <span class="label">A denied publish, as recorded</span>
-          <span class="ev-card__verify ev-card__verify--scope"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg> outside validated scope</span>
+          <span class="label">An attributable denial record</span>
+          <span class="ev-card__verify ev-card__verify--scope"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg> decision recorded</span>
         </div>
         <div class="ev-card__body">
           <div class="ev-row"><span class="k">event</span><span class="v"><b>Publish refused</b> <span class="ev-pill ev-pill--crit">Denied</span></span></div>
@@ -48,37 +51,37 @@ last_modified_at: 2026-08-12
         </div>
         <div class="ev-card__chain">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-          seq <span class="hash">48213</span> · the hash chain covers system and action entries
+          MQTT decision record · outside the current system/action integrity check
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════ THE PROMISE: CONNECT / CONTROL / UNDERSTAND / PROVE ══════════════ -->
+<!-- ══════════════ THE CURRENT PRODUCT PATH ══════════════ -->
 <section class="section" id="promise">
   <div class="wrap">
     <div class="section__head section__head--center">
-      <h2 class="h2">Four steps, in this order</h2>
+      <h2 class="h2">From MQTT request to reviewable decision</h2>
       <p class="section__sub">This is what TrailMQ {{ site.product_version }} does today, from a clean clone, in about five minutes plus the first image pull.</p>
     </div>
 
     <div class="cards">
       <article class="card">
         <h3>Connect</h3>
-        <p>Standard MQTT over TLS or WebSocket. <code>mosquitto</code>, <code>paho-mqtt</code>, <code>mqtt.js</code> or a browser client — no SDK, no sidecar, no proxy. Two commands bring the stack up and prove one message end to end.</p>
+        <p>Standard MQTT over TLS or WebSocket. <code>mosquitto</code>, <code>paho-mqtt</code>, <code>mqtt.js</code> or a browser client — no SDK, no sidecar, no proxy. Two commands bring the stack up and exercise an allowed message end to end.</p>
       </article>
       <article class="card">
         <h3>Control</h3>
         <p>Every action passes two independent gates: the role's own permissions and the topic rule that scopes where it applies. Unknown namespaces are denied by default. Evaluation rules are managed through the REST API and configuration.</p>
       </article>
       <article class="card">
-        <h3>Understand</h3>
-        <p>A denied publish or subscribe is one row, attributed to both the authenticated account and the MQTT client id it was sent from, with the topic that was evaluated and the reason it was refused.</p>
+        <h3>Record</h3>
+        <p>Allowed operations and refusals become structured records with the authenticated account, MQTT client id, action, topic, outcome and a canonical reason for denials.</p>
       </article>
       <article class="card">
-        <h3>Prove</h3>
-        <p>Three separate questions stay separate: was the operation <b>permitted</b>, was it <b>recorded</b>, and does the validated chain <b>cover</b> that record. TrailMQ states its own scope, and what it excludes.</p>
+        <h3>Review</h3>
+        <p>Reviewers can inspect what the broker allowed or denied without reconstructing the basic decision from raw logs. TrailMQ keeps MQTT decision records distinct from its narrower system/action integrity check.</p>
       </article>
     </div>
 
@@ -112,7 +115,7 @@ Publish refused   restricted/ops/config   Denied   Recorded
           <tr><td>Why was this refused?</td><td>Not shown</td><td>Inferable</td><td>Correlate by hand</td><td>On the row, with the topic that was evaluated</td></tr>
           <tr><td>Who was refused?</td><td>Connection counts</td><td>Not applicable</td><td>Client id or username, rarely both</td><td>Both, and either one finds the record</td></tr>
           <tr><td>Was it recorded?</td><td>Not applicable</td><td>Not applicable</td><td>If retention allowed</td><td>Stated per record</td></tr>
-          <tr><td>Can edits to the history be detected?</td><td>No</td><td>No</td><td>Needs an external pipeline</td><td>Hash-linked chain, with its scope stated</td></tr>
+          <tr><td>Can edits to the history be detected?</td><td>No</td><td>No</td><td>Needs an external pipeline</td><td>For system/action entries only; MQTT decisions are outside the current check</td></tr>
         </tbody>
       </table>
       </div>
@@ -120,7 +123,7 @@ Publish refused   restricted/ops/config   Denied   Recorded
     <p class="table-hint">Scroll the table sideways to see all four columns &rarr;</p>
 
     <div class="section__head section__head--center" style="margin-top:3rem">
-      <h2 class="h2">Available now, and planned</h2>
+      <h2 class="h2">What ships in TrailMQ {{ site.product_version }}</h2>
     </div>
     <div class="cards">
       <article class="card card--now">
@@ -134,17 +137,8 @@ Publish refused   restricted/ops/config   Denied   Recorded
           <li>Review-first UI plus REST APIs for topics, policies, queues and evidence</li>
         </ul>
       </article>
-      <article class="card card--planned">
-        <h3>Planned</h3>
-        <ul>
-          <li>Decision Trace</li>
-          <li>Domain Context Lite</li>
-          <li>Historical Context Feed</li>
-          <li>KPI Lite baseline comparison</li>
-        </ul>
-        <p><b>None of these plugins ships in {{ site.product_version }}.</b> The public repository marks every catalog entry as planned.</p>
-      </article>
     </div>
+    <p class="foot-note foot-note--center">Future context, baseline and plugin concepts are kept in the <a href="https://github.com/RainerGewalt/TrailMQ/blob/master/docs/plugins.md" target="_blank" rel="noopener">public product-direction notes</a>; none ships in {{ site.product_version }}. See the <a href="https://github.com/RainerGewalt/TrailMQ#evaluation-preview" target="_blank" rel="noopener">current Evaluation Preview and screenshots</a>.</p>
 
     <div class="section__head section__head--center" style="margin-top:3rem">
       <h2 class="h2">What TrailMQ does not claim</h2>
@@ -152,11 +146,11 @@ Publish refused   restricted/ops/config   Denied   Recorded
     <div class="cards">
       <article class="card card--limit">
         <h3>Downstream delivery</h3>
-        <p>TrailMQ proves an operation was authorized and accepted at the broker. It does not show message payloads or name which subscribers received them. Delivery is proven by your own subscriber, and the documentation says so before you start.</p>
+        <p>A recorded allow means TrailMQ authorized and accepted the operation at the broker. It does not show message payloads or name which subscribers received them. Delivery must be checked with a real subscriber, and the public verification does exactly that.</p>
       </article>
       <article class="card card--limit">
         <h3>Evidence integrity</h3>
-        <p>The chain proves internal consistency over system and action entries — sign-ins, administrative changes, policy and rule changes. It is <b>not</b> externally anchored, <b>not</b> digitally signed, and does <b>not</b> cover message evidence, which includes <b>publish and subscribe refusals</b>. A reviewer inspecting a denial sees it marked <code>Outside validated scope</code>. If your requirement is a tamper-checked record of individual MQTT decisions, that is not what this check proves today.</p>
+        <p>The chain checks internal consistency over system and action entries — sign-ins, administrative changes, policy and rule changes. It is <b>not</b> externally anchored, <b>not</b> digitally signed, and does <b>not</b> cover message evidence, including <b>publish and subscribe refusals</b>. If your requirement is a tamper-checked record of individual MQTT decisions, TrailMQ {{ site.product_version }} does not provide that today.</p>
       </article>
       <article class="card card--limit">
         <h3>Compliance</h3>
@@ -187,32 +181,26 @@ Publish refused   restricted/ops/config   Denied   Recorded
       <article class="pl-step">
         <div class="pl-step__n">01</div>
         <div class="pl-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></div>
-        <h3>Machine message</h3>
-        <p>A sensor publishes a raw value over MQTT.</p>
+        <h3>Request</h3>
+        <p>A standard MQTT client requests connect, publish or subscribe.</p>
       </article>
       <article class="pl-step">
         <div class="pl-step__n">02</div>
         <div class="pl-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h.01M12 3l9 9-9 9-9-9z"/><path d="M3 12h6"/></svg></div>
-        <h3>Resolve identity</h3>
-        <p>Client, role and policy context captured with the event.</p>
+        <h3>Authenticate</h3>
+        <p>TrailMQ resolves the account, MQTT client id and assigned role.</p>
       </article>
       <article class="pl-step pl-step--key">
         <div class="pl-step__n">03</div>
         <div class="pl-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 3-3 3 3 5-6"/></svg></div>
-        <h3>Apply policy</h3>
-        <p>Publish or subscribe request checked against the active rule set.</p>
+        <h3>Enforce policy</h3>
+        <p>Role permission and namespace/topic rule must both allow the request.</p>
       </article>
       <article class="pl-step">
         <div class="pl-step__n">04</div>
-        <div class="pl-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="m4.9 9 5.2 3M19.1 9l-5.2 3"/><circle cx="12" cy="14" r="6"/></svg></div>
-        <h3>Optional enrichment</h3>
-        <p>Planned plugins can add domain context and baseline comparison.</p>
-      </article>
-      <article class="pl-step">
-        <div class="pl-step__n">05</div>
         <div class="pl-step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
-        <h3>Audit evidence</h3>
-        <p>Decision, identity and policy linked into one reviewable record.</p>
+        <h3>Review decision</h3>
+        <p>The operation, identity, client, topic, outcome and denial reason remain reviewable.</p>
       </article>
     </div>
 
@@ -226,7 +214,7 @@ Publish refused   restricted/ops/config   Denied   Recorded
     <div class="section__head">
       <span class="eyebrow eyebrow--light">Capabilities</span>
       <h2 class="h2">Not just transport.<br>Controlled, reviewable messaging.</h2>
-      <p class="lead">TrailMQ focuses first on access control, identity, decision records and audit evidence. The planned plugin layer adds richer decision traces, domain context and historical comparison.</p>
+      <p class="lead">TrailMQ focuses on the broker boundary: authenticated MQTT transport, two-gate policy enforcement and attributable decision records for later review.</p>
     </div>
 
     <div class="feat-grid">
@@ -239,7 +227,7 @@ Publish refused   restricted/ops/config   Denied   Recorded
 
       <article class="feat">
         <div class="feat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></div>
-        <h3>Reviewable audit trail</h3>
+        <h3>Attributable decision records</h3>
         <p>MQTT operations and refusals are recorded in a dedicated decision store. The separate hash-linked integrity verdict covers system and action entries, with that boundary stated per record.</p>
       </article>
 
@@ -267,19 +255,6 @@ Publish refused   restricted/ops/config   Denied   Recorded
         <p>See which MQTT clients are connected and what topics they access. Inspect queue state and dead-letter entries through the REST API without broker-level access.</p>
       </article>
 
-      <article class="feat">
-        <div class="feat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 13.42 20.6a2 2 0 0 1-2.83 0l-7.18-7.18a2 2 0 0 1-.59-1.42V5a2 2 0 0 1 2-2h6.99a2 2 0 0 1 1.42.59l7.36 7.36a2 2 0 0 1 0 2.46z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></div>
-        <span class="tag">Planned plugin</span>
-        <h3>Domain context enrichment</h3>
-        <p>Turn technical MQTT topics into machine, batch and metric context so QA, OT and engineering teams can review messages in process terms.</p>
-      </article>
-
-      <article class="feat">
-        <div class="feat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
-        <span class="tag">Planned plugin</span>
-        <h3>Live vs. historical comparison</h3>
-        <p>Compare live MQTT values against REST-fed historical baselines and record deviations as audit-linked evidence when the comparison context is available.</p>
-      </article>
     </div>
   </div>
 </section>
@@ -297,17 +272,17 @@ Publish refused   restricted/ops/config   Denied   Recorded
       <article class="aud">
         <div class="aud__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M4 20V8l6-4v16M14 20V10l6-3v13"/><path d="M8 9v.01M8 13v.01M8 17v.01"/></svg></div>
         <h3>OT &amp; Production teams</h3>
-        <p>Review who attempted an MQTT action, which client and topic were involved, and why the broker allowed or denied it. Domain and batch context remain part of the planned plugin direction.</p>
+        <p>Review who attempted an MQTT action, which client and topic were involved, and why the broker allowed or denied it.</p>
       </article>
       <article class="aud">
         <div class="aud__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2h6M10 2v6.5L5.5 17a2.5 2.5 0 0 0 2.2 3.7h8.6a2.5 2.5 0 0 0 2.2-3.7L14 8.5V2"/><path d="M7.5 14h9"/></svg></div>
         <h3>Pharma &amp; Life Sciences</h3>
-        <p>You operate under GMP, and auditors ask questions months later. Get structured evidence for message decisions and technical controls, with planned deviation support where baseline context is available.</p>
+        <p>You operate under GMP, and reviewers ask questions months later. Evaluate structured MQTT decision records and technical controls without treating the broker as a compliance certification.</p>
       </article>
       <article class="aud">
         <div class="aud__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m14.7 6.3 3 3M4 20l4-1 9.5-9.5a2.1 2.1 0 0 0-3-3L5 16z"/><path d="M19 14v3a2 2 0 0 1-2 2H7"/></svg></div>
         <h3>IIoT Platform engineers</h3>
-        <p>You build the infrastructure others rely on. TrailMQ runs as a Docker-based evaluation stack, integrates with existing MQTT clients, and produces evidence downstream systems can consume.</p>
+        <p>You build the infrastructure others rely on. TrailMQ runs as a Docker-based evaluation stack, accepts existing MQTT clients and exposes reviewable records through its UI and REST API.</p>
       </article>
     </div>
   </div>
@@ -344,16 +319,6 @@ Publish refused   restricted/ops/config   Denied   Recorded
         <div class="tmq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> User, client, action, topic, outcome</div>
       </div>
       <div class="cmp__row">
-        <div class="q">What does this MQTT value mean in process context?</div>
-        <div class="std"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Topic string only</div>
-        <div class="tmq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Planned context plugin</div>
-      </div>
-      <div class="cmp__row">
-        <div class="q">Was this live value normal or deviating?</div>
-        <div class="std"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Not available</div>
-        <div class="tmq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Planned baseline comparison</div>
-      </div>
-      <div class="cmp__row">
         <div class="q">Can later edits to the recorded history be detected?</div>
         <div class="std"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg> Needs an evidence pipeline</div>
         <div class="tmq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Hash-linked chain over system and action entries</div>
@@ -382,15 +347,15 @@ Publish refused   restricted/ops/config   Denied   Recorded
       <ul class="std-list">
         <li>
           <span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
-          <span><strong>Integrity-oriented audit evidence</strong><span>Sequenced, reviewable decision records</span></span>
+          <span><strong>Attributable MQTT decisions</strong><span>Reviewable allow and deny records</span></span>
         </li>
         <li>
           <span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
-          <span><strong>Segregation of duties</strong><span>User and role-based access controls</span></span>
+          <span><strong>Role and topic controls</strong><span>Two independent authorization gates</span></span>
         </li>
         <li>
           <span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
-          <span><strong>Data integrity controls</strong><span>Sequenced records with a stated validation scope</span></span>
+          <span><strong>Scope-defined integrity check</strong><span>System/action chain; MQTT decisions excluded today</span></span>
         </li>
         <li>
           <span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
@@ -398,7 +363,7 @@ Publish refused   restricted/ops/config   Denied   Recorded
         </li>
         <li>
           <span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
-          <span><strong>GAMP-aware controls</strong><span>Topic-level permissions across lifecycle phases</span></span>
+          <span><strong>Explicit product boundaries</strong><span>No automatic compliance, delivery or immutability claim</span></span>
         </li>
       </ul>
 
@@ -449,110 +414,11 @@ Publish refused   restricted/ops/config   Denied   Recorded
       <article class="feat">
         <div class="feat__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
         <h3>Reviewable evidence</h3>
-        <p>Store sequence, timing, decision reason, policy state and change context as structured evidence instead of relying on broker logs alone.</p>
+        <p>Review identity, client, operation, topic, outcome and denial reason as structured records instead of relying on broker logs alone. Assess the separate integrity scope explicitly.</p>
       </article>
     </div>
 
     <p class="foot-note">For a deeper checklist, read <a href="{{ '/wiki/reliable-mqtt-gmp-manufacturing/' | relative_url }}" class="txtlink">how to ensure reliable MQTT messaging in GMP-regulated manufacturing <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
-  </div>
-</section>
-
-<!-- ══════════════ EXAMPLE: KPI ══════════════ -->
-<section class="section">
-  <div class="wrap wrap--narrow">
-    <div class="section__head section__head--center">
-      <span class="eyebrow eyebrow--center">Planned plugin example</span>
-      <h2 class="h2">From a live value to reviewable deviation</h2>
-      <p class="lead">The planned plugin layer shows how a future TrailMQ recipe could enrich a live MQTT value with domain context, compare it with a historical baseline and link the result to evidence. This interface is not available in {{ site.product_version }}.</p>
-    </div>
-
-    <div class="kpi-steps">
-      <article class="kpi-step">
-        <div class="kpi-step__n">1</div>
-        <div class="kpi-step__body">
-          <h3>Feed a historical baseline through REST</h3>
-          <p>An external system provides a baseline for <code class="inline">line1 / filler / temperature</code>.</p>
-          <div class="codecard">
-            <div class="codecard__bar"><span class="tl"><i></i><i></i><i></i></span><span class="label">planned: POST /api/v1/baselines</span></div>
-            <pre><code><span class="c-com">// expected reference for this context</span>
-{
-  <span class="c-key">"context_key"</span>: { <span class="c-key">"line"</span>: <span class="c-str">"line1"</span>, <span class="c-key">"machine"</span>: <span class="c-str">"filler"</span>, <span class="c-key">"metric"</span>: <span class="c-str">"temperature"</span> },
-  <span class="c-key">"baseline"</span>: { <span class="c-key">"value"</span>: <span class="c-num">22.5</span>, <span class="c-key">"unit"</span>: <span class="c-str">"C"</span>, <span class="c-key">"source"</span>: <span class="c-str">"historical_average_30d"</span> },
-  <span class="c-key">"limits"</span>: { <span class="c-key">"warning_percent"</span>: <span class="c-num">10</span>, <span class="c-key">"critical_percent"</span>: <span class="c-num">20</span> }
-}</code></pre>
-          </div>
-        </div>
-      </article>
-
-      <article class="kpi-step">
-        <div class="kpi-step__n">2</div>
-        <div class="kpi-step__body">
-          <h3>Receive a live MQTT value</h3>
-          <p>A machine publishes <code class="inline">28.4 °C</code> to <code class="inline">production/line1/filler/batch/4711/temperature</code>.</p>
-        </div>
-      </article>
-
-      <article class="kpi-step">
-        <div class="kpi-step__n">3</div>
-        <div class="kpi-step__body">
-          <h3>Produce audit-linked deviation evidence</h3>
-          <p>In the planned recipe, TrailMQ would link the live value, context, baseline, deviation and decision trace into one reviewable path.</p>
-          <div class="codecard">
-            <div class="codecard__bar"><span class="tl"><i></i><i></i><i></i></span><span class="label">evidence record</span></div>
-            <pre><code>{
-  <span class="c-key">"metric"</span>: <span class="c-str">"temperature"</span>,
-  <span class="c-key">"live_value"</span>: <span class="c-num">28.4</span>,
-  <span class="c-key">"historical_value"</span>: <span class="c-num">22.5</span>,
-  <span class="c-key">"deviation_percent"</span>: <span class="c-num">26.22</span>,
-  <span class="c-key">"severity"</span>: <span class="c-crit">"critical"</span>,
-  <span class="c-key">"context"</span>: { <span class="c-key">"line"</span>: <span class="c-str">"line1"</span>, <span class="c-key">"machine"</span>: <span class="c-str">"filler"</span>, <span class="c-key">"batch_id"</span>: <span class="c-str">"4711"</span> }
-}</code></pre>
-          </div>
-        </div>
-      </article>
-    </div>
-
-    <p class="foot-note foot-note--center">Planned behavior: if required historical context is missing, the calculation becomes explicitly deferred and reviewable instead of being silently skipped.</p>
-  </div>
-</section>
-
-<!-- ══════════════ AI FOUNDATION ══════════════ -->
-<section class="section section--soft">
-  <div class="wrap">
-    <div class="section__head">
-      <span class="eyebrow">Trusted Industrial AI</span>
-      <h2 class="h2">A trustworthy foundation before the model</h2>
-      <p class="lead">In GMP and quality-critical environments, the question is not only whether an AI model is powerful — it's whether the data, context and decisions around that model can be trusted and reviewed.</p>
-    </div>
-
-    <div class="split">
-      <div class="split-list">
-        <div class="it">
-          <div class="it__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="4"/></svg></div>
-          <div><h3>AI needs more than raw machine data</h3><p>Before a model can reason about industrial data, the value needs domain context: machine, line, batch, metric, policy state and process relevance.</p></div>
-        </div>
-        <div class="it">
-          <div class="it__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg></div>
-          <div><h3>Deterministic context first</h3><p>Use deterministic context, baseline and deviation logic before model interpretation, then link the result to reviewable evidence.</p></div>
-        </div>
-        <div class="it">
-          <div class="it__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-          <div><h3>Trust comes from traceability</h3><p>TrailMQ records the MQTT access decision today. Planned plugins would add the domain context, historical baseline and derived calculation evidence needed by richer AI workflows.</p></div>
-        </div>
-      </div>
-
-      <div class="stack-vis">
-        <div class="stack-layer stack-layer--ai"><span class="n">04</span> Trusted Industrial AI</div>
-        <div class="stack-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7 7 7-7"/></svg></div>
-        <div class="stack-layer stack-layer--tmq"><span class="n">03</span> Planned context &amp; baseline plugins</div>
-        <div class="stack-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7 7 7-7"/></svg></div>
-        <div class="stack-layer stack-layer--data"><span class="n">02</span> TrailMQ broker &amp; decision evidence</div>
-        <div class="stack-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7 7 7-7"/></svg></div>
-        <div class="stack-layer stack-layer--data"><span class="n">01</span> Machines &amp; sensors</div>
-      </div>
-    </div>
-
-    <p class="foot-note">TrailMQ is not an AI model or analytics platform. Its current role is MQTT transport, policy enforcement and decision evidence; domain context and baseline plugins are planned.</p>
   </div>
 </section>
 
@@ -561,8 +427,8 @@ Publish refused   restricted/ops/config   Denied   Recorded
   <div class="wrap">
     <div class="section__head">
       <span class="eyebrow eyebrow--light">TrailMQ {{ site.product_version }} quickstart</span>
-      <h2 class="h2">From clone to a verified MQTT decision</h2>
-      <p class="lead">Start the public evaluation recipe, then run the seven-check proof against real MQTT and REST behavior.</p>
+      <h2 class="h2">From clone to a reproducible MQTT allow/deny test</h2>
+      <p class="lead">Start the public evaluation recipe, then exercise real MQTT and REST behavior with seven automated checks.</p>
     </div>
 
     <div class="qs-grid">
@@ -652,15 +518,11 @@ MQTT WS   ws://localhost/mqtt</code></pre>
       </details>
       <details class="faq-item">
         <summary>Does TrailMQ make a system automatically compliant? <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="faq-item__body">No. TrailMQ supports compliance by generating technical evidence. Validation, risk assessment and procedural controls remain the responsibility of the regulated organization.</div>
+        <div class="faq-item__body">No. TrailMQ provides technical controls and reviewable records that can support an assessment. Validation, risk assessment and procedural controls remain the responsibility of the regulated organization.</div>
       </details>
       <details class="faq-item">
         <summary>Does TrailMQ provide a REST API? <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="faq-item__body">Yes. TrailMQ exposes product functions through a REST API so teams can inspect topics, resolve policies, review queues, validate audit evidence and integrate TrailMQ with scripts, local checks, CI pipelines, monitoring tools or external systems.</div>
-      </details>
-      <details class="faq-item">
-        <summary>Can TrailMQ compare live values with historical baselines? <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="faq-item__body">Not in TrailMQ {{ site.product_version }}. Historical Context Feed, Domain Context Lite and KPI Lite are planned plugins in the public catalog; none of them ships in the current evaluation.</div>
+        <div class="faq-item__body">Yes. TrailMQ exposes product functions through a REST API so teams can inspect topics, resolve policies, review queues and records, validate the separate system/action chain and integrate TrailMQ with scripts, local checks, CI pipelines, monitoring tools or external systems.</div>
       </details>
       <details class="faq-item">
         <summary>Is TrailMQ open source? <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>

@@ -1,4 +1,4 @@
-title: "TrailMQ – MQTT Broker with Policy Enforcement and Decision Evidence"
+title: "TrailMQ – MQTT Broker for Auditable, Policy-Controlled Messaging"
 description: "Self-hosted MQTT broker with policy enforcement and attributable decision records for regulated, industrial and traceability-sensitive systems."
 author: "TrailMQ Team"
 
