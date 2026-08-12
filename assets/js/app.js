@@ -59,7 +59,7 @@
   function scheduleHashSync(delay) {
     window.setTimeout(syncHashTarget, delay);
   }
-  document.querySelectorAll('.section .section__head, .pipeline, .feat-grid, .cards, .code-block, .table-wrap, .aud-grid, .cmp, .std-grid, .kpi-steps, .split, .qs-grid, .faq, .closing-quote').forEach(function (el) {
+  document.querySelectorAll('.section .section__head, .pipeline, .feat-grid, .cards, .code-block, .table-wrap, .aud-grid, .cmp, .std-grid, .qs-grid, .faq, .closing-quote').forEach(function (el) {
     el.classList.add('reveal');
     revealEls.push(el);
   });

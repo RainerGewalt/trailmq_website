@@ -5,9 +5,10 @@ crumb: Imprint
 description: Legal information and contact details for TrailMQ.
 subtitle: Legal information and contact details for TrailMQ.
 permalink: /imprint/
+last_modified_at: 2026-08-12
 ---
 
-## Information according to &sect; 5 TMG
+## Information according to &sect; 5 DDG
 
 Florian Przybylak
 Anton-Bartl-Straße 3
