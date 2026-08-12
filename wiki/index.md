@@ -1,8 +1,10 @@
 ---
 layout: wiki-base
-title: TrailMQ Wiki
-description: Concepts, architecture notes and explainers for TrailMQ.
+title: TrailMQ MQTT, GxP and Audit Trail Guides
+seo_title: "MQTT, GxP and Audit Trail Guides | TrailMQ"
+description: Practical guides to GxP MQTT, GMP messaging reliability, MQTT data transaction audit trails, data integrity and decision evidence.
 permalink: /wiki/
+last_modified_at: 2026-08-12
 ---
 
 <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -14,10 +16,10 @@ permalink: /wiki/
 </nav>
 
 <header class="article-header">
-  <h1 class="article-header__title">TrailMQ Wiki</h1>
+  <h1 class="article-header__title">MQTT, GxP and Audit Trail Guides</h1>
   <p class="article-header__lead">
-    Concepts, architecture notes and explainers around audit-first MQTT, regulated data flows,
-    evidence trails and industrial messaging.
+    Practical explainers and architecture notes for reliable MQTT, regulated data flows,
+    audit trails, data integrity and reviewable industrial messaging.
   </p>
 </header>
 

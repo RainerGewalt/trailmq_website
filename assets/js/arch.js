@@ -5,9 +5,9 @@
   var META = {
     proximity: { e: 'Proximity', t: 'GMP scales with proximity', l: 'The closer to the physical process a decision is made, the faster and more irreversible it becomes — and the harder the evidence is to reconstruct later. Filter by decision layer to focus on one system level.' },
     time:      { e: 'Time', t: 'Decisions are bound to a window', l: 'Every value only means something inside the time window it belonged to. Context that is not captured in that window cannot be recovered afterwards.' },
-    alcoa:     { e: 'ALCOA++', t: 'Data integrity, by principle', l: 'The evidence TrailMQ records is built to satisfy the ALCOA++ data-integrity principles — attributable, contemporaneous, original, accurate, complete, consistent, enduring and available.' },
-    gates:     { e: 'Decision gates', t: 'Every decision is a recorded gate', l: 'Accept, block, defer, escalate or flag — each gate is owned by the right layer and written to the audit trail with the policy that produced it.' },
-    scenario:  { e: 'Scenario', t: 'A concrete OEE-to-gate walkthrough', l: 'Follow one live value from the machine to a hash-chained evidence record across all three layers. Filter to see which steps each layer owns.' }
+    alcoa:     { e: 'ALCOA++', t: 'Data integrity, by principle', l: 'Use ALCOA++ as an assessment lens for the complete record lifecycle. TrailMQ provides technical evidence with explicit boundaries; it does not make the deployed system compliant by itself.' },
+    gates:     { e: 'Decision gates', t: 'Current enforcement and planned gates', l: 'TrailMQ currently records allow and deny outcomes. Rate-limit, missing-context defer and escalation illustrate architecture direction and are labelled as planned or conceptual below.' },
+    scenario:  { e: 'Planned scenario', t: 'A proposed OEE-to-gate walkthrough', l: 'Follow the planned live-versus-historical recipe from a machine value to linked review evidence. This workflow is not executable in the current public distribution.' }
   };
 
   var perspSeg = document.getElementById('perspSeg');

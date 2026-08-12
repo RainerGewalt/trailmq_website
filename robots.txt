@@ -9,6 +9,7 @@ Disallow: /_site/
 Disallow: /.git/
 Disallow: /node_modules/
 Disallow: /.jekyll-cache/
+Disallow: /wiki/search.json
 
 # Sitemap location
 Sitemap: https://trailmq.com/sitemap.xml

@@ -1,5 +1,10 @@
-title: "TrailMQ – Audit-First MQTT for Regulated Industries"
-description: "Audit-first MQTT platform for regulated industries. TrailMQ adds traceability, security policies and audit-ready evidence to MQTT without changing machines."
+title: "TrailMQ – MQTT Broker with Policy Enforcement and Decision Evidence"
+description: "Self-hosted MQTT broker with policy enforcement and attributable decision records for regulated, industrial and traceability-sensitive systems."
+author: "TrailMQ Team"
+
+# Keep these values aligned with the public distribution repository.
+product_version: "3.1.0"
+product_release_url: "https://github.com/RainerGewalt/TrailMQ/releases/tag/v3.1.0"
 
 # Canonical domain
 # Important: use the non-www domain because GitHub Pages is configured with CNAME=trailmq.com

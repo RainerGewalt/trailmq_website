@@ -37,6 +37,8 @@
       url: "/wiki/intervals-commitments/"
     - title: "Logs are not audit trails"
       url: "/wiki/logs-vs-audit/"
+    - title: "MQTT data transaction audit trails"
+      url: "/wiki/mqtt-data-transaction-audit-trail/"
 
 - title: "Models"
   url: "/wiki/category/models/"

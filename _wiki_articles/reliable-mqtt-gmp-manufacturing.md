@@ -1,10 +1,10 @@
 ---
 layout: wiki-article
 title: "How to ensure reliable MQTT messaging in GMP-regulated manufacturing"
-seo_title: "Reliable MQTT messaging in GMP manufacturing | TrailMQ"
-description: "A practical checklist for reliable MQTT messaging in GMP-regulated manufacturing, covering QoS, sessions, identity, audit trails and data integrity evidence."
+seo_title: "Reliable MQTT in GMP Manufacturing: Checklist | TrailMQ"
+description: "A practical GMP MQTT reliability checklist covering QoS, sessions, identity, failure handling, audit trails, validation and data integrity evidence."
 date: 2026-06-30
-last_modified: 2026-06-30
+last_modified_at: 2026-08-12
 category: "Foundations"
 tags:
   - MQTT
@@ -22,9 +22,9 @@ image_alt: "A technician tests redundant industrial gateways beside a pharmaceut
 lead: "Reliable MQTT messaging in GMP-regulated manufacturing is not only a broker setting. It combines MQTT delivery behavior with identity, policy control, failure handling, audit trails and data integrity evidence."
 ---
 
-## How to ensure reliable MQTT messaging in GMP-regulated manufacturing
+## Short answer
 
-Start with a simple distinction:
+**Reliable MQTT messaging in GMP manufacturing requires both transport controls and trustworthy evidence.** Choose QoS, session and retained-message behavior from process risk, then add authenticated identities, topic authorization, explicit failure handling, synchronized time, change control and validation of normal and blocked paths.
 
 MQTT reliability is about transport behavior.
 GMP reliability is about whether the resulting record can be trusted, explained and reviewed.
@@ -200,24 +200,28 @@ The risk is missing evidence around MQTT.
 
 ## Where TrailMQ fits
 
-TrailMQ is designed for the layer around MQTT decisions.
+TrailMQ is a self-hosted MQTT broker for paths where access decisions must remain attributable and reviewable. Standard MQTT clients connect directly; there is no TrailMQ SDK, proxy or sidecar.
 
-It keeps MQTT as transport, but adds policy control, identity context and audit-linked evidence around broker behavior.
+TrailMQ {{ site.product_version }} applies role permission and namespace/topic policy before the operation proceeds. It records MQTT decisions separately from its hash-linked system/action history.
 
 That helps teams answer questions such as:
 
 * who published or subscribed
 * which topic was involved
-* which policy was active
 * why a message was allowed or blocked
 * what configuration changed
-* whether evidence is still reviewable later
+* whether the reviewed record falls inside or outside the system/action chain's validation scope
+
+The current integrity check does not cover MQTT message evidence and the Preview is not a payload browser. Delivery proof still comes from a real subscriber. These boundaries are documented in the public [TrailMQ architecture and trust model](https://github.com/RainerGewalt/TrailMQ/blob/master/docs/architecture.md).
 
 TrailMQ does not make an organization compliant by itself.
 It provides technical controls and evidence that can support validation, review and quality ownership.
 
 For the related compliance question, read:
 [Can an MQTT broker be GxP compliant?](/wiki/gxp-compliant-mqtt-broker/)
+
+For solution selection criteria, read:
+[What should an MQTT data transaction audit trail record?](/wiki/mqtt-data-transaction-audit-trail/)
 
 ---
 

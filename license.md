@@ -1,72 +1,76 @@
 ---
 layout: page
 title: "Licensing & Usage"
+seo_title: "TrailMQ Proprietary Evaluation License & Usage"
 crumb: License
-description: TrailMQ licensing information - commercial license with free evaluation access.
-subtitle: TrailMQ is distributed under a commercial license with free evaluation access. Docker images are publicly available for evaluation, testing and internal proof-of-concept deployments.
-updated: June 2026
+description: Plain-English TrailMQ evaluation license summary covering permitted local non-production use, restrictions and commercial licensing.
+subtitle: TrailMQ is distributed under a proprietary evaluation license. The public package is free for local, non-production technical evaluation within the binding license terms.
+updated: August 2026
 permalink: /license/
+last_modified_at: 2026-08-12
 ---
 
 <div class="callout callout--accent">
   <span class="callout__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg></span>
-  <div><p><strong>Production use in regulated or commercial environments requires a valid license.</strong> The source code is not open source.</p></div>
+  <div><p><strong>This page is a plain-English summary, not the binding license.</strong> Review the <a href="https://github.com/RainerGewalt/TrailMQ/blob/master/LICENSE" target="_blank" rel="noopener">TrailMQ Proprietary Evaluation License</a> in the public repository before use.</p></div>
 </div>
 
 ## Usage overview
 
 | Usage type | License |
 |------------|---------|
-| Evaluation / PoC | Free |
-| Internal testing | Free |
-| Production use | Commercial license required |
-| Redistribution | Not permitted |
-| Source code modification | Not permitted |
+| Personal learning and local demos | Permitted under the evaluation license |
+| Local, non-production technical evaluation | Permitted under the evaluation license |
+| Internal demonstrations | Permitted under the evaluation license |
+| Production, commercial or customer-facing use | Separate written agreement required |
+| Managed hosting or offering TrailMQ as a service | Separate written agreement required |
+| Redistribution, sale or sublicensing | Not permitted without a separate agreement |
+
+The backend and frontend are delivered as proprietary Docker images. Their source is not included in the public distribution.
 
 ## What is included in the evaluation
 
-The evaluation build provides the full TrailMQ stack as Docker images:
+The TrailMQ {{ site.product_version }} public distribution provides a self-hosted evaluation stack:
 
 **Backend**
 - MQTT broker with TLS (port 8883) and WebSocket transport
-- Policy engine: versioned access rules for publish and subscribe
-- Hash-chained, tamper-evident audit trail
-- User and role management with authentication
+- Two-gate role plus namespace/topic policy enforcement
+- Attributed MQTT decision records for allowed operations and refusals
+- A separate hash-linked system/action chain with an explicit validation scope
+- Authenticated evaluation users and roles
 - Connected client visibility
 - Queue state and dead-letter visibility
-- REST API at `/api/v1` with full programmatic access to all controls
-- Plugin architecture with capability discovery
+- REST API at `/api/v1` for the functions documented by the public recipe
 
 **Frontend**
-- React-based admin UI served at `/trailmq/`
-- Topic management, user management, policy review, audit evidence, queue status
+- Review-first React Preview served at `/trailmq/`
+- Overview, Access, Clients and Activity surfaces
+- REST API and configuration workflow for operational changes
 
 **Deployment**
 - Docker Compose setup via GitHub deployment repository
-- Guided launcher with evaluation credential generation
+- `./trailmq quickstart` with local certificate and evaluation credential generation
 - Self-hosted — no cloud dependency, no telemetry
 
-The evaluation build is intended for local testing, proof-of-concept work and integration evaluation. It is not licensed for production use in regulated or commercial environments.
+The system/action integrity check does not cover the separate MQTT message-evidence store, including publish and subscribe refusals. The Preview is not a payload browser, and counters alone are not subscriber-delivery proof.
 
-## Enterprise licenses
+The evaluation package is intended for local, non-production technical evaluation. Demo certificates and generated users are not deployment-ready. Production, commercial, managed-hosting, redistribution and customer-facing use require a separate written agreement.
 
-For validated production environments, commercial licenses and support packages are available:
+## Production and commercial licensing
 
-- Priority support and SLA
-- Extended retention and archiving
-- Custom integrations
-- Validation documentation support
-- On-premise deployment assistance
+TrailMQ Pro and production/commercial terms are available on request. The exact edition, permitted use, support, validation assistance and service commitments depend on a separate written agreement.
+
+Contact [contact@trailmq.com](mailto:contact@trailmq.com) to discuss the intended use. No SLA, support package, validation deliverable or production right is granted by the public evaluation license or by this website summary.
 
 ## Why commercial licensing?
 
-Licensing TrailMQ is about **accountability and trust**, not feature gating.
-
-Regulated environments require clarity about software provenance, support commitments and long-term maintenance. A commercial license provides that clarity.
+The public package answers technical-fit questions locally while preserving clear boundaries around production, commercial, hosted and redistributed use. A separate agreement defines the rights and commitments required outside evaluation.
 
 ## Getting started
 
 **GitHub repository (deployment)** — [github.com/RainerGewalt/TrailMQ](https://github.com/RainerGewalt/TrailMQ){:target="_blank" rel="noopener"}
+
+**Binding license** — [TrailMQ Proprietary Evaluation License](https://github.com/RainerGewalt/TrailMQ/blob/master/LICENSE){:target="_blank" rel="noopener"}
 
 **Docker Hub images**
 

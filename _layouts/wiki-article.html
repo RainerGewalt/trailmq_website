@@ -51,6 +51,11 @@ layout: wiki-base
 
   <!-- Article Meta -->
   <div class="article-meta">
+    <span itemprop="author" itemscope itemtype="https://schema.org/Organization">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/></svg>
+      <a href="{{ '/about/' | relative_url }}" itemprop="url"><span itemprop="name">TrailMQ Team</span></a>
+    </span>
+
     {% if page.date %}
     <span>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
@@ -58,10 +63,11 @@ layout: wiki-base
     </span>
     {% endif %}
 
-    {% if page.last_modified %}
+    {% assign article_modified = page.last_modified_at | default: page.last_modified %}
+    {% if article_modified %}
     <span>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-      Updated: <time itemprop="dateModified" datetime="{{ page.last_modified | date_to_xmlschema }}">{{ page.last_modified | date: "%b %d, %Y" }}</time>
+      Updated: <time itemprop="dateModified" datetime="{{ article_modified | date_to_xmlschema }}">{{ article_modified | date: "%b %d, %Y" }}</time>
     </span>
     {% endif %}
 

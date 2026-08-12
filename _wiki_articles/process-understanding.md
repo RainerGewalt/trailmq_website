@@ -1,6 +1,7 @@
 ---
 layout: wiki-article
 title: "AI is not the solution when the process is not understood"
+seo_title: "Why Industrial AI Fails Without Process Understanding"
 description: "Why weak process understanding undermines AI effectiveness and why contextual clarity outperforms model complexity."
 date: 2024-01-16
 category: "Implications"

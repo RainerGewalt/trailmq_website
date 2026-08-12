@@ -1,6 +1,7 @@
 ---
 layout: null
 permalink: /wiki/search.json
+sitemap: false
 ---
 [
   {% for article in site.wiki_articles %}
