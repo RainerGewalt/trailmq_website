@@ -1,14 +1,15 @@
 ---
 layout: page
 title: About TrailMQ
+seo_title: "About TrailMQ: self-hosted MQTT broker and decision evidence"
 crumb: About
-description: Learn about TrailMQ - the audit-first MQTT evidence layer for industrial systems where machine communication must be understandable, comparable and reviewable.
-subtitle: An audit-first MQTT evidence layer for industrial systems where machine communication must be understandable, comparable and reviewable — not just fast.
-keywords: TrailMQ, MQTT evidence layer, industrial MQTT, audit-first MQTT, domain context, historical baseline, KPI deviation, GMP, GxP, IIoT, traceability
+description: Learn how TrailMQ combines a self-hosted MQTT broker, policy enforcement and attributable decision records for industrial and regulated systems.
+subtitle: A self-hosted MQTT broker that combines transport, policy enforcement and attributable decision records for review-sensitive systems.
 permalink: /about/
+last_modified_at: 2026-08-12
 ---
 
-TrailMQ was created to bridge the gap between **machine-level messaging** and the requirements of **regulated, quality-critical and audit-heavy environments**.
+TrailMQ was created to bridge the gap between **machine-level messaging** and the requirements of **regulated, quality-critical and audit-heavy environments**. Standard MQTT clients connect directly to TrailMQ; it is the broker for the evaluated message path, not a proxy added in front of another broker.
 
 It started with secure MQTT control and audit evidence. Its planned plugin layer extends that idea: live MQTT messages can be enriched with domain context, compared against historical baselines and linked to decision traces.
 
@@ -25,38 +26,35 @@ Quality assurance, validation teams, OT engineers and platform owners need answe
 
 - What exactly happened, and in which order?
 - Who sent what, and under which policy?
-- Why was a message accepted, denied or rate-limited?
-- What does this MQTT message mean in machine, batch or process context?
-- Which historical baseline was used for this value?
-- Was the value normal, warning-level or critical?
-- Was a calculation completed, deferred or failed?
+- Why was an MQTT action accepted or denied?
+- Which authenticated user, client, role and topic were involved?
 - Was anything lost, modified or blocked?
 
-TrailMQ exists to make these questions **technically answerable**.
+TrailMQ {{ site.product_version }} makes the identity, access and outcome questions **technically answerable**. Domain context, historical baselines, deviation calculations and decision traces are explicitly planned plugin capabilities, not current ones.
 
 ## From transport to evidence
 
-A standard broker answers one basic question: *did the message move?*
+A conventional broker can provide secure transport, identities and ACLs. Review often still requires teams to correlate configuration and logs after the fact.
 
-TrailMQ is designed to answer more useful questions — what the message meant, which policy applied, which context was attached, which historical reference was used, which decision was made, and whether the result can be reviewed later.
+TrailMQ combines transport and enforcement with an attributed decision record: who acted, through which MQTT client, on which topic, with which outcome and, for denials, which canonical reason was recorded.
 
-That turns MQTT from a pure transport mechanism into a source of structured, reviewable evidence.
+That turns broker access decisions into structured, reviewable evidence. It does not by itself prove downstream subscriber delivery or make the complete deployed system compliant.
 
 ## What is available now
 
-The current evaluation build is a full self-hosted stack:
+The current public distribution is TrailMQ **{{ site.product_version }}**, a self-hosted evaluation stack:
 
 **MQTT broker**
 TLS on port 8883 and WebSocket transport. Standard MQTT clients connect without modification.
 
-**Policy engine**
-Versioned access rules control which clients can publish or subscribe to which topics. Policy versions are recorded with every audit event so later reviews can match decisions to the rule set that was active.
+**Policy enforcement**
+Every MQTT action must pass two gates: the identity's role permission and the namespace/topic rule. Unknown namespaces are denied until a rule grants the role access.
 
-**Audit trail**
-Broker decisions are written as hash-chained, sequenced records. The chain can be verified to detect gaps or tampering.
+**Two evidence paths with an explicit boundary**
+MQTT operations and refusals are stored as message decisions. A separate hash-linked chain covers system and action entries such as sign-ins, administrative changes, identities, roles and topic-rule changes. The chain verdict does not cover MQTT message evidence, and the product states that exclusion.
 
 **Identity and user management**
-Users, roles and client credentials are managed through the REST API and admin UI. Change events are linked to the audit record.
+The Evaluation Preview exposes users and roles primarily for review. Lifecycle operations use the REST API and configuration workflow.
 
 **Connected client visibility**
 The REST API surfaces which MQTT clients are currently connected and what topics they access.
@@ -65,13 +63,13 @@ The REST API surfaces which MQTT clients are currently connected and what topics
 Queue state and dead-letter entries are inspectable through the REST API without requiring broker-level access.
 
 **REST API**
-Full programmatic access at `/api/v1`. Covers authentication, topics, clients, users, policies, queue state, audit evidence, plugin state and system capabilities.
+Programmatic access at `/api/v1` covers authentication, topics, clients, users, policies, queue state and both evidence paths documented by the public recipe.
 
-**Admin UI**
-A React-based admin interface served at `/trailmq/`. Covers topic management, user and client management, policy review, audit evidence and queue status — without requiring API knowledge.
+**Evaluation Preview**
+A review-first React interface at `/trailmq/` covers Overview, Access, Clients and Activity. Operational changes use the REST API and configuration in the public evaluation package.
 
-**Plugin architecture**
-The system includes plugin slots with capability discovery through the API. Plugin state and available capabilities are inspectable at runtime.
+**No client-specific integration layer**
+Standard clients such as `mosquitto`, `paho-mqtt`, `mqtt.js` and browser WebSocket clients connect without a TrailMQ SDK, proxy or sidecar.
 
 ## Planned plugin layer
 
@@ -93,10 +91,11 @@ Together, these plugins support a concrete flow:
 
 ## Audit-first, not audit-later
 
-TrailMQ treats auditability as a **core design principle**, not an afterthought. Instead of relying on log files and external tooling, it embeds the following directly into the messaging layer:
+TrailMQ treats auditability as a **core design principle**, not an afterthought. The current core provides:
 
 - Policy-driven enforcement
-- Hash-chained audit trails
+- A hash-linked system/action chain with a stated validation scope
+- A separate attributed MQTT decision store
 - Retention and sequencing rules
 - Explicit violation handling
 - Queue and dead-letter visibility
@@ -104,15 +103,15 @@ TrailMQ treats auditability as a **core design principle**, not an afterthought.
 
 ## Explain, don't expose
 
-TrailMQ explains decisions and enforcement without turning itself into a raw message inspection tool. The core system surfaces who connected and with what permissions, which policies were enforced and why, and exportable audit evidence for review. The planned plugin layer adds domain context, historical baselines and calculation outcomes where those richer process signals are configured.
+TrailMQ explains decisions and enforcement without turning the Preview into a raw payload browser. The core surfaces identity, role, action, topic, outcome and denial reason. The planned plugin layer would add domain context, historical baselines and calculation outcomes.
 
 You do not need to expose TrailMQ as a general-purpose live debugging console. This is by design: **evidence over observation**.
 
 ## Built for regulated and quality-critical environments
 
-TrailMQ is designed to **support validated systems**, not to replace validation processes or claim certifications. It provides **audit-ready technical evidence** that can be used within existing quality, validation and compliance frameworks.
+TrailMQ is designed to provide **technical evidence for assessment within validated systems**, not to replace validation processes or claim certifications.
 
-TrailMQ supports workflows aligned with GMP / GxP requirements, 21 CFR Part 11 (electronic records), Annex 11 (computerized systems), GAMP 5 guidelines, industrial traceability and review workflows, and quality-critical IIoT architectures.
+TrailMQ is not by itself a CRA conformity assessment, CE declaration, GMP/GxP validation, Annex 11 package or 21 CFR Part 11 package. The regulated organization remains responsible for intended use, risk assessment, validation, procedures, retention and review.
 
 ## Beyond pharma
 
@@ -132,13 +131,13 @@ The common question is always the same: *what happened, why was it relevant, and
 
 TrailMQ follows an **evaluation-first model**:
 
-- **Free to evaluate** — deploy via Docker, test locally, integrate into your workflows
-- **No registration required** — clone the GitHub repo and run the launcher
+- **Free to evaluate** — deploy via Docker for local, non-production technical evaluation
+- **No registration required** — clone the GitHub repo and run `./trailmq quickstart`
 - **Commercial licensing** — production use in regulated or commercial environments requires a valid license
 
-The deployment files are available on [GitHub](https://github.com/RainerGewalt/TrailMQ){:target="_blank" rel="noopener"}. Container images are hosted on Docker Hub: [trailmq-backend](https://hub.docker.com/r/rainergewalt/trailmq-backend){:target="_blank" rel="noopener"} and [trailmq-frontend](https://hub.docker.com/r/rainergewalt/trailmq-frontend){:target="_blank" rel="noopener"}.
+The deployment files and exact evaluation boundaries are available on [GitHub](https://github.com/RainerGewalt/TrailMQ){:target="_blank" rel="noopener"}. Review the [{{ site.product_version }} release notes]({{ site.product_release_url }}){:target="_blank" rel="noopener"} for distribution identity and validation status. Container images are hosted on Docker Hub: [trailmq-backend](https://hub.docker.com/r/rainergewalt/trailmq-backend){:target="_blank" rel="noopener"} and [trailmq-frontend](https://hub.docker.com/r/rainergewalt/trailmq-frontend){:target="_blank" rel="noopener"}.
 
-## About the author
+## Maintainer
 
 TrailMQ is maintained by **Florian Przybylak**, working on the architecture of regulated industrial systems, data pipelines and trustworthy automation. — [LinkedIn](https://www.linkedin.com/in/florian-p-6a27ab1b8/){:target="_blank" rel="noopener"}
 
