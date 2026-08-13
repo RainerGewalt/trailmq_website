@@ -3,7 +3,8 @@ layout: wiki-article
 title: "Operational twins are about translation, not visualization"
 seo_title: "Operational Twins: Translation, Not Visualization"
 description: "Why operational twins focus on translating physical process reality into comparable, auditable representations."
-date: 2024-01-17
+date: 2026-01-08
+last_modified_at: 2026-08-12
 category: "Models"
 tags:
   - OperationalTwin

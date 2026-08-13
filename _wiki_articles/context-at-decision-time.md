@@ -2,7 +2,8 @@
 layout: wiki-article
 title: "Why context must exist at decision time"
 description: "Why reconstructing context after the fact is not sufficient and how missing context undermines auditability and trust."
-date: 2024-01-15
+date: 2026-01-08
+last_modified_at: 2026-08-01
 category: "Distinctions"
 tags:
   - Context

@@ -2,7 +2,8 @@
 layout: wiki-article
 title: "Why AI does not break GMP"
 description: "Why AI is not incompatible with GMP and how unclear architectural boundaries are the real source of compliance failures."
-date: 2024-01-17
+date: 2026-01-08
+last_modified_at: 2026-08-01
 category: "Implications"
 tags:
   - GMP

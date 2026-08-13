@@ -2,7 +2,8 @@
 layout: wiki-article
 title: "How to start with GMP in IIoT projects"
 description: "A practical way to approach GMP in IIoT by tracing one data path and making trust explicit from the start."
-date: 2024-01-18
+date: 2026-01-08
+last_modified_at: 2026-08-01
 category: "Foundations"
 tags:
   - GMP

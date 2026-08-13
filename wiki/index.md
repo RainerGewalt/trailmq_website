@@ -41,7 +41,6 @@ last_modified_at: 2026-08-12
       <a
         class="concept-card concept-card--clickable"
         href="{{ item.url | relative_url }}"
-        aria-label="Open {{ item.title }}"
       >
         <div class="concept-card__cover--placeholder">
           {% if item.icon %}

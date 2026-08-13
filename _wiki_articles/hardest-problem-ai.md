@@ -2,7 +2,8 @@
 layout: wiki-article
 title: "The hardest problem in Industrial AI"
 description: "Why context alignment across time, batches and process phases is harder than prediction and determines AI success."
-date: 2024-01-16
+date: 2026-01-08
+last_modified_at: 2026-08-01
 category: "Models"
 tags:
   - IndustrialAI

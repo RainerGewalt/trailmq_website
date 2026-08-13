@@ -2,7 +2,8 @@
 layout: wiki-article
 title: "We can't automate trust"
 description: "Why trust cannot be added after automation and must be embedded in industrial communication and data pipelines."
-date: 2024-01-16
+date: 2026-01-08
+last_modified_at: 2026-08-01
 category: "Foundations"
 tags:
   - Trust

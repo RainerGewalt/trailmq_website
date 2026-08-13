@@ -2,7 +2,8 @@
 layout: wiki-article
 title: "AI speed versus regulatory trust"
 description: "Why accelerating AI without transparency creates risk and why continuous compliance must evolve alongside continuous learning."
-date: 2024-01-18
+date: 2026-01-08
+last_modified_at: 2026-08-01
 category: "Implications"
 tags:
   - AI

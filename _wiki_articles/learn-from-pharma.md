@@ -2,7 +2,8 @@
 layout: wiki-article
 title: "What we can learn from Pharma"
 description: "Why Pharma's emphasis on traceability, ownership and explainability is not a burden but a blueprint for scalable automation and AI."
-date: 2024-01-16
+date: 2026-01-08
+last_modified_at: 2026-08-01
 category: "Foundations"
 tags:
   - Pharma

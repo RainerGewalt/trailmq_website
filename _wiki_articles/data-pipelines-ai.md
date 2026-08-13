@@ -3,7 +3,8 @@ layout: wiki-article
 title: "Why data pipelines decide whether regulated AI will succeed"
 seo_title: "Regulated AI Data Pipelines: Integrity & Traceability"
 description: "Why AI success in regulated manufacturing depends on data pipelines that preserve integrity, context and traceability end to end."
-date: 2024-01-18
+date: 2026-01-08
+last_modified_at: 2026-08-12
 category: "Implications"
 tags:
   - DataPipelines
