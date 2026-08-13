@@ -1050,6 +1050,23 @@
 .arch-claim__item .k { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-light); }
 .arch-claim__item .v { margin-top: 0.4rem; font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.4; }
 
+/* page shell — the sticky bar sits between intro and results, so each block
+   carries its own .wrap instead of one wrap around the whole main. */
+.arch-main { display: block; }
+.arch-intro { padding-block: clamp(2.2rem, 4vw, 3.2rem) clamp(1.4rem, 3vw, 2rem); }
+.arch-body { padding-block: clamp(1.8rem, 3.5vw, 2.6rem) clamp(3rem, 6vw, 5rem); }
+.arch-head { max-width: 680px; }
+.arch-head .h2 { margin-top: 0.7rem; }
+
+/* Decision layers get one colour each, used by the filter buttons, the card
+   labels and the scenario tags alike — that mapping is what makes the filter
+   legible. All three clear 4.5:1 as text on white. */
+:root {
+  --layer-line: #14504F;
+  --layer-site: #C24D03;
+  --layer-cloud: #1B5A8A;
+}
+
 /* control bar */
 .arch-controls {
   position: sticky; top: 72px; z-index: 40;
@@ -1077,25 +1094,74 @@
 .seg button.active { background: var(--teal-700); color: #fff; border-color: var(--teal-700); }
 .seg button.active svg { color: #fff; }
 .arch-controls__row + .arch-controls__row { margin-top: 0.7rem; }
+.arch-controls__row[hidden] { display: none; }
 
-/* stats */
-.arch-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 2.6rem; }
-.arch-stat {
-  padding: 1.6rem 1.4rem;
-  background: var(--bg-card);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  text-align: center;
+/* Filter buttons must not read as a second row of tabs: the tab shows which
+   model you are looking at, the filter only narrows it. */
+.seg--filter button.active {
+  background: #fff;
+  color: var(--teal-700);
+  border-color: var(--teal-500);
+  box-shadow: inset 0 0 0 1px var(--teal-500);
 }
-.arch-stat .n { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: var(--teal-700); letter-spacing: 0; line-height: 1; }
-.arch-stat .l { margin-top: 0.6rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-500); }
+.seg--filter button.active svg { color: var(--teal-700); }
+.lg {
+  width: 9px; height: 9px; border-radius: 50%;
+  display: inline-block; flex-shrink: 0;
+  background: currentColor;
+}
+.lg--line { color: var(--layer-line); }
+.lg--site { color: var(--layer-site); }
+.lg--cloud { color: var(--layer-cloud); }
+.seg button.active .lg { box-shadow: 0 0 0 2px rgba(255,255,255,0.85); }
+
+/* Live result count: the answer to "did my click do anything?" */
+.arch-result {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-500);
+  margin-left: auto;
+  white-space: nowrap;
+}
+.arch-result[data-filtered] {
+  color: var(--teal-700);
+  font-weight: 600;
+}
+
+.arch-empty {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.9rem;
+  margin-top: 1.4rem;
+  padding: 1.5rem 1.6rem;
+  background: var(--bg-soft);
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--r-lg);
+  color: var(--ink-600);
+  font-size: 0.95rem;
+}
+.arch-empty[hidden] { display: none; }
+.arch-empty__reset {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.85rem; font-weight: 600;
+  color: var(--teal-700);
+  background: #fff;
+  border: 1px solid var(--teal-500);
+  border-radius: var(--r-full);
+}
+.arch-empty__reset:hover { background: var(--teal-700); color: #fff; }
 
 /* perspective panels */
 .persp { display: none; }
 .persp.show { display: block; animation: fadeUp 0.4s var(--ease); }
+.persp:focus { outline: none; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .persp.show { animation: none; }
+}
 
-.persp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.1rem; }
+/* auto-fill, not auto-fit: a filtered-down panel keeps the grid rhythm
+   instead of stretching one card across the full width. */
+.persp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.1rem; }
 .pcard {
   padding: 1.6rem;
   background: var(--bg-card);
@@ -1108,7 +1174,25 @@
 .pcard__top { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1rem; }
 .pcard__ic { width: 40px; height: 40px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: var(--r-md); background: var(--bg-tint); color: var(--teal-600); }
 .pcard__ic svg { width: 20px; height: 20px; }
-.pcard__layer { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-dark); }
+.pcard__layer {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-family: var(--font-mono); font-size: 0.68rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--accent-dark);
+}
+/* The dot repeats the filter colour, so a card announces which layer it
+   belongs to without the reader consulting a legend. */
+.pcard[data-layer="line"] .pcard__layer::before,
+.pcard[data-layer="site"] .pcard__layer::before,
+.pcard[data-layer="cloud"] .pcard__layer::before {
+  content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor;
+}
+.pcard[data-layer="line"] .pcard__layer { color: var(--layer-line); }
+.pcard[data-layer="site"] .pcard__layer { color: var(--layer-site); }
+.pcard[data-layer="cloud"] .pcard__layer { color: var(--layer-cloud); }
+.pcard[data-layer="line"] .pcard__ic { background: rgba(20,80,79,0.09); color: var(--layer-line); }
+.pcard[data-layer="site"] .pcard__ic { background: rgba(194,77,3,0.09); color: var(--layer-site); }
+.pcard[data-layer="cloud"] .pcard__ic { background: rgba(27,90,138,0.09); color: var(--layer-cloud); }
 .pcard h3 { font-size: 1.1rem; }
 .pcard p { font-size: 0.92rem; color: var(--ink-500); line-height: 1.6; margin-top: 0.5rem; }
 .pcard .chip { display: inline-block; margin-top: 0.9rem; font-family: var(--font-mono); font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: var(--r-full); background: var(--bg-soft); color: var(--ink-500); border: 1px solid var(--line); }
@@ -1124,13 +1208,38 @@
 .flow-row__b h4 { font-size: 1rem; margin-bottom: 0.2rem; }
 .flow-row__b p { font-size: 0.88rem; color: var(--ink-500); }
 .flow-row__tag { font-family: var(--font-mono); font-size: 0.72rem; padding: 0.25rem 0.6rem; border-radius: var(--r-full); white-space: nowrap; }
-.flow-row__tag.line { background: var(--bg-tint); color: var(--teal-700); }
-.flow-row__tag.site { background: rgba(232,93,4,0.1); color: var(--accent-dark); }
-.flow-row__tag.cloud { background: var(--bg-soft); color: var(--ink-500); }
+.flow-row__tag.line { background: rgba(20,80,79,0.1); color: var(--layer-line); }
+.flow-row__tag.site { background: rgba(194,77,3,0.1); color: var(--layer-site); }
+.flow-row__tag.cloud { background: rgba(27,90,138,0.1); color: var(--layer-cloud); }
+.flow-row[hidden] { display: none; }
+/* Filtering a numbered sequence must not renumber it, so matches are
+   highlighted and the rest stays in place. Dimming with opacity was the
+   obvious move but it drags the non-matching text below AA contrast. */
+.flow-row.is-match {
+  border-color: var(--teal-500);
+  background: linear-gradient(90deg, var(--bg-tint), var(--bg-card) 42%);
+  box-shadow: var(--sh-sm);
+}
+.flow-row.is-muted { background: var(--bg-soft); }
+.flow-row.is-muted .flow-row__n { background: var(--ink-500); }
+.flow-row.is-muted .flow-row__tag {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  color: var(--ink-500);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .flow-row { transition: background var(--dur), border-color var(--dur), box-shadow var(--dur); }
+}
 
 @media (max-width: 720px) {
   .arch-claim__grid { grid-template-columns: 1fr 1fr; }
-  .arch-stats { grid-template-columns: 1fr 1fr; }
+  .arch-result { margin-left: 0; width: 100%; white-space: normal; }
+  /* Wrapped onto several lines the bar is ~300px tall — pinning that would
+     cost a third of the viewport, which is worse than scrolling back up. */
+  .arch-controls { position: static; padding-block: 0.9rem; }
+  .arch-controls__row { gap: 0.5rem 0.8rem; }
+  .seg button { min-height: 44px; }
+  .arch-empty { flex-direction: column; align-items: flex-start; }
   .flow-row { grid-template-columns: auto 1fr; }
   .flow-row__tag { grid-column: 2; justify-self: start; }
 }
