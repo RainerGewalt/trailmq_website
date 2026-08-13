@@ -26,54 +26,52 @@ last_modified_at: 2026-08-12
   </div>
 </section>
 
-<!-- CONTROLS -->
-<div class="arch-controls" id="archControls">
-  <div class="wrap">
-    <div class="arch-controls__row">
-      <span class="arch-controls__label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg> Perspective</span>
-      <div class="seg" id="perspSeg">
-        <button class="active" data-persp="proximity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Proximity</button>
-        <button data-persp="time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Time</button>
-        <button data-persp="alcoa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> ALCOA++</button>
-        <button data-persp="gates"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V5l9-2 9 2v16M3 11h18M9 21V9m6 12V9"/></svg> Gates</button>
-        <button data-persp="scenario"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m13 2-1 9h7l-8 11 1-9H5z"/></svg> Scenario</button>
-      </div>
-    </div>
-    <div class="arch-controls__row" id="layerRow">
-      <span class="arch-controls__label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg> Decision layer</span>
-      <div class="seg" id="layerSeg">
-        <button class="active" data-layer="all"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a8 4 0 1 0 16 0 8 4 0 1 0-16 0M4 12c0 2.2 3.6 4 8 4s8-1.8 8-4"/></svg> All</button>
-        <button data-layer="line"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 3v3m0 12v3m9-9h-3M6 12H3"/></svg> Line</button>
-        <button data-layer="site"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V8l5-3v16M19 21V12l-9-4"/></svg> Site</button>
-        <button data-layer="cloud"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10a4 4 0 0 0-7.7-1.4A3.5 3.5 0 1 0 7 16h10a3.5 3.5 0 0 0 1-6.9z"/></svg> Cloud</button>
-      </div>
-    </div>
-  </div>
-</div>
+<main id="top" tabindex="-1" class="arch-main">
 
-<main id="top" tabindex="-1" class="wrap" style="padding-block: clamp(2.4rem,5vw,3.6rem) clamp(3rem,6vw,5rem)">
+  <div class="wrap arch-intro">
 
   <p class="wiki-callout accent" style="margin-bottom:2.2rem">
     <span class="wiki-callout__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg></span>
     <span><strong>Scope:</strong> this page is an architecture model, not a list of features shipping in TrailMQ {{ site.product_version }}. Current core capabilities are MQTT transport, two-gate policy enforcement, attributed decision records and a scope-defined system/action chain. Context extraction, historical baselines, deviation calculation and decision traces are planned.</span>
   </p>
-
-  <!-- stats -->
-  <div class="arch-stats">
-    <div class="arch-stat"><div class="n">5</div><div class="l">Perspectives</div></div>
-    <div class="arch-stat"><div class="n">7</div><div class="l">Decision steps</div></div>
-    <div class="arch-stat"><div class="n">8</div><div class="l">Decision objects</div></div>
-    <div class="arch-stat"><div class="n">3</div><div class="l">Audit layers</div></div>
   </div>
 
-  <div class="section__head" style="margin-top: clamp(2.6rem,5vw,3.6rem); max-width:680px">
+  <div class="arch-controls" id="archControls">
+    <div class="wrap">
+      <div class="arch-controls__row">
+        <span class="arch-controls__label" id="perspLabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg> Perspective</span>
+        <div class="seg" id="perspSeg" role="tablist" aria-labelledby="perspLabel">
+          <button role="tab" id="tab-proximity" aria-controls="panel-proximity" aria-selected="true" tabindex="0" data-persp="proximity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Proximity</button>
+          <button role="tab" id="tab-time" aria-controls="panel-time" aria-selected="false" tabindex="-1" data-persp="time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Time</button>
+          <button role="tab" id="tab-alcoa" aria-controls="panel-alcoa" aria-selected="false" tabindex="-1" data-persp="alcoa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> ALCOA++</button>
+          <button role="tab" id="tab-gates" aria-controls="panel-gates" aria-selected="false" tabindex="-1" data-persp="gates"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 21V5l9-2 9 2v16M3 11h18M9 21V9m6 12V9"/></svg> Gates</button>
+          <button role="tab" id="tab-scenario" aria-controls="panel-scenario" aria-selected="false" tabindex="-1" data-persp="scenario"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m13 2-1 9h7l-8 11 1-9H5z"/></svg> Scenario</button>
+        </div>
+      </div>
+      <div class="arch-controls__row" id="layerRow">
+        <span class="arch-controls__label" id="layerLabel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg> Decision layer</span>
+        <div class="seg seg--filter" id="layerSeg" role="group" aria-labelledby="layerLabel">
+          <button type="button" aria-pressed="true" data-layer="all">All layers</button>
+          <button type="button" aria-pressed="false" data-layer="line"><i class="lg lg--line" aria-hidden="true"></i> Line</button>
+          <button type="button" aria-pressed="false" data-layer="site"><i class="lg lg--site" aria-hidden="true"></i> Site</button>
+          <button type="button" aria-pressed="false" data-layer="cloud"><i class="lg lg--cloud" aria-hidden="true"></i> Cloud</button>
+        </div>
+        <p class="arch-result" id="archResult" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap arch-body">
+
+
+  <div class="section__head arch-head" id="perspHead">
     <span class="eyebrow" id="perspEyebrow">Proximity</span>
     <h2 class="h2" id="perspTitle">GMP scales with proximity</h2>
     <p class="lead" id="perspLead">The closer to the physical process a decision is made, the faster and more irreversible it becomes — and the harder the evidence is to reconstruct later. Switch perspective above; filter by decision layer to focus on one system level.</p>
   </div>
 
   <!-- PROXIMITY -->
-  <section class="persp show" data-panel="proximity">
+  <section class="persp show" data-panel="proximity" id="panel-proximity" role="tabpanel" aria-labelledby="tab-proximity" tabindex="0">
     <div class="persp-grid">
       <article class="pcard" data-layer="line">
         <div class="pcard__top"><div class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 3v3m0 12v3m9-9h-3M6 12H3"/></svg></div><div><div class="pcard__layer">Line</div><h3>Decides fast. Irreversible.</h3></div></div>
@@ -94,7 +92,7 @@ last_modified_at: 2026-08-12
   </section>
 
   <!-- TIME -->
-  <section class="persp" data-panel="time">
+  <section class="persp" data-panel="time" id="panel-time" role="tabpanel" aria-labelledby="tab-time" tabindex="0">
     <div class="persp-grid">
       <article class="pcard" data-layer="line">
         <div class="pcard__top"><div class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l2 2"/></svg></div><div><div class="pcard__layer">Line</div><h3>Real-time window</h3></div></div>
@@ -115,7 +113,7 @@ last_modified_at: 2026-08-12
   </section>
 
   <!-- ALCOA++ -->
-  <section class="persp" data-panel="alcoa">
+  <section class="persp" data-panel="alcoa" id="panel-alcoa" role="tabpanel" aria-labelledby="tab-alcoa" tabindex="0">
     <div class="persp-grid">
       <article class="pcard" data-layer="all"><div class="pcard__top"><div class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/></svg></div><div><div class="pcard__layer">Attributable</div><h3>Who &amp; what</h3></div></div><p>Every record carries the identity behind it — which client, user or service triggered the event, and under which permissions.</p></article>
       <article class="pcard" data-layer="all"><div class="pcard__top"><div class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><div class="pcard__layer">Contemporaneous</div><h3>At the moment</h3></div></div><p>Evidence is captured when the decision happens — not assembled after the fact from scattered logs.</p></article>
@@ -127,7 +125,7 @@ last_modified_at: 2026-08-12
   </section>
 
   <!-- GATES -->
-  <section class="persp" data-panel="gates">
+  <section class="persp" data-panel="gates" id="panel-gates" role="tabpanel" aria-labelledby="tab-gates" tabindex="0">
     <div class="persp-grid">
       <article class="pcard" data-layer="line"><div class="pcard__top"><div class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></div><div><div class="pcard__layer">Line</div><h3>Accept / Block</h3></div></div><p>Current core: role permission and namespace/topic policy are enforced inline, and the attributed MQTT outcome is recorded.</p><span class="chip">current core</span></article>
       <article class="pcard" data-layer="line"><div class="pcard__top"><div class="pcard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4m10-10h-4M6 12H2"/><circle cx="12" cy="12" r="4"/></svg></div><div><div class="pcard__layer">Line</div><h3>Rate-limit</h3></div></div><p>Architecture direction: protect downstream systems from floods while keeping throttling decisions visible.</p><span class="chip">planned</span></article>
@@ -138,7 +136,7 @@ last_modified_at: 2026-08-12
   </section>
 
   <!-- SCENARIO -->
-  <section class="persp" data-panel="scenario">
+  <section class="persp" data-panel="scenario" id="panel-scenario" data-filter="mute" role="tabpanel" aria-labelledby="tab-scenario" tabindex="0">
     <p class="wiki-callout accent" style="margin-bottom:1.4rem">
       <span class="wiki-callout__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01"/><circle cx="12" cy="12" r="9"/></svg></span>
       <span><strong>Planned plugin scenario:</strong> the seven steps below illustrate the proposed live-versus-historical recipe. They are not executable in TrailMQ {{ site.product_version }}.</span>
@@ -154,8 +152,14 @@ last_modified_at: 2026-08-12
     </div>
   </section>
 
+  <p class="arch-empty" id="archEmpty" hidden>
+    <span>No decision object sits at this layer in this perspective.</span>
+    <button type="button" class="arch-empty__reset" data-reset-layer>Show all layers</button>
+  </p>
+
   <p class="wiki-callout accent" style="margin-top:2.6rem">
     <span class="wiki-callout__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
     <span>This is a conceptual model of how regulated decisions and evidence can relate across system layers. It informs product direction; it is neither a certification claim nor a statement that every illustrated capability ships today. <a href="{{ '/wiki/' | relative_url }}" style="color:var(--teal-700);font-weight:600">Read the underlying concepts →</a></span>
   </p>
+  </div>
 </main>
