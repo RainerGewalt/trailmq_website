@@ -2,7 +2,8 @@
 layout: wiki-article
 title: "What makes IIoT systems AI ready"
 description: "Why AI readiness in IIoT is determined by validation, context handling and traceable data foundations, not by model connectivity."
-date: 2024-01-18
+date: 2026-01-08
+last_modified_at: 2026-08-01
 category: "Foundations"
 tags:
   - IIoT

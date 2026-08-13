@@ -2,11 +2,25 @@
 (function () {
   'use strict';
 
-  // Header scroll state (transparent → solid)
+  // Header scroll state (transparent → solid).
+  // Reading scrollY straight out of the scroll handler forces a reflow on
+  // every event, because the previous setAttribute already invalidated
+  // style. Sampling inside rAF and writing only on an actual state change
+  // keeps the read and the write on opposite sides of the frame boundary.
   var header = document.getElementById('siteHeader');
+  var headerScrolled = null;
+  var headerTicking = false;
+  function applyScrollState() {
+    headerTicking = false;
+    var scrolled = window.scrollY > 24;
+    if (scrolled === headerScrolled) return;
+    headerScrolled = scrolled;
+    header.setAttribute('data-scrolled', scrolled ? 'true' : 'false');
+  }
   function onScroll() {
-    if (!header) return;
-    header.setAttribute('data-scrolled', window.scrollY > 24 ? 'true' : 'false');
+    if (!header || headerTicking) return;
+    headerTicking = true;
+    window.requestAnimationFrame(applyScrollState);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
@@ -38,12 +52,16 @@
     if (io) io.unobserve(el);
   }
   function revealVisibleNow() {
+    // Read every rect before touching a single class, so the loop does not
+    // alternate layout reads with style writes.
     var vh = window.innerHeight || document.documentElement.clientHeight;
+    var pending = [];
     revealEls.forEach(function (el) {
       if (el.classList.contains('in')) return;
       var rect = el.getBoundingClientRect();
-      if (rect.top < vh * 0.92 && rect.bottom > 0) reveal(el);
+      if (rect.top < vh * 0.92 && rect.bottom > 0) pending.push(el);
     });
+    pending.forEach(reveal);
   }
   function syncHashTarget() {
     if (!window.location.hash || window.location.hash.length < 2) return;

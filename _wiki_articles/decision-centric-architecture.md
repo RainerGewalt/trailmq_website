@@ -2,7 +2,8 @@
 layout: wiki-article
 title: "Decision-centric architecture"
 description: "Why modern systems must treat decisions as first-class architectural elements instead of implicit side effects of data processing."
-date: 2024-01-15
+date: 2026-01-08
+last_modified_at: 2026-08-01
 category: "Models"
 tags:
   - Architecture

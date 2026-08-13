@@ -2,7 +2,8 @@
 layout: wiki-article
 title: "Audit is not logging"
 description: "Why traceability fails even in systems with extensive logs and why auditability requires explicit decision context."
-date: 2024-01-15
+date: 2026-01-08
+last_modified_at: 2026-08-01
 category: "Distinctions"
 tags:
   - Audit

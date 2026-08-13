@@ -2,7 +2,8 @@
 layout: wiki-article
 title: "Logs are not audit trails"
 description: "Why log streams fail compliance and what true audit trails must guarantee in regulated industrial systems."
-date: 2024-01-18
+date: 2026-01-08
+last_modified_at: 2026-08-01
 category: "Distinctions"
 tags:
   - AuditTrail

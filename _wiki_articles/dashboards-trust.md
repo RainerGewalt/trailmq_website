@@ -2,7 +2,8 @@
 layout: wiki-article
 title: "Why dashboards do not create trust"
 description: "Why visibility without traceability fails to build trust in regulated and automated industrial systems."
-date: 2024-01-17
+date: 2026-01-08
+last_modified_at: 2026-08-01
 category: "Implications"
 tags:
   - Trust

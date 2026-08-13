@@ -3,7 +3,8 @@ layout: wiki-article
 title: "Manufacturing is not behind in AI – it is behind in trust"
 seo_title: "Manufacturing AI Needs Trust, Not Just Better Models"
 description: "Why AI adoption in manufacturing fails not because of models, but because trust, traceability and validated data foundations are missing."
-date: 2024-01-16
+date: 2026-01-08
+last_modified_at: 2026-08-12
 category: "Implications"
 tags:
   - IndustrialAI

@@ -549,7 +549,7 @@
   content: counter(toc, decimal-leading-zero);
   font-family: var(--font-mono);
   font-size: 0.78rem;
-  color: var(--teal-400);
+  color: var(--teal-500);
   flex-shrink: 0;
 }
 .toc a:hover { color: var(--accent); }
@@ -749,7 +749,9 @@
   font-size: 0.68rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--accent);
+  /* Small mono label on white: --accent only reaches 3.5:1, so the
+     readable variant is used here. */
+  color: var(--accent-dark);
 }
 .concept-card__title {
   font-size: 1rem;
@@ -910,7 +912,7 @@
   padding-top: 0.1em;
 }
 .clarification--negative .clarification__label { color: #C7361F; }
-.clarification--warning .clarification__label { color: #C77A12; }
+.clarification--warning .clarification__label { color: #9A5C0B; } /* --warn is 3.2:1 on the tint; this is the readable variant */
 .clarification__text { color: var(--ink-600); line-height: 1.5; }
 .glossary-footer {
   margin-top: 2rem;
@@ -1106,7 +1108,7 @@
 .pcard__top { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1rem; }
 .pcard__ic { width: 40px; height: 40px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: var(--r-md); background: var(--bg-tint); color: var(--teal-600); }
 .pcard__ic svg { width: 20px; height: 20px; }
-.pcard__layer { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.pcard__layer { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-dark); }
 .pcard h3 { font-size: 1.1rem; }
 .pcard p { font-size: 0.92rem; color: var(--ink-500); line-height: 1.6; margin-top: 0.5rem; }
 .pcard .chip { display: inline-block; margin-top: 0.9rem; font-family: var(--font-mono); font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: var(--r-full); background: var(--bg-soft); color: var(--ink-500); border: 1px solid var(--line); }

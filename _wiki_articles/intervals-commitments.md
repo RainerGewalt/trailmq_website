@@ -2,7 +2,8 @@
 layout: wiki-article
 title: "Intervals are not abstractions – they are commitments"
 description: "Why time intervals are not a technical detail but a formal commitment that defines meaning, responsibility and comparability."
-date: 2024-01-17
+date: 2026-01-08
+last_modified_at: 2026-08-01
 category: "Distinctions"
 tags:
   - Time

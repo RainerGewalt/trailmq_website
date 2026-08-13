@@ -2,7 +2,8 @@
 layout: wiki-article
 title: "IIoT GMP basics – why data flow alone is not enough"
 description: "Why IIoT systems in regulated environments need traceability, validation and lifecycle control beyond basic connectivity."
-date: 2024-01-18
+date: 2026-01-08
+last_modified_at: 2026-08-01
 category: "Foundations"
 tags:
   - IIoT

@@ -2,7 +2,8 @@
 layout: wiki-article
 title: "GMP is not binary – it scales with proximity"
 description: "Why GMP requirements increase gradually with proximity to the physical process and how architecture often hides this gradient."
-date: 2024-01-15
+date: 2026-01-08
+last_modified_at: 2026-08-01
 category: "Models"
 tags:
   - GMP
