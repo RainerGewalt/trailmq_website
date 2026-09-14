@@ -23,12 +23,12 @@
     "dateModified": {{ page.last_modified_at | default: page.last_modified | default: page.date | date_to_xmlschema | jsonify }},
     {% if page.reading_time %}"timeRequired": "PT{{ page.reading_time }}M",{% endif %}
     "author": {
-      "@type": "Organization",
-      "name": "TrailMQ Team",
+      "@type": "Person",
+      "name": {{ site.owner_name | default: 'Florian Przybylak' | jsonify }},
       "url": {{ '/about/' | absolute_url | jsonify }}
     },
     "publisher": {
-      "@id": {{ site.url | append: '/#organization' | jsonify }}
+      "@id": {{ site.url | append: '/#owner' | jsonify }}
     },
     "isPartOf": {
       "@type": "WebSite",

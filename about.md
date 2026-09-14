@@ -123,15 +123,27 @@ TrailMQ follows an **evaluation-first model**:
 
 The deployment files and exact evaluation boundaries are available on [GitHub](https://github.com/RainerGewalt/TrailMQ){:target="_blank" rel="noopener"}. Review the [{{ site.product_version }} release notes]({{ site.product_release_url }}){:target="_blank" rel="noopener"} for distribution identity and validation status. Container images are hosted on Docker Hub: [trailmq-backend](https://hub.docker.com/r/rainergewalt/trailmq-backend){:target="_blank" rel="noopener"} and [trailmq-frontend](https://hub.docker.com/r/rainergewalt/trailmq-frontend){:target="_blank" rel="noopener"}.
 
-## Maintainer and public distribution
+## Roles behind the project
 
-The TrailMQ website and product communication are maintained by **Florian Przybylak**, working on the architecture of regulated industrial systems, data pipelines and trustworthy automation. — [LinkedIn](https://www.linkedin.com/in/florian-p-6a27ab1b8/){:target="_blank" rel="noopener"}
+These are deliberately kept distinct, and the full list is on the [imprint]({{ '/imprint/' | relative_url }}).
 
-The public evaluation distribution is published through the [RainerGewalt GitHub account](https://github.com/RainerGewalt/TrailMQ){:target="_blank" rel="noopener"}. The binding proprietary evaluation license names **Rainer Gewalt** as copyright holder. These roles are stated separately so the public repository, license and website can be traced without ambiguity.
+**Florian Przybylak** operates this website, is responsible for its content, and is the TrailMQ product owner and project lead — working on the architecture of regulated industrial systems, data pipelines and trustworthy automation. — [LinkedIn](https://www.linkedin.com/in/florian-p-6a27ab1b8/){:target="_blank" rel="noopener"}
+
+The public evaluation distribution is published through the [RainerGewalt GitHub account](https://github.com/RainerGewalt/TrailMQ){:target="_blank" rel="noopener"}, which is the technical maintainer and repository role. Separately from that role, the binding proprietary evaluation license currently names **Rainer Gewalt** as copyright holder of the software.
+
+There is no TrailMQ GmbH or other TrailMQ company; the project is run by a natural person. Stating the roles separately means the repository, the license and the website can each be traced without ambiguity.
+
+## Where to go next
+
+- [Know why MQTT access was allowed or denied]({{ '/#demo' | relative_url }}) — the decision replay
+- [MQTT access control: who may publish or subscribe]({{ '/mqtt-access-control/' | relative_url }})
+- [MQTT audit trail and decision records]({{ '/mqtt-decision-records/' | relative_url }})
+- [Industrial MQTT security for OT networks]({{ '/industrial-mqtt-security/' | relative_url }})
+- [MQTT in GxP and GMP-regulated environments]({{ '/regulated/' | relative_url }})
 
 <div class="doc-cta">
   <h3>Questions, feedback or enterprise inquiries?</h3>
-  <p>Reach out — we're happy to discuss evaluation, licensing and regulated deployments.</p>
+  <p>Reach out to discuss evaluation, licensing or regulated deployments.</p>
   <div class="actions">
     <a href="mailto:contact@trailmq.com" class="btn btn--primary">contact@trailmq.com</a>
     <a href="{{ '/wiki/' | relative_url }}" class="btn btn--outline" style="color:#fff;border-color:rgba(255,255,255,0.3)">Explore the concepts</a>

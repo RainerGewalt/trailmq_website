@@ -51,9 +51,9 @@ layout: wiki-base
 
   <!-- Article Meta -->
   <div class="article-meta">
-    <span itemprop="author" itemscope itemtype="https://schema.org/Organization">
+    <span itemprop="author" itemscope itemtype="https://schema.org/Person">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 12 0v1"/></svg>
-      <a href="{{ '/about/' | relative_url }}" itemprop="url"><span itemprop="name">TrailMQ Team</span></a>
+      <a href="{{ '/about/' | relative_url }}" itemprop="url"><span itemprop="name">{{ site.owner_name | default: 'Florian Przybylak' }}</span></a>
     </span>
 
     {% if page.date %}

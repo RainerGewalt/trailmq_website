@@ -1,0 +1,133 @@
+{%- comment -%}
+  Decision-investigation replay.
+
+  Progressive enhancement by design: this file renders six plain <article>
+  steps inside an <ol>. Everything is in the DOM and readable without
+  JavaScript, which keeps it indexable and keeps the content available if the
+  script fails. assets/js/demo.js upgrades it in place into a tab widget and
+  adds the controls; it creates every button itself, so nothing here is a
+  control that does nothing when the script is absent.
+
+  CLAIM GATE: every command, error string, reason and figure below is quoted
+  from the public TrailMQ distribution (README, docs/scenarios/02-denied-actions.md,
+  docs/connect-a-client.md, docs/media/preview-activity.jpg). Do not paraphrase.
+{%- endcomment -%}
+
+<div class="demo" data-demo>
+  <div class="demo__head">
+    <p class="demo__kicker">
+      <span class="demo__replay">Replay</span>
+      A recorded walkthrough of the {{ site.product_version }} evaluation stack — not a live broker.
+    </p>
+    <div class="demo__controls" data-demo-controls hidden></div>
+  </div>
+
+  <ol class="demo__steps" data-demo-steps>
+
+    <li class="demo__step" id="demo-step-1" data-demo-step data-demo-label="The request">
+      <article>
+        <p class="demo__n"><span class="demo__n-num">1</span> <span class="demo__n-of">of 6</span></p>
+        <h3 class="demo__title">A sensor publishes to a topic its role does not cover</h3>
+        <div class="demo__term" role="group" aria-label="Terminal: the publish attempt">
+          <div class="demo__term-bar"><span class="tl"><i></i><i></i><i></i></span><span class="label">terminal · sensor</span></div>
+          <pre><code><span class="c-com"># authenticated as testuser, whose role is "publisher"</span>
+mosquitto_pub -h localhost -p 8883 --cafile "$CA" \
+  -u testuser -P "$USER_PW" \
+  -t 'restricted/ops/config' -q 1 -m '{"setpoint":42}'</code></pre>
+        </div>
+        <p class="demo__note">The credentials are valid. Authentication is not the problem here — which is exactly what makes this case annoying to debug.</p>
+      </article>
+    </li>
+
+    <li class="demo__step" id="demo-step-2" data-demo-step data-demo-label="The refusal">
+      <article>
+        <p class="demo__n"><span class="demo__n-num">2</span> <span class="demo__n-of">of 6</span></p>
+        <h3 class="demo__title">The client gets a protocol error, not an authorization error</h3>
+        <div class="demo__term" role="group" aria-label="Terminal: the client-side result">
+          <div class="demo__term-bar"><span class="tl"><i></i><i></i><i></i></span><span class="label">terminal · sensor</span></div>
+          <pre><code><span class="c-err">Error: A network protocol error occurred when communicating with the broker.</span></code></pre>
+        </div>
+        <p class="demo__note">At QoS&nbsp;1 the broker refuses to acknowledge the publish and drops the connection, so most clients surface it as a transport fault. <strong>At QoS&nbsp;0 the same command exits cleanly and the message is still discarded</strong> — there is no acknowledgement to refuse with. This is the gap the recorded decision closes.</p>
+      </article>
+    </li>
+
+    <li class="demo__step" id="demo-step-3" data-demo-step data-demo-label="Attribution">
+      <article>
+        <p class="demo__n"><span class="demo__n-num">3</span> <span class="demo__n-of">of 6</span></p>
+        <h3 class="demo__title">The broker attributed the refusal as it made it</h3>
+        <div class="demo__term" role="group" aria-label="Terminal: the broker decision log line">
+          <div class="demo__term-bar"><span class="tl"><i></i><i></i><i></i></span><span class="label">./trailmq logs backend | grep ACLMon</span></div>
+          <pre><code>[ACLMon] <span class="c-err">DENY</span> user=<span class="c-str">"testuser"</span> roles=[publisher] action=publish topic=<span class="c-str">"restricted/ops/config"</span></code></pre>
+        </div>
+        <p class="demo__note">Identity, role, action and topic are on the decision itself — not reassembled afterwards from a connection log and an ACL file.</p>
+      </article>
+    </li>
+
+    <li class="demo__step" id="demo-step-4" data-demo-step data-demo-label="The reason">
+      <article>
+        <p class="demo__n"><span class="demo__n-num">4</span> <span class="demo__n-of">of 6</span></p>
+        <h3 class="demo__title">Activity → filter Outcome: Denied</h3>
+        <div class="demo__row" role="group" aria-label="One row from the Activity view">
+          <dl class="demo__rec">
+            <div><dt>timestamp</dt><dd>8/15/2026, 1:37:00 PM</dd></div>
+            <div><dt>actor</dt><dd>testuser</dd></div>
+            <div><dt>client</dt><dd><code class="topic">sensor-gateway-01</code></dd></div>
+            <div><dt>topic</dt><dd><code class="topic">restricted/ops/config</code></dd></div>
+            <div><dt>event</dt><dd><strong>Publish refused</strong><br><span class="demo__reason">No rule brings this topic into scope for any role this identity holds.</span></dd></div>
+          </dl>
+        </div>
+        <p class="demo__note">The reason is prose, and it names which of the two gates refused: not the role's permissions, but the absence of a topic rule bringing <code class="topic">restricted/ops/config</code> into scope for any role <code>testuser</code> holds.</p>
+      </article>
+    </li>
+
+    <li class="demo__step" id="demo-step-5" data-demo-step data-demo-label="Three questions">
+      <article>
+        <p class="demo__n"><span class="demo__n-num">5</span> <span class="demo__n-of">of 6</span></p>
+        <h3 class="demo__title">Permitted, written down, and covered are three different answers</h3>
+        <div class="demo__cols" role="group" aria-label="Outcome, evidence and integrity for this record">
+          <div class="demo__col">
+            <span class="demo__col-k">Outcome</span>
+            <span class="ev-pill ev-pill--crit">Denied</span>
+            <span class="demo__col-d">Was the operation permitted?</span>
+          </div>
+          <div class="demo__col">
+            <span class="demo__col-k">Evidence</span>
+            <span class="ev-pill ev-pill--ok">Recorded</span>
+            <span class="demo__col-d">Was it written down?</span>
+          </div>
+          <div class="demo__col">
+            <span class="demo__col-k">Integrity</span>
+            <span class="ev-pill ev-pill--muted">Outside validated scope</span>
+            <span class="demo__col-d">Does the validated chain cover it?</span>
+          </div>
+        </div>
+        <p class="demo__note">TrailMQ labels this record <em>Outside validated scope</em> rather than quietly implying the chain covers it. Next to this, the Access screen resolves the effective rule for the topic, so the fix is a rule you write deliberately — not a guess.</p>
+      </article>
+    </li>
+
+    <li class="demo__step" id="demo-step-6" data-demo-step data-demo-label="The verdict">
+      <article>
+        <p class="demo__n"><span class="demo__n-num">6</span> <span class="demo__n-of">of 6</span></p>
+        <h3 class="demo__title">And the integrity verdict states its own limits</h3>
+        <div class="demo__row" role="group" aria-label="The evidence integrity panel">
+          <dl class="demo__rec demo__rec--verdict">
+            <div><dt>verdict</dt><dd><strong class="demo__ok">Chain intact</strong></dd></div>
+            <div><dt>entries checked</dt><dd>1,895 &mdash; store: <code>audit_logs</code></dd></div>
+            <div><dt>entries not in this chain</dt><dd><strong class="demo__warn">843</strong> &mdash; mqtt message evidence, queue records</dd></div>
+            <div><dt>external anchoring</dt><dd>None</dd></div>
+            <div><dt>digital signature</dt><dd>None</dd></div>
+          </dl>
+        </div>
+        <p class="demo__note">The product tells you what the verdict does <em>not</em> cover, in the same panel as the verdict. It proves internal consistency, not third-party custody — and the denial you just traced is one of the 843 records it does not walk.</p>
+      </article>
+    </li>
+
+  </ol>
+
+  <p class="demo__status" data-demo-status role="status" aria-live="polite"></p>
+
+  <p class="demo__outro">
+    Every line above is reproducible locally.
+    <a href="#try" class="txtlink">Run it yourself <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </p>
+</div>
