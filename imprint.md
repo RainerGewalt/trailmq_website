@@ -81,17 +81,17 @@ account name or from repository metadata.
 **Florian Przybylak** as a natural person.
 
 **TrailMQ software.** The software is distributed under a proprietary evaluation
-license. The copyright holder is the one named in the binding
+license. Rights in the software are governed solely by the binding
 [license text](https://github.com/RainerGewalt/TrailMQ/blob/master/LICENSE){:target="_blank" rel="noopener"}
-in the distribution repository, which currently names **Rainer Gewalt**. See also the
-[licensing summary]({{ '/license/' | relative_url }}).
+in the distribution repository. This page does not restate or interpret it. See also
+the [licensing summary]({{ '/license/' | relative_url }}).
 
-<!-- LEGAL-BLOCKER (docs/legal-findings.md L8): the published LICENSE names Rainer
-     Gewalt as copyright holder of the software, while the owner determination for
-     this site names Florian Przybylak as product owner and project lead. These are
-     not necessarily inconsistent, but the split must be confirmed by the owner
-     before publication. Do not assert software copyright for either person here
-     beyond what the binding LICENSE states. -->
+<!-- LEGAL-BLOCKER (docs/legal-findings.md L8): the published LICENSE names a
+     different holder than this site's owner determination. Owner decision: the
+     website must NOT resolve that conflict, so software copyright is deliberately
+     not restated here — only linked. Do not name a software copyright holder on
+     this page. To be settled after the 3.1.1 release, together with the product
+     LICENSE; the LICENSE must not change during 3.1.1. -->
 
 ## Hosting
 

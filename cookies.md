@@ -55,10 +55,9 @@ without processing your IP address somewhere.
 **Hosting and server logs.** This site is served by **GitHub Pages**, operated by
 GitHub, Inc. To deliver each page, GitHub's infrastructure necessarily processes
 connection data including your **IP address**, the requested URL, the time of the
-request and information your browser sends such as the user agent and referrer. Under
-the GDPR an IP address is personal data. This processing is carried out by the host and
-is necessary to operate the site; the site operator does not run analytics over it and
-does not use it to build any profile.
+request and information your browser sends such as the user agent and referrer. This
+processing is carried out by the host in order to deliver the page. The site operator
+runs no analytics over it and does not use it to build any profile.
 
 See the [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement){:target="_blank" rel="noopener"}
 for GitHub's own processing.
@@ -102,18 +101,15 @@ you run it on. There is no cloud dependency and no phone-home.
 
 ## Your rights
 
-Because some processing does occur — server logs at the host, and email correspondence
-— data protection rights apply. Depending on the applicable law these include access,
-rectification, erasure, restriction, objection and data portability (GDPR Art. 15–21),
-and equivalent rights under Swiss data protection law.
+Some processing does occur — server logs at the host, and email correspondence — so
+data protection rights apply to it. To exercise any such right, or to ask what is held,
+write to [contact@trailmq.com](mailto:contact@trailmq.com).
 
-To exercise them, write to [contact@trailmq.com](mailto:contact@trailmq.com).
+You also have the right to lodge a complaint with the competent supervisory authority.
 
-You also have the right to lodge a complaint with a supervisory authority.
-
-<!-- LEGAL-BLOCKER (docs/legal-findings.md L2, L6): the competent supervisory
-     authority depends on the unresolved jurisdiction question and must be named
-     here before publication. -->
+<!-- LEGAL-BLOCKER (docs/legal-findings.md L2, L6): the applicable legal regime, the
+     enumeration of rights and the competent supervisory authority must all be settled
+     by counsel and named here before publication. Do not draft them from this repo. -->
 
 <div class="doc-cta">
   <h3>Questions about privacy?</h3>

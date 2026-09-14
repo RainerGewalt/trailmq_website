@@ -3,7 +3,7 @@ layout: page
 title: "MQTT in GxP and GMP-regulated environments"
 seo_title: "MQTT in GxP & GMP-Regulated Environments · TrailMQ"
 crumb: "Regulated environments"
-description: "Where an MQTT broker can support GxP, GMP, GAMP 5, Annex 11 and Part 11 processes — the technical controls it contributes, and where it stops."
+description: "Where an MQTT broker can support GxP and GMP processes — the technical controls it contributes to an assessment, and the point where it stops."
 subtitle: "A broker is a technical control, not a compliance outcome. This page is about what TrailMQ can contribute to a regulated assessment, and where it stops."
 permalink: /regulated/
 updated: September 2026
@@ -75,12 +75,13 @@ scope of any integrity check explicitly rather than assuming it covers everythin
 | Scope-defined integrity check | A hash-linked chain over those system and action entries, reporting its verdict, the entries checked **and** the entries it does not cover |
 | Explicit boundaries | The product states its own exclusions in the interface, next to the verdict |
 
-The relevant regulatory context this can feed into: **GMP** (manufacturing quality),
-**GAMP 5** (risk-based validation), **21 CFR Part 11** and **EU GMP Annex 11**
-(electronic records and signatures), and **ALCOA+** data-integrity principles.
+The context this is designed to be assessed in: **GMP** (manufacturing quality),
+**GAMP 5** (risk-based validation), **21 CFR Part 11** (electronic records) and
+**ALCOA+** data-integrity principles — the same four named on the previous homepage.
 
-Naming those frameworks describes the context TrailMQ is designed to be assessed in.
-It is not a claim of conformity to any of them.
+Naming them describes the context, not conformity. TrailMQ makes no claim of
+conformity to any of them, and this page adds no framework the site did not already
+reference.
 
 ## Where it stops — read this part carefully
 

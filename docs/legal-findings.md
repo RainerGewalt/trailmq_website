@@ -81,16 +81,16 @@ The imprint is written entirely under German law: **§ 5 DDG** and
 **§ 18 Abs. 2 MStV**.
 
 - The brief's concern about `§ 5 TMG` was **already resolved on `main`** — the page
-  cites DDG, which replaced TMG in May 2024. No change needed there.
-- However, if the operator is now resident in Switzerland and the site is operated from
-  there as a natural person, the German DDG/MStV citations may be the wrong basis.
-  Switzerland's disclosure duty for websites sits primarily in **UWG Art. 3 Abs. 1
-  lit. s** (which applies to e-commerce; a non-transactional project site is a different
-  case), and Swiss data protection sits under the **revised FADP (revDSG, in force
-  1 Sep 2023)** rather than only the GDPR.
-- The GDPR may still apply in parallel via Art. 3(2) if the site targets EU visitors —
-  which an English-language site aimed at European industrial and pharma engineers
-  plausibly does.
+  cites DDG, which replaced TMG. No change needed there.
+- The open question is whether German disclosure and data-protection law is still the
+  correct basis now that the operator is resident in Switzerland, and whether a second
+  regime applies in parallel because the site addresses readers in the EU.
+
+**This is a legal question, and this document does not answer it.** An earlier draft of
+this file named specific Swiss provisions and drew conclusions from them. That was an
+own legal interpretation, it was removed on owner instruction, and it should not be
+reintroduced here. The question goes to counsel; the website states nothing until it
+comes back.
 
 **Applied on this branch:** nothing. The German citations were left in place and flagged,
 because swapping them for Swiss ones without counsel would be replacing one unverified
@@ -170,9 +170,10 @@ no CDN, self-hosted fonts). But "no personal data at all" is a stronger and diff
 claim:
 
 - The site is served by **GitHub Pages** (`CNAME` → `trailmq.com`, `origin` on
-  github.com). GitHub necessarily processes visitor **IP addresses** to serve requests,
-  and IP addresses are personal data under GDPR Art. 4(1). GitHub is a host and a
-  processor/third party here.
+  github.com). As a technical fact, GitHub processes visitor **IP addresses** and
+  request metadata in order to serve each page. How that processing is to be classified
+  and on what basis is a legal question for counsel (L2/L6); what is not defensible is
+  a blanket "no personal data is collected" while it happens.
 - The page states "Loading a page on this site contacts no third-party server." Every
   page load contacts GitHub's servers. The sentence is true about *embedded* third-party
   resources and false as written.
@@ -202,7 +203,7 @@ Independent of L5, the privacy page has no:
 - hosting-provider disclosure (blocked on the L2 regime decision)
 - retention periods
 - right to lodge a complaint with a supervisory authority, and *which* one — which
-  depends entirely on the L2 outcome (a German state authority, the Swiss FDPIC, or both)
+  depends entirely on the L2 outcome and is not determined here
 
 **Applied on this branch:** the structural sections were added with the factual parts
 filled in and the jurisdiction-dependent parts left as visible, clearly-marked review
@@ -255,28 +256,29 @@ this branch asserted that copyright in "this website and the TrailMQ project" is
 Florian Przybylak. That was too strong — it contradicts the published LICENSE — and it
 was corrected before commit.
 
-**Applied on this branch:** the two are now scoped separately and neither is
-overstated.
+**Owner decision (recorded 2026-09-14):**
+
+- Hold this as a genuine owner finding. The website must **not** resolve it.
+- Do **not** change the LICENSE during the in-flight 3.1.1 release.
+- After 3.1.1, settle which rights-holder statement is binding and, if it changes,
+  correct the product LICENSE and the website **together**.
+
+**Applied on this branch, following that decision:** the website no longer names any
+software copyright holder at all.
 
 - *Website content* copyright → Florian Przybylak (follows from the operator
-  determination).
-- *TrailMQ software* copyright → "the one named in the binding license text, which
-  currently names Rainer Gewalt", with a link to that text.
-- The maintainer row in the roles table no longer says the maintainer holds no rights;
-  it says software copyright is governed solely by the license text.
-- The true statement in `about.md` was left in place.
+  determination, and is a separate question from the software).
+- *TrailMQ software* → "Rights in the software are governed solely by the binding
+  license text", with a link and an explicit note that the page does not restate or
+  interpret it. No person is named.
+- `about.md` previously restated the holder. That sentence was true, but it put the
+  website on one side of an unresolved question, so it was reduced to the same
+  link-don't-restate form.
+- The imprint roles table still lists Rainer Gewalt as **technical maintainer**, which
+  is the owner determination and is unrelated to the rights question.
 
-**Needed from the owner:** confirm which is intended.
-
-1. If the software copyright should sit with Florian Przybylak, the **LICENSE file in
-   the product repository has to change first**, and the website follows. The website
-   must not lead.
-2. If it correctly sits with Rainer Gewalt, the current scoped wording is right, and
-   `license.md` should probably name the licensor explicitly (see L7) so the
-   counterparty to a commercial agreement is unambiguous.
-
-Either way this cannot be fixed on the website alone, and the website should not
-contradict the binding license under any circumstances.
+This cannot be fixed on the website alone, and the website must neither contradict the
+binding license nor pre-empt the decision. It now does neither.
 
 ## Summary — what blocks publication
 
