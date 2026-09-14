@@ -76,7 +76,7 @@ faq:
         <div class="ev-card__body">
           <div class="ev-row"><span class="k">event</span><span class="v"><b>Publish refused</b></span></div>
           <div class="ev-row"><span class="k">actor</span><span class="v">testuser <span class="ev-note">role: publisher</span></span></div>
-          <div class="ev-row"><span class="k">client</span><span class="v"><code class="topic">sensor-gateway-01</code></span></div>
+          <div class="ev-row"><span class="k">client</span><span class="v"><code class="topic">demo-sensor-gateway-01</code></span></div>
           <div class="ev-row"><span class="k">topic</span><span class="v"><code class="topic">restricted/ops/config</code></span></div>
           <div class="ev-row"><span class="k">reason</span><span class="v">No rule brings this topic into scope for any role this identity holds.</span></div>
         </div>
@@ -86,7 +86,7 @@ faq:
           <div><span class="k">integrity</span><span class="ev-pill ev-pill--muted">Outside validated scope</span></div>
         </div>
         <div class="ev-card__chain">
-          Real record from the TrailMQ {{ site.product_version }} Activity view.
+          A decision record as the TrailMQ {{ site.product_version }} Activity view shows it. Identifiers are synthetic.
           <a href="#demo">Replay how it was found &rarr;</a>
         </div>
       </figure>
@@ -174,14 +174,14 @@ faq:
       <figure>
         <img src="{{ '/assets/images/product/preview-activity.jpg' | relative_url }}"
              width="1800" height="1180" loading="lazy" decoding="async"
-             alt="The TrailMQ Activity screen filtered to Outcome: Denied. An Evidence integrity panel reports the verdict Chain intact over 1,895 system and action entries, with 843 entries not in the chain, no external anchoring and no digital signature. Below it, a table lists refused publishes by testuser from client sensor-gateway-01 on the topics restricted/ops/setpoint and restricted/ops/config, each with the reason, outcome Denied, evidence Recorded and integrity Outside validated scope." />
-        <figcaption>The Activity view the replay is taken from.</figcaption>
+             alt="The TrailMQ Activity screen filtered to Outcome: Denied. An Evidence integrity panel reports the verdict Chain intact over 1,895 system and action entries, with 843 entries not in the chain, no external anchoring and no digital signature. Below it, a table lists refused publishes by testuser from client demo-sensor-gateway-01 on the topics restricted/ops/setpoint and restricted/ops/config, each with the reason, outcome Denied, evidence Recorded and integrity Outside validated scope." />
+        <figcaption>Evaluation snapshot of the Activity view the replay is modelled on. Counts come from one local run; the replay uses synthetic identifiers.</figcaption>
       </figure>
       <figure>
         <img src="{{ '/assets/images/product/preview-access.jpg' | relative_url }}"
              width="1800" height="1180" loading="lazy" decoding="async"
              alt="The TrailMQ Access screen. It lists two users, testadmin with the admin role and testuser with the publisher role, and a Topic rules panel with a Check a topic field that resolves the effective rule for a given topic. A panel headed Seen in traffic, not configured lists five topics that carried messages without a matching rule." />
-        <figcaption>Where step 5 resolves the effective rule.</figcaption>
+        <figcaption>Evaluation snapshot of the Access view, where the effective rule for a topic is resolved.</figcaption>
       </figure>
     </div>
   </div>
@@ -288,8 +288,8 @@ cd TrailMQ
       <li class="flow__step">
         <span class="flow__n">5</span>
         <h3>Retest</h3>
-        <p>Re-run the publish, or <code>./trailmq verify</code>, and confirm the new decision was recorded.</p>
-        <span class="flow__badge flow__badge--now">Manual in {{ site.product_version }}</span>
+        <p>Re-run the publish, or <code>./trailmq verify</code>, and confirm the new decision was recorded. You drive this step yourself; there is no automated regression of a policy change.</p>
+        <span class="flow__badge flow__badge--manual">Manual today &middot; automation planned for 3.2</span>
       </li>
     </ol>
 

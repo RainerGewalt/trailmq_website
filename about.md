@@ -129,7 +129,7 @@ These are deliberately kept distinct, and the full list is on the [imprint]({{ '
 
 **Florian Przybylak** operates this website, is responsible for its content, and is the TrailMQ product owner and project lead — working on the architecture of regulated industrial systems, data pipelines and trustworthy automation. — [LinkedIn](https://www.linkedin.com/in/florian-p-6a27ab1b8/){:target="_blank" rel="noopener"}
 
-The public evaluation distribution is published through the [RainerGewalt GitHub account](https://github.com/RainerGewalt/TrailMQ){:target="_blank" rel="noopener"}, which is the technical maintainer and repository role. Separately from that role, the binding proprietary evaluation license currently names **Rainer Gewalt** as copyright holder of the software.
+The public evaluation distribution is published through the [RainerGewalt GitHub account](https://github.com/RainerGewalt/TrailMQ){:target="_blank" rel="noopener"}, which is the technical maintainer and repository role. Rights in the software itself are governed by the binding [license text](https://github.com/RainerGewalt/TrailMQ/blob/master/LICENSE){:target="_blank" rel="noopener"}, which this site does not restate.
 
 There is no TrailMQ GmbH or other TrailMQ company; the project is run by a natural person. Stating the roles separately means the repository, the license and the website can each be traced without ambiguity.
 

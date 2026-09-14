@@ -17,7 +17,7 @@
   <div class="demo__head">
     <p class="demo__kicker">
       <span class="demo__replay">Replay</span>
-      A recorded walkthrough of the {{ site.product_version }} evaluation stack — not a live broker.
+      A walkthrough of the {{ site.product_version }} evaluation stack — not a live broker. Identifiers are synthetic demo values.
     </p>
     <div class="demo__controls" data-demo-controls hidden></div>
   </div>
@@ -71,7 +71,7 @@ mosquitto_pub -h localhost -p 8883 --cafile "$CA" \
           <dl class="demo__rec">
             <div><dt>timestamp</dt><dd>8/15/2026, 1:37:00 PM</dd></div>
             <div><dt>actor</dt><dd>testuser</dd></div>
-            <div><dt>client</dt><dd><code class="topic">sensor-gateway-01</code></dd></div>
+            <div><dt>client</dt><dd><code class="topic">demo-sensor-gateway-01</code></dd></div>
             <div><dt>topic</dt><dd><code class="topic">restricted/ops/config</code></dd></div>
             <div><dt>event</dt><dd><strong>Publish refused</strong><br><span class="demo__reason">No rule brings this topic into scope for any role this identity holds.</span></dd></div>
           </dl>
@@ -108,17 +108,19 @@ mosquitto_pub -h localhost -p 8883 --cafile "$CA" \
     <li class="demo__step" id="demo-step-6" data-demo-step data-demo-label="The verdict">
       <article>
         <p class="demo__n"><span class="demo__n-num">6</span> <span class="demo__n-of">of 6</span></p>
-        <h3 class="demo__title">And the integrity verdict states its own limits</h3>
-        <div class="demo__row" role="group" aria-label="The evidence integrity panel">
+        <h3 class="demo__title">And the record tells you what it is worth</h3>
+        <p class="demo__lead">The refusal you just read sits <strong>outside</strong> the chain that TrailMQ validates. The chain covers system and action entries — sign-ins, administrative changes, policy and topic-rule changes — and it is neither externally anchored nor digitally signed, so it shows internal consistency, not third-party custody.</p>
+        <div class="demo__row" role="group" aria-label="Evidence integrity panel from one evaluation run">
+          <p class="demo__snapshot">Evaluation snapshot &middot; figures from a single local run, not a product property</p>
           <dl class="demo__rec demo__rec--verdict">
             <div><dt>verdict</dt><dd><strong class="demo__ok">Chain intact</strong></dd></div>
-            <div><dt>entries checked</dt><dd>1,895 &mdash; store: <code>audit_logs</code></dd></div>
-            <div><dt>entries not in this chain</dt><dd><strong class="demo__warn">843</strong> &mdash; mqtt message evidence, queue records</dd></div>
+            <div><dt>covered</dt><dd>system and action entries &mdash; store: <code>audit_logs</code></dd></div>
+            <div><dt>not in this chain</dt><dd><strong class="demo__warn">mqtt message evidence</strong>, queue records &mdash; including this refusal</dd></div>
             <div><dt>external anchoring</dt><dd>None</dd></div>
             <div><dt>digital signature</dt><dd>None</dd></div>
           </dl>
         </div>
-        <p class="demo__note">The product tells you what the verdict does <em>not</em> cover, in the same panel as the verdict. It proves internal consistency, not third-party custody — and the denial you just traced is one of the 843 records it does not walk.</p>
+        <p class="demo__note">Stating the boundary is the point. Extending integrity coverage over MQTT decision records is planned for 3.2 and is not available today.</p>
       </article>
     </li>
 
@@ -127,7 +129,7 @@ mosquitto_pub -h localhost -p 8883 --cafile "$CA" \
   <p class="demo__status" data-demo-status role="status" aria-live="polite"></p>
 
   <p class="demo__outro">
-    Every line above is reproducible locally.
+    <strong>You now know who was refused, on which topic, and why</strong> — from a client error that said none of it. Every line above is reproducible locally.
     <a href="#try" class="txtlink">Run it yourself <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </p>
 </div>

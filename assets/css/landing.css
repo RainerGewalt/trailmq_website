@@ -275,17 +275,23 @@ main:focus { outline: none; }
 .btn--sm { padding: 0.6rem 1rem; font-size: 0.88rem; }
 
 /* link with arrow */
+/* Inline, not inline-flex: as a wrapping flex container the arrow dropped onto
+   its own line and sat orphaned at the left edge on narrow screens. Flowing it
+   as inline content keeps it with the last word. */
 .txtlink {
-  display: inline-flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.4rem;
+  display: inline;
   font-weight: 600;
   color: var(--teal-600);
   border-bottom: 1.5px solid transparent;
   transition: gap var(--dur), border-color var(--dur), color var(--dur);
 }
-.txtlink svg { width: 16px; height: 16px; transition: transform var(--dur); }
+.txtlink svg {
+  display: inline-block;
+  width: 16px; height: 16px;
+  vertical-align: -3px;
+  margin-left: 0.35rem;
+  transition: transform var(--dur);
+}
 .txtlink:hover { color: var(--accent); }
 .txtlink:hover svg { transform: translateX(3px); }
 .txtlink--light { color: var(--teal-200); }
@@ -1380,12 +1386,20 @@ code.topic,
 .flow__badge {
   margin-top: auto;
   align-self: flex-start;
+  max-width: 100%;
   font-family: var(--font-mono);
   font-size: 0.66rem; letter-spacing: 0.04em;
   padding: 0.2rem 0.5rem;
   border-radius: var(--r-full);
 }
 .flow__badge--now { background: rgba(21,145,107,0.12); color: #0d6b4f; }
+/* Retest is shipped but unautomated. It must not read as equivalent to the four
+   steps above it, so it gets its own treatment rather than the green "now" badge. */
+.flow__badge--manual {
+  background: transparent;
+  border: 1px dashed var(--line-strong);
+  color: var(--ink-500);
+}
 
 /* Planned work is visually separated from shipped work on purpose.
    Dashed, unsaturated, and never adjacent to a "now" badge. */
@@ -1631,13 +1645,19 @@ code.topic,
 .demo__col .ev-pill { white-space: normal; line-height: 1.35; }
 .demo__col-d { font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.45; }
 
+/* The live region repeats the step heading that is already on screen, so it is
+   announced but not drawn. Clipped rather than display:none, which some screen
+   readers skip. */
 .demo__status {
-  padding: 0 1.4rem;
-  font-size: 0.8rem;
-  /* 0.45 alpha measured 4.48:1 on the darkest panel — just under AA. */
-  color: rgba(255,255,255,0.58);
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
-.demo__status:empty { padding: 0; }
 .demo__outro {
   padding: 1.1rem 1.4rem;
   border-top: 1px solid rgba(255,255,255,0.10);
