@@ -13,15 +13,25 @@
           </svg>
           <span class="brand__word">Trail<b>MQ</b></span>
         </a>
-        <p>An MQTT broker built for auditable, policy-controlled messaging in regulated and industrial systems.</p>
+        <p>Know why MQTT access was allowed or denied. Policy-controlled MQTT for industrial systems, with attributable and reviewable access decisions.</p>
       </div>
 
       <div class="footer-col">
         <h2>Product</h2>
-        <a href="{{ '/#promise' | relative_url }}">How it works</a>
-        <a href="{{ '/#capabilities' | relative_url }}">Capabilities</a>
-        <a href="{{ '/#compare' | relative_url }}">vs. Standard broker</a>
-        <a href="{{ '/#quickstart' | relative_url }}">Evaluation quickstart</a>
+        <a href="{{ '/#demo' | relative_url }}">See a decision</a>
+        <a href="{{ '/#try' | relative_url }}">Try it yourself</a>
+        <a href="{{ '/#flow' | relative_url }}">Investigation workflow</a>
+        <a href="{{ '/#trust' | relative_url }}">Limits &amp; integrity scope</a>
+        <a href="{{ '/#technical' | relative_url }}">Technical detail</a>
+      </div>
+
+      <div class="footer-col">
+        <h2>Topics</h2>
+        <a href="{{ '/mqtt-access-control/' | relative_url }}">MQTT access control</a>
+        <a href="{{ '/mqtt-decision-records/' | relative_url }}">MQTT audit trail &amp; decision records</a>
+        <a href="{{ '/industrial-mqtt-security/' | relative_url }}">Industrial MQTT security</a>
+        <a href="{{ '/wiki/why-mqtt-publish-denied/' | relative_url }}">Why was my MQTT publish denied?</a>
+        <a href="{{ '/regulated/' | relative_url }}">MQTT in GxP &amp; GMP environments</a>
       </div>
 
       <div class="footer-col">
@@ -36,12 +46,18 @@
     </div>
 
     <div class="footer-bottom">
-      <span>&copy; {{ site.time | date: "%Y" }} TrailMQ &middot; Maintained by <a href="https://www.linkedin.com/in/florian-p-6a27ab1b8/" target="_blank" rel="noopener">Florian Przybylak</a></span>
+      {%- comment -%}
+        Roles are deliberately not compressed into one line here. TrailMQ is not a
+        legal entity, so the copyright names the natural person; operator, product
+        owner and technical maintainer are stated separately on /imprint/.
+        See docs/legal-findings.md (L3, L4) before editing.
+      {%- endcomment -%}
+      <span>Website &copy; {{ site.time | date: "%Y" }} <a href="https://www.linkedin.com/in/florian-p-6a27ab1b8/" target="_blank" rel="noopener">{{ site.owner_name | default: 'Florian Przybylak' }}</a> &middot; TrailMQ is an independent project, not a registered company &middot; <a href="{{ '/imprint/' | relative_url }}">roles, rights &amp; responsibilities</a></span>
       <nav aria-label="Legal">
         <a href="{{ '/imprint/' | relative_url }}">Imprint</a>
         <a href="{{ '/license/' | relative_url }}">License</a>
         <a href="{{ '/cookies/' | relative_url }}">Cookies</a>
-        <a href="#top" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">&uarr; Top</a>
+        <a href="#top">&uarr; Top</a>
       </nav>
     </div>
   </div>

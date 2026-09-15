@@ -77,7 +77,7 @@
   function scheduleHashSync(delay) {
     window.setTimeout(syncHashTarget, delay);
   }
-  document.querySelectorAll('.section .section__head, .pipeline, .feat-grid, .cards, .code-block, .table-wrap, .aud-grid, .cmp, .std-grid, .qs-grid, .faq, .closing-quote').forEach(function (el) {
+  document.querySelectorAll('.section .section__head, .feat-grid, .cards, .code-block, .table-wrap, .aud-grid, .std-grid, .qs-grid, .faq, .closing-quote, .flow, .gates, .tech-grid, .demo-proof').forEach(function (el) {
     el.classList.add('reveal');
     revealEls.push(el);
   });
@@ -104,7 +104,7 @@
   }
 
   // Active nav link on scroll (homepage section spy)
-  var sections = ['promise', 'evidence', 'capabilities', 'compare', 'regulated', 'faq']
+  var sections = ['why', 'demo', 'try', 'flow', 'trust', 'technical', 'faq']
     .map(function (id) { return document.getElementById(id); })
     .filter(Boolean);
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav__links a'));
@@ -137,7 +137,8 @@
       var target = document.getElementById(id);
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
+        // Honour prefers-reduced-motion here too, not only for the reveals.
+        target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
       }
     });
   });

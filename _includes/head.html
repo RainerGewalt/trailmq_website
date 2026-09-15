@@ -41,7 +41,7 @@
 
 <title>{{ seo_title | escape }}</title>
 <meta name="description" content="{{ seo_description | escape }}" />
-<meta name="author" content="{{ page.author | default: site.author | default: 'TrailMQ Team' | escape }}" />
+<meta name="author" content="{{ page.author | default: site.author | default: 'Florian Przybylak' | escape }}" />
 <meta name="robots" content="{{ page.robots | default: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' }}" />
 <meta name="theme-color" content="#0F3D3E" />
 <meta name="color-scheme" content="light" />
@@ -86,26 +86,55 @@
 <!-- Main Stylesheet -->
 <link rel="stylesheet" href="{{ '/assets/css/landing.css' | relative_url }}" />
 
-<!-- Structured Data: Organization -->
+{%- comment -%}
+  Publisher is modelled as a Person, not an Organization: there is no TrailMQ
+  legal entity and no team. See docs/legal-findings.md (L3) before changing it.
+  Liquid comment on purpose — this note must not ship to visitors.
+{%- endcomment -%}
+<!-- Structured Data: publisher -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": {{ site.url | append: '/#organization' | jsonify }},
-  "name": "TrailMQ",
-  "description": "Self-hosted MQTT broker with role and topic policy enforcement, attributable MQTT decision records and a scope-defined system/action integrity check.",
+  "@type": "Person",
+  "@id": {{ site.url | append: '/#owner' | jsonify }},
+  "name": {{ site.owner_name | default: 'Florian Przybylak' | jsonify }},
   "url": {{ site.url | jsonify }},
-  "logo": {{ logo_image | jsonify }},
+  "sameAs": [
+    "https://www.linkedin.com/in/florian-p-6a27ab1b8/"
+  ]
+}
+</script>
+
+<!-- Structured Data: the product itself -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": {{ site.url | append: '/#software' | jsonify }},
+  "name": "TrailMQ",
+  "applicationCategory": "DeveloperApplication",
+  "applicationSubCategory": "MQTT broker with role and topic access control",
+  "operatingSystem": "Linux, macOS, Windows (Docker)",
+  "softwareVersion": {{ site.product_version | jsonify }},
+  "url": {{ site.url | jsonify }},
+  "image": {{ logo_image | jsonify }},
+  "description": "Self-hosted MQTT broker that enforces role and topic access policy and records attributable allow and deny decisions for later review.",
+  "author": { "@id": {{ site.url | append: '/#owner' | jsonify }} },
+  "publisher": { "@id": {{ site.url | append: '/#owner' | jsonify }} },
+  "downloadUrl": "https://github.com/RainerGewalt/TrailMQ",
+  "softwareHelp": {{ site.url | append: '/mqtt-access-control/' | jsonify }},
+  "license": "https://github.com/RainerGewalt/TrailMQ/blob/master/LICENSE",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR",
+    "description": "Free for local, non-production technical evaluation. Production and commercial use require a separate written agreement."
+  },
   "sameAs": [
     "https://github.com/RainerGewalt/TrailMQ",
     "https://hub.docker.com/r/rainergewalt/trailmq-backend",
     "https://hub.docker.com/r/rainergewalt/trailmq-frontend"
-  ],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "email": "contact@trailmq.com",
-    "contactType": "customer service"
-  }
+  ]
 }
 </script>
 
@@ -119,7 +148,7 @@
   "url": {{ site.url | jsonify }},
   "description": {{ site.description | strip_newlines | jsonify }},
   "publisher": {
-    "@id": {{ site.url | append: '/#organization' | jsonify }}
+    "@id": {{ site.url | append: '/#owner' | jsonify }}
   },
   "inLanguage": "en-US"
 }
@@ -142,10 +171,35 @@
     "url": {{ site.url | jsonify }}
   },
   "publisher": {
-    "@id": {{ site.url | append: '/#organization' | jsonify }}
+    "@id": {{ site.url | append: '/#owner' | jsonify }}
   }
   {% if page_modified %},
   "dateModified": {{ page_modified | date_to_xmlschema | jsonify }}
   {% endif %}
 }
 </script>
+
+{% comment %}
+  FAQPage. Driven by page.faq in front matter (q/a pairs), so the schema and the
+  visible accordion cannot drift apart: both render from the same source.
+{% endcomment %}
+{% if page.faq %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": {{ canonical_url | append: '#faq' | jsonify }},
+  "isPartOf": { "@id": {{ canonical_url | append: '#webpage' | jsonify }} },
+  "mainEntity": [
+    {% for item in page.faq %}{
+      "@type": "Question",
+      "name": {{ item.q | strip_newlines | jsonify }},
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": {{ item.a | strip_html | strip_newlines | jsonify }}
+      }
+    }{% unless forloop.last %},{% endunless %}{% endfor %}
+  ]
+}
+</script>
+{% endif %}
