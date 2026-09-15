@@ -76,7 +76,7 @@ for each is different.
 ## Outcome, evidence and integrity are three questions
 
 This distinction is the one most often collapsed, usually in the direction of claiming
-more than the system can show. TrailMQ states it on every row of its own Activity view:
+more than the system can show. TrailMQ states it in its own Activity view:
 
 > **Outcome** says whether the operation was permitted. **Evidence** says whether it was
 > written down. **Integrity** says whether the validated chain covers that record. They

@@ -3,7 +3,7 @@ layout: page
 title: "Cookie & Privacy Policy"
 crumb: "Cookies & Privacy"
 description: "This site uses no tracking cookies, no analytics, no advertising networks and no third-party embeds. What it does process — server logs at the host, and email you send — is described here precisely."
-subtitle: "No tracking, no analytics, no advertising, no third-party embeds. This page also states the processing that does happen, rather than rounding it down to nothing."
+subtitle: "No tracking, no analytics, no advertising, no third-party embeds — and a plain statement of the processing that does happen."
 updated: September 2026
 last_modified_at: 2026-09-14
 permalink: /cookies/
@@ -15,16 +15,11 @@ permalink: /cookies/
   necessarily processes visitor IP addresses, and contact@trailmq.com receives
   email. Both are stated below rather than omitted.
 
-  Open items (controller address, legal basis, retention, supervisory authority)
-  depend on the unresolved jurisdiction question and are tracked in
-  docs/legal-findings.md (L5, L6). Do not shorten this page back to
+  Controller address confirmed 2026-09-15. Legal basis, retention and the competent
+  supervisory authority remain open counsel questions (docs/legal-findings.md L2,
+  L5, L6) and are deliberately not named. Do not shorten this page back to
   "no personal data is collected".
 {%- endcomment -%}
-
-<div class="callout callout--accent">
-  <span class="callout__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg></span>
-  <div><p><strong>This page is being updated.</strong> The controller's postal address, the retention periods and the competent supervisory authority are under review together with the <a href="{{ '/imprint/' | relative_url }}">imprint</a> and are marked below.</p></div>
-</div>
 
 <div class="callout">
   <span class="callout__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
@@ -33,11 +28,8 @@ permalink: /cookies/
 
 ## Controller
 
-**Florian Przybylak**, as a natural person. Contact:
-[contact@trailmq.com](mailto:contact@trailmq.com).
-
-<!-- LEGAL-BLOCKER (docs/legal-findings.md L1, L6): controller postal address to be
-     added here once confirmed; see /imprint/. -->
+**Florian Przybylak**, Rosenweg 6, 2554 Meinisberg, Switzerland.
+Contact: [contact@trailmq.com](mailto:contact@trailmq.com).
 
 ## Cookies
 
@@ -62,8 +54,11 @@ runs no analytics over it and does not use it to build any profile.
 See the [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement){:target="_blank" rel="noopener"}
 for GitHub's own processing.
 
-<!-- LEGAL-BLOCKER (docs/legal-findings.md L6): legal basis and retention period for
-     host server logs to be confirmed together with the jurisdiction question. -->
+{%- comment -%}
+  Internal note: legal basis and retention period for host server logs are an open
+  counsel question (docs/legal-findings.md L6). Stating the processing factually is
+  correct; do not draft a basis or a period from this repo.
+{%- endcomment -%}
 
 **Nothing else.** Beyond serving the page itself from the host, loading a page on this
 site contacts no additional third-party server: no analytics, no tag managers, no
@@ -82,8 +77,10 @@ If you write to [contact@trailmq.com](mailto:contact@trailmq.com), your message 
 your email address are processed for the purpose of responding to your enquiry, and
 are not used for anything else.
 
-<!-- LEGAL-BLOCKER (docs/legal-findings.md L5, L6): email retention period to be
-     confirmed by the owner. -->
+{%- comment -%}
+  Internal note: email retention period still to be confirmed by the owner
+  (docs/legal-findings.md L5).
+{%- endcomment -%}
 
 ## External links
 
@@ -107,9 +104,11 @@ write to [contact@trailmq.com](mailto:contact@trailmq.com).
 
 You also have the right to lodge a complaint with the competent supervisory authority.
 
-<!-- LEGAL-BLOCKER (docs/legal-findings.md L2, L6): the applicable legal regime, the
-     enumeration of rights and the competent supervisory authority must all be settled
-     by counsel and named here before publication. Do not draft them from this repo. -->
+{%- comment -%}
+  Internal note: the applicable regime, the enumeration of rights and the competent
+  supervisory authority are open counsel questions (docs/legal-findings.md L2, L6).
+  The page names none of them on purpose. Do not draft them from this repo.
+{%- endcomment -%}
 
 <div class="doc-cta">
   <h3>Questions about privacy?</h3>

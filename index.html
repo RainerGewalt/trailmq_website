@@ -15,14 +15,8 @@ faq:
     a: "At QoS 1 and above, TrailMQ refuses to acknowledge a denied publish and drops the connection, which most clients surface as a protocol or connection error rather than an authorization error. At QoS 0 there is no acknowledgement at all, so the publish appears to succeed locally while the message is discarded. This is why a recorded decision matters more than a client exit code."
   - q: "Does a successful publish mean the message was delivered?"
     a: "No. An allowed operation means TrailMQ authorized and accepted it at the broker. It does not name which subscribers received it. TrailMQ keeps those claims separate, and the bundled verification checks delivery with a real subscriber rather than with a counter."
-  - q: "What does TrailMQ record for each access decision?"
-    a: "Timestamp, actor, MQTT client id, topic, event, outcome, whether it was recorded, and whether the validated integrity chain covers that record. Security and decision events such as sign-ins, refusals and administrative changes are always recorded; recording the messages themselves is a per-topic-rule setting."
   - q: "Does the integrity check cover every MQTT decision?"
     a: "No. The hash-linked chain walks the system and action store: sign-ins, administrative changes, identity and role changes, policy and topic-rule changes. MQTT message evidence, including publish and subscribe refusals, lives in its own store that the verdict does not walk, and the product labels those records Outside validated scope. The chain is not externally anchored and not digitally signed."
-  - q: "Do my MQTT clients need an SDK, proxy or sidecar?"
-    a: "No. TrailMQ is the broker. Standard clients such as mosquitto, paho-mqtt and mqtt.js connect to the TLS listener or the WebSocket endpoint with the intended credentials and CA."
-  - q: "Can MQTT be used in GxP or GMP-regulated environments?"
-    a: "MQTT is a protocol, so it is neither compliant nor non-compliant by itself. Compliance depends on the surrounding controls: identity, access policy, audit trails, data integrity, change control and validation evidence. TrailMQ is a technical control that can support those processes; it is not a certification, a validation package or a compliance guarantee."
   - q: "Is TrailMQ open source?"
     a: "No. TrailMQ provides public evaluation access through GitHub and Docker images under a proprietary evaluation license. Production, commercial, managed-hosting and redistribution use require a separate written agreement."
 ---
@@ -100,62 +94,28 @@ faq:
     <div class="section__head section__head--center">
       <span class="eyebrow eyebrow--center">Why it is hard</span>
       <h2 class="h2">&ldquo;Was it blocked?&rdquo; is three questions,<br>and most systems answer one.</h2>
-      <p class="lead">TrailMQ separates them on purpose, and says so on every row of its own Activity view: <em>Outcome says whether the operation was permitted. Evidence says whether it was written down. Integrity says whether the validated chain covers that record. They are three different questions.</em></p>
+      <p class="lead">TrailMQ separates them on purpose, and says so in its own Activity view: <em>Outcome says whether the operation was permitted. Evidence says whether it was written down. Integrity says whether the validated chain covers that record. They are three different questions.</em></p>
     </div>
 
     <div class="cards cards--three">
       <article class="card">
         <span class="card__tag">Outcome</span>
         <h3>Was it permitted?</h3>
-        <p>Decided at the broker, by two independent gates: the role's own permission, and the topic rule that brings the topic into scope. Either one can refuse. Unconfigured namespaces stay closed until a rule opens them.</p>
+        <p>Two independent gates decide it: the role's permission, and the topic rule that brings the topic into scope. Either one can refuse.</p>
       </article>
       <article class="card">
         <span class="card__tag">Evidence</span>
         <h3>Was it written down?</h3>
-        <p>Sign-ins, refusals, administrative changes and account deactivations are always recorded. Recording the <em>messages</em> themselves is a deliberate per-topic-rule setting, so payload retention stays a decision rather than a default.</p>
+        <p>Refusals, sign-ins and administrative changes are always recorded. Recording the <em>messages</em> themselves stays a per-topic decision.</p>
       </article>
       <article class="card">
         <span class="card__tag">Integrity</span>
         <h3>Is the record covered?</h3>
-        <p>A hash-linked chain walks the system and action store and reports a verdict, the number of entries checked and the number it does not cover. MQTT decision records sit outside it today, and the product labels them that way.</p>
+        <p>A hash-linked chain covers system and action entries and reports its own scope. MQTT decision records sit outside it, and are labelled that way.</p>
       </article>
     </div>
 
-    <p class="foot-note foot-note--center">Conflating these three is how a system ends up claiming more than it can show. <a href="{{ '/mqtt-decision-records/' | relative_url }}" class="txtlink">What a reviewable MQTT decision record contains <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
-  </div>
-</section>
-
-<!-- ══════════════ 3 · VALUE ══════════════ -->
-<section class="section section--soft" id="value">
-  <div class="wrap">
-    <div class="section__head section__head--center">
-      <span class="eyebrow eyebrow--center">What you get</span>
-      <h2 class="h2">Enforcement and review on one product path</h2>
-      <p class="lead">A conventional broker can be secured with TLS, identities and ACLs — that is not in dispute. The difference here is where review lives: TrailMQ brings access enforcement and decision review into one workflow, instead of broker configuration plus a separate log-analysis project.</p>
-    </div>
-
-    <div class="aud-grid">
-      <article class="aud">
-        <div class="aud__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
-        <h3>Find the refusal without grep</h3>
-        <p>The Overview flags refused operations in the last 24 hours. Activity filters by client or user, topic, event, outcome, provenance and range.</p>
-      </article>
-      <article class="aud">
-        <div class="aud__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg></div>
-        <h3>Read the reason in prose</h3>
-        <p>Not an error code to look up. The record states which gate refused and why, next to the actor, client and topic it applied to.</p>
-      </article>
-      <article class="aud">
-        <div class="aud__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
-        <h3>Check the policy as it is now</h3>
-        <p>Resolve the effective rule for any topic from the Access screen or the REST API, instead of inferring it from a config file and hoping.</p>
-      </article>
-      <article class="aud">
-        <div class="aud__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 14 3-3 3 3 5-6"/></svg></div>
-        <h3>Know what the evidence is worth</h3>
-        <p>The integrity verdict states its own scope, its exclusions, and that it is neither externally anchored nor digitally signed. You are told the boundary rather than left to assume there isn't one.</p>
-      </article>
-    </div>
+    <p class="foot-note foot-note--center">Conflating these three is how a system ends up claiming more than it can show.</p>
   </div>
 </section>
 
@@ -165,7 +125,7 @@ faq:
     <div class="section__head section__head--center">
       <span class="eyebrow eyebrow--light eyebrow--center">Replay</span>
       <h2 class="h2">One denied publish, start to finish</h2>
-      <p class="lead">Six steps, about ninety seconds. Every command, error message, reason and figure below is taken from the shipping TrailMQ {{ site.product_version }} evaluation stack and its published scenarios — you can reproduce all of it with the commands in the next section.</p>
+      <p class="lead">Six steps, about ninety seconds. Every command, error message and reason below comes from the shipping TrailMQ {{ site.product_version }} evaluation stack and its published scenarios — you can reproduce all of it with the commands in the next section.</p>
     </div>
 
     {% include demo.html %}
@@ -257,7 +217,7 @@ cd TrailMQ
     <div class="section__head section__head--center">
       <span class="eyebrow eyebrow--center">The workflow</span>
       <h2 class="h2">From &ldquo;something was denied&rdquo; to a change you can defend</h2>
-      <p class="lead">TrailMQ supports the investigation and the controlled technical correction. The organisational decision — whether this access should exist at all — stays with a person.</p>
+      <p class="lead">TrailMQ brings access enforcement and decision review into one workflow. It supports the investigation and the controlled technical correction; the organisational decision — whether this access should exist at all — stays with a person.</p>
     </div>
 
     <ol class="flow">
@@ -329,14 +289,6 @@ cd TrailMQ
       </article>
     </div>
 
-    <div class="limits-extra">
-      <h3>Two more things worth knowing before you evaluate</h3>
-      <ul>
-        <li><strong>A denied QoS 0 publish is silently discarded.</strong> The protocol carries no acknowledgement to refuse with, so the client cannot tell. The decision is still recorded — which is the point.</li>
-        <li><strong>Config sync uses merge semantics.</strong> Removing a user from <code>config.yaml</code> does not revoke a user already persisted in the runtime database. Use the documented offboarding path.</li>
-      </ul>
-    </div>
-
     <p class="foot-note foot-note--center">Working under GMP, GAMP 5, Annex 11 or 21 CFR Part 11? <a href="{{ '/regulated/' | relative_url }}" class="txtlink">How TrailMQ fits a regulated environment — and where it stops <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
   </div>
 </section>
@@ -364,22 +316,6 @@ cd TrailMQ
       </div>
     </div>
 
-    <div class="table-wrap">
-      <div class="table-scroll" tabindex="0" role="region" aria-labelledby="ns-caption">
-        <table class="cmp-table">
-          <caption id="ns-caption">Default evaluation policy — scroll sideways on narrow screens</caption>
-          <thead>
-            <tr><th scope="col">Namespace</th><th scope="col">Default behaviour</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><code class="topic">public/#</code></td><td>Available to authenticated roles, subject to role permissions</td></tr>
-            <tr><td><code class="topic">restricted/#</code></td><td>Admin only</td></tr>
-            <tr><td>everything else</td><td>Denied until a topic rule explicitly grants roles</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
     <div class="tech-grid">
       <article class="tech">
         <h3>Endpoints</h3>
@@ -396,11 +332,7 @@ cd TrailMQ
       </article>
       <article class="tech">
         <h3>Review surfaces</h3>
-        <p>Four screens: <strong>Overview</strong> (is it running, what needs attention), <strong>Access</strong> (who may talk over which topics), <strong>Clients</strong> (who is connected now), <strong>Activity</strong> (what was allowed or denied, and why). The integrity verdict lives on Activity.</p>
-      </article>
-      <article class="tech">
-        <h3>Scriptable</h3>
-        <p>The REST API exposes topics, effective settings, policies, queues and evidence-oriented functions, so the same operations can run from scripts, local checks or CI.</p>
+        <p>Four screens: <strong>Overview</strong>, <strong>Access</strong>, <strong>Clients</strong> and <strong>Activity</strong>, where the integrity verdict also lives. The REST API exposes the same operations for scripts and CI.</p>
       </article>
     </div>
 
@@ -434,7 +366,7 @@ cd TrailMQ
       {%- endfor %}
     </div>
 
-    <p class="foot-note foot-note--center">Evaluating TrailMQ against a real MQTT use case? <a href="mailto:contact@trailmq.com?subject=TrailMQ%20evaluation">Tell me how the setup went</a>. The self-hosted stack sends no telemetry — no topics, payloads, identities or operational metadata leave your machine.</p>
+    <p class="foot-note foot-note--center">Evaluating TrailMQ against a real MQTT use case? <a href="mailto:contact@trailmq.com?subject=TrailMQ%20evaluation">Tell me how it went</a>.</p>
   </div>
 </section>
 
@@ -446,6 +378,5 @@ cd TrailMQ
       <a href="#demo" class="btn btn--primary">See a decision</a>
       <a href="#try" class="btn btn--ghost-light">Try it yourself</a>
     </div>
-    <p class="closing-meta">Free for local, non-production evaluation · self-hosted, no cloud dependency · <a href="{{ '/license/' | relative_url }}">licensing</a> · <a href="mailto:contact@trailmq.com">contact@trailmq.com</a></p>
   </div>
 </section>

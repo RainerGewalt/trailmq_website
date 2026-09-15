@@ -64,12 +64,27 @@ for pat in "${bad[@]}"; do
 done
 [ "$found" -eq 0 ] && echo "ok       no known-bad strings in built output"
 
-# 3 — a page marked noindex must not also sit in the sitemap
-if [ -f _site/sitemap.xml ] && grep -q '/imprint/' _site/sitemap.xml; then
-  echo "BLOCKED  imprint is noindex but still listed in sitemap.xml"
+# 3 — the imprint must actually carry the confirmed postal address, and must not
+#     be hidden from indexing. A missing imprint is the blocker noindex cannot fix.
+if grep -q 'Rosenweg 6' _site/imprint/index.html 2>/dev/null \
+   && grep -q '2554 Meinisberg' _site/imprint/index.html 2>/dev/null; then
+  if grep -q 'noindex' _site/imprint/index.html 2>/dev/null; then
+    echo "BLOCKED  imprint is complete but still noindex"
+    fail=1
+  else
+    echo "ok       imprint carries the confirmed postal address and is indexable"
+  fi
+else
+  echo "BLOCKED  imprint is missing the confirmed postal address"
+  fail=1
+fi
+
+# 4 — a page marked noindex must not also sit in the sitemap
+if [ -f _site/sitemap.xml ] && ! grep -q '/imprint/' _site/sitemap.xml; then
+  echo "BLOCKED  imprint is indexable but missing from sitemap.xml"
   fail=1
 else
-  echo "ok       noindex pages excluded from sitemap"
+  echo "ok       imprint listed in sitemap"
 fi
 
 echo

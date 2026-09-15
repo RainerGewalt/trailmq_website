@@ -86,9 +86,12 @@
 <!-- Main Stylesheet -->
 <link rel="stylesheet" href="{{ '/assets/css/landing.css' | relative_url }}" />
 
-<!-- Structured Data: publisher.
-     Modelled as a Person, not an Organization: there is no TrailMQ legal entity
-     and no team. See docs/legal-findings.md (L3) before changing this. -->
+{%- comment -%}
+  Publisher is modelled as a Person, not an Organization: there is no TrailMQ
+  legal entity and no team. See docs/legal-findings.md (L3) before changing it.
+  Liquid comment on purpose — this note must not ship to visitors.
+{%- endcomment -%}
+<!-- Structured Data: publisher -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
