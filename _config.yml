@@ -1,6 +1,10 @@
-title: "TrailMQ – MQTT Broker for Auditable, Policy-Controlled Messaging"
-description: "Self-hosted MQTT broker with policy enforcement and attributable decision records for regulated, industrial and traceability-sensitive systems."
-author: "TrailMQ Team"
+title: "TrailMQ – MQTT Access Control for Industrial Systems"
+description: "Know why MQTT access was allowed or denied. Policy-controlled MQTT for industrial systems, with attributable and reviewable access decisions."
+
+# There is no TrailMQ legal entity and no team. The site is operated by a natural
+# person; see docs/legal-findings.md (L3). Do not reintroduce "TrailMQ Team".
+author: "Florian Przybylak"
+owner_name: "Florian Przybylak"
 
 # Keep these values aligned with the public distribution repository.
 product_version: "3.1.0"
@@ -54,6 +58,7 @@ permalink: pretty
 # -----------------------------------------------------------------------------
 exclude:
   - IMPROVEMENTS.md
+  - docs
   - README.md
   - Gemfile
   - Gemfile.lock

@@ -1332,3 +1332,33 @@ body.wiki .site-header .nav__toggle span {
   background: rgba(255, 255, 255, 0.82);
 }
 /* === End header readability on dark wiki/architecture header === */
+
+/* ============================================================
+   Code blocks and tables in article bodies.
+   Markdown pages previously had no horizontal containment, so a long
+   command line or a wide table pushed the whole document sideways at
+   phone width. min-width:0 lets the flex/grid ancestors actually shrink;
+   without it overflow-x on the child has nothing to clip against.
+   ============================================================ */
+.article-content { min-width: 0; }
+
+.article-content pre {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.article-content pre code {
+  display: block;
+  width: max-content;
+  min-width: 100%;
+}
+
+.article-content table { display: block; max-width: 100%; overflow-x: auto; }
+
+/* Long MQTT topics inside running prose must wrap rather than widen the page. */
+.article-content p > code,
+.article-content li > code,
+.article-content td > code {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
