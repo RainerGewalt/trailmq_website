@@ -104,7 +104,7 @@
   }
 
   // Active nav link on scroll (homepage section spy)
-  var sections = ['why', 'value', 'demo', 'try', 'flow', 'trust', 'technical', 'faq']
+  var sections = ['why', 'demo', 'try', 'flow', 'trust', 'technical', 'faq']
     .map(function (id) { return document.getElementById(id); })
     .filter(Boolean);
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav__links a'));

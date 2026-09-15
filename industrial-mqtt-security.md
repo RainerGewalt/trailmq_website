@@ -127,7 +127,7 @@ code, so brokers typically close the connection instead, which clients report as
 transport fault. MQTT 5 adds reason codes — if both ends implement them.
 
 **Retained messages outlive the publisher.** A retained message on a command topic is
-delivered to every future subscriber. Whoever may publish to such a topic can leave
+delivered to any later subscriber whose filter matches it. Whoever may publish to such a topic can leave
 something behind for clients that connect later. Treat retain rights on command
 namespaces as a separate decision.
 

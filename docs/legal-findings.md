@@ -2,9 +2,13 @@
 
 Branch: `feat/decision-investigation-website`
 Date: 2026-09-14
-Status: **BLOCKING for publication.** Nothing in this document was published. The
-imprint changes on this branch deliberately leave the site in a state that must not go
-live until L1 is resolved.
+Status: **L1 resolved 2026-09-15** — the owner supplied the confirmed postal address
+(Rosenweg 6, 2554 Meinisberg, Switzerland), it is on `/imprint/`, the page is indexable
+again and is back in the sitemap. The site was published on that basis.
+
+**L2, L6 and L8 remain open as internal counsel/owner items.** They do not appear
+anywhere on the public site: no regime is cited, no rights holder is named, and this
+document is excluded from the build and is not a published page.
 
 > This is an engineering review of what the website *asserts*, checked against what the
 > owner has confirmed. It is not legal advice. L1, L2 and L6 in particular should be
@@ -38,7 +42,7 @@ maintainer as copyright holder. See **L8**, which is blocking.
 
 ---
 
-## L1 — Imprint address is not confirmed  · BLOCKING
+## L1 — Imprint address  · RESOLVED 2026-09-15
 
 **Found on `main`:** `imprint.md` publishes
 
@@ -65,13 +69,19 @@ explicit placeholder that is impossible to publish by accident:
 
 plus a visible review banner on the page.
 
-**Needed from the owner:** the confirmed postal address, or a decision to use a
-permitted alternative (e.g. a c/o or service address that satisfies the applicable
-disclosure duty).
+**Resolved.** The owner supplied the confirmed address on 2026-09-15:
 
-**Do not publish this branch until this is filled in.** An imprint with a wrong address
-is worse than the pre-existing one being merely stale, and an imprint with a visible
-placeholder is worse than both.
+```
+Florian Przybylak
+Rosenweg 6
+2554 Meinisberg
+Switzerland
+```
+
+It is on `/imprint/` as an `<address>` block, with the review banner, the placeholder,
+`robots: noindex` and `sitemap: false` all removed. `/imprint/` is indexable and listed
+in the sitemap again. The publication guard now asserts the address positively rather
+than only checking for leftover markers.
 
 ---
 
@@ -226,7 +236,7 @@ the same gap and is outside this website's scope.
 
 ---
 
-## L8 — The published LICENSE names a different copyright holder than the owner determination  · BLOCKING
+## L8 — The published LICENSE names a different copyright holder than the owner determination  · OPEN, after 3.1.1
 
 **Found during implementation, not in the original brief.** This one needs a decision
 before anything ships.
@@ -280,17 +290,23 @@ software copyright holder at all.
 This cannot be fixed on the website alone, and the website must neither contradict the
 binding license nor pre-empt the decision. It now does neither.
 
-## Summary — what blocks publication
+## Summary — status at publication
 
-| ID | Item | Blocking? |
+| ID | Item | Status |
 | --- | --- | --- |
-| L1 | Confirmed postal address for the imprint | **Yes** |
-| L2 | Which legal regime the imprint/privacy pages follow | **Yes** (counsel) |
-| L6 | Supervisory authority + legal basis, follows from L2 | **Yes** (counsel) |
-| L3 | Confirm Person-based schema and personal naming | No — applied, confirm |
-| L4 | Confirm copyright line | No — applied, confirm |
-| L5 | Confirm host, email retention | No — applied, confirm |
-| L7 | Name the licensor | No — decision deferred |
-| **L8** | **Software copyright: LICENSE vs. owner determination** | **Yes** |
+| L1 | Confirmed postal address for the imprint | **Resolved** 2026-09-15 |
+| L3 | Person-based schema instead of a non-existent Organization | Applied |
+| L4 | Copyright line scoped to website content | Applied |
+| L5 | Privacy page no longer claims "no personal data" | Applied |
+| **L2** | Which legal regime the imprint/privacy pages follow | **Open** — counsel; the site cites none |
+| **L6** | Supervisory authority, legal basis, retention | **Open** — counsel; the site names none |
+| **L7** | Name the licensor on `/license/` | **Open** — owner decision, deferred |
+| **L8** | Software copyright: LICENSE vs. owner determination | **Open** — after 3.1.1; the site names no holder |
 
-Per the brief: **no publication and no merge without separate approval.**
+The four open items are handled by *omission* on the public site rather than by a
+guess, which is why they do not block it: no legal regime is cited, no supervisory
+authority is named, no retention period is stated, and no software copyright holder
+appears anywhere. Each needs a decision before the corresponding statement is added.
+
+Published to `trailmq.com` on 2026-09-15 with owner approval, on the basis that L2, L6
+and L8 are internal open items that the public site does not touch.

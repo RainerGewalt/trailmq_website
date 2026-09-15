@@ -1,10 +1,12 @@
-# Pre-merge review — `feat/decision-investigation-website`
+# Release review — `feat/decision-investigation-website`
 
-Date: 2026-09-14 · Against: `main` @ `f952f13` (v2.0.5)
-Size: **26 files, +3069 / −501.** No further surface was added after the owner
-decisions; the two net additions are a publication guard and this review.
+Date: 2026-09-15 · Against: `main` @ `f952f13` (v2.0.5)
+No page, feature, framework or animation was added after the owner decisions; the
+only net additions are a publication guard and this review. §10 records the
+reduction round.
 
-**Not approved for merge.** Four legal blockers remain open (§6).
+**Published 2026-09-15.** L1 resolved with the owner's confirmed address; L2, L6, L7
+and L8 remain internal open items that the public site does not touch (§6).
 
 ---
 
@@ -20,9 +22,10 @@ rendered at 1400px and 390px).
 | Hero visual | Evidence card with an invented reason code and client id | Decision record with the product's own reason wording, synthetic identifiers, and Outcome / Evidence / Integrity as three columns |
 | Primary CTA | "Start local evaluation" → github.com (leaves the site) | "See a decision" → `#demo` (stays on the page) |
 | Secondary CTA | "See a denied publish" → a prose section | "Try it yourself" → `#try` |
-| Section order | Hero → product path → **problem** → capabilities → audience → comparison → regulated → GMP → quickstart → FAQ | Hero → **why** → value → **demo** → **try** → flow → trust → technical → FAQ |
+| Section order | Hero → product path → **problem** → capabilities → audience → comparison → regulated → GMP → quickstart → FAQ | Hero → **why** → **demo** → **try** → flow → trust → technical → FAQ |
 | Demo | none | six-step replay |
 | GxP weight | 2 full sections, 4 badges, 6 of 8 FAQ entries | moved to `/regulated/`, linked from `#trust` and the footer |
+| Homepage FAQ | 8 entries, 6 of them GxP-framed | 6 entries, access-control first |
 | Closing CTA | "Contact for licensing" | "See a decision" / "Try it yourself" |
 
 Heading outline is now one `<h1>` and one `<h2>` per section; on `main`,
@@ -98,8 +101,8 @@ Five, confirmed by diffing the generated sitemap:
 | `/regulated/` | MQTT in GxP & GMP-Regulated Environments | relocated content, not a new cluster |
 | `/wiki/why-mqtt-publish-denied/` | Why Was My MQTT Publish Denied? | mqtt publish denied, mqtt not authorized |
 
-`/imprint/` was **removed** from the sitemap (it is `noindex` while blocked).
-No further pages will be added.
+`/imprint/` is indexable and listed in the sitemap, now that the confirmed address is
+on it. No further pages will be added.
 
 Homepage title: `MQTT Access Control — Know Why a Publish Was Allowed or Denied · TrailMQ`.
 Per your decision the site title no longer forces "Decision Review" as a keyword;
@@ -129,25 +132,30 @@ and `GET /api/v1/topics/by-name/<path>/effective`.
 *"Manual today · automation planned for 3.2"*, plus the sentence "You drive this
 step yourself; there is no automated regression of a policy change."
 
-## 6. Remaining blockers
+## 6. Legal status at publication
 
-`./docs/check-publication-blockers.sh` fails while any are open. It checks the
-**built** output, so Liquid comments and the excluded `docs/` cannot trigger a
-false alarm — an earlier version did, and was rewritten rather than left to be
-ignored.
+`./docs/check-publication-blockers.sh` checks the **built** output, so Liquid comments
+and the excluded `docs/` cannot trigger a false alarm — an earlier version did, and was
+rewritten rather than left to be ignored. It now also asserts the imprint address
+positively, and that `/imprint/` is indexable and in the sitemap. All checks pass.
 
-| ID | Blocker | Needs |
+| ID | Item | Status |
 | --- | --- | --- |
-| **L1** | Imprint has no confirmed postal address | Your address, supplied separately |
-| **L2** | Which legal regime applies after the move | Counsel. No own interpretation is stated anywhere — an earlier draft named Swiss provisions and drew conclusions; that was removed |
-| **L6** | Legal basis, retention, supervisory authority | Follows from L2 |
+| L1 | Imprint postal address | **Resolved** — Rosenweg 6, 2554 Meinisberg, Switzerland |
+| **L2** | Which legal regime applies after the move | **Open** — counsel. No interpretation is stated anywhere; an earlier draft named Swiss provisions and drew conclusions, and that was removed |
+| **L6** | Legal basis, retention, supervisory authority | **Open** — follows from L2; the site names none of them |
 | **L8** | LICENSE names a different rights holder than the owner determination | Settle **after** 3.1.1, correcting product LICENSE and website together. The LICENSE is untouched |
 
 Per your decision the website no longer names any software copyright holder.
 It states that rights are governed solely by the binding license text and links
 to it, on both `/imprint/` and `/about/`. Website-content copyright remains with
-Florian Przybylak, which is a separate question. `noindex` on `/imprint/` is
-treated as containment, not as a fix.
+Florian Przybylak, which is a separate question.
+
+The four open items are handled by **omission** on the public site, not by a guess: no
+legal regime is cited, no supervisory authority is named, no retention period is
+stated, and no software copyright holder appears anywhere. That is why they do not
+block publication — each one needs a decision before the corresponding statement is
+added, not before the site goes live.
 
 `docs/legal-findings.md` stays internal and is excluded from the build — it is
 not a published page and will not become one.
@@ -181,12 +189,76 @@ Two polish fixes came out of the screenshots: the Retest badge overflowed its
 card, and `.txtlink` was a wrapping flex container that dropped its arrow onto
 its own line at the left margin — both fixed.
 
-## 9. Suggested next step
+## 9. Scope stop
 
-Reduce and polish, as you said. Candidates, in order, none of them new surface:
+The reduction round in §10 closed the open polish items. No further website scope is
+open: no additional SEO content, use case, framework, animation, product function or
+architecture section.
 
-1. `/about/` still carries the older product framing and overlaps `/regulated/`
-   and `#technical`. It is the best trim target.
-2. The homepage FAQ has nine entries; five would read better.
-3. `#technical` and `#trust` both explain the integrity scope. One of them could
-   defer to `/mqtt-decision-records/`.
+
+---
+
+## 10. Reduction round — 2026-09-15
+
+Run after the owner's review decisions, with an explicit instruction to add no
+further surface.
+
+### Removed outright
+
+| What | Why |
+| --- | --- |
+| Homepage `#value` (whole section, 4 cards) | Its cards — *Find the refusal without grep*, *Read the reason in prose*, *Check the policy as it is now*, *Know what the evidence is worth* — were the same list as `#flow` (Find / Understand / Check now / Act), once as benefits and once as workflow. It also sat **before** the demo, delaying the aha. `#flow` covers it afterwards in the product's own terms. |
+| `limits-extra` in `#trust` | QoS 0 is demo step 2; config-merge semantics are on `/regulated/` and `/mqtt-access-control/`. |
+| Namespace default table in `#technical` | Identical table already on `/mqtt-access-control/`. |
+| `Scriptable` card in `#technical` | Folded one clause into `Review surfaces`. |
+| 3 of 9 homepage FAQ entries | *What does TrailMQ record* → demo + `/mqtt-decision-records/`; *Do clients need an SDK* → hero trust row + `#technical`; *Can MQTT be used in GxP* → `/regulated/` has the same question in its own FAQ. |
+| Closing licensing/contact line | Duplicated `#try`'s note and the footer. Contact is now genuinely secondary. |
+| 6 of 11 `/about/` sections | *What is available now*, *Product direction*, *Audit-first not audit-later*, *Explain don't expose*, *Built for regulated environments*, *Beyond pharma*, *Deployment model* — all duplicated the homepage, `/regulated/` or `#technical`. |
+
+### Merged rather than kept side by side
+
+- `/regulated/` reduced to a routing page. Its *Start with the honest answer* and
+  *Reliability in a GMP context* sections duplicated the existing wiki articles
+  `gxp-compliant-mqtt-broker` and `reliable-mqtt-gmp-manufacturing` almost entirely;
+  both now carry that content and `/regulated/` links to them. What remains is the one
+  thing no wiki article has: TrailMQ's own product boundaries in a regulated context.
+  FAQ trimmed 4 → 3.
+- `/about/` rewritten to what / why / who / links, 9.9 kB → 3.8 kB.
+
+### Page-by-page challenge
+
+| Page | Own intent or purpose | Verdict |
+| --- | --- | --- |
+| `/mqtt-access-control/` | "mqtt access control", "mqtt authorization" — head term, two-gate model, wildcard semantics | Keep |
+| `/mqtt-decision-records/` | "mqtt audit trail", "mqtt access logs" — what a record must contain, logs vs records | Keep |
+| `/industrial-mqtt-security/` | "industrial mqtt security", "is mqtt secure" — OT framing, no overlap with the above | Keep |
+| `/wiki/why-mqtt-publish-denied/` | "why was my mqtt publish denied", "mqtt not authorized" — highest intent on the site | Keep |
+| `/regulated/` | No distinct search intent. Purpose is to bundle relocated GxP content and state product boundaries | Keep, reduced to a hub |
+
+### Also corrected during the round
+
+- The positive differentiation — *"TrailMQ brings access enforcement and decision
+  review into one workflow"* — was lost with `#value`. Restored as one sentence in
+  `#flow`'s lead, not as a new section.
+- Four claims were too strong and were tightened: *"says so on every row of its own
+  Activity view"* (the product's note sits above the table, not per row — two places),
+  *"has a different answer for every broker"*, and retained-message semantics
+  (*"every future subscriber"* → *"any later subscriber whose filter matches it"*).
+- **Horizontal overflow at 390 px on three pages** — `/mqtt-access-control/`,
+  `/mqtt-decision-records/` and the new wiki article — measured via `scrollWidth`, not
+  eyeballed. Cause: markdown tables and `pre.highlight` had no containment in either
+  the `page` or `wiki-article` layout, and the ancestors could not shrink below the
+  table's `min-width`. Fixed with `min-width: 0` plus `overflow-x: auto`, which also
+  fixed the same latent issue on the pre-existing wiki articles. All 13 pages now
+  measure 375/375.
+- **An internal engineering note was shipping to visitors** on all 40 pages: an HTML
+  comment in `_includes/head.html` referencing `docs/legal-findings.md`. Converted to a
+  Liquid comment. The built output now contains no internal notes at all.
+- The imprint address rendered as one run-together line, because markdown collapses
+  single newlines. Now an `<address>` block.
+
+### Net effect
+
+Homepage 31.6 kB → 26.1 kB, one section fewer, eight `h3`s fewer, rendered height
+~12 060 px → ~9 920 px. `/about/` −61 %. `/regulated/` −19 % with the duplication gone.
+No page, feature, framework, animation or architecture section was added.

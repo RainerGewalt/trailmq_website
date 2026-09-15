@@ -20,9 +20,9 @@ faq:
 ---
 
 MQTT's specification defines a transport protocol. It does not define an
-authorization model, which is why "how do I control who can publish here?" has a
-different answer for every broker — and why access rules written for one are rarely
-portable to another.
+authorization model, which is why "how do I control who can publish here?" is
+answered differently from one broker to the next — and why access rules written for
+one are rarely portable to another.
 
 This page describes the model that most production deployments converge on, the places
 it commonly goes wrong, and how TrailMQ implements it.

@@ -1710,3 +1710,33 @@ code.topic,
   [data-demo-ready] .demo__step.is-active { animation: none; }
   .demo__btn, .demo__tab { transition: none; }
 }
+
+/* Same containment for the /doc/ page layout: a wide markdown table was
+   growing the document even though .doc-table-wrap sets overflow-x, because
+   the ancestors could not shrink below the table's min-width. */
+.doc { min-width: 0; }
+.doc-table-wrap { max-width: 100%; }
+
+.doc pre {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.doc pre code {
+  display: block;
+  width: max-content;
+  min-width: 100%;
+}
+.doc p > code,
+.doc li > code,
+.doc td > code {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Postal address on the imprint: keep the lines separate and not italic. */
+.imprint-address {
+  font-style: normal;
+  line-height: 1.75;
+  margin: 0 0 1.25rem;
+}

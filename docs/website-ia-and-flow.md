@@ -109,9 +109,8 @@ Trust → technical depth.**
 
 | # | Section | Anchor | Purpose | Reader's thought on leaving |
 | --- | --- | --- | --- | --- |
-| 1 | Hero + live decision record | — | Problem stated as the visitor's own question, with one real DENIED record beside it | "That is my situation." |
+| 1 | Hero + decision record | — | Problem stated as the visitor's own question, with one DENIED record beside it | "That is my situation." |
 | 2 | Why? | `#why` | The three questions the product separates: Outcome / Evidence / Integrity | "Those really are different questions." |
-| 3 | What TrailMQ gives you | `#value` | Four outcomes, not features | "This answers the question I had." |
 | 4 | **Demo** | `#demo` | Six-step replay of a real session | "I have now *seen* it." |
 | 5 | **Try it yourself** | `#try` | Four commands, real output, ~5 min | "I can do this before lunch." |
 | 6 | Investigation flow | `#flow` | Find → Understand → Check now → Act safely → Retest, with 3.2 marked | "There is a method here." |
@@ -119,9 +118,20 @@ Trust → technical depth.**
 | 8 | Technical depth | `#technical` | Policy model, endpoints, clients, API, deeper links | "I know where the detail is." |
 | 9 | FAQ | `#faq` | Access-control-first questions; GxP answered but not leading | — |
 
-Removed from the homepage (not deleted — relocated, per the brief):
-`#regulated`, `#gmp-mqtt-reliability`, the compliance badge row and five of the eight
-GxP FAQ entries → `/regulated/`, linked from §7 and the footer.
+Removed from the homepage (relocated, not deleted):
+`#regulated`, `#gmp-mqtt-reliability`, the compliance badge row and the GxP FAQ
+entries → `/regulated/`, linked from §7 and the footer.
+
+**Reduction round, 2026-09-15.** `#value` was deleted outright: its four cards
+("Find the refusal without grep", "Read the reason in prose", "Check the policy as
+it is now", "Know what the evidence is worth") were the same list as `#flow`
+(Find / Understand / Check now / Act), stated once as benefits and once as
+workflow — and it sat *before* the demo, delaying the aha. `#flow` covers it
+after the demo, in the product's own terms. Also cut: the `limits-extra` block
+(QoS 0 is in demo step 2, config-merge is on the topic pages), the namespace
+table in `#technical` (it is on `/mqtt-access-control/`), the `Scriptable` card
+(merged into `Review surfaces`), three FAQ entries, and the closing licensing
+line. Net −5.2 kB on the homepage, with one fewer section and eight fewer `h3`s.
 
 ---
 
