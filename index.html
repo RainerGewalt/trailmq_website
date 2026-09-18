@@ -153,7 +153,7 @@ faq:
     <div class="section__head section__head--center">
       <span class="eyebrow eyebrow--center">Hands-on</span>
       <h2 class="h2">Try TrailMQ yourself</h2>
-      <p class="lead">Four commands. The stack runs entirely on your machine, and <code>verify</code> exercises the product rather than container health — including an authorized publish observed arriving at a real subscriber, and a blocked one that does not.</p>
+      <p class="lead">One command, and the stack runs entirely on your machine. The proof it runs, <code>verify</code>, exercises the product rather than container health: an authorized publish observed arriving at a real subscriber, and a blocked one that does not.</p>
     </div>
 
     <div class="qs-grid">
@@ -164,13 +164,12 @@ faq:
 git clone https://github.com/RainerGewalt/TrailMQ.git
 cd TrailMQ
 
-<span class="c-com"># 2 · certificates, credentials, containers</span>
+<span class="c-com"># 2 · set up, prove and open, in one run</span>
+./trailmq try
+
+<span class="c-com"># or the same run, one step at a time</span>
 ./trailmq quickstart
-
-<span class="c-com"># 3 · exercise the product</span>
 ./trailmq verify
-
-<span class="c-com"># 4 · print the local login</span>
 ./trailmq credentials</code></pre>
         </div>
         <div class="codecard">

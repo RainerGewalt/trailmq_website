@@ -4,3 +4,6 @@ _site/
 .bundle/
 node_modules/
 Gemfile.lock
+
+# Agent working directory — task state and session runtime, never published.
+.ai/
