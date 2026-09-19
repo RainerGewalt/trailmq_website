@@ -953,21 +953,37 @@ main:focus { outline: none; }
   margin-top: 2.5rem;
 }
 .qs-text, .qs-code { min-width: 0; }
-.qs-text p { color: rgba(255,255,255,0.72); margin-bottom: 1rem; line-height: 1.7; }
-.qs-text .accentline { color: #fff; font-weight: 600; }
+/* This column sits on the page background, not inside a dark panel like the
+   code cards beside it. It was written in white, which rendered it invisible
+   on white — heading, prose and the licence note alike. */
+.qs-text p { color: var(--ink-700); margin-bottom: 1rem; line-height: 1.7; }
+.qs-text .accentline { color: var(--ink-900); font-weight: 600; }
 .qs-note {
   margin-top: 1.3rem; padding: 0.85rem 1rem;
-  font-size: 0.86rem; color: rgba(255,255,255,0.6);
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.86rem; color: var(--ink-600);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
   border-radius: var(--r-sm);
 }
+/* Windows is the one route that is a download rather than a command, so it
+   gets a surface instead of a link buried in a paragraph. */
+.qs-download {
+  margin-top: 1.5rem; padding: 1.15rem 1.25rem;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+}
+.qs-download h4 { font-size: 1.02rem; color: var(--ink-900); margin-bottom: 0.45rem; }
+.qs-download p { font-size: 0.93rem; margin-bottom: 0.95rem; }
+.qs-download .btn { margin-bottom: 0.85rem; }
+.qs-download .qs-unsigned { margin-bottom: 0; font-size: 0.82rem; color: var(--ink-500); line-height: 1.6; }
+.qs-download .qs-unsigned strong { color: var(--ink-700); }
 .qs-docker { margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
 .qs-docker a {
   display: inline-flex; align-items: center; gap: 0.5rem;
   padding: 0.55rem 0.9rem;
   font-family: var(--font-mono); font-size: 0.82rem;
-  color: rgba(255,255,255,0.86);
+  color: var(--ink-800);
   background: rgba(36,150,237,0.12);
   border: 1px solid rgba(36,150,237,0.3);
   border-radius: var(--r-sm);
@@ -1487,7 +1503,7 @@ code.topic,
 .limits-extra strong { color: #fff; }
 .limits-extra code { color: var(--teal-200); }
 
-.qs-h3 { font-size: 1.15rem; color: #fff; margin-bottom: 0.8rem; }
+.qs-h3 { font-size: 1.15rem; color: var(--ink-900); margin-bottom: 0.8rem; }
 .code-block--tight { font-size: 0.82rem; margin: 0.8rem 0; }
 
 .faq-q { font-weight: 600; }
