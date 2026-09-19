@@ -7,8 +7,8 @@ author: "Florian Przybylak"
 owner_name: "Florian Przybylak"
 
 # Keep these values aligned with the public distribution repository.
-product_version: "3.1.0"
-product_release_url: "https://github.com/RainerGewalt/TrailMQ/releases/tag/v3.1.0"
+product_version: "3.1.1"
+product_release_url: "https://github.com/RainerGewalt/TrailMQ/releases/tag/v3.1.1"
 
 # Canonical domain
 # Important: use the non-www domain because GitHub Pages is configured with CNAME=trailmq.com
