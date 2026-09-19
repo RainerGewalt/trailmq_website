@@ -17,8 +17,9 @@ the website's own prior copy:
 | `docs/scenarios/02-denied-actions.md` | the three denial classes and the `ACLMon` decision line |
 | `docs/media/preview-*.jpg` | the actual UI: column names, reason wording, verdict panel |
 
-Product version referenced by the site: **3.1.0**. The in-flight 3.1.1 release was not
-touched and no 3.1.1 claim was added.
+Product version referenced by the site: **3.1.1**, matching the published release
+and `release.yaml` in the distribution repository. (Was 3.1.0 until 2026-09-19,
+while the repository had already shipped 3.1.1 on 2026-09-16.)
 
 ---
 
