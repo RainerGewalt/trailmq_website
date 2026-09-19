@@ -194,6 +194,7 @@ cd TrailMQ
   -t 'restricted/ops/config' -q 1 -m '{"setpoint":42}'</code></pre>
         <p>Then open <strong>Activity</strong> and filter <strong>Outcome &rarr; Denied</strong>. Your attempt is the top row, with your client id and the reason attached.</p>
         <p class="accentline">The run takes about 30 seconds once the images are pulled. No local MQTT client is required — <code>verify</code> falls back to a temporary Docker client.</p>
+        <p><strong>On Windows:</strong> <a href="{{ site.product_release_url }}" target="_blank" rel="noopener">TrailMQ-Setup-{{ site.product_version }}.exe</a> does the same without Git, WSL or a shell &mdash; Docker Desktop is the only prerequisite. It is an <strong>unsigned evaluation build</strong>, so Windows will report an unknown publisher: nothing vouches for who published the file. <code>SHA256SUMS-windows</code> from the same release confirms the file is the artifact this release published, which is a different claim from who published it.</p>
         <p class="qs-note">The public {{ site.product_version }} package is for local, non-production evaluation. Demo certificates and generated users are not deployment-ready. Review the <a href="{{ site.product_release_url }}" target="_blank" rel="noopener">release notes</a> and the <a href="{{ '/license/' | relative_url }}">license summary</a>; production or commercial use requires a separate agreement.</p>
         <div class="qs-docker">
           <a href="https://github.com/RainerGewalt/TrailMQ" target="_blank" rel="noopener">
