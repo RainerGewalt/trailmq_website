@@ -108,7 +108,7 @@ You also have the right to lodge a complaint with the competent supervisory auth
   Internal note: the applicable regime, the enumeration of rights and the competent
   supervisory authority are open counsel questions (docs/legal-findings.md L2, L6).
   The page names none of them on purpose. Do not draft them from this repo.
-{%- endcomment -%}
+{%- endcomment %}
 
 <div class="doc-cta">
   <h3>Questions about privacy?</h3>
