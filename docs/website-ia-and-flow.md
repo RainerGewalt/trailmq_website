@@ -32,7 +32,7 @@ tense anywhere on the site.
 | **Act**: create/edit topic rules and users in Access, or via REST | Access screenshot, README |
 | **Retest**: re-run the publish, or `./trailmq verify` | README |
 | "Seen in traffic, not configured" topic observations | Access screenshot |
-| Per-topic-rule `Record message evidence` toggle; decisions/refusals always recorded | Access screenshot |
+| Per-topic-rule `Record message evidence` toggle; refusals always recorded; allows counted, allowed publishes recorded with message evidence | Access screenshot |
 | Hash-linked integrity chain over system/action entries, with verdict, entries checked, entries excluded, "External anchoring: None", "Digital signature: None" | Activity screenshot, README |
 | `./trailmq quickstart` / `verify` / `credentials` / `open` / `doctor` | README |
 | Deliberate tamper scenario | `docs/scenarios/04-tamper-evidence.md` |
@@ -48,13 +48,19 @@ tense anywhere on the site.
 ### Planned for 3.2 — may be structurally prepared, never claimed
 
 The site may lay out the **Find → Understand → Check now → Act safely → Retest** flow,
-because Find, Understand, Check now and Act are shipped. The following are 3.2 and are
-marked as such wherever the flow appears:
+because Find, Understand, Check now and Act are shipped, and Retest is a manual step.
+The following are in the 3.2 implementation release plan and are marked as such
+wherever they appear:
 
-- automatic "smallest safe change" suggestion
-- tamper-evident integrity covering **all** MQTT decision records
-- automated retest / regression of a policy change
-- any organisational approval workflow
+- a record of every authorization decision, independent of message evidence
+- integrity covering MQTT decision records, each bound to the policy state that
+  produced it
+
+**Not promised for any version** (under evaluation only, decided 2026-10-11): an
+automatic "smallest safe change" suggestion, and an automated retest or regression of a
+policy change before it is applied.
+
+**Not planned:** any organisational approval workflow.
 
 **Never claimed at all**, per the brief: *GMP compliant*, *immutable*, *tamper-proof*,
 *guaranteed security*, *production safe*, *prove every decision*,
