@@ -253,17 +253,16 @@ cd TrailMQ
       <li class="flow__step">
         <span class="flow__n">5</span>
         <h3>Retest</h3>
-        <p>Re-run the publish, or <code>./trailmq verify</code>, and confirm the new decision was recorded. You drive this step yourself; there is no automated regression of a policy change.</p>
-        <span class="flow__badge flow__badge--manual">Manual today &middot; automation planned for 3.2</span>
+        <p>Re-run the publish, or <code>./trailmq verify</code>, and confirm it now goes through: no new refusal appears, and with message evidence enabled the publish is recorded. You drive this step yourself; there is no automated regression of a policy change.</p>
+        <span class="flow__badge flow__badge--manual">Manual &middot; you run the retest</span>
       </li>
     </ol>
 
     <div class="planned">
       <h3 class="planned__h">Planned for 3.2 — not available today</h3>
       <ul>
-        <li>A suggested smallest safe policy change, rather than a hand-written rule</li>
-        <li>Integrity coverage extended over MQTT decision records</li>
-        <li>An automated retest of a policy change before it is applied</li>
+        <li>A record of every authorization decision — including allowed subscribes and publishes on topics without message evidence</li>
+        <li>Integrity coverage over MQTT decision records, each bound to the policy state that produced it</li>
       </ul>
       <p class="planned__note">Listed so the direction is visible, not so it can be mistaken for a feature. Nothing in this box ships in {{ site.product_version }}, and no organisational approval step is automated in any planned version.</p>
     </div>

@@ -134,8 +134,8 @@ namespaces as a separate decision.
 ## Where TrailMQ fits
 
 TrailMQ is a self-hosted MQTT broker that enforces role and topic access policy and
-records each decision as it makes it, with the actor, role, client id, topic, outcome
-and a reason in prose. Standard MQTT clients connect directly — no SDK, proxy or
+records each refused operation as it happens, with the actor, role, client id, topic,
+outcome and a reason in prose. Standard MQTT clients connect directly — no SDK, proxy or
 sidecar — and the whole stack runs on your own infrastructure with no cloud dependency
 and no telemetry.
 
