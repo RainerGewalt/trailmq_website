@@ -4,8 +4,8 @@ title: "Cookie & Privacy Policy"
 crumb: "Cookies & Privacy"
 description: "This site uses no tracking cookies, no analytics, no advertising networks and no third-party embeds. What it does process — server logs at the host, and email you send — is described here precisely."
 subtitle: "No tracking, no analytics, no advertising, no third-party embeds — and a plain statement of the processing that does happen."
-updated: September 2026
-last_modified_at: 2026-09-14
+updated: October 2026
+last_modified_at: 2026-10-25
 permalink: /cookies/
 ---
 
@@ -26,10 +26,15 @@ permalink: /cookies/
   <div><p><strong>No tracking. No profiling. No data sold.</strong> This website sets no tracking cookies and loads no analytics tools, advertising networks, tag managers, embedded players, font CDNs or script CDNs.</p></div>
 </div>
 
-## Controller
+## Controller and applicable law
 
 **Florian Przybylak**, Rosenweg 6, 2554 Meinisberg, Switzerland.
 Contact: [contact@trailmq.com](mailto:contact@trailmq.com).
+
+This website is operated from Switzerland. Personal data is processed in accordance
+with the Swiss Federal Act on Data Protection (FADP). Where the EU General Data
+Protection Regulation also applies to visitors from the EU, the rights described below
+are granted to them as well.
 
 ## Cookies
 
@@ -51,13 +56,19 @@ request and information your browser sends such as the user agent and referrer. 
 processing is carried out by the host in order to deliver the page. The site operator
 runs no analytics over it and does not use it to build any profile.
 
+**Recipient and transfer abroad.** The host is GitHub, Inc., United States. GitHub
+states in its privacy statement that it has certified under the Swiss-U.S. Data Privacy
+Framework for personal data received from Switzerland; the Swiss Federal Council
+recognises that framework as providing adequate protection. The site operator has no
+access to GitHub's server logs and runs no analytics over them.
+
 See the [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement){:target="_blank" rel="noopener"}
-for GitHub's own processing.
+for GitHub's own processing, including its retention of connection data.
 
 {%- comment -%}
-  Internal note: legal basis and retention period for host server logs are an open
-  counsel question (docs/legal-findings.md L6). Stating the processing factually is
-  correct; do not draft a basis or a period from this repo.
+  Regime and transfer basis adopted by the owner on 2026-10-25 (docs/legal-proposal-2026-10-25.md).
+  Whether the GDPR applies by Art. 3(2) and whether an EU representative is needed
+  remains a counsel question; the wording above stays true either way.
 {%- endcomment -%}
 
 **Nothing else.** Beyond serving the page itself from the host, loading a page on this
@@ -75,12 +86,9 @@ read these pages.
 
 If you write to [contact@trailmq.com](mailto:contact@trailmq.com), your message and
 your email address are processed for the purpose of responding to your enquiry, and
-are not used for anything else.
-
-{%- comment -%}
-  Internal note: email retention period still to be confirmed by the owner
-  (docs/legal-findings.md L5).
-{%- endcomment -%}
+are not used for anything else. Correspondence is kept for twelve months after the
+last message and then deleted, unless a licence or contract relationship requires
+longer retention.
 
 ## External links
 
@@ -102,13 +110,9 @@ Some processing does occur — server logs at the host, and email correspondence
 data protection rights apply to it. To exercise any such right, or to ask what is held,
 write to [contact@trailmq.com](mailto:contact@trailmq.com).
 
-You also have the right to lodge a complaint with the competent supervisory authority.
-
-{%- comment -%}
-  Internal note: the applicable regime, the enumeration of rights and the competent
-  supervisory authority are open counsel questions (docs/legal-findings.md L2, L6).
-  The page names none of them on purpose. Do not draft them from this repo.
-{%- endcomment %}
+You also have the right to lodge a complaint with a supervisory authority. In
+Switzerland that is the Federal Data Protection and Information Commissioner (FDPIC),
+Bern.
 
 <div class="doc-cta">
   <h3>Questions about privacy?</h3>
