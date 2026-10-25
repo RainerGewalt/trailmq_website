@@ -1,9 +1,9 @@
 ---
 layout: page
 title: "MQTT audit trail and decision records"
-seo_title: "MQTT Audit Trail & Decision Records · TrailMQ"
+seo_title: "MQTT Audit Trail, Audit Log & Decision Records · TrailMQ"
 crumb: "Decision records"
-description: "What an MQTT audit trail must contain to be useful months later: identity, client id, topic, outcome and reason — and how it differs from broker logs."
+description: "What an MQTT audit log or audit trail must contain to be useful months later: identity, client id, topic, outcome and reason — and how it differs from broker logs."
 subtitle: "Broker logs tell you what the transport did. A decision record tells you what the broker decided, for whom, and why."
 permalink: /mqtt-decision-records/
 updated: September 2026
@@ -19,8 +19,8 @@ faq:
     a: "No. An allow means the broker authorized and accepted the operation. It does not name which subscribers received it. Proving delivery requires observing a real subscriber, which is a separate claim and should be recorded as one."
 ---
 
-Most MQTT deployments have logs. Far fewer can answer a question asked three months
-after the fact by someone who was not there.
+Most MQTT deployments have logs, and many call them the MQTT audit log. Far fewer can
+answer a question asked three months after the fact by someone who was not there.
 
 The gap is not volume. It is that transport logging and decision recording are written
 for different readers, and only one of them survives review.

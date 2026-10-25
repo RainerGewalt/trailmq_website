@@ -298,8 +298,8 @@ binding license nor pre-empt the decision. It now does neither.
 | L3 | Person-based schema instead of a non-existent Organization | Applied |
 | L4 | Copyright line scoped to website content | Applied |
 | L5 | Privacy page no longer claims "no personal data" | Applied |
-| **L2** | Which legal regime the imprint/privacy pages follow | **Open** — counsel; the site cites none |
-| **L6** | Supervisory authority, legal basis, retention | **Open** — counsel; the site names none |
+| L2 | Which legal regime the imprint/privacy pages follow | **Wording adopted 2026-10-25** (Swiss FADP, GDPR rights granted where it applies); Art. 27 question stays with counsel. See `legal-proposal-2026-10-25.md` |
+| L6 | Supervisory authority, transfer basis, retention | **Wording adopted 2026-10-25** (FDPIC, Swiss-U.S. DPF for GitHub, 12-month email retention) |
 | **L7** | Name the licensor on `/license/` | **Open** — owner decision, deferred |
 | **L8** | Software copyright: LICENSE vs. owner determination | **Open** — after 3.1.1; the site names no holder |
 

@@ -3,6 +3,10 @@ layout: wiki-category
 title: "Foundations"
 description: "The foundational principles behind trustworthy industrial, GMP and AI-ready systems."
 permalink: /wiki/category/foundations/
+redirect_from:
+  - /wiki-category-foundations/
+robots: "noindex, follow"
+sitemap: false
 category_filter: "Foundations"
 order: 1
 ---

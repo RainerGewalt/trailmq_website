@@ -274,3 +274,10 @@ the broker may still be working technically.
 But the system is not yet audit-ready.
 
 For a field-by-field evaluation guide, read [what an MQTT data transaction audit trail solution should record](/wiki/mqtt-data-transaction-audit-trail/).
+
+## Related
+
+- [GMP is not binary – it scales with proximity](/wiki/gmp-proximity/)
+- [GMP is shaped by time](/wiki/gmp-shaped-by-time/)
+- [Logs are not audit trails](/wiki/logs-vs-audit/)
+- [MQTT in GxP and GMP-regulated environments](/regulated/)

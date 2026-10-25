@@ -232,3 +232,10 @@ Reliable MQTT messaging in GMP-regulated manufacturing is not achieved by a sing
 It is achieved when message transport, access control, failure handling, data integrity and audit trails form one reviewable system.
 
 If a message matters to product quality or a regulated decision, the system must be able to explain it later.
+
+## Related
+
+- [Intervals are not abstractions – they are commitments](/wiki/intervals-commitments/)
+- [GMP is shaped by time](/wiki/gmp-shaped-by-time/)
+- [Why context must exist at decision time](/wiki/context-at-decision-time/)
+- [MQTT data transaction audit trails](/wiki/mqtt-data-transaction-audit-trail/)
