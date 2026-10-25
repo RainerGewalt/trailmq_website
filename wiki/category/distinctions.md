@@ -3,6 +3,10 @@ layout: wiki-category
 title: "Distinctions"
 description: "Conceptual distinctions that clarify why many industrial and regulated systems fail despite extensive data collection."
 permalink: /wiki/category/distinctions/
+redirect_from:
+  - /wiki-category-distinctions/
+robots: "noindex, follow"
+sitemap: false
 category_filter: "Distinctions"
 order: 2
 ---

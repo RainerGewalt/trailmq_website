@@ -3,6 +3,10 @@ layout: wiki-category
 title: "Models"
 description: "Architectural and conceptual models for designing explainable, auditable and scalable industrial systems."
 permalink: /wiki/category/models/
+redirect_from:
+  - /wiki-category-models/
+robots: "noindex, follow"
+sitemap: false
 category_filter: "Models"
 order: 3
 ---

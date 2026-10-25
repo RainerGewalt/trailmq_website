@@ -3,6 +3,10 @@ layout: wiki-category
 title: "Implications"
 description: "What foundational principles and models imply for AI, automation, data pipelines and industrial trust."
 permalink: /wiki/category/implications/
+redirect_from:
+  - /wiki-category-implications/
+robots: "noindex, follow"
+sitemap: false
 category_filter: "Implications"
 order: 4
 ---
