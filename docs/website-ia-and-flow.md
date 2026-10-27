@@ -43,7 +43,9 @@ tense anywhere on the site.
   decision-investigation story; kept on the technical page only.
 - Config merge semantics: deleting a user from `config.yaml` does **not** revoke it.
   This is a documented limitation and is surfaced, not hidden.
-- Plugin / context / baseline concepts in `docs/plugins.md` — explicitly *not* shipped.
+- Plugin / context / baseline concepts — not shipped, and no longer listed in the
+  TrailMQ repository since its plugin catalogue was removed (TrailMQ PR #33).
+  `/architecture-thinking/` presents them as architecture direction only.
 
 ### Planned for 3.2 — may be structurally prepared, never claimed
 
