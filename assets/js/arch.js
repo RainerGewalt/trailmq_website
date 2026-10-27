@@ -14,8 +14,8 @@
     proximity: { e: 'Proximity', t: 'GMP scales with proximity', l: 'The closer to the physical process a decision is made, the faster and more irreversible it becomes — and the harder the evidence is to reconstruct later. Filter by decision layer to focus on one system level.', unit: ['decision object', 'decision objects'] },
     time:      { e: 'Time', t: 'Decisions are bound to a window', l: 'Every value only means something inside the time window it belonged to. Context that is not captured in that window cannot be recovered afterwards.', unit: ['time window', 'time windows'] },
     alcoa:     { e: 'ALCOA++', t: 'Data integrity, by principle', l: 'Use ALCOA++ as an assessment lens for the complete record lifecycle. TrailMQ provides technical evidence with explicit boundaries; it does not make the deployed system compliant by itself.', unit: ['principle', 'principles'] },
-    gates:     { e: 'Decision gates', t: 'Current enforcement and planned gates', l: 'TrailMQ currently records allow and deny outcomes. Rate-limit, missing-context defer and escalation illustrate architecture direction and are labelled as planned or conceptual below.', unit: ['gate', 'gates'] },
-    scenario:  { e: 'Planned scenario', t: 'A proposed OEE-to-gate walkthrough', l: 'Follow the planned live-versus-historical recipe from a machine value to linked review evidence. This workflow is not executable in the current public distribution.', unit: ['step', 'steps'] }
+    gates:     { e: 'Decision gates', t: 'Current enforcement and architecture direction', l: 'TrailMQ currently records allow and deny outcomes. Rate-limit, missing-context defer and escalation illustrate architecture direction and are labelled as direction or conceptual below.', unit: ['gate', 'gates'] },
+    scenario:  { e: 'Conceptual scenario', t: 'An OEE-to-gate walkthrough', l: 'Follow a live-versus-historical check from a machine value to linked review evidence. This workflow is conceptual and not executable in the current public distribution.', unit: ['step', 'steps'] }
   };
   var LAYER_NAME = { line: 'Line', site: 'Site', cloud: 'Cloud' };
 
