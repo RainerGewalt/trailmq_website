@@ -64,8 +64,8 @@ which this site does not restate. Operator and contact details are on the
 
 Support is best effort: issues and emails are read and answered, without a
 guaranteed response time, support contract or SLA. There is no consulting,
-integration or paid support offer, and no production licence offer yet
-([licensing]({{ '/license/' | relative_url }})).
+integration or paid support offer, and there is no production licence offer
+today ([licensing]({{ '/license/' | relative_url }})).
 
 ## Where to go next
 

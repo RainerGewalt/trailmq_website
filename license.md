@@ -60,7 +60,7 @@ The evaluation package is intended for local, non-production technical evaluatio
 
 There is no production licence offer today. The binding license ties production use to a separately assessed TrailMQ production offering, and the evaluation release is not that version. No price list, edition, support package or service commitment exists yet, and none is implied by this page.
 
-If you would need TrailMQ beyond evaluation, say what for: in an [evaluation report](https://github.com/RainerGewalt/TrailMQ/issues/new?template=evaluation-report.yml){:target="_blank" rel="noopener"} or by email to [contact@trailmq.com](mailto:contact@trailmq.com). Whether production terms will exist, and which rights they cover, depends on answers like that. No SLA, support package, validation deliverable or production right is granted by the public evaluation license or by this website summary.
+If you would consider using TrailMQ in a real project, you can say so in an [evaluation report](https://github.com/RainerGewalt/TrailMQ/issues/new?template=evaluation-report.yml){:target="_blank" rel="noopener"} or by email to [contact@trailmq.com](mailto:contact@trailmq.com). That records interest. It is not an order, and it does not mean that a production licence or any particular capability will be offered. No SLA, support package, validation deliverable or production right is granted by the public evaluation license or by this website summary.
 
 ## Support
 
@@ -83,7 +83,7 @@ The public package answers technical-fit questions locally, before anyone has to
 
 <div class="doc-cta">
   <h3>Need more than evaluation?</h3>
-  <p>Tell us what you would use TrailMQ for. It decides whether production terms will exist.</p>
+  <p>Tell us what you tried and what you would use TrailMQ for. It records interest, not a commitment on either side.</p>
   <div class="actions">
     <a href="https://github.com/RainerGewalt/TrailMQ/issues/new?template=evaluation-report.yml" target="_blank" rel="noopener" class="btn btn--primary">Write an evaluation report</a>
     <a href="mailto:contact@trailmq.com" class="btn btn--outline" style="color:#fff;border-color:rgba(255,255,255,0.3)">contact@trailmq.com</a>
