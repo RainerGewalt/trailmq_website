@@ -1,5 +1,5 @@
-title: "TrailMQ – MQTT Access Control for Industrial Systems"
-description: "Know why MQTT access was allowed or denied. Policy-controlled MQTT for industrial systems, with attributable and reviewable access decisions."
+title: "TrailMQ – MQTT Access Control You Can Understand"
+description: "MQTT permissions you can understand. A self-hosted MQTT broker for developers that controls access and records why each publish or subscribe was allowed or denied."
 
 # There is no TrailMQ legal entity and no team. The site is operated by a natural
 # person; see docs/legal-findings.md (L3). Do not reintroduce "TrailMQ Team".

@@ -6,8 +6,8 @@ crumb: About
 description: "What TrailMQ is, why it exists, and who runs the project."
 subtitle: "A self-hosted MQTT broker that enforces access policy and records who was allowed or denied, on which topic, and why."
 permalink: /about/
-updated: September 2026
-last_modified_at: 2026-09-15
+updated: November 2026
+last_modified_at: 2026-11-07
 ---
 
 {%- comment -%}
@@ -60,6 +60,13 @@ governed by the binding
 which this site does not restate. Operator and contact details are on the
 [imprint]({{ '/imprint/' | relative_url }}).
 
+## Support
+
+Support is best effort: issues and emails are read and answered, without a
+guaranteed response time, support contract or SLA. There is no consulting,
+integration or paid support offer, and there is no production licence offer
+today ([licensing]({{ '/license/' | relative_url }})).
+
 ## Where to go next
 
 - [See a decision]({{ '/#demo' | relative_url }}) — a denied publish, traced end to end
@@ -72,8 +79,9 @@ which this site does not restate. Operator and contact details are on the
 
 <div class="doc-cta">
   <h3>Evaluating TrailMQ?</h3>
-  <p>Questions about evaluation, licensing or a regulated deployment.</p>
+  <p>Tell us what you ran, whether it worked and what got in the way. A failed first run is as useful as one that worked.</p>
   <div class="actions">
-    <a href="mailto:contact@trailmq.com" class="btn btn--primary">contact@trailmq.com</a>
+    <a href="https://github.com/RainerGewalt/TrailMQ/issues/new?template=evaluation-report.yml" target="_blank" rel="noopener" class="btn btn--primary">Write an evaluation report</a>
+    <a href="mailto:contact@trailmq.com" class="btn btn--outline" style="color:#fff;border-color:rgba(255,255,255,0.3)">contact@trailmq.com</a>
   </div>
 </div>

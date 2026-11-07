@@ -2,9 +2,9 @@
 layout: default
 title: "MQTT Access Control: Know Why a Publish Was Denied"
 seo_title: "MQTT Access Control: Know Why a Publish Was Denied · TrailMQ"
-description: "Self-hosted MQTT broker that enforces role and topic access policy and records who was allowed or denied, on which topic, and why. Replay a real denial."
+description: "Self-hosted MQTT broker for developers: enforce role and topic access policy and see who was allowed or denied, on which topic, and why. Replay a real denial."
 author: Florian Przybylak
-last_modified_at: 2026-09-14
+last_modified_at: 2026-11-07
 demo: true
 faq:
   - q: "Why was my MQTT publish denied?"
@@ -18,7 +18,7 @@ faq:
   - q: "Does the integrity check cover every MQTT decision?"
     a: "No. The hash-linked chain walks the system and action store: sign-ins, administrative changes, identity and role changes, policy and topic-rule changes. MQTT message evidence, including publish and subscribe refusals, lives in its own store that the verdict does not walk, and the product labels those records Outside validated scope. The chain is not externally anchored and not digitally signed."
   - q: "Is TrailMQ open source?"
-    a: "No. TrailMQ provides public evaluation access through GitHub and Docker images under a proprietary evaluation license. Production, commercial, managed-hosting and redistribution use require a separate written agreement."
+    a: "No. TrailMQ provides public evaluation access through GitHub and Docker images under a proprietary evaluation license. Production, commercial, managed-hosting and redistribution use require a separate written agreement, and there is no production licence offer today."
 ---
 
 {%- comment -%}
@@ -40,17 +40,19 @@ faq:
   <div class="wrap hero__grid">
     <div class="hero__copy">
       <span class="hero__badge"><span class="dot"></span> TrailMQ {{ site.product_version }} · self-hosted evaluation</span>
-      <h1>Know why MQTT access was<br><em>allowed or denied.</em></h1>
-      <p class="hero__sub">Policy-controlled MQTT for industrial systems, with attributable and reviewable access decisions.</p>
-      <p class="hero__desc">A publish fails. The client prints a protocol error, or nothing at all. Somewhere between a role, a topic rule and a broker config is the reason — and by the time anyone asks, the evidence has to already exist. TrailMQ records the actor, the client, the topic, the outcome and the reason at the moment the broker decides.</p>
+      <h1>MQTT permissions<br><em>you can understand.</em></h1>
+      <p class="hero__sub">A self-hosted MQTT broker that helps developers control access and investigate why a publish or subscribe was allowed or denied.</p>
+      <p class="hero__desc">A publish fails. The client prints a protocol error, or nothing at all. Somewhere between a role, a topic rule and a broker config is the reason — and by the time anyone asks, the evidence has to already exist. TrailMQ records the actor, the client, the topic, the outcome and the reason at the moment the broker decides. It grew out of industrial networks; it is built for any project with more than one client and more than one set of rights.</p>
 
       <div class="hero__cta">
         <a href="#demo" class="btn btn--primary">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 3 14 9-14 9z"/></svg>
           See a decision
         </a>
-        <a href="#try" class="btn btn--ghost-light">Try it yourself</a>
+        <a href="#try" class="btn btn--ghost-light">Try the evaluation</a>
+        <a href="https://github.com/RainerGewalt/TrailMQ/blob/master/docs/why-was-my-mqtt-access-denied.md" target="_blank" rel="noopener" class="btn btn--ghost-light">Explore the proof</a>
       </div>
+      <p class="hero__note">Available today as a non-production evaluation preview. How developers may use TrailMQ beyond evaluation is an open question for the project; nothing on this site implies production-use permission.</p>
 
       <div class="hero__trust">
         <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Runs on your machine</div>
@@ -346,6 +348,7 @@ cd TrailMQ
       <ul>
         <li><a href="{{ '/mqtt-access-control/' | relative_url }}">MQTT access control: who may publish or subscribe, and why</a></li>
         <li><a href="{{ '/wiki/why-mqtt-publish-denied/' | relative_url }}">Why was my MQTT publish denied? — a systematic walkthrough</a></li>
+        <li><a href="https://github.com/RainerGewalt/TrailMQ/blob/master/docs/why-was-my-mqtt-access-denied.md" target="_blank" rel="noopener">Reproduce it: three identities, five MQTT actions, and the same policy on a secured open-source broker</a></li>
         <li><a href="{{ '/mqtt-decision-records/' | relative_url }}">MQTT audit trail and decision records</a></li>
         <li><a href="{{ '/industrial-mqtt-security/' | relative_url }}">Industrial MQTT security for OT networks</a></li>
         <li><a href="{{ '/architecture-thinking/' | relative_url }}">Architecture thinking behind TrailMQ</a></li>
@@ -371,7 +374,7 @@ cd TrailMQ
       {%- endfor %}
     </div>
 
-    <p class="foot-note foot-note--center">Evaluating TrailMQ against a real MQTT use case? <a href="mailto:contact@trailmq.com?subject=TrailMQ%20evaluation">Tell me how it went</a>.</p>
+    <p class="foot-note foot-note--center">Evaluating TrailMQ against a real MQTT use case? Tell me how it went, in an <a href="https://github.com/RainerGewalt/TrailMQ/issues/new?template=evaluation-report.yml" target="_blank" rel="noopener">evaluation report</a> or <a href="mailto:contact@trailmq.com?subject=TrailMQ%20evaluation">by email</a>.</p>
   </div>
 </section>
 

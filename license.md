@@ -3,11 +3,11 @@ layout: page
 title: "Licensing & Usage"
 seo_title: "TrailMQ Proprietary Evaluation License & Usage"
 crumb: License
-description: Plain-English TrailMQ evaluation license summary covering permitted local non-production use, restrictions and commercial licensing.
+description: Plain-English TrailMQ evaluation license summary covering permitted local non-production use, restrictions and the current status of production licensing.
 subtitle: TrailMQ is distributed under a proprietary evaluation license. The public package is free for local, non-production technical evaluation within the binding license terms.
-updated: August 2026
+updated: November 2026
 permalink: /license/
-last_modified_at: 2026-08-12
+last_modified_at: 2026-11-07
 ---
 
 <div class="callout callout--accent">
@@ -56,15 +56,19 @@ The system/action integrity check does not cover the separate MQTT message-evide
 
 The evaluation package is intended for local, non-production technical evaluation. Demo certificates and generated users are not deployment-ready. Production, commercial, managed-hosting, redistribution and customer-facing use require a separate written agreement.
 
-## Production and commercial licensing
+## Use beyond evaluation
 
-TrailMQ Pro and production/commercial terms are available on request. The exact edition, permitted use, support, validation assistance and service commitments depend on a separate written agreement.
+Today the evaluation license is the only license, and it permits local, non-production evaluation. There is no production licence offer, no price list, no edition and no service commitment, and none is implied by this page.
 
-Contact [contact@trailmq.com](mailto:contact@trailmq.com) to discuss the intended use. No SLA, support package, validation deliverable or production right is granted by the public evaluation license or by this website summary.
+How developers may use TrailMQ beyond evaluation is an open question for the project, to be answered after the 3.2 release. If you would use TrailMQ in a project of your own, say what you would build and what stops you today, in an [evaluation report](https://github.com/RainerGewalt/TrailMQ/issues/new?template=evaluation-report.yml){:target="_blank" rel="noopener"} (a public GitHub issue) or by email to [contact@trailmq.com](mailto:contact@trailmq.com). Those answers shape that decision. They do not change your rights, and no SLA, support package, validation deliverable or production right is granted by the public evaluation license or by this website summary.
 
-## Why commercial licensing?
+## Support
 
-The public package answers technical-fit questions locally while preserving clear boundaries around production, commercial, hosted and redistributed use. A separate agreement defines the rights and commitments required outside evaluation.
+Support is best effort from the maintainer: issues and emails are read and answered, without a guaranteed response time, support contract or SLA. There is no paid support.
+
+## Why the evaluation boundary?
+
+The public package answers technical-fit questions locally, before anyone has to trust anything: run it, trigger your own denial and read the record. Three statements stay separate on this site: *you may use it* is what the license says; *it was tested for this* is what the documented scenarios and the [reproducible proof](https://github.com/RainerGewalt/TrailMQ/blob/master/docs/why-was-my-mqtt-access-denied.md){:target="_blank" rel="noopener"} show; *you get support* is a commitment nobody has made. The boundary around production, commercial, hosted and redistributed use stays in place until the license changes.
 
 ## Getting started
 
@@ -78,10 +82,11 @@ The public package answers technical-fit questions locally while preserving clea
 - [rainergewalt/trailmq-frontend](https://hub.docker.com/r/rainergewalt/trailmq-frontend){:target="_blank" rel="noopener"}
 
 <div class="doc-cta">
-  <h3>Licensing inquiries</h3>
-  <p>For licensing questions or enterprise discussions, get in touch.</p>
+  <h3>Would you use TrailMQ in your own project?</h3>
+  <p>Tell us what you would build and what stops you today. Your answer shapes how the project opens up; it does not change your rights.</p>
   <div class="actions">
-    <a href="mailto:contact@trailmq.com" class="btn btn--primary">contact@trailmq.com</a>
+    <a href="https://github.com/RainerGewalt/TrailMQ/issues/new?template=evaluation-report.yml" target="_blank" rel="noopener" class="btn btn--primary">Write an evaluation report</a>
+    <a href="mailto:contact@trailmq.com" class="btn btn--outline" style="color:#fff;border-color:rgba(255,255,255,0.3)">contact@trailmq.com</a>
     <a href="https://github.com/RainerGewalt/TrailMQ" target="_blank" rel="noopener" class="btn btn--outline" style="color:#fff;border-color:rgba(255,255,255,0.3)">View on GitHub</a>
   </div>
 </div>
