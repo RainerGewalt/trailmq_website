@@ -3,11 +3,11 @@ layout: page
 title: "Licensing & Usage"
 seo_title: "TrailMQ Proprietary Evaluation License & Usage"
 crumb: License
-description: Plain-English TrailMQ evaluation license summary covering permitted local non-production use, restrictions and commercial licensing.
+description: Plain-English TrailMQ evaluation license summary covering permitted local non-production use, restrictions and the current status of production licensing.
 subtitle: TrailMQ is distributed under a proprietary evaluation license. The public package is free for local, non-production technical evaluation within the binding license terms.
-updated: August 2026
+updated: November 2026
 permalink: /license/
-last_modified_at: 2026-08-12
+last_modified_at: 2026-11-07
 ---
 
 <div class="callout callout--accent">
@@ -56,15 +56,19 @@ The system/action integrity check does not cover the separate MQTT message-evide
 
 The evaluation package is intended for local, non-production technical evaluation. Demo certificates and generated users are not deployment-ready. Production, commercial, managed-hosting, redistribution and customer-facing use require a separate written agreement.
 
-## Production and commercial licensing
+## Production licensing today
 
-TrailMQ Pro and production/commercial terms are available on request. The exact edition, permitted use, support, validation assistance and service commitments depend on a separate written agreement.
+There is no production licence offer today. The binding license ties production use to a separately assessed TrailMQ production offering, and the evaluation release is not that version. No price list, edition, support package or service commitment exists yet, and none is implied by this page.
 
-Contact [contact@trailmq.com](mailto:contact@trailmq.com) to discuss the intended use. No SLA, support package, validation deliverable or production right is granted by the public evaluation license or by this website summary.
+If you would need TrailMQ beyond evaluation, say what for: in an [evaluation report](https://github.com/RainerGewalt/TrailMQ/issues/new?template=evaluation-report.yml){:target="_blank" rel="noopener"} or by email to [contact@trailmq.com](mailto:contact@trailmq.com). Whether production terms will exist, and which rights they cover, depends on answers like that. No SLA, support package, validation deliverable or production right is granted by the public evaluation license or by this website summary.
 
-## Why commercial licensing?
+## Support
 
-The public package answers technical-fit questions locally while preserving clear boundaries around production, commercial, hosted and redistributed use. A separate agreement defines the rights and commitments required outside evaluation.
+Support is best effort from the maintainer: issues and emails are read and answered, without a guaranteed response time, support contract or SLA. There is no paid support.
+
+## Why the evaluation boundary?
+
+The public package answers technical-fit questions locally, before anyone has to trust or pay for anything: run it, trigger your own denial and read the record. The boundary around production, commercial, hosted and redistributed use stays in place until a version exists that has been assessed for that use.
 
 ## Getting started
 
@@ -78,10 +82,11 @@ The public package answers technical-fit questions locally while preserving clea
 - [rainergewalt/trailmq-frontend](https://hub.docker.com/r/rainergewalt/trailmq-frontend){:target="_blank" rel="noopener"}
 
 <div class="doc-cta">
-  <h3>Licensing inquiries</h3>
-  <p>For licensing questions or enterprise discussions, get in touch.</p>
+  <h3>Need more than evaluation?</h3>
+  <p>Tell us what you would use TrailMQ for. It decides whether production terms will exist.</p>
   <div class="actions">
-    <a href="mailto:contact@trailmq.com" class="btn btn--primary">contact@trailmq.com</a>
+    <a href="https://github.com/RainerGewalt/TrailMQ/issues/new?template=evaluation-report.yml" target="_blank" rel="noopener" class="btn btn--primary">Write an evaluation report</a>
+    <a href="mailto:contact@trailmq.com" class="btn btn--outline" style="color:#fff;border-color:rgba(255,255,255,0.3)">contact@trailmq.com</a>
     <a href="https://github.com/RainerGewalt/TrailMQ" target="_blank" rel="noopener" class="btn btn--outline" style="color:#fff;border-color:rgba(255,255,255,0.3)">View on GitHub</a>
   </div>
 </div>

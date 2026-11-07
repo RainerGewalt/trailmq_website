@@ -58,6 +58,14 @@ marked as such wherever the flow appears:
 - automated retest / regression of a policy change
 - any organisational approval workflow
 
+**Commercial statements (owner decision of 7 November 2026).** The site offers no
+price, edition, licence tier, shop, support package, SLA, consulting or validation
+service, because none exists. It states that there is no production licence offer
+today and invites an evaluation report instead. "TrailMQ Pro", "on request" and
+"enterprise discussions" are not used. Support is described as best effort with no
+guaranteed response time. Any future licence model is decided in the ecosystem lab
+first and appears here only once it exists.
+
 **Never claimed at all**, per the brief: *GMP compliant*, *immutable*, *tamper-proof*,
 *guaranteed security*, *production safe*, *prove every decision*,
 *nothing is ever sent anywhere*.
@@ -230,6 +238,12 @@ authorization, TLS or audit logging — they do not. The retained distinction is
 and defensible: with a conventional setup, enforcement lives in broker configuration and
 review lives in a separate log pipeline; TrailMQ keeps both on one product path. This is
 stated as TrailMQ's design choice, not as a competitor deficiency.
+
+A comparison with a named broker lives only as a reproducible proof in the public
+TrailMQ repository (`docs/why-was-my-mqtt-access-denied.md`), with the other broker
+configured properly rather than left open, the commands, the actual output of one
+dated run and the limits. The site may link that proof without naming the other
+product; it does not summarise the comparison in its own words.
 
 This differentiation remains a **hypothesis** to validate with external engineers.
 
