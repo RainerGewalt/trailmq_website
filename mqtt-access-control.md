@@ -136,8 +136,10 @@ afterwards means correlating an ACL file whose current state may differ from its
 at the time, a connection log with client ids but no usernames, and an application log
 with usernames but no topics.
 
-TrailMQ records each decision as it makes it — actor, role, client id, action, topic,
-time, outcome, and a reason in prose that names which gate refused. It also states
+TrailMQ records each refusal as it makes it — actor, role, client id, action, topic,
+time, outcome, and a reason in prose that names which gate refused. Allowed operations
+are counted; an allowed publish is recorded where message evidence is enabled for its
+topic. It also states
 what that evidence is worth: the hash-linked integrity chain covers system and action
 entries, and MQTT decision records are labelled `Outside validated scope` because the
 chain does not walk them.

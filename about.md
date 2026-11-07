@@ -24,9 +24,10 @@ TrailMQ is an MQTT broker. Standard clients — `mosquitto`, `paho-mqtt`,
 WebSocket, with no SDK, proxy or sidecar.
 
 Two things happen at that boundary. Every publish and subscribe must pass both
-the role's permission and a topic rule that brings the path into scope. And the
-resulting decision is recorded as it is made, with the actor, role, client id,
-topic, outcome and, for a refusal, a reason in prose.
+the role's permission and a topic rule that brings the path into scope. And a
+refusal is recorded as it is made, with the actor, role, client id, topic,
+outcome and a reason in prose; an allowed publish is recorded where message
+evidence is enabled for its topic.
 
 ## Why it exists
 
