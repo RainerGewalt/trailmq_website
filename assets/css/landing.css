@@ -459,6 +459,13 @@ main:focus { outline: none; }
   max-width: 33rem;
 }
 .hero__cta { margin-top: 2.2rem; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+.hero__note {
+  margin-top: 1.2rem;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.5);
+  max-width: 33rem;
+}
 .hero__trust {
   margin-top: 2.6rem;
   padding-top: 1.6rem;
